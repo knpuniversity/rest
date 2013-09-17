@@ -9,9 +9,12 @@ For more details, see the following blog posts:
 * [What the REST?](http://knpuniversity.com/blog/what-the-rest)
 * [REST Revisited](http://knpuniversity.com/blog/rest-revisited)
 
-Collaboration 
+Collaboration
 -------------
 
 As we start writing the content for this tutorial, we invite you to read
 through it, try things out, and offer improvements, either as issues on this
-repository or as pull requests. 
+repository or as pull requests. REST is hard, so the more smart minds we
+can have on it, the better it will be for everyone.
+
+Cheers!
