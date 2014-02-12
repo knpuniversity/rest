@@ -2,10 +2,15 @@
 
 ### Project
 
-- CodeBattles: fight against other programmers
-- programmers  (M21 Avatar)
-- projects (M2M Battle)
-- battle (M21 Programmer, M21 project)
+CodeBattles: You create a "character" (programmer), then battle "projects".
+You'll be able to "drink caffeine" to increase your energy and "study" to
+increase your experience. Then you can battle more "projects".
+
+**Resources**:
+
+- programmers
+- projects
+- battles
 
 #### Overall Notes
 
@@ -47,14 +52,12 @@
 
 ##### CHAPTER 4: Post, Show and Linking
 
-Here we'll creat ea new "battle". We'll look up a projectId manually from
+Here we'll create a new "battle". We'll look up a projectId manually from
 the web interface for our user.
 
-- create a new battle (POST) /characters/{id}/battle/{projectId}
+- create a new battle (POST) /characters/{id}/battles (send projectId in body)
 - create a /battles/{id} (update POST to have Location header)
 - make link back to the the character from /battles/{id}
-
-**Question**: How about the above URL structure? 
 
 ##### CHAPTER 5: Hal Basics
 
@@ -123,71 +126,76 @@ the web interface for our user.
 - mention PUT versus PATCH
 - Perhaps allow PATCH /characters/{id} as a valid endpoint
 
-##### CHAPTER 15: Allowing application/json submits
+##### CHAPTER 15: Custom Endpoints
+
+- and endpoint to make our character study - what should that look like?
+- invent something: "studying" POST /characters/{id}/study
+- add another: "drinking coffee" POST /characters/{id}/drink-caffeine
+- add links for these
+- idempotency again
+
+##### CHAPTER 16: Custom Endpoint PUT
+
+- custom PUT endpoint - PUT /characters/{id}/avatar
+- idempotency
+- add link
+
+##### CHAPTER 17: Allowing application/json submits
 
 - Add some listener? (depends on how we're handling forms) that decodes
   the JSON body to to POST data if the reqeust type is application/json
 - update our documentation to say we allow this
 
-##### CHAPTER 16: DELETE
+##### CHAPTER 18: DELETE
 
 - add a delete endpoint
 - introduce the 204 response
 
-##### CHAPTER 17: Custom Endpoints
-
-- and endpoint to make our character study - what should that look like?
-- invent something: "studying" POST /characters/{id}/study
-- add a link for this
-- idempotency again
-
-##### CHAPTER 18: Pagination
+##### CHAPTER 19: Pagination
 
 - add pagination links on characters
 - talk about IANA
 - add some light details to our documentation
 
-##### CHAPTER 19: Filtering
+##### CHAPTER 20: Filtering
 
 - add filtering on characters
 - add documentation about the standard way we'll allow things to be filtered
 - we still don't know what fields can be used on any filter - that's a docs todo
 - why query paramters? To avoid /characters/{id}/page/{page}/name/{name}
 
-##### CHAPTER 20: API Problems
+##### CHAPTER 21: API Problems
 
 - handling "problems" API Problem or vnd.error
 
-##### CHAPTER 21: Form Validation errors
+##### CHAPTER 22: Form Validation errors
 
 - add validation errors to the form (editing/creating character)
 - handle 404's and other errors
 
-
-#### Issues
-
-- missing an example where I create a new sub-ordinate resource (POST /teams/5/matches)
-- missing an endpoint similar to the "payment" on an order example (PUT /orders/5/payment)
-- when are we planning out the API design?
-- consider a PUT endpoint for creating battles: /characters/{id}/projects/{id}/battle
-- creating an image link for the avatar of a character
-- where to break this into pieces?
-- Symfony2 versus Silex?
-- best way to collaborate
-- documentation?
-- documenting the input and output content-types
-- different request/response content-types (the API might allow urlencoded
-  OR json-body requests. based on the request content-type)
-- error codes
-- how much to talk about authentication?
-
 ### Topics
 
+- when are we planning out the API design? RESTful Web APIs talks through
+  a great process to help you figure out what resources you have and how
+  you should link them
+- Richardson's maturity model (of course) - but I'd rather show people first, then show this later
+- documentation: what should be documented, and why. How can we generate it?
+- curies
+- Options method and Allow header
+- templated links
+- CORS
+- profiles (for pointing to docs)
+- caching
+- authentication
+- versioning?
+- the API "homepage"
+- creating an image link for the avatar of a character (showing that links
+   can be to non/HAL-format resources)
+- touch on more HTTP status codes as they should be talked about
 + basic intro to REST's meaning
 + very basic HTTP intro
 + resources versus representations
 + Content-Negotiation
-- Richardson's maturity model (of course) - but I'd rather show people first, then show this later
 + POST versus PUT (via examples), idempotency
 + 201 response, Location header (our first "link"!)
 + 204 response, when appropriate, etc
@@ -200,24 +208,17 @@ the web interface for our user.
 + Request media type [representation] (e.g. application/json) does not match
   the response media type [representation] (e.g. application/hal+json)
 + custom endpoints (e.g. "publishing a blog post/forfeiting a match" - URI, HTTP method, documentation)
-- documentation: what should be documented, and why. How can we generate it?
 + standard link relations versus custom relations (and documentation)
-- curies
-- Options method and Allow header
-- templated links
-- CORS
-- profiles (for pointing to docs)
 + validation error responses (API Problem, vnd.error)
 + embedded resources versus links
-- caching
-- authentication
 + functionally testing the API
-- versioning?
-- the API "homepage"
 
 ### Questions
 
-- Symfony versus non-Symfony?
-- Best client to build with? A functional test from the beginning with Guzzle?
-- How should we handle authentication? Probably OAuth
+- Symfony versus non-Symfony? I think we should do non-Symfony and then
+  do a Symfony-specific one, which ideally - wouldn't be too long. The
+  biggest thing I know of that's different in Symfony is the presence of
+  NelmioAPIDocBundle.
+- How much of OAuth should we show? A different screencast?
 - Best way to generate documentation for each endpoint?
+- where to break this into pieces? This is at least 2 screencasts
