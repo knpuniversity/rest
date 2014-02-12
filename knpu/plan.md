@@ -192,26 +192,6 @@ the web interface for our user.
 - creating an image link for the avatar of a character (showing that links
    can be to non/HAL-format resources)
 - touch on more HTTP status codes as they should be talked about
-+ basic intro to REST's meaning
-+ very basic HTTP intro
-+ resources versus representations
-+ Content-Negotiation
-+ POST versus PUT (via examples), idempotency
-+ 201 response, Location header (our first "link"!)
-+ 204 response, when appropriate, etc
-+ serialization
-+ URL structures (even though it doesn't matter), subordinate resources, etc
-+ adding "links"
-+ pagination and those standard links (+, using query parameters)
-+ filtering
-+ using Hal as a standard format
-+ Request media type [representation] (e.g. application/json) does not match
-  the response media type [representation] (e.g. application/hal+json)
-+ custom endpoints (e.g. "publishing a blog post/forfeiting a match" - URI, HTTP method, documentation)
-+ standard link relations versus custom relations (and documentation)
-+ validation error responses (API Problem, vnd.error)
-+ embedded resources versus links
-+ functionally testing the API
 
 ### Questions
 
