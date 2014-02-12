@@ -12,6 +12,6 @@ illustration: rest.png
 priority: 0
 tags:
     - { name: php }
-is_upcoming: 1
+status: upcoming
 
 chapters: []
