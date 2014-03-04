@@ -8,6 +8,9 @@ summary: |
     task. In this upcoming screencast, we'll learn about all of the new concepts
     around REST like HATOEAS and the advantages and disadvantages of each.
     And we'll of course build a real API to show it all off.
+
+    Release: We expect to start releasing the first chapters in the middle
+    of March 2014. Subscribe for updates and we'll tell you when it happens.
 illustration: rest.png
 priority: 0
 tags:
