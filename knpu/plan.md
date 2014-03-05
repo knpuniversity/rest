@@ -216,6 +216,14 @@ the web interface for our user.
 
 - touch on more HTTP status codes as they should be talked about
 
+- by removing the following, did I lose something?
+    - create a new battle (POST) /characters/{id}/battles (send projectId in body)
+    - create a /battles/{id} (update POST to have Location header)
+    - make link back to the the character from /battles/{id}
+
+- Add this back:
+    - GET endpoint for listing programmers - very basic
+
 ### Notes
 
 - Do a Silex app. Later we will plan to have a smaller tutorial on doing
