@@ -30,43 +30,44 @@ battle more *projects*.
     programmers, battle projects, etc
 - start also with the ability to register (and get an API key tied to your account)
 
-##### CHAPTER 1: Basic API endpoint
+##### CHAPTER 1: API basics
 
-- make an API request to get a list of characters from a "test" via Guzzle
-  (doesn't exist yet). In fact, I think we use Guzzle and write a "test" for
-  each endpoint before creating it
-- create this basic endpoint - no links, no serialization - just getting
-  raw characters data and manually turning it into a JSON array
+- a bit of intro theory - but not too much to overdo it!
+- mention Richardson Maturity Model (RMM) 0 and 1 
 - Very basic REST introduction - the HTTP message, the GET method, status code
 - Resources and representations (but not too heavy)
 
-##### CHAPTER 2: POST
+##### CHAPTER 2: POST (Creating things)
 
 - create a POST endpoint to create a new programmer
   - no validation
   - intro to 201 response
-
-##### CHAPTER 3: Show and Link
-
-- create SHOW endpoint for each character
+- probably start by writing a "test" via Guzzle before making the endpoint
 - add Location header to 201 response
+- RMM level 2 (HTTP verbs)
+
+##### CHAPTER 3: GET (Reading things)
+
+- GET SHOW endpoint for each programmer - no links, no serialization - just
+  getting raw programmers data and manually turning it into a JSON array
 
 ##### CHAPTER 4: Post, Show and Linking
 
 Here we'll create a new "battle". We'll look up a projectId manually from
 the web interface for our user.
 
-- create a new battle (POST) /characters/{id}/battles (send projectId in body)
-- create a /battles/{id} (update POST to have Location header)
-- make link back to the the character from /battles/{id}
+- create a new battle (POST) /battles (send projectId and userId in body)
+- create a GET /battles/{id} (update the previous POST to have Location header)
+- make link back to the programmer from /battles/{id}
+- maybe tease RMM level 3 as a segway into the next chapter
 
 ##### CHAPTER 5: Hal Basics
 
+- RMM level 3 and "Hypermedia" concept
 - Bring in Hal as a way of formalizing the data and links
-- Hypermedia
-- fix /battles/{id}
-- content-type
-- characeter link
+- fix /battles/{id} to be HAL
+- add a content-type to /battles/{id}
+- fix the link on /battles/{id} to the progammer
 - _self link (mention IANA more later with pagination)
 
 ##### CHAPTER 6: Using the HATEOAS library
