@@ -2,9 +2,10 @@
 
 ### Project
 
-CodeBattles: You create a "character" (programmer), then battle "projects".
-You'll be able to "drink caffeine" to increase your energy and "study" to
-increase your experience. Then you can battle more "projects".
+CodeBattles: You create a *programmer*, then battle *projects*.
+You'll be able to do things (e.g. drink caffeine) to increase your *energy*
+and do things (e.g. "study") to increase your *experience*. Then you can
+battle more *projects*.
 
 **Resources**:
 
@@ -26,8 +27,8 @@ increase your experience. Then you can battle more "projects".
 #### CHAPTER 0
 
 - start with a basic (but finished) site where you can click around, create
-    characters, battle projects, etc
-- start also with the ability to register (and get an API key tied to your account?)
+    programmers, battle projects, etc
+- start also with the ability to register (and get an API key tied to your account)
 
 ##### CHAPTER 1: Basic API endpoint
 
@@ -41,7 +42,7 @@ increase your experience. Then you can battle more "projects".
 
 ##### CHAPTER 2: POST
 
-- create a POST endpoint to create a new character
+- create a POST endpoint to create a new programmer
   - no validation
   - intro to 201 response
 
@@ -67,22 +68,22 @@ the web interface for our user.
 - content-type
 - characeter link
 - _self link (mention IANA more later with pagination)
-- fix /characters/{id}
 
 ##### CHAPTER 6: Using the HATEOAS library
 
 - refactor links into HATEOAS library
 - remove manual serialization logic and replace with HAL stuff
+- fix /programmers/{id} to use HAL
 
 ##### CHAPTER 7: Hal Embedded resources
 
-- fix /characters
-- add the embedded resources
+- fix /programmers
+- add the embedded resources (battles)
 - links versus embedded
 
 ##### CHAPTER 8: HATEOAS
 
-- add 3 new links to /characters/{id} for "next battles": 3 possible next
+- add 3 new links to /programmers/{id} for "next battles": 3 possible next
   projects that we could battle
 - update our client to no longer create battles via a hardcoded projectId,
   but instead, by choosing one of these links and following it
@@ -91,7 +92,7 @@ the web interface for our user.
 
 ##### CHAPTER 9: URL Structures
 
-- create /characters/{id}/battles to show the battles for this user
+- create /programmers/{id}/battles to show the battles for this user
 - talk about URL structures and sub-ordinate resources
 - and then say that it doesn't matter at all anyways, because of HATEOAS :)
 
@@ -115,7 +116,7 @@ the web interface for our user.
 
 ##### CHAPTER 13: Editing Resources
 
-- add character "edit" PUT
+- add programmer "edit" PUT
 - URL is to the exact resource we want to "replace"
 - idempotency
 - we're sending a "representation" of the resource, which the server uses
@@ -124,19 +125,19 @@ the web interface for our user.
 ##### CHAPTER 14: Patch versus PUT
 
 - mention PUT versus PATCH
-- Perhaps allow PATCH /characters/{id} as a valid endpoint
+- Perhaps allow PATCH /programmers/{id} as a valid endpoint
 
 ##### CHAPTER 15: Custom Endpoints
 
-- and endpoint to make our character study - what should that look like?
-- invent something: "studying" POST /characters/{id}/study
-- add another: "drinking coffee" POST /characters/{id}/drink-caffeine
+- and endpoint to make our programmer study - what should that look like?
+- invent something: "studying" POST /programmers/{id}/study
+- add another: "drinking coffee" POST /programmers/{id}/drink-caffeine
 - add links for these
 - idempotency again
 
 ##### CHAPTER 16: Custom Endpoint PUT
 
-- custom PUT endpoint - PUT /characters/{id}/avatar
+- custom PUT endpoint - PUT /programmers/{id}/avatar
 - idempotency
 - add link
 
@@ -153,16 +154,16 @@ the web interface for our user.
 
 ##### CHAPTER 19: Pagination
 
-- add pagination links on characters
+- add pagination links on programmers
 - talk about IANA
 - add some light details to our documentation
 
 ##### CHAPTER 20: Filtering
 
-- add filtering on characters
+- add filtering on programmers
 - add documentation about the standard way we'll allow things to be filtered
 - we still don't know what fields can be used on any filter - that's a docs todo
-- why query paramters? To avoid /characters/{id}/page/{page}/name/{name}
+- why query paramters? To avoid /programmers/{id}/page/{page}/name/{name}
 
 ##### CHAPTER 21: API Problems
 
@@ -170,7 +171,7 @@ the web interface for our user.
 
 ##### CHAPTER 22: Form Validation errors
 
-- add validation errors to the form (editing/creating character)
+- add validation errors to the form (editing/creating programmer)
 - handle 404's and other errors
 
 ### Topics
@@ -189,7 +190,7 @@ the web interface for our user.
 - authentication
 - versioning?
 - the API "homepage"
-- creating an image link for the avatar of a character (showing that links
+- creating an image link for the avatar of a programmer (showing that links
    can be to non/HAL-format resources)
 - touch on more HTTP status codes as they should be talked about
 
