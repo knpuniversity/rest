@@ -28,7 +28,15 @@ battle more *projects*.
 
 - start with a basic (but finished) site where you can click around, create
     programmers, battle projects, etc
+
 - start also with the ability to register (and get an API key tied to your account)
+
+- In chapter 0, introduce the world domination plan: make the student think
+  about what we're going to be doing any why before coding. Sure we can't
+  think about everything but we can start with a basic but complete plan,
+  and improve things later, saying "client now wants to ...". This would
+  be where we get *some* of the "RESTful Web APIs" process to help you figure
+  out what resources you have and how you should link them
 
 ##### CHAPTER 1: API basics
 
@@ -51,7 +59,33 @@ battle more *projects*.
 - GET SHOW endpoint for each programmer - no links, no serialization - just
   getting raw programmers data and manually turning it into a JSON array
 
-##### CHAPTER 4: Post, Show and Linking
+##### CHAPTER 4: Editing Resources
+
+- add programmer "edit" PUT
+- URL is to the exact resource we want to "replace"
+- idempotency
+- we're sending a "representation" of the resource, which the server uses
+  to update the underlying resource
+
+##### CHAPTER 5: Patch versus PUT
+
+- mention PUT versus PATCH
+- Perhaps allow PATCH /programmers/{id} as a valid endpoint
+
+##### CHAPTER 6: DELETE
+
+- add a delete endpoint
+- introduce the 204 response
+- tease "custom verbs" - like what happens if you are doing something
+  beyond creating, showing, editing or deleting a resource?
+
+##### CHAPTER 7: Form Validation errors and other API Problems
+
+- introduce the idea of a standard! Api Problem
+- add validation errors to the form (editing/creating programmer)
+- handle 404's and other errors
+
+##### CHAPTER 8: Post, Show and Linking
 
 Here we'll create a new "battle". We'll look up a projectId manually from
 the web interface for our user.
@@ -61,7 +95,7 @@ the web interface for our user.
 - make link back to the programmer from /battles/{id}
 - maybe tease RMM level 3 as a segway into the next chapter
 
-##### CHAPTER 5: Hal Basics
+##### CHAPTER 9: Hal Basics
 
 - RMM level 3 and "Hypermedia" concept
 - Bring in Hal as a way of formalizing the data and links
@@ -70,19 +104,19 @@ the web interface for our user.
 - fix the link on /battles/{id} to the progammer
 - _self link (mention IANA more later with pagination)
 
-##### CHAPTER 6: Using the HATEOAS library
+##### CHAPTER 10: Using the HATEOAS library
 
 - refactor links into HATEOAS library
 - remove manual serialization logic and replace with HAL stuff
 - fix /programmers/{id} to use HAL
 
-##### CHAPTER 7: Hal Embedded resources
+##### CHAPTER11: Hal Embedded resources
 
 - fix /programmers
 - add the embedded resources (battles)
 - links versus embedded
 
-##### CHAPTER 8: HATEOAS
+##### CHAPTER 12: HATEOAS
 
 - add 3 new links to /programmers/{id} for "next battles": 3 possible next
   projects that we could battle
@@ -91,23 +125,17 @@ the web interface for our user.
 - HATEOAS
 - highlight what it doesn't do - HTTP method, fields, etc
 
-##### CHAPTER 9: URL Structures
-
-- create /programmers/{id}/battles to show the battles for this user
-- talk about URL structures and sub-ordinate resources
-- and then say that it doesn't matter at all anyways, because of HATEOAS :)
-
-##### CHAPTER 10:  Content-Negotiation
+##### CHAPTER 13:  Content-Negotiation
 
 - content-negotiation and serialization to HAL-XML
 
-##### CHAPTER 11: Documenting Links
+##### CHAPTER 14: Documenting Links
 
 - some systematic way to document the links
 - potentially here changing the links to URLs (or maybe we did it earlier)
 - mention what documentation is still missing
 
-##### CHAPTER 12: Starting Other Documentation
+##### CHAPTER 15: Starting Other Documentation
 
 - something manual for now with basic details:
 
@@ -115,20 +143,13 @@ the web interface for our user.
 2. Representations are sent in JSON or XML
 3. Submitted data is expected to be application/x-www-form-urlencoded
 
-##### CHAPTER 13: Editing Resources
+##### CHAPTER 16: URL Structures
 
-- add programmer "edit" PUT
-- URL is to the exact resource we want to "replace"
-- idempotency
-- we're sending a "representation" of the resource, which the server uses
-  to update the underlying resource
+- create /programmers/{id}/battles to show the battles for this user
+- talk about URL structures and sub-ordinate resources
+- and then say that it doesn't matter due to HATEOAS
 
-##### CHAPTER 14: Patch versus PUT
-
-- mention PUT versus PATCH
-- Perhaps allow PATCH /programmers/{id} as a valid endpoint
-
-##### CHAPTER 15: Custom Endpoints
+##### CHAPTER 17: Custom Endpoints
 
 - and endpoint to make our programmer study - what should that look like?
 - invent something: "studying" POST /programmers/{id}/study
@@ -136,71 +157,71 @@ the web interface for our user.
 - add links for these
 - idempotency again
 
-##### CHAPTER 16: Custom Endpoint PUT
+##### CHAPTER 18: Custom Endpoint PUT
 
 - custom PUT endpoint - PUT /programmers/{id}/avatar
 - idempotency
 - add link
 
-##### CHAPTER 17: Allowing application/json submits
+##### CHAPTER 19: Allowing application/json submits
 
 - Add some listener? (depends on how we're handling forms) that decodes
   the JSON body to to POST data if the reqeust type is application/json
 - update our documentation to say we allow this
 
-##### CHAPTER 18: DELETE
-
-- add a delete endpoint
-- introduce the 204 response
-
-##### CHAPTER 19: Pagination
+##### CHAPTER 20: Pagination
 
 - add pagination links on programmers
 - talk about IANA
 - add some light details to our documentation
 
-##### CHAPTER 20: Filtering
+##### CHAPTER 21: Filtering
 
 - add filtering on programmers
 - add documentation about the standard way we'll allow things to be filtered
 - we still don't know what fields can be used on any filter - that's a docs todo
 - why query paramters? To avoid /programmers/{id}/page/{page}/name/{name}
 
-##### CHAPTER 21: API Problems
+#### CHAPTER 22: Versioning
 
-- handling "problems" API Problem or vnd.error
+- Versioning: we could say that there is no need for versioning if we rely
+  on HATEOAS, and also that URL-based versioning is a bad practice.
 
-##### CHAPTER 22: Form Validation errors
+#### CHAPTER 23: Intro to Caching
 
-- add validation errors to the form (editing/creating programmer)
-- handle 404's and other errors
+- Show some basic headers that you should consider returning to your client
+- Show how Guzzle can automatically respond to these cache headers
+- Mention an HTTP Cache for performance
 
-### Topics
+### TODOS
 
-- when are we planning out the API design? RESTful Web APIs talks through
-  a great process to help you figure out what resources you have and how
-  you should link them
-- Richardson's maturity model (of course) - but I'd rather show people first, then show this later
-- documentation: what should be documented, and why. How can we generate it?
-- curies
-- Options method and Allow header
-- templated links
-- CORS
-- profiles (for pointing to docs)
-- caching
-- authentication
-- versioning?
-- the API "homepage"
+
+- Options method + Allow header: why not, but we would have to explain CORS then.
+  It should be added somewhere, maybe where we talk about the clients (consumers).
+  Speaking of which, aren't we supposed to talk about them? Apart our test
+  client, we don't mention that we are building an API for consumers, that
+  are softwares.
+
 - creating an image link for the avatar of a programmer (showing that links
-   can be to non/HAL-format resources)
+   can be to non/HAL-format resources). This is just like any other resource,
+   just a binary one. But seeing it as a link may help some things "click"
+   that our representation is just like HTML - links point to other stuff,
+   even to 
+
+- where to break this into pieces? This is at least 2 screencasts
+
+- authentication
+
+- the API "homepage"
+
 - touch on more HTTP status codes as they should be talked about
 
-### Questions
+### Notes
 
-- Symfony versus non-Symfony? I think we should do non-Symfony and then
-  do a Symfony-specific one, which ideally - wouldn't be too long. The
-  biggest thing I know of that's different in Symfony is the presence of
-  NelmioAPIDocBundle.
-- How much of OAuth should we show? A different screencast?
-- Best way to generate documentation for each endpoint?
-- where to break this into pieces? This is at least 2 screencasts
+- Do a Silex app. Later we will plan to have a smaller tutorial on doing
+  this in Symfony.
+
+- For OAuth, we might just mention "you're now going to send an XX resource, so you'd 
+  want to check to see if this client has access - e.g. by looking at an access token if 
+  you're using OAuth and using whatever your biz logic is).
+
