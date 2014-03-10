@@ -1,0 +1,22 @@
+{
+    "require": {
+        "silex/silex": "~1.0",
+        "symfony/twig-bridge": "~2.1.0",
+        "guzzle/guzzle": "~3.7",
+        "symfony/security": "~2.3",
+        "doctrine/dbal": "~2.4.0",
+        "monolog/monolog": "~1.7.0"
+    },
+    "require-dev": {
+        "behat/mink": "~1.5",
+        "behat/mink-goutte-driver": "~1.0.9",
+        "behat/mink-selenium2-driver": "~1.1.1",
+        "behat/behat": "~2.5",
+        "behat/mink-extension": "~1.2.0"
+    },
+    "autoload" : {
+        "psr-0": {
+            "KnpU\\CodeBattle": "src/"
+        }
+    }
+}

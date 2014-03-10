@@ -1,0 +1,16 @@
+h1 {
+    font-size: 30px;
+}
+.page-header {
+    margin-top: 20px;
+}
+.page-header-empty {
+    border-bottom: none;
+}
+table.table.user-information th {
+    white-space: nowrap;
+    border-top: none;
+}
+table.table.user-information td {
+    border-top: none;
+}
