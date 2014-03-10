@@ -51,7 +51,15 @@ class FixturesManager
 
     public function clearTables()
     {
-        throw new \Exception('todo');
+        $schemaManager = $this->getConnection()->getSchemaManager();
+
+        $dbPlatform = $this->getConnection()->getDatabasePlatform();
+        $this->getConnection()->beginTransaction();
+        foreach ($schemaManager->listTables() as $tbl) {
+            $q = $dbPlatform->getTruncateTableSql($tbl->getName());
+            $this->getConnection()->executeUpdate($q);
+        }
+        $this->getConnection()->commit();
     }
 
     public function populateData()

@@ -1,0 +1,50 @@
+{% extends "layout.twig" %}
+
+{% block header %}<h1>Start Fighting some Projects!</h1>{% endblock %}
+
+{% block content %}
+<div class="bs-docs-section" role="main">
+    {% if errors is defined and errors is not empty %}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-dismissable alert-danger">
+                    {% for error in errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <form class="bs-example form-horizontal" action="{{ path('user_register') }}" method="post">
+            <fieldset>
+                <div class="form-group">
+                    <label for="form-email" class="col-lg-2 control-label">Email</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="form-email" name="email" placeholder="foo@example.com" value="{{ user.email }}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="form-username" class="col-lg-2 control-label">Username</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="form-username" name="username" placeholder="superman" value="{{ user.username }}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="form-plain-password" class="col-lg-2 control-label">Password</label>
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" id="form-plain-password" name="plainPassword" value="{{ user.plainPassword }}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <a class="btn btn-default" href="{{ path('homepage') }}">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Do it!</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+<div>
+{% endblock %}

@@ -11,6 +11,7 @@ use Behat\MinkExtension\Context\MinkContext;
 
 use Behat\Behat\Context\Step\Given;
 use Behat\Behat\Context\Step\When;
+use KnpU\CodeBattle\Model\User;
 //
 // Require 3rd-party libraries here:
 //
@@ -47,8 +48,11 @@ class FeatureContext extends MinkContext
      */
     public function reloadDatabase()
     {
-        self::$app['fixtures_manager']->clearTables();
-        self::$app['fixtures_manager']->populateSqliteDb();
+        /** @var \KnpU\CodeBattle\DataFixtures\FixturesManager $fixtures */
+        $fixtures = self::$app['fixtures_manager'];
+
+        $fixtures->clearTables();
+        $fixtures->populateData();
     }
 
     /**
@@ -92,9 +96,11 @@ class FeatureContext extends MinkContext
 
     private function createUser($email, $plainPassword)
     {
-        /** @var \OAuth2Demo\Client\Storage\Connection $storage */
-        $storage = self::$app['connection'];
+        $user = new User();
+        $user->email = $email;
+        $user->username = 'John'.rand(1, 999);
+        $user->setPlainPassword($plainPassword);
 
-        return $storage->createUser($email, $plainPassword, 'John'.rand(1, 999), 'Doe'.rand(1, 999));
+        self::$app['repository.user']->save($user);
     }
 }

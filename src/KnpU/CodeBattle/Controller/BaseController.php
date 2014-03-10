@@ -2,8 +2,8 @@
 
 namespace KnpU\CodeBattle\Controller;
 
-use OAuth2Demo\Client\Security\User;
-use OAuth2Demo\Client\Storage\Connection;
+use KnpU\CodeBattle\Model\User;
+use KnpU\CodeBattle\Repository\UserRepository;
 use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -61,33 +61,6 @@ abstract class BaseController implements ControllerProviderInterface
     }
 
     /**
-     * Saves the user to the database!
-     *
-     * @param User $user
-     */
-    public function saveUser(User $user)
-    {
-        /** @var Connection $db */
-        $db = $this->container['connection'];
-
-        $db->saveUser($user);
-    }
-
-    /**
-     * Finds a User in the database for this email
-     *
-     * @param $email
-     * @return bool|User
-     */
-    public function findUserByEmail($email)
-    {
-        /** @var \OAuth2Demo\Client\Storage\Connection $storage */
-        $storage = $this->container['connection'];
-
-        return $storage->getUser($email);
-    }
-
-    /**
      * @param  string $routeName  The name of the route
      * @param  array  $parameters Route variables
      * @param  bool   $absolute
@@ -113,21 +86,6 @@ abstract class BaseController implements ControllerProviderInterface
     }
 
     /**
-     * Creates a brand new User, saves it to the database, then returns the
-     * new User object.
-     *
-     * @param  string $email
-     * @param  string $password
-     * @param  string $firstName
-     * @param  string $lastName
-     * @return User
-     */
-    public function createUser($email, $password, $firstName = null, $lastName = null)
-    {
-        return $this->getConnection()->createUser($email, $password, $firstName, $lastName);
-    }
-
-    /**
      * Logs this user into the system
      *
      * @param User $user
@@ -140,10 +98,10 @@ abstract class BaseController implements ControllerProviderInterface
     }
 
     /**
-     * @return Connection
+     * @return UserRepository
      */
-    private function getConnection()
+    protected function getUserRepository()
     {
-        return $this->container['connection'];
+        return $this->container['repository.user'];
     }
 }

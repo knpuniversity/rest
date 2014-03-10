@@ -39,6 +39,10 @@ class Application extends SilexApplication
 
         $this->register(new SessionServiceProvider());
 
+        if (!$this['session']->isStarted()) {
+            $this['session']->start();
+        }
+
         $this->register(new DoctrineServiceProvider(), array(
             'db.options' => array(
                 'driver'   => 'pdo_sqlite',
@@ -62,7 +66,10 @@ class Application extends SilexApplication
         $app = $this;
 
         $this['repository.user'] = $this->share(function() use ($app) {
-            return new UserRepository($app['db']);
+            $repo = new UserRepository($app['db']);
+            $repo->setEncoderFactory($app['security.encoder_factory']);
+
+            return $repo;
         });
 
         $this['fixtures_manager'] = $this->share(function () use ($app) {

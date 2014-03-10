@@ -2,20 +2,30 @@
 
 namespace KnpU\CodeBattle\Repository;
 
-use Doctrine\DBAL\Connection;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use KnpU\CodeBattle\Model\User;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
-class UserRepository implements UserProviderInterface
+class UserRepository extends BaseRepository implements UserProviderInterface
 {
-    private $connection;
+    /**
+     * Injected via setter injection
+     *
+     * @var EncoderFactoryInterface
+     */
+    private $encoderFactory;
 
-    public function __construct(Connection $connection)
+    protected function getClassName()
     {
-        $this->connection = $connection;
+        return 'KnpU\CodeBattle\Model\User';
+    }
+
+    protected function getTableName()
+    {
+        return 'user';
     }
 
     /**
@@ -24,12 +34,54 @@ class UserRepository implements UserProviderInterface
      */
     public function findUserByUsername($username)
     {
-        throw new \Exception('todo');
+        $stmt = $this->createQueryBuilder('u')
+            ->andWhere('u.username = :username')
+            ->setParameter('username', $username)
+            ->execute()
+        ;
+
+        return $this->fetchToObject($stmt);
     }
+
+    /**
+     * @param $email
+     * @return User
+     */
+    public function findUserByEmail($email)
+    {
+        $stmt = $this->createQueryBuilder('u')
+            ->andWhere('u.email = :email')
+            ->setParameter('email', $email)
+            ->execute()
+        ;
+
+        return $this->fetchToObject($stmt);
+    }
+
+    /**
+     * Overridden to encode the password
+     *
+     * @param $obj
+     */
+    public function save($obj)
+    {
+        /** @var User $obj */
+        if ($obj->getPlainPassword()) {
+            $obj->password = $this->encodePassword($obj, $obj->getPlainPassword());
+        }
+
+        parent::save($obj);
+    }
+
 
     public function loadUserByUsername($username)
     {
         $user = $this->findUserByUsername($username);
+
+        // allow login by email too
+        if (!$user) {
+            $user = $this->findUserByEmail($username);
+        }
 
         if (!$user) {
             throw new UsernameNotFoundException(sprintf('Email "%s" does not exist.', $username));
@@ -50,5 +102,21 @@ class UserRepository implements UserProviderInterface
     public function supportsClass($class)
     {
         return $class === 'KnpU\CodeBattle\Model\User';
+    }
+
+    /**
+     * @param \Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface $encoderFactory
+     */
+    public function setEncoderFactory($encoderFactory)
+    {
+        $this->encoderFactory = $encoderFactory;
+    }
+
+    private function encodePassword(User $user, $password)
+    {
+        $encoder = $this->encoderFactory->getEncoder($user);
+
+        // compute the encoded password for foo
+        return $encoder->encodePassword($password, $user->getSalt());
     }
 }
