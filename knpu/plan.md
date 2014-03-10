@@ -56,6 +56,7 @@ battle more *projects*.
 
 ##### CHAPTER 3: GET (Reading things)
 
+- GET /programmers endpoint - very simple
 - GET SHOW endpoint for each programmer - no links, no serialization - just
   getting raw programmers data and manually turning it into a JSON array
 
@@ -74,6 +75,7 @@ battle more *projects*.
 
 ##### CHAPTER 6: DELETE
 
+- show 405 response (method not allowed)
 - add a delete endpoint
 - introduce the 204 response
 - tease "custom verbs" - like what happens if you are doing something
@@ -84,6 +86,14 @@ battle more *projects*.
 - introduce the idea of a standard! Api Problem
 - add validation errors to the form (editing/creating programmer)
 - handle 404's and other errors
+
+#### Authentication
+
+- create (or just hook up) a basic token-based authentication system
+- talk about how users might get authentication tokens (we will need a UI
+  for making one or another endpoint), how it relates to OAuth etc
+- potentially implement throttling
+- 401, 403
 
 ##### CHAPTER 8: Post, Show and Linking
 
@@ -124,6 +134,8 @@ the web interface for our user.
   but instead, by choosing one of these links and following it
 - HATEOAS
 - highlight what it doesn't do - HTTP method, fields, etc
+- add the API homepage
+- HAL Browser
 
 ##### CHAPTER 13:  Content-Negotiation
 
@@ -161,13 +173,15 @@ the web interface for our user.
 
 - custom PUT endpoint - PUT /programmers/{id}/avatar
 - idempotency
-- add link
+- add link: show how links can be anything, and how this is kind of like
+  embedding an image on an HTML page
 
 ##### CHAPTER 19: Allowing application/json submits
 
 - Add some listener? (depends on how we're handling forms) that decodes
   the JSON body to to POST data if the reqeust type is application/json
 - update our documentation to say we allow this
+- 406? 415?
 
 ##### CHAPTER 20: Pagination
 
@@ -201,28 +215,9 @@ the web interface for our user.
   Speaking of which, aren't we supposed to talk about them? Apart our test
   client, we don't mention that we are building an API for consumers, that
   are softwares.
-
-- creating an image link for the avatar of a programmer (showing that links
-   can be to non/HAL-format resources). This is just like any other resource,
-   just a binary one. But seeing it as a link may help some things "click"
-   that our representation is just like HTML - links point to other stuff,
-   even to 
+  -> if we cover this, do it very briefly
 
 - where to break this into pieces? This is at least 2 screencasts
-
-- authentication
-
-- the API "homepage"
-
-- touch on more HTTP status codes as they should be talked about
-
-- by removing the following, did I lose something?
-    - create a new battle (POST) /characters/{id}/battles (send projectId in body)
-    - create a /battles/{id} (update POST to have Location header)
-    - make link back to the the character from /battles/{id}
-
-- Add this back:
-    - GET endpoint for listing programmers - very basic
 
 ### Notes
 
