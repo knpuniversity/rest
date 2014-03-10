@@ -119,6 +119,7 @@ the web interface for our user.
 - refactor links into HATEOAS library
 - remove manual serialization logic and replace with HAL stuff
 - fix /programmers/{id} to use HAL
+- show a difficult serialization situation? Somewhere else?
 
 ##### CHAPTER11: Hal Embedded resources
 
