@@ -14,9 +14,8 @@
     <link href="{{ app.request.basePath }}/css/bootstrap.css" rel="stylesheet" />
 
     <!-- Add custom CSS here -->
-    <link rel="stylesheet" href="{{ app.request.basePath }}/css/sb-admin.css">
-    <link rel="stylesheet" href="{{ app.request.basePath }}/font-awesome/css/font-awesome.min.css">
-    <!-- Page Specific CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="{{ app.request.basePath }}/css/rest.css">
 </head>
 <body>
@@ -75,13 +74,17 @@
     </div>
 
     <div class="container">
-        {% block content %}
-        {% endblock %}
+
+        <div class="row">
+            <div class="col-md-offset-4 col-md-4 main-console-screen">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
     </div>
 
     {% block javascripts %}
         <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-        <script src="{{ app.request.basePath }}/js/bootstrap.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     {% endblock %}
 </body>
 </html>

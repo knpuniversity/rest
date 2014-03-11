@@ -8,3 +8,24 @@ table.table.user-information th {
 table.table.user-information td {
     border-top: none;
 }
+
+/* Styling for the main box wrapper used on each page */
+.main-console-screen {
+    margin-top: 100px;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+}
+
+/*
+ * HOMEPAGE
+ */
+ul.action-buttons-list {
+    list-style: none;
+    text-align: center;
+}
+ul.action-buttons-list li {
+    margin-bottom: 20px;
+}
+ul.action-buttons-list .btn {
+    width: 200px;
+}
