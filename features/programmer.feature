@@ -34,9 +34,9 @@ Feature: Programmer
 
   Scenario: Choose a programmer to battle with
     When I go to "/"
-    And I click "Battle"
+    And I click "Start Battle"
     And I click "Kerry"
-    Then I should be in "/programmer/Kerry"
+    Then I should be on "/programmer/Kerry"
 
   Scenario: See 3 choices of battles
     Given I am on "/programmer/Kerry"

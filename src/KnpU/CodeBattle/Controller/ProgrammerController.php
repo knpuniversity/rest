@@ -18,8 +18,8 @@ class ProgrammerController extends BaseController
 
         $controllers->get('/programmer/new', array($this, 'newAction'))->bind('programmer_new');
         $controllers->post('/programmer/new', array($this, 'handleNewAction'))->bind('programmer_new_handle');
-        $controllers->get('/programmer/show/{nickname}', array($this, 'showAction'))->bind('programmer_show');
         $controllers->get('/programmer/choose', array($this, 'chooseAction'))->bind('programmer_choose');
+        $controllers->get('/programmer/{nickname}', array($this, 'showAction'))->bind('programmer_show');
 
         return $controllers;
     }
