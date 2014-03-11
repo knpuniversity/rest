@@ -1,0 +1,16 @@
+{# Included above forms to print errors easily #}
+{% macro print_errors(errors) %}
+
+    {% if errors is not empty %}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-dismissable alert-danger">
+                    {% for error in errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endmacro %}

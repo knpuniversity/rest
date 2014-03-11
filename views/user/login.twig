@@ -1,12 +1,13 @@
 {% extends "layout.twig" %}
+{% import '_macros.twig' as macros %}
 
 {% block content %}
     <h1>Login!</h1>
 
     {% if error %}
-        {{ include('_validationErrors.twig', {
-            'errors': [error]
-        }) }}
+        {% if errors is defined %}
+            {{ macros.print_errors([error]) }}
+        {% endif %}
     {% endif %}
 
     <div class="row">

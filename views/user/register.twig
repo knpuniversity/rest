@@ -1,11 +1,12 @@
 {% extends "layout.twig" %}
-
-{% block header %}{% endblock %}
+{% import '_macros.twig' as macros %}
 
 {% block content %}
     <h1>Start Fighting some Projects!</h1>
 
-    {{ include('_validationErrors.twig') }}
+    {% if errors is defined %}
+        {{ macros.print_errors(errors) }}
+    {% endif %}
 
     <div class="row">
         <form class="form-horizontal" action="{{ path('user_register') }}" method="post">
