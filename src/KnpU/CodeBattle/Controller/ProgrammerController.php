@@ -52,7 +52,7 @@ class ProgrammerController extends BaseController
 
         $this->getProgrammerRepository()->save($programmer);
 
-        $this->setFlash(sprintf('SuperNiceGuy has been compiled and is ready for battle!', $programmer->nickname));
+        $this->setFlash(sprintf('%s has been compiled and is ready for battle!', $programmer->nickname));
         return $this->redirect($this->generateUrl('programmer_show', array('nickname' => $programmer->nickname)));
     }
 
