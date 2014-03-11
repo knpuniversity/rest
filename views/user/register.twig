@@ -1,23 +1,14 @@
 {% extends "layout.twig" %}
 
-{% block header %}<h1>Start Fighting some Projects!</h1>{% endblock %}
+{% block header %}{% endblock %}
 
 {% block content %}
-<div class="bs-docs-section" role="main">
-    {% if errors is defined and errors is not empty %}
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="alert alert-dismissable alert-danger">
-                    {% for error in errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    {% endif %}
+    <h1>Start Fighting some Projects!</h1>
+
+    {{ include('_validationErrors.twig') }}
 
     <div class="row">
-        <form class="bs-example form-horizontal" action="{{ path('user_register') }}" method="post">
+        <form class="form-horizontal" action="{{ path('user_register') }}" method="post">
             <fieldset>
                 <div class="form-group">
                     <label for="form-email" class="col-lg-2 control-label">Email</label>
