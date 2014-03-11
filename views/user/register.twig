@@ -11,24 +11,10 @@
     <div class="row">
         <form class="form-horizontal" action="{{ path('user_register') }}" method="post">
             <fieldset>
-                <div class="form-group">
-                    <label for="form-email" class="col-lg-2 control-label">Email</label>
-                    <div class="col-lg-10">
-                        <input type="text" class="form-control" id="form-email" name="email" placeholder="foo@example.com" value="{{ user.email }}" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="form-username" class="col-lg-2 control-label">Username</label>
-                    <div class="col-lg-10">
-                        <input type="text" class="form-control" id="form-username" name="username" placeholder="superman" value="{{ user.username }}" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="form-plain-password" class="col-lg-2 control-label">Password</label>
-                    <div class="col-lg-10">
-                        <input type="password" class="form-control" id="form-plain-password" name="plainPassword" value="{{ user.plainPassword }}" />
-                    </div>
-                </div>
+                {{ macros.form_field('email', 'email', 'Email', user.email, 'foo@example.com') }}
+                {{ macros.form_field('text', 'username', 'Username', user.username, 'superman') }}
+                {{ macros.form_field('password', 'password', 'Password', user.plainPassword, '') }}
+
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
                         <a class="btn btn-default" href="{{ path('homepage') }}">Cancel</a>
