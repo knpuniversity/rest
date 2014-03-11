@@ -8,6 +8,7 @@ use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Base controller class to hide Silex-related implementation details
@@ -98,6 +99,14 @@ abstract class BaseController implements ControllerProviderInterface
         $token = new UsernamePasswordToken($user, $user->getPassword(), 'main', $user->getRoles());
 
         $this->container['security']->setToken($token);
+    }
+
+    public function setFlash($message)
+    {
+        /** @var Request $request */
+        $request = $this->container['request_stack']->getCurrentRequest();
+
+        $request->getSession()->getFlashbag()->add('notice', $message);
     }
 
     /**

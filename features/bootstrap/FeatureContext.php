@@ -60,6 +60,7 @@ class FeatureContext extends MinkContext
      */
     public static function bootstrapApp()
     {
+        $env = 'test';
         self::$app = require __DIR__.'/../../app/bootstrap.php';
     }
 
@@ -80,6 +81,17 @@ class FeatureContext extends MinkContext
     }
 
     /**
+     * @Given /^I select an avatar$/
+     *
+     * Used on the create programmer page
+     *
+     */
+    public function iSelectAnAvatar()
+    {
+        $this->getSession()->getPage()->find('css', '.js-selectable-tile li')->click();
+    }
+
+    /**
      * @Given /^I am logged in$/
      */
     public function iAmLoggedIn()
@@ -94,11 +106,23 @@ class FeatureContext extends MinkContext
         );
     }
 
+    /**
+     * @Then /^(?:|I )break$/
+     */
+    public function addABreakpoint()
+    {
+        fwrite(STDOUT, "\033[s    \033[93m[Breakpoint] Press \033[1;93m[RETURN]\033[0;93m to continue...\033[0m");
+        while (fgets(STDIN, 1024) == '') {}
+        fwrite(STDOUT, "\033[u");
+
+        return;
+    }
+
     private function createUser($email, $plainPassword)
     {
         $user = new User();
         $user->email = $email;
-        $user->username = 'John'.rand(1, 999);
+        $user->username = 'John';
         $user->setPlainPassword($plainPassword);
 
         self::$app['repository.user']->save($user);

@@ -6,6 +6,7 @@ use Silex\Application;
 use Silex\ControllerCollection;
 use KnpU\CodeBattle\Model\Programmer;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
 class ProgrammerController extends BaseController
@@ -15,9 +16,9 @@ class ProgrammerController extends BaseController
         /** @var ControllerCollection $controllers */
         $controllers = $app['controllers_factory'];
 
-        $controllers->get('/programmer/new', array($this, 'programmerNewAction'))->bind('programmer_new');
-        $controllers->post('/programmer/new', array($this, 'programmerNewHandleAction'))->bind('programmer_new_handle');
-        $controllers->get('/programmer/show', array($this, 'programmerShowAction'))->bind('programmer_show');
+        $controllers->get('/programmer/new', array($this, 'newAction'))->bind('programmer_new');
+        $controllers->post('/programmer/new', array($this, 'handleNewAction'))->bind('programmer_new_handle');
+        $controllers->get('/programmer/show/{nickname}', array($this, 'showAction'))->bind('programmer_show');
 
         return $controllers;
     }
@@ -25,7 +26,7 @@ class ProgrammerController extends BaseController
     /**
      * Create a new programmer
      */
-    public function programmerNewAction()
+    public function newAction()
     {
         $programmer = new Programmer();
 
@@ -35,7 +36,7 @@ class ProgrammerController extends BaseController
     /**
      * Create a new programmer
      */
-    public function programmerNewHandleAction(Request $request)
+    public function handleNewAction(Request $request)
     {
         $programmer = new Programmer();
 
@@ -51,7 +52,18 @@ class ProgrammerController extends BaseController
 
         $this->getProgrammerRepository()->save($programmer);
 
-        return $this->redirect($this->generateUrl('programmer_show'));
+        $this->setFlash(sprintf('SuperNiceGuy has been compiled and is ready for battle!', $programmer->nickname));
+        return $this->redirect($this->generateUrl('programmer_show', array('nickname' => $programmer->nickname)));
+    }
+
+    public function showAction($nickname)
+    {
+        $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
+        if (!$programmer) {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->render('programmer/show.twig', array('programmer' => $programmer));
     }
 
     /**
