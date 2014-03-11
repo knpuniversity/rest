@@ -75,21 +75,6 @@
     </div>
 
     <div class="container">
-        <div class="page-header{{ block('header') ? '' : ' page-header-empty' }}" id="banner">
-            <div class="row">
-                <div class="col-lg-12">
-                    {% block header %}
-                        <h1>
-                            Code Battles
-                        </h1>
-                        <p>
-                            Battle Projects!
-                        </p>
-                    {% endblock %}
-                </div>
-            </div>
-        </div>
-
         {% block content %}
         {% endblock %}
     </div>
