@@ -53,6 +53,23 @@ class FixturesManager
         $programmerTable->addColumn('userId', 'integer');
         $programmerTable->addForeignKeyConstraint($userTable, array('userId'), array('id'));
         $schemaManager->dropAndCreateTable($programmerTable);
+
+        $projectTable = new Table('project');
+        $projectTable->addColumn('id', 'integer', array('unsigned' => true, 'autoincrement' => true));
+        $projectTable->setPrimaryKey(array('id'));
+        $projectTable->addColumn('name', 'string', array('length' => 255));
+        $schemaManager->dropAndCreateTable($projectTable);
+
+        $battleTable = new Table('battle');
+        $battleTable->addColumn('id', 'integer', array('unsigned' => true, 'autoincrement' => true));
+        $battleTable->setPrimaryKey(array('id'));
+        $battleTable->addColumn('userId', 'integer');
+        $battleTable->addColumn('projectId', 'integer');
+        $battleTable->addColumn('didProgrammerWin', 'integer');
+        $battleTable->addColumn('foughtAt', 'datetime');
+        $programmerTable->addForeignKeyConstraint($userTable, array('userId'), array('id'));
+        $programmerTable->addForeignKeyConstraint($projectTable, array('projectId'), array('id'));
+        $schemaManager->dropAndCreateTable($battleTable);
     }
 
     public function clearTables()

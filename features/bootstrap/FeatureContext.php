@@ -12,12 +12,12 @@ use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Context\Step\Given;
 use Behat\Behat\Context\Step\When;
 use KnpU\CodeBattle\Model\User;
+use KnpU\CodeBattle\Model\Programmer;
 //
 // Require 3rd-party libraries here:
 //
-//   require_once 'PHPUnit/Autoload.php';
-//   require_once 'PHPUnit/Framework/Assert/Functions.php';
-//
+require_once __DIR__.'/../../vendor/phpunit/phpunit/PHPUnit/Autoload.php';
+require_once __DIR__.'/../../vendor/phpunit/phpunit/PHPUnit/Framework/Assert/Functions.php';
 
 /**
  * Features context.
@@ -28,6 +28,11 @@ class FeatureContext extends MinkContext
      * @var Application
      */
     private static $app;
+
+    /**
+     * @var User
+     */
+    private $currentUser;
 
     /**
      * Initializes context.
@@ -96,7 +101,7 @@ class FeatureContext extends MinkContext
      */
     public function iAmLoggedIn()
     {
-        $this->createUser('ryan@knplabs.com', 'foo');
+        $this->currentUser = $this->createUser('ryan@knplabs.com', 'foo');
 
         return array(
             new Given('I am on "/login"'),
@@ -104,6 +109,49 @@ class FeatureContext extends MinkContext
             new Given('I fill in "Password" with "foo"'),
             new Given('I press "Login!"'),
         );
+    }
+
+    /**
+     * @Given /^I created the following programmers$/
+     */
+    public function iCreatedTheFollowingProgrammers(TableNode $table)
+    {
+        foreach ($table->getHash() as $row) {
+            $this->createProgrammer($row['nickname'], $this->currentUser);
+        }
+    }
+
+    /**
+     * @Given /^the following projects exist$/
+     */
+    public function theFollowingProjectsExist(TableNode $table)
+    {
+        // todo
+    }
+
+    /**
+     * @Given /^someone else created a programmer named "([^"]*)"$/
+     */
+    public function someoneElseCreatedAProgrammerNamed($nickname)
+    {
+        $user = $this->createUser('foo'.rand(0, 999).'@bar.com', 'foobar');
+
+        $this->createProgrammer($nickname, $user);
+    }
+
+    /**
+     * @Then /^I should see (\d+) programmers in the list$/
+     */
+    public function iShouldSeeProgrammersInTheList($count)
+    {
+        $programmerList = $this->getSession()
+            ->getPage()
+            ->findAll('css', '.programmers-list li')
+        ;
+
+        assertNotNull($programmerList, 'Cannot see the programmer list');
+
+        assertCount(intval($count), $programmerList);
     }
 
     /**
@@ -122,9 +170,31 @@ class FeatureContext extends MinkContext
     {
         $user = new User();
         $user->email = $email;
-        $user->username = 'John';
+        $user->username = 'John'.rand(0, 10000);
         $user->setPlainPassword($plainPassword);
 
         self::$app['repository.user']->save($user);
+
+        return $user;
+    }
+
+    private function createProgrammer($nickname, User $owner)
+    {
+        $programmer = new Programmer();
+        $programmer->nickname = $nickname;
+        $programmer->userId = $owner->id;
+        $programmer->avatar = 'avatar5.jpg';
+
+        $this->getProgrammerRepository()->save($programmer);
+
+        return $programmer;
+    }
+
+    /**
+     * @return \KnpU\CodeBattle\Repository\ProgrammerRepository
+     */
+    private function getProgrammerRepository()
+    {
+        return self::$app['repository.programmer'];
     }
 }

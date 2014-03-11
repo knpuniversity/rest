@@ -2,6 +2,8 @@
 
 namespace KnpU\CodeBattle;
 
+use KnpU\CodeBattle\Repository\BattleRepository;
+use KnpU\CodeBattle\Repository\ProjectRepository;
 use KnpU\CodeBattle\Twig\BattleExtension;
 use Silex\Application as SilexApplication;
 use Silex\Provider\SessionServiceProvider;
@@ -84,6 +86,12 @@ class Application extends SilexApplication
         });
         $this['repository.programmer'] = $this->share(function() use ($app) {
             return new ProgrammerRepository($app['db']);
+        });
+        $this['repository.project'] = $this->share(function() use ($app) {
+            return new ProjectRepository($app['db']);
+        });
+        $this['repository.battle'] = $this->share(function() use ($app) {
+            return new BattleRepository($app['db']);
         });
 
         $this['fixtures_manager'] = $this->share(function () use ($app) {

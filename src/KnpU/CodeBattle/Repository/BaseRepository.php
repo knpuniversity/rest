@@ -41,6 +41,8 @@ abstract class BaseRepository
                 $this->getTableName(),
                 $data
             );
+
+            $obj->id = $this->connection->lastInsertId();
         }
     }
 
@@ -62,6 +64,20 @@ abstract class BaseRepository
         return $this->fetchToObject($stmt);
     }
 
+    public function findAllBy(array $criteria)
+    {
+        $qb = $this->createQueryBuilder('u');
+        foreach ($criteria as $key => $val) {
+            $qb->andWhere('u.'.$key.' = :'.$key)
+                ->setParameter($key, $val)
+            ;
+        }
+
+        $stmt = $qb->execute();
+
+        return $this->fetchAllToObject($stmt);
+    }
+
     abstract protected function getClassName();
     abstract protected function getTableName();
 
@@ -69,7 +85,28 @@ abstract class BaseRepository
     {
         $stmt->setFetchMode(PDO::FETCH_CLASS, $this->getClassName());
 
-        return $stmt->fetch(PDO::FETCH_CLASS);
+        $object = $stmt->fetch(PDO::FETCH_CLASS);
+        $this->finishHydrateObject($object);
+
+        return $object;
+    }
+
+    protected function fetchAllToObject(ResultStatement $stmt)
+    {
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $this->getClassName());
+
+        $objects = $stmt->fetchAll(PDO::FETCH_CLASS);
+
+        foreach ($objects as $object) {
+            $this->finishHydrateObject($object);
+        }
+
+        return $objects;
+    }
+
+    protected function finishHydrateObject($obj)
+    {
+        return $obj;
     }
 
     protected function createQueryBuilder($alias)

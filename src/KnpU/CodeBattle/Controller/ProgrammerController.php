@@ -19,6 +19,7 @@ class ProgrammerController extends BaseController
         $controllers->get('/programmer/new', array($this, 'newAction'))->bind('programmer_new');
         $controllers->post('/programmer/new', array($this, 'handleNewAction'))->bind('programmer_new_handle');
         $controllers->get('/programmer/show/{nickname}', array($this, 'showAction'))->bind('programmer_show');
+        $controllers->get('/programmer/choose', array($this, 'chooseAction'))->bind('programmer_choose');
 
         return $controllers;
     }
@@ -64,6 +65,13 @@ class ProgrammerController extends BaseController
         }
 
         return $this->render('programmer/show.twig', array('programmer' => $programmer));
+    }
+
+    public function chooseAction()
+    {
+        $programmers = $this->getProgrammerRepository()->findAllForUser($this->getLoggedInUser());
+
+        return $this->render('programmer/choose.twig', array('programmers' => $programmers));
     }
 
     /**

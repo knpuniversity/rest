@@ -29,7 +29,7 @@ Feature: Programmer
   Scenario: I only see my programmers
     Given someone else created a programmer named "Outsider"
     When I go to "/"
-    And I click "Battle"
+    And I click "Start Battle"
     Then I should see 3 programmers in the list
 
   Scenario: Choose a programmer to battle with

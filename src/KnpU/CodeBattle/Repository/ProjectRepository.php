@@ -9,25 +9,15 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 use KnpU\CodeBattle\Model\User;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
-class ProgrammerRepository extends BaseRepository
+class ProjectRepository extends BaseRepository
 {
-    public function findOneByNickname($nickname)
-    {
-        return $this->findOneBy(array('nickname' => $nickname));
-    }
-
-    public function findAllForUser(User $user)
-    {
-        return $this->findAllBy(array('userId' => $user->id));
-    }
-
     protected function getClassName()
     {
-        return 'KnpU\CodeBattle\Model\Programmer';
+        return 'KnpU\CodeBattle\Model\Project';
     }
 
     protected function getTableName()
     {
-        return 'programmer';
+        return 'project';
     }
 }

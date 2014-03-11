@@ -1,0 +1,15 @@
+{% extends "layout.twig" %}
+{% import '_macros.twig' as macros %}
+
+{% block content %}
+    <h1>Choose a programmer</h1>
+
+    <ul class="programmers-list">
+        {% for programmer in programmers %}
+            <li>
+                <a href="#">{{ programmer.nickname }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
