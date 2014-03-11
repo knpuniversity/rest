@@ -9,9 +9,12 @@ table.table.user-information td {
     border-top: none;
 }
 
+body {
+    margin-top: 100px;
+}
+
 /* Styling for the main box wrapper used on each page */
 .main-console-screen {
-    margin-top: 100px;
     border: 1px solid #ccc;
     padding: 10px 20px;
 }
@@ -28,4 +31,25 @@ ul.action-buttons-list li {
 }
 ul.action-buttons-list .btn {
     width: 200px;
+}
+
+/*
+ * CREATE PROGRAMMER
+ */
+.avatar-list {
+    list-style: none;
+}
+.js-selectable-tile {
+    padding-left: 10px;
+}
+.js-selectable-tile li {
+    height: 100px;
+    width: 100px;
+    display: -moz-inline-box;
+    display: inline-block;
+    border: 1px solid #ccc;
+    margin: 0 5px 10px 5px;
+}
+.js-selectable-tile li.selected {
+    background: #666;
 }

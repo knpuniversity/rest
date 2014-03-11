@@ -14,7 +14,10 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
  */
 abstract class BaseController implements ControllerProviderInterface
 {
-    private $container;
+    /**
+     * @var \KnpU\CodeBattle\Application
+     */
+    protected $container;
 
     /**
      * See the event listener in kernel.controller for how this is set

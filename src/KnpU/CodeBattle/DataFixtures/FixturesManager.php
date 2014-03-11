@@ -42,11 +42,17 @@ class FixturesManager
         $userTable->addColumn('username', 'string', array('length' => 50));
         $userTable->addUniqueIndex(array('username'));
         $userTable->addColumn('password', 'string', array('length' => 255));
-
-        // todo - future note for key constraints
-        //$productTable->addForeignKeyConstraint($userTable, array('author_id'), array('id'));
-
         $schemaManager->dropAndCreateTable($userTable);
+
+        $programmerTable = new Table('programmer');
+        $programmerTable->addColumn('id', 'integer', array('unsigned' => true, 'autoincrement' => true));
+        $programmerTable->setPrimaryKey(array('id'));
+        $programmerTable->addColumn('nickname', 'string', array('length' => 255));
+        $programmerTable->addUniqueIndex(array('nickname'));
+        $programmerTable->addColumn('avatar', 'string', array('length' => 255));
+        $programmerTable->addColumn('userId', 'integer');
+        $programmerTable->addForeignKeyConstraint($userTable, array('userId'), array('id'));
+        $schemaManager->dropAndCreateTable($programmerTable);
     }
 
     public function clearTables()

@@ -2,6 +2,7 @@
 
 namespace KnpU\CodeBattle;
 
+use KnpU\CodeBattle\Twig\BattleExtension;
 use Silex\Application as SilexApplication;
 use Silex\Provider\SessionServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
@@ -15,6 +16,7 @@ use KnpU\CodeBattle\Controller\BaseController;
 use KnpU\CodeBattle\DataFixtures\FixturesManager;
 use Silex\Provider\SecurityServiceProvider;
 use KnpU\CodeBattle\Repository\UserRepository;
+use KnpU\CodeBattle\Repository\ProgrammerRepository;
 
 class Application extends SilexApplication
 {
@@ -31,18 +33,23 @@ class Application extends SilexApplication
 
     private function configureProviders()
     {
+        // URL generation
         $this->register(new UrlGeneratorServiceProvider());
 
+        // Twig
         $this->register(new TwigServiceProvider(), array(
             'twig.path' => $this['root_dir'].'/views',
         ));
+        $app['twig'] = $this->share($this->extend('twig', function(\Twig_Environment $twig, $app) {
+            $twig->addExtension($app['twig.battle_extension']);
 
+            return $twig;
+        }));
+
+        // Sessions
         $this->register(new SessionServiceProvider());
 
-        if (!$this['session']->isStarted()) {
-            $this['session']->start();
-        }
-
+        // Doctrine DBAL
         $this->register(new DoctrineServiceProvider(), array(
             'db.options' => array(
                 'driver'   => 'pdo_sqlite',
@@ -50,6 +57,7 @@ class Application extends SilexApplication
             ),
         ));
 
+        // Monolog
         $this->register(new MonologServiceProvider(), array(
             'monolog.logfile' => $this['root_dir'].'/logs/development.log',
         ));
@@ -71,9 +79,16 @@ class Application extends SilexApplication
 
             return $repo;
         });
+        $this['repository.programmer'] = $this->share(function() use ($app) {
+            return new ProgrammerRepository($app['db']);
+        });
 
         $this['fixtures_manager'] = $this->share(function () use ($app) {
             return new FixturesManager($app);
+        });
+
+        $this['twig.battle_extension'] = $this->share(function() use ($app) {
+            return new BattleExtension($app['request_stack']);
         });
     }
 
@@ -98,7 +113,9 @@ class Application extends SilexApplication
         // require login for application management
         $this['security.access_rules'] = array(
             // placeholder access control for now
-            array('^/foo', 'IS_AUTHENTICATED_FULLY'),
+            array('^/register', 'IS_AUTHENTICATED_ANONYMOUSLY'),
+            array('^/login', 'IS_AUTHENTICATED_ANONYMOUSLY'),
+            array('^/', 'IS_AUTHENTICATED_FULLY'),
         );
     }
 

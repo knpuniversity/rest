@@ -34,5 +34,6 @@ if (!file_exists($app['sqlite_path'])) {
 
 $app->mount('/', new \KnpU\CodeBattle\Controller\DefaultController());
 $app->mount('/', new \KnpU\CodeBattle\Controller\UserController());
+$app->mount('/', new \KnpU\CodeBattle\Controller\ProgrammerController());
 
 return $app;

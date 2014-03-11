@@ -44,6 +44,24 @@ abstract class BaseRepository
         }
     }
 
+    /**
+     * @param array $criteria
+     * @return object
+     */
+    public function findOneBy(array $criteria)
+    {
+        $qb = $this->createQueryBuilder('u');
+        foreach ($criteria as $key => $val) {
+            $qb->andWhere('u.'.$key.' = :'.$key)
+                ->setParameter($key, $val)
+            ;
+        }
+
+        $stmt = $qb->execute();
+
+        return $this->fetchToObject($stmt);
+    }
+
     abstract protected function getClassName();
     abstract protected function getTableName();
 

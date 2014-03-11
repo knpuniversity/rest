@@ -34,13 +34,9 @@ class UserRepository extends BaseRepository implements UserProviderInterface
      */
     public function findUserByUsername($username)
     {
-        $stmt = $this->createQueryBuilder('u')
-            ->andWhere('u.username = :username')
-            ->setParameter('username', $username)
-            ->execute()
-        ;
-
-        return $this->fetchToObject($stmt);
+        return $this->findOneBy(array(
+            'username' => $username
+        ));
     }
 
     /**
@@ -49,13 +45,9 @@ class UserRepository extends BaseRepository implements UserProviderInterface
      */
     public function findUserByEmail($email)
     {
-        $stmt = $this->createQueryBuilder('u')
-            ->andWhere('u.email = :email')
-            ->setParameter('email', $email)
-            ->execute()
-        ;
-
-        return $this->fetchToObject($stmt);
+        return $this->findOneBy(array(
+            'email' => $email
+        ));
     }
 
     /**
