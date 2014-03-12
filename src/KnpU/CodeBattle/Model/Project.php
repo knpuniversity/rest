@@ -9,4 +9,10 @@ class Project
 
     public $name;
 
+    /**
+     * 1-10 difficulty level of the project
+     *
+     * @var integer
+     */
+    public $difficultyLevel;
 }

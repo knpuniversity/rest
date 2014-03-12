@@ -19,7 +19,7 @@ Feature: Battle
 
   @javascript
   Scenario: Start a battle
-    Given I am on "/programmer/Kerry"
+    Given I am on "/programmers/Kerry"
     When I press "Start Battle"
     And I wait for the dialog to appear
     And I click on a project

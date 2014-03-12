@@ -11,8 +11,10 @@ use Behat\MinkExtension\Context\MinkContext;
 
 use Behat\Behat\Context\Step\Given;
 use Behat\Behat\Context\Step\When;
+use Behat\Behat\Context\Step\Then;
 use KnpU\CodeBattle\Model\User;
 use KnpU\CodeBattle\Model\Programmer;
+use KnpU\CodeBattle\Model\Project;
 //
 // Require 3rd-party libraries here:
 //
@@ -136,8 +138,9 @@ class FeatureContext extends MinkContext
     {
         $projectRepo = $this->getProjectRepository();
         foreach ($table->getHash() as $row) {
-            $project = new \KnpU\CodeBattle\Model\Project();
+            $project = new Project();
             $project->name = $row['name'];
+            $project->difficultyLevel = rand(1, 10);
             $projectRepo->save($project);
         }
     }
@@ -204,6 +207,14 @@ class FeatureContext extends MinkContext
         assertNotNull($tbl, 'Cannot find a table!');
 
         assertCount(intval($rowCount), $tbl->findAll('css', 'tbody tr'));
+    }
+
+    /**
+     * @Then /^I should see a flash message containing "([^"]*)"$/
+     */
+    public function iShouldSeeAFlashMessageContaining($text)
+    {
+        return new Then(sprintf('the ".flash-message" element should contain "%s"', $text));
     }
 
     /**

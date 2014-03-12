@@ -2,6 +2,7 @@
 
 namespace KnpU\CodeBattle;
 
+use KnpU\CodeBattle\Battle\PowerManager;
 use KnpU\CodeBattle\Repository\BattleRepository;
 use KnpU\CodeBattle\Repository\ProjectRepository;
 use KnpU\CodeBattle\Twig\BattleExtension;
@@ -96,7 +97,15 @@ class Application extends SilexApplication
         });
 
         $this['battle.battle_manager'] = $this->share(function() use ($app) {
-            return new BattleManager($app['repository.battle']);
+            return new BattleManager(
+                $app['repository.battle'],
+                $app['repository.programmer']
+            );
+        });
+        $this['battle.power_manager'] = $this->share(function() use ($app) {
+            return new PowerManager(
+                $app['repository.programmer']
+            );
         });
 
         $this['fixtures_manager'] = $this->share(function () use ($app) {

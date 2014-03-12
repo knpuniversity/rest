@@ -53,6 +53,7 @@ class FixturesManager
         $programmerTable->addUniqueIndex(array('nickname'));
         $programmerTable->addColumn('avatar', 'string', array('length' => 255));
         $programmerTable->addColumn('userId', 'integer');
+        $programmerTable->addColumn('powerLevel', 'integer');
         $programmerTable->addForeignKeyConstraint($userTable, array('userId'), array('id'));
         $schemaManager->dropAndCreateTable($programmerTable);
 
@@ -60,6 +61,7 @@ class FixturesManager
         $projectTable->addColumn('id', 'integer', array('unsigned' => true, 'autoincrement' => true));
         $projectTable->setPrimaryKey(array('id'));
         $projectTable->addColumn('name', 'string', array('length' => 255));
+        $projectTable->addColumn('difficultyLevel', 'integer');
         $schemaManager->dropAndCreateTable($projectTable);
 
         $battleTable = new Table('battle');
@@ -69,6 +71,7 @@ class FixturesManager
         $battleTable->addColumn('projectId', 'integer');
         $battleTable->addColumn('didProgrammerWin', 'integer');
         $battleTable->addColumn('foughtAt', 'datetime');
+        $battleTable->addColumn('notes', 'text');
         $battleTable->addForeignKeyConstraint($programmerTable, array('programmerId'), array('id'));
         $battleTable->addForeignKeyConstraint($projectTable, array('projectId'), array('id'));
         $schemaManager->dropAndCreateTable($battleTable);
@@ -99,6 +102,7 @@ class FixturesManager
         for ($i = 0; $i < 3; $i++) {
             $project = new Project();
             $project->name = 'Project '.$i;
+            $project->difficultyLevel = rand(1, 10);
             $projectRepo = $this->app['repository.project'];
             $projectRepo->save($project);
         }

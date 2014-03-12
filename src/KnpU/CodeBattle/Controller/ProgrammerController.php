@@ -20,6 +20,7 @@ class ProgrammerController extends BaseController
         $controllers->post('/programmers/new', array($this, 'handleNewAction'))->bind('programmer_new_handle');
         $controllers->get('/programmers/choose', array($this, 'chooseAction'))->bind('programmer_choose');
         $controllers->get('/programmers/{nickname}', array($this, 'showAction'))->bind('programmer_show');
+        $controllers->post('/programmers/{nickname}/power/up', array($this, 'powerUpAction'))->bind('programmer_powerup');
 
         return $controllers;
     }
@@ -77,6 +78,17 @@ class ProgrammerController extends BaseController
         $programmers = $this->getProgrammerRepository()->findAllForUser($this->getLoggedInUser());
 
         return $this->render('programmer/choose.twig', array('programmers' => $programmers));
+    }
+
+    public function powerUpAction($nickname)
+    {
+        $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
+
+        $powerupMessage = $this->container['battle.power_manager']->powerUp($programmer);
+
+        $this->setFlash($powerupMessage);
+
+        return $this->redirect($this->generateUrl('programmer_show', array('nickname' => $programmer->nickname)));
     }
 
     /**

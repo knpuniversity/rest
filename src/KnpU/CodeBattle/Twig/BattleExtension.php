@@ -3,6 +3,7 @@
 namespace KnpU\CodeBattle\Twig;
 
 use KnpU\CodeBattle\Model\Battle;
+use KnpU\CodeBattle\Model\Programmer;
 use KnpU\CodeBattle\Repository\ProgrammerRepository;
 use KnpU\CodeBattle\Repository\ProjectRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -36,6 +37,7 @@ class BattleExtension extends \Twig_Extension
         return array(
             new \Twig_SimpleFilter('programmer', array($this, 'getProgrammer')),
             new \Twig_SimpleFilter('project', array($this, 'getProject')),
+            new \Twig_SimpleFilter('powerLevelClass', array($this, 'getPowerLevelClass')),
         );
     }
 
@@ -56,6 +58,21 @@ class BattleExtension extends \Twig_Extension
     public function getAssetPath($path)
     {
         return $this->requestStack->getCurrentRequest()->getBasePath().'/'.$path;
+    }
+
+    public function getPowerLevelClass(Programmer $programmer)
+    {
+        $powerLevel = $programmer->powerLevel;
+        switch (true) {
+            case ($powerLevel <= 3):
+                return 'danger';
+                break;
+            case ($powerLevel <= 7):
+                return 'warn';
+                break;
+            default:
+                return 'success';
+        }
     }
 
     public function getName()

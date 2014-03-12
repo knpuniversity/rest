@@ -19,9 +19,14 @@ abstract class BaseRepository
      * Saves the object (the public properties are persisted)
      *
      * @param $obj
+     * @throws \Exception
      */
     public function save($obj)
     {
+        if (!is_object($obj)) {
+            throw new \Exception('Expected object, got '.gettype($obj));
+        }
+
         $reflect = new \ReflectionClass($obj);
         $persistedProperties   = $reflect->getProperties(\ReflectionProperty::IS_PUBLIC);
 
@@ -38,10 +43,11 @@ abstract class BaseRepository
         }
 
         if ($obj->id) {
+
             $this->connection->update(
                 $this->getTableName(),
                 $data,
-                $obj->id
+                array('id' => $obj->id)
             );
         } else {
             $this->connection->insert(

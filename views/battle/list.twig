@@ -26,11 +26,11 @@
                     </td>
                     <td>
                         {% if battle.didProgrammerWin %}
-                            <div data-toggle="tooltip" title="Heroically Completed!" class="js-tooltip">
+                            <div data-toggle="tooltip" title="{{ battle.notes }}" class="js-tooltip">
                                 <i class="fa fa-thumbs-up"></i>
                             </div>
                         {% else %}
-                            <div data-toggle="tooltip" title="Requirements kept changing, too many meetings, project failed :(" class="js-tooltip">
+                            <div data-toggle="tooltip" title="{{ battle.notes }}" class="js-tooltip">
                                 <i class="fa fa-thumbs-down"></i>
                             </div>
                         {% endif %}

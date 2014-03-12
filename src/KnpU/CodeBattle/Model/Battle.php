@@ -14,4 +14,6 @@ class Battle
     public $didProgrammerWin;
 
     public $foughtAt;
+
+    public $notes;
 }

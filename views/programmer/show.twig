@@ -3,8 +3,20 @@
 
 {% block content %}
     <h1>{{ programmer.nickname }}</h1>
+    <h3>
+        Power Level:
 
-    <button href="#" class="btn btn-primary" data-toggle="modal" data-target="#chooseProject">Start Battle</button>
+        <span class="label label-{{ programmer|powerLevelClass }}">
+            {{ programmer.powerLevel }}
+        </span>
+    </h3>
+
+    <form action="{{ path('programmer_powerup', {'nickname': programmer.nickname }) }}" method="POST">
+        <div class="btn-group">
+            <button type="submit" class="btn btn-success">Power Up!</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#chooseProject">Start Battle!</button>
+        </div>
+    </form>
 
     <div class="modal fade" id="chooseProject">
         <div class="modal-dialog">
@@ -21,7 +33,7 @@
                                     <input type="hidden" name="programmer_id" value="{{ programmer.id }}" />
                                     <input type="hidden" name="project_id" id="js-receive-project-id" value="{{ project.id }}" />
 
-                                    <input type="submit" class="btn btn-danger js-select-battle-project" data-project="{{ project.id }}" value="{{ project.name }}" />
+                                    <input type="submit" class="btn btn-danger js-select-battle-project" data-project="{{ project.id }}" value="{{ project.name }} (difficulty: {{ project.difficultyLevel }}" />
                                 </form>
                             </li>
                         {% endfor %}

@@ -15,4 +15,6 @@ class Programmer
     public $avatar;
 
     public $userId;
+
+    public $powerLevel = 0;
 }

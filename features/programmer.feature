@@ -36,11 +36,21 @@ Feature: Programmer
     When I go to "/"
     And I click "Start Battle"
     And I click "Kerry"
-    Then I should be on "/programmer/Kerry"
+    Then I should be on "/programmers/Kerry"
 
   @javascript
   Scenario: See 3 choices of battles
-    Given I am on "/programmer/Kerry"
+    Given I am on "/programmers/Kerry"
     When I press "Start Battle"
     And I wait for the dialog to appear
     Then I should see 3 projects in the list
+
+  Scenario: Cannot fight with someone else's programmers
+    Given someone else created a programmer named "Outsider"
+    When I go to "/programmers/Outsider"
+    Then I should not see "Start Battle"
+
+  Scenario: Power up
+    Given I am on "/programmers/Kerry"
+    When I press "Power Up"
+    Then I should see a flash message containing "energy"
