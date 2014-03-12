@@ -4,6 +4,21 @@
             "id": "start",
             "name": "start",
             "description": null
+        },
+        {
+            "id": "post-programmer-create-endpoint",
+            "name": "POST Programmer: Create endpoint",
+            "description": null
+        },
+        {
+            "id": "post-programmer-start-basic-test",
+            "name": "POST Programmer: Start basic test",
+            "description": null
+        },
+        {
+            "id": "post-programmer-update-test-with-post-data",
+            "name": "POST Programmer: Update test with POST data",
+            "description": null
         }
     ]
 }
