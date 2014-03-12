@@ -57,7 +57,6 @@ class FeatureContext extends MinkContext
         $fixtures = self::$app['fixtures_manager'];
 
         $fixtures->clearTables();
-        $fixtures->populateData();
     }
 
     /**
@@ -126,7 +125,12 @@ class FeatureContext extends MinkContext
      */
     public function theFollowingProjectsExist(TableNode $table)
     {
-        // todo
+        $projectRepo = self::$app['repository.project'];
+        foreach ($table->getHash() as $row) {
+            $project = new \KnpU\CodeBattle\Model\Project();
+            $project->name = $row['name'];
+            $projectRepo->save($project);
+        }
     }
 
     /**
@@ -152,6 +156,32 @@ class FeatureContext extends MinkContext
         assertNotNull($programmerList, 'Cannot see the programmer list');
 
         assertCount(intval($count), $programmerList);
+    }
+
+    /**
+     * @Then /^I should see (\d+) projects in the list$/
+     */
+    public function iShouldSeeProjectsInTheList($count)
+    {
+        $projectList = $this->getSession()
+            ->getPage()
+            ->findAll('css', '.projects-list li')
+        ;
+
+        assertNotNull($projectList, 'Cannot see the project list');
+
+        assertCount(intval($count), $projectList);
+    }
+
+    /**
+     * @Given /^I wait for the dialog to appear$/
+     */
+    public function iWaitForTheDialogToAppear()
+    {
+        $this->getSession()->wait(
+            5000,
+            "jQuery('.modal').is(':visible');"
+        );
     }
 
     /**

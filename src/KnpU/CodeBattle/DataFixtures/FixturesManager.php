@@ -2,6 +2,8 @@
 
 namespace KnpU\CodeBattle\DataFixtures;
 
+use KnpU\CodeBattle\Model\Project;
+use KnpU\CodeBattle\Model\User;
 use Silex\Application;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Table;
@@ -67,8 +69,8 @@ class FixturesManager
         $battleTable->addColumn('projectId', 'integer');
         $battleTable->addColumn('didProgrammerWin', 'integer');
         $battleTable->addColumn('foughtAt', 'datetime');
-        $programmerTable->addForeignKeyConstraint($userTable, array('userId'), array('id'));
-        $programmerTable->addForeignKeyConstraint($projectTable, array('projectId'), array('id'));
+        $battleTable->addForeignKeyConstraint($userTable, array('userId'), array('id'));
+        $battleTable->addForeignKeyConstraint($projectTable, array('projectId'), array('id'));
         $schemaManager->dropAndCreateTable($battleTable);
     }
 
@@ -87,7 +89,19 @@ class FixturesManager
 
     public function populateData()
     {
+        $user = new User();
+        $user->username = 'weaverryan';
+        $user->email = 'ryan@knplabs.com';
+        $user->setPlainPassword('foo');
+        $userRepo = $this->app['repository.user'];
+        $userRepo->save($user);
 
+        for ($i = 0; $i < 3; $i++) {
+            $project = new Project();
+            $project->name = 'Project '.$i;
+            $projectRepo = $this->app['repository.project'];
+            $projectRepo->save($project);
+        }
     }
 
     /**

@@ -4,6 +4,33 @@
 {% block content %}
     <h1>{{ programmer.nickname }}</h1>
 
+    <button href="#" class="btn btn-primary" data-toggle="modal" data-target="#chooseProject">Start Battle</button>
+
+    <div class="modal fade" id="chooseProject">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Choose your enemy</h4>
+                </div>
+                <div class="modal-body">
+                    <ul class="projects-list">
+                        {% for project in projects %}
+                            <li>
+                                <a href="#">{{ project.name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Wimp out</button>
+                    <button type="button" class="btn btn-primary">Start Battle! </button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 {% endblock %}
 
 {% block javascripts %}

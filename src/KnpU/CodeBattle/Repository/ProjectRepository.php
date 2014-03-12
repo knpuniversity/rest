@@ -2,12 +2,7 @@
 
 namespace KnpU\CodeBattle\Repository;
 
-use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
-use KnpU\CodeBattle\Model\User;
-use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+use KnpU\CodeBattle\Model\Project;
 
 class ProjectRepository extends BaseRepository
 {
@@ -19,5 +14,22 @@ class ProjectRepository extends BaseRepository
     protected function getTableName()
     {
         return 'project';
+    }
+
+    /**
+     * @param $limit
+     * @return Project[]
+     */
+    public function findRandom($limit)
+    {
+        $stmt = $this->createQueryBuilder('p')
+            ->setMaxResults($limit)
+            ->execute()
+        ;
+
+        $projects = $this->fetchAllToObject($stmt);
+        shuffle($projects);
+
+        return array_slice($projects, 0, $limit);
     }
 }

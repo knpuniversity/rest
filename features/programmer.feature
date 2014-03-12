@@ -38,13 +38,17 @@ Feature: Programmer
     And I click "Kerry"
     Then I should be on "/programmer/Kerry"
 
+  @javascript
   Scenario: See 3 choices of battles
     Given I am on "/programmer/Kerry"
-    When I click "Start Battle"
+    When I press "Start Battle"
+    And I wait for the dialog to appear
     Then I should see 3 projects in the list
 
+  @javascript
   Scenario: Start a battle
     Given I am on "/programmer/Kerry"
     When I click "Start Battle"
+    And I wait for the modal to appear
     And I click on a project
     Then I should see "Battle Commencing"

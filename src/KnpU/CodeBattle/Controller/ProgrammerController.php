@@ -64,7 +64,12 @@ class ProgrammerController extends BaseController
             throw new NotFoundHttpException();
         }
 
-        return $this->render('programmer/show.twig', array('programmer' => $programmer));
+        $projects = $this->getProjectRepository()->findRandom(3);
+
+        return $this->render('programmer/show.twig', array(
+            'programmer' => $programmer,
+            'projects' => $projects,
+        ));
     }
 
     public function chooseAction()
@@ -107,5 +112,13 @@ class ProgrammerController extends BaseController
     private function getProgrammerRepository()
     {
         return $this->container['repository.programmer'];
+    }
+
+    /**
+     * @return \KnpU\CodeBattle\Repository\ProjectRepository
+     */
+    private function getProjectRepository()
+    {
+        return $this->container['repository.project'];
     }
 }
