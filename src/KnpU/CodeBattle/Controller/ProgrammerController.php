@@ -7,6 +7,7 @@ use Silex\ControllerCollection;
 use KnpU\CodeBattle\Model\Programmer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 
 class ProgrammerController extends BaseController
@@ -83,6 +84,10 @@ class ProgrammerController extends BaseController
     public function powerUpAction($nickname)
     {
         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
+
+        if ($programmer->userId != $this->getLoggedInUser()->id) {
+            throw new AccessDeniedException;
+        }
 
         $powerupMessage = $this->container['battle.power_manager']->powerUp($programmer);
 
