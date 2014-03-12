@@ -12,19 +12,15 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ProgrammerController extends BaseController
 {
-    public function connect(Application $app)
+    protected function addRoutes(ControllerCollection $controllers)
     {
-        /** @var ControllerCollection $controllers */
-        $controllers = $app['controllers_factory'];
-
         $controllers->get('/programmers/new', array($this, 'newAction'))->bind('programmer_new');
         $controllers->post('/programmers/new', array($this, 'handleNewAction'))->bind('programmer_new_handle');
         $controllers->get('/programmers/choose', array($this, 'chooseAction'))->bind('programmer_choose');
         $controllers->get('/programmers/{nickname}', array($this, 'showAction'))->bind('programmer_show');
         $controllers->post('/programmers/{nickname}/power/up', array($this, 'powerUpAction'))->bind('programmer_powerup');
-
-        return $controllers;
     }
+
 
     /**
      * Create a new programmer

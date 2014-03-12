@@ -4,7 +4,9 @@ namespace KnpU\CodeBattle\Controller;
 
 use KnpU\CodeBattle\Model\User;
 use KnpU\CodeBattle\Repository\UserRepository;
-use Silex\Application;
+use KnpU\CodeBattle\Application;
+use Silex\Application as SilexApplication;
+use Silex\ControllerCollection;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
@@ -20,14 +22,20 @@ abstract class BaseController implements ControllerProviderInterface
      */
     protected $container;
 
-    /**
-     * See the event listener in kernel.controller for how this is set
-     *
-     * @param \Pimple $container
-     */
-    public function setContainer(\Pimple $container)
+    public function __construct(Application $app)
     {
-        $this->container = $container;
+        $this->container = $app;
+    }
+
+    abstract protected function addRoutes(ControllerCollection $controllers);
+
+    public function connect(SilexApplication $app)
+    {
+        $controllers = $app['controllers_factory'];
+
+        $this->addRoutes($controllers);
+
+        return $controllers;
     }
 
     /**

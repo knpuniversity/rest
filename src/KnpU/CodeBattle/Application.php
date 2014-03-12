@@ -12,10 +12,7 @@ use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\MonologServiceProvider;
-use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use KnpU\CodeBattle\Controller\BaseController;
+use Symfony\Component\Finder\Finder;
 use KnpU\CodeBattle\DataFixtures\FixturesManager;
 use Silex\Provider\SecurityServiceProvider;
 use KnpU\CodeBattle\Repository\UserRepository;
@@ -32,7 +29,42 @@ class Application extends SilexApplication
         $this->configureProviders();
         $this->configureServices();
         $this->configureSecurity();
-        $this->registerListeners();
+    }
+
+    /**
+     * Dynamically finds all *Controller.php files in the Controller directory,
+     * instantiates them, and mounts their routes.
+     *
+     * This is done so we can easily create new controllers without worrying
+     * about some of the Silex mechanisms to hook things together.
+     */
+    public function mountControllers()
+    {
+        $controllerPath = 'src/KnpU/CodeBattle/Controller';
+        $finder = new Finder();
+        $finder->in($this['root_dir'].'/'.$controllerPath)
+            ->name('*Controller.php')
+        ;
+
+        foreach ($finder as $file) {
+            /** @var \Symfony\Component\Finder\SplFileInfo $file */
+            // e.g. Api/FooController.php
+            $cleanedPathName = $file->getRelativePathname();
+            // e.g. Api\FooController.php
+            $cleanedPathName = str_replace('/', '\\', $cleanedPathName);
+            // e.g. Api\FooController
+            $cleanedPathName = str_replace('.php', '', $cleanedPathName);
+
+            $class = 'KnpU\\CodeBattle\\Controller\\'.$cleanedPathName;
+
+            // don't instantiate the abstract base class
+            $refl = new \ReflectionClass($class);
+            if ($refl->isAbstract()) {
+                continue;
+            }
+
+            $this->mount('/', new $class($this));
+        }
     }
 
     private function configureProviders()
@@ -152,28 +184,5 @@ class Application extends SilexApplication
 
             return is_object($user) ? $user : null;
         });
-    }
-
-    private function registerListeners()
-    {
-        $app = $this;
-
-        /** @var EventDispatcher $dispatcher */
-        $dispatcher = $this['dispatcher'];
-        // a quick event listener to inject the container into our BaseController
-        $dispatcher->addListener(
-            KernelEvents::CONTROLLER,
-            function (FilterControllerEvent $event) use ($app) {
-                $controller = $event->getController();
-                if (!is_array($controller)) {
-                    return;
-                }
-
-                $controllerObject = $controller[0];
-                if ($controllerObject instanceof BaseController) {
-                    $controllerObject->setContainer($app);
-                }
-            }
-        );
     }
 } 

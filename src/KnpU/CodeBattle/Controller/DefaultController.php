@@ -7,14 +7,9 @@ use Silex\ControllerCollection;
 
 class DefaultController extends BaseController
 {
-    public function connect(Application $app)
+    protected function addRoutes(ControllerCollection $controllers)
     {
-        /** @var ControllerCollection $controllers */
-        $controllers = $app['controllers_factory'];
-
         $controllers->get('/', array($this, 'homepageAction'))->bind('homepage');
-
-        return $controllers;
     }
 
     public function homepageAction()

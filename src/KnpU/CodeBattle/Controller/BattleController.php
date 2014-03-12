@@ -5,24 +5,17 @@ namespace KnpU\CodeBattle\Controller;
 use KnpU\CodeBattle\Model\Battle;
 use Silex\Application;
 use Silex\ControllerCollection;
-use KnpU\CodeBattle\Model\Programmer;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
 class BattleController extends BaseController
 {
-    public function connect(Application $app)
+    protected function addRoutes(ControllerCollection $controllers)
     {
-        /** @var ControllerCollection $controllers */
-        $controllers = $app['controllers_factory'];
-
         $controllers->post('/battles/new', array($this, 'newAction'))->bind('battle_new');
         $controllers->get('/battles/{id}', array($this, 'showAction'))->bind('battle_show');
         $controllers->get('/battles', array($this, 'listAction'))->bind('battle_list');
-
-        return $controllers;
     }
 
     /**
