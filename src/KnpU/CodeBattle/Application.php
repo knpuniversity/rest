@@ -146,6 +146,12 @@ class Application extends SilexApplication
             array('^/login', 'IS_AUTHENTICATED_ANONYMOUSLY'),
             array('^/', 'IS_AUTHENTICATED_FULLY'),
         );
+
+        $this['user'] = $this->share(function() use ($app) {
+            $user = $app['security']->getToken()->getUser();
+
+            return is_object($user) ? $user : null;
+        });
     }
 
     private function registerListeners()

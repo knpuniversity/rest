@@ -25,15 +25,15 @@
                         {{ battle|project('name') }}
                     </td>
                     <td>
-                        {% if battle.didProgrammerWin %}
-                            <div data-toggle="tooltip" title="{{ battle.notes }}" class="js-tooltip">
-                                <i class="fa fa-thumbs-up"></i>
-                            </div>
-                        {% else %}
-                            <div data-toggle="tooltip" title="{{ battle.notes }}" class="js-tooltip">
-                                <i class="fa fa-thumbs-down"></i>
-                            </div>
-                        {% endif %}
+                        <a
+                            href="{{ path('battle_show', {id: battle.id}) }}"
+                            data-toggle="tooltip"
+                            title="{{ battle.notes }}"
+                            class="js-tooltip label label-{{ battle.didProgrammerWin ? 'success' : 'danger' }}"
+                            style="display: block;"
+                        >
+                            <i class="fa fa-thumbs-{{ battle.didProgrammerWin ? 'up' : 'down' }}"></i>
+                        </a>
                     </td>
                     <td>
                         {{ battle.foughtAt|date('Y-m-d') }}

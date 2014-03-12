@@ -68,7 +68,7 @@ class BattleExtension extends \Twig_Extension
                 return 'danger';
                 break;
             case ($powerLevel <= 7):
-                return 'warn';
+                return 'warning';
                 break;
             default:
                 return 'success';

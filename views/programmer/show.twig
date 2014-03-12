@@ -11,43 +11,45 @@
         </span>
     </h3>
 
-    <form action="{{ path('programmer_powerup', {'nickname': programmer.nickname }) }}" method="POST">
-        <div class="btn-group">
-            <button type="submit" class="btn btn-success">Power Up!</button>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#chooseProject">Start Battle!</button>
-        </div>
-    </form>
-
-    <div class="modal fade" id="chooseProject">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Choose your enemy</h4>
-                </div>
-                <div class="modal-body">
-                    <ul class="projects-list">
-                        {% for project in projects %}
-                            <li>
-                                <form action="{{ path('battle_new') }}" method="POST">
-                                    <input type="hidden" name="programmer_id" value="{{ programmer.id }}" />
-                                    <input type="hidden" name="project_id" id="js-receive-project-id" value="{{ project.id }}" />
-
-                                    <input type="submit" class="btn btn-danger js-select-battle-project" data-project="{{ project.id }}" value="{{ project.name }} (difficulty: {{ project.difficultyLevel }}" />
-                                </form>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Wimp out</button>
-                    <button type="button" class="btn btn-primary js-start-battle">Start Battle! </button>
-                </div>
+    {% if programmer.userId == app.user.id %}
+        <form action="{{ path('programmer_powerup', {'nickname': programmer.nickname }) }}" method="POST">
+            <div class="btn-group">
+                <button type="submit" class="btn btn-success">Power Up!</button>
+                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#chooseProject">Start Battle!</button>
             </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        </form>
+
+        <div class="modal fade" id="chooseProject">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Choose your enemy</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="projects-list">
+                            {% for project in projects %}
+                                <li>
+                                    <form action="{{ path('battle_new') }}" method="POST">
+                                        <input type="hidden" name="programmer_id" value="{{ programmer.id }}" />
+                                        <input type="hidden" name="project_id" id="js-receive-project-id" value="{{ project.id }}" />
+
+                                        <input type="submit" class="btn btn-danger js-select-battle-project" data-project="{{ project.id }}" value="{{ project.name }} (difficulty: {{ project.difficultyLevel }})" />
+                                    </form>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Wimp out</button>
+                        <button type="button" class="btn btn-primary js-start-battle">Start Battle! </button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}

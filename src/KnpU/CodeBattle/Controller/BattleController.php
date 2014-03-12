@@ -6,6 +6,7 @@ use KnpU\CodeBattle\Model\Battle;
 use Silex\Application;
 use Silex\ControllerCollection;
 use KnpU\CodeBattle\Model\Programmer;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -33,6 +34,10 @@ class BattleController extends BaseController
         $projectId = $request->request->get('project_id');
         $programmer = $this->getProgrammerRepository()->find($programmerId);
         $project = $this->getProjectRepository()->find($projectId);
+
+        if ($programmer->userId != $this->getLoggedInUser()->id) {
+            throw new AccessDeniedException();
+        }
 
         $battle = $this->getBattleManager()->battle($programmer, $project);
 
