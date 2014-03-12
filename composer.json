@@ -2,7 +2,6 @@
     "require": {
         "silex/silex": "~1.0",
         "symfony/twig-bridge": "~2.1.0",
-        "guzzle/guzzle": "~3.7",
         "symfony/security": "~2.3",
         "doctrine/dbal": "~2.4.0",
         "monolog/monolog": "~1.7.0"
@@ -13,7 +12,8 @@
         "behat/mink-selenium2-driver": "~1.1.1",
         "behat/behat": "~2.5",
         "behat/mink-extension": "~1.2.0",
-        "phpunit/phpunit": "~3.7.0"
+        "phpunit/phpunit": "~3.7.0",
+        "guzzle/guzzle": "~3.7"
     },
     "autoload" : {
         "psr-0": {
