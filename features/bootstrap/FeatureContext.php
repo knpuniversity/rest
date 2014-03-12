@@ -134,7 +134,7 @@ class FeatureContext extends MinkContext
      */
     public function theFollowingProjectsExist(TableNode $table)
     {
-        $projectRepo = self::$app['repository.project'];
+        $projectRepo = $this->getProjectRepository();
         foreach ($table->getHash() as $row) {
             $project = new \KnpU\CodeBattle\Model\Project();
             $project->name = $row['name'];
@@ -180,6 +180,30 @@ class FeatureContext extends MinkContext
         assertNotNull($projectList, 'Cannot see the project list');
 
         assertCount(intval($count), $projectList);
+    }
+
+    /**
+     * @Given /^the following battles have been valiantly fought:$/
+     */
+    public function theFollowingBattlesHaveBeenValiantlyFought(TableNode $table)
+    {
+        foreach ($table->getHash() as $row) {
+            $programmer = $this->getProgrammerRepository()->findOneByNickname($row['programmer']);
+            $project = $this->getProjectRepository()->findOneByName($row['project']);
+
+            $battle = self::$app['battle.battle_manager']->battle($programmer, $project);
+        }
+    }
+
+    /**
+     * @Then /^I should see a table with (\d+) rows$/
+     */
+    public function iShouldSeeATableWithRows($rowCount)
+    {
+        $tbl = $this->getSession()->getPage()->find('css', '.main-console-screen table.table');
+        assertNotNull($tbl, 'Cannot find a table!');
+
+        assertCount(intval($rowCount), $tbl->findAll('css', 'tbody tr'));
     }
 
     /**
@@ -235,5 +259,13 @@ class FeatureContext extends MinkContext
     private function getProgrammerRepository()
     {
         return self::$app['repository.programmer'];
+    }
+
+    /**
+     * @return \KnpU\CodeBattle\Repository\ProjectRepository
+     */
+    private function getProjectRepository()
+    {
+        return self::$app['repository.project'];
     }
 }

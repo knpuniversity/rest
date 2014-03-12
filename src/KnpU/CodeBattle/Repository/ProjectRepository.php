@@ -16,6 +16,12 @@ class ProjectRepository extends BaseRepository
         return 'project';
     }
 
+    public function findOneByName($name)
+    {
+        return $this->findOneBy(array('name' => $name));
+    }
+
+
     /**
      * @param $limit
      * @return Project[]
