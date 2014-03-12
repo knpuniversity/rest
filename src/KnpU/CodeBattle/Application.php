@@ -176,6 +176,8 @@ class Application extends SilexApplication
             // placeholder access control for now
             array('^/register', 'IS_AUTHENTICATED_ANONYMOUSLY'),
             array('^/login', 'IS_AUTHENTICATED_ANONYMOUSLY'),
+            // allow anonymous API - if auth is needed, it's handled in the controller
+            array('^/api', 'IS_AUTHENTICATED_ANONYMOUSLY'),
             array('^/', 'IS_AUTHENTICATED_FULLY'),
         );
 
