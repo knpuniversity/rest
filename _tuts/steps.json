@@ -19,6 +19,11 @@
             "id": "post-programmer-update-test-with-post-data",
             "name": "POST Programmer: Update test with POST data",
             "description": null
+        },
+        {
+            "id": "post-programmer-dump-request-content",
+            "name": "POST Programmer: Dump request content",
+            "description": null
         }
     ]
 }
