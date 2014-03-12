@@ -17,8 +17,9 @@ class BattleController extends BaseController
         /** @var ControllerCollection $controllers */
         $controllers = $app['controllers_factory'];
 
-        $controllers->post('/battle/new', array($this, 'newAction'))->bind('battle_new');
-        $controllers->get('/battle/{id}', array($this, 'showAction'))->bind('battle_show');
+        $controllers->post('/battles/new', array($this, 'newAction'))->bind('battle_new');
+        $controllers->get('/battles/{id}', array($this, 'showAction'))->bind('battle_show');
+        $controllers->get('/battles', array($this, 'listAction'))->bind('battle_list');
 
         return $controllers;
     }
@@ -49,6 +50,15 @@ class BattleController extends BaseController
             'battle' => $battle,
             'programmer' => $programmer,
             'project' => $project
+        ));
+    }
+
+    public function listAction()
+    {
+        $battles = $this->getBattleRepository()->findAll();
+
+        return $this->render('battle/list.twig', array(
+            'battles' => $battles,
         ));
     }
 

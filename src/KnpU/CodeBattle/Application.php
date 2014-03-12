@@ -104,7 +104,11 @@ class Application extends SilexApplication
         });
 
         $this['twig.battle_extension'] = $this->share(function() use ($app) {
-            return new BattleExtension($app['request_stack']);
+            return new BattleExtension(
+                $app['request_stack'],
+                $app['repository.programmer'],
+                $app['repository.project']
+            );
         });
     }
 

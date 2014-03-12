@@ -76,6 +76,11 @@ abstract class BaseRepository
         return $this->findOneBy(array('id' => $id));
     }
 
+    public function findAll()
+    {
+        return $this->findAllBy(array());
+    }
+
     public function findAllBy(array $criteria)
     {
         $qb = $this->createQueryBuilder('u');
@@ -105,9 +110,7 @@ abstract class BaseRepository
 
     protected function fetchAllToObject(ResultStatement $stmt)
     {
-        $stmt->setFetchMode(PDO::FETCH_CLASS, $this->getClassName());
-
-        $objects = $stmt->fetchAll(PDO::FETCH_CLASS);
+        $objects = $stmt->fetchAll(PDO::FETCH_CLASS, $this->getClassName());
 
         foreach ($objects as $object) {
             $this->finishHydrateObject($object);

@@ -1,7 +1,7 @@
 Feature: Programmer
-  In order to defeat evil projects
+  In order to battle projects
   As a user
-  I need to be able to create programmers and battle them against evil projects
+  I need to be able to create programmers and power them up
 
   Background:
     Given I am logged in
@@ -44,11 +44,3 @@ Feature: Programmer
     When I press "Start Battle"
     And I wait for the dialog to appear
     Then I should see 3 projects in the list
-
-  @javascript
-  Scenario: Start a battle
-    Given I am on "/programmer/Kerry"
-    When I press "Start Battle"
-    And I wait for the dialog to appear
-    And I click on a project
-    And I should see "Winner"

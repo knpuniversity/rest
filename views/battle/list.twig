@@ -1,0 +1,55 @@
+{% extends "layout.twig" %}
+{% import '_macros.twig' as macros %}
+
+{% block content %}
+    <h1>Epic Battles Fought</h1>
+
+    <table class="table table-bordered table-striped" id="battle-table">
+        <thead>
+            <tr>
+                <th>Programmer</th>
+                <th>Project</th>
+                <th>Result</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for battle in battles %}
+                <tr>
+                    <td>
+                        <a href="{{ path('programmer_show', {'nickname': battle|programmer('nickname')}) }}">
+                            {{ battle|programmer('nickname') }}
+                        </a>
+                    </td>
+                    <td>
+                        {{ battle|project('name') }}
+                    </td>
+                    <td>
+                        {% if battle.didProgrammerWin %}
+                            <div data-toggle="tooltip" title="Heroically Completed!" class="js-tooltip">
+                                <i class="fa fa-thumbs-up"></i>
+                            </div>
+                        {% else %}
+                            <div data-toggle="tooltip" title="Requirements kept changing, too many meetings, project failed :(" class="js-tooltip">
+                                <i class="fa fa-thumbs-down"></i>
+                            </div>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ battle.foughtAt|date('Y-m-d') }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+            $('#battle-table .js-tooltip').tooltip();
+        });
+    </script>
+{% endblock %}

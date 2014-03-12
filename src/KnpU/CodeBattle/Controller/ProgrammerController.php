@@ -16,10 +16,10 @@ class ProgrammerController extends BaseController
         /** @var ControllerCollection $controllers */
         $controllers = $app['controllers_factory'];
 
-        $controllers->get('/programmer/new', array($this, 'newAction'))->bind('programmer_new');
-        $controllers->post('/programmer/new', array($this, 'handleNewAction'))->bind('programmer_new_handle');
-        $controllers->get('/programmer/choose', array($this, 'chooseAction'))->bind('programmer_choose');
-        $controllers->get('/programmer/{nickname}', array($this, 'showAction'))->bind('programmer_show');
+        $controllers->get('/programmers/new', array($this, 'newAction'))->bind('programmer_new');
+        $controllers->post('/programmers/new', array($this, 'handleNewAction'))->bind('programmer_new_handle');
+        $controllers->get('/programmers/choose', array($this, 'chooseAction'))->bind('programmer_choose');
+        $controllers->get('/programmers/{nickname}', array($this, 'showAction'))->bind('programmer_show');
 
         return $controllers;
     }
