@@ -1,0 +1,18 @@
+diff --git a/testing.php b/testing.php
+index 6ede693..870d38a 100644
+--- a/testing.php
++++ b/testing.php
+@@ -11,7 +11,12 @@ $client = new Client('http://localhost:8000', array(
+     )
+ ));
+ 
+-$request = $client->post('/api/programmers');
++$data = array(
++    'nickname' => 'ObjectOrienter',
++    'avatar' => 'avatar1.jpg',
++);
++
++$request = $client->post('/api/programmers', null, json_encode($data));
+ $response = $request->send();
+ 
+ echo $response;
