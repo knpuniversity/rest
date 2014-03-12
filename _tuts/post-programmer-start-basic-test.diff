@@ -1,0 +1,15 @@
+diff --git a/testing.php b/testing.php
+index c5d6233..6ede693 100644
+--- a/testing.php
++++ b/testing.php
+@@ -10,3 +10,9 @@ $client = new Client('http://localhost:8000', array(
+         'exceptions' => false,
+     )
+ ));
++
++$request = $client->post('/api/programmers');
++$response = $request->send();
++
++echo $response;
++echo "\n\n";
+\ No newline at end of file
