@@ -27,7 +27,14 @@ abstract class BaseRepository
 
         $data = array();
         foreach ($persistedProperties as $prop) {
-            $data[$prop->name] = $prop->getValue($obj);
+            $val = $prop->getValue($obj);
+
+            // normalize DateTime objects to string
+            if ($val instanceof \DateTime) {
+                $val = $val->format('Y-m-d H:i:s');
+            }
+
+            $data[$prop->name] = $val;
         }
 
         if ($obj->id) {
@@ -62,6 +69,11 @@ abstract class BaseRepository
         $stmt = $qb->execute();
 
         return $this->fetchToObject($stmt);
+    }
+
+    public function find($id)
+    {
+        return $this->findOneBy(array('id' => $id));
     }
 
     public function findAllBy(array $criteria)

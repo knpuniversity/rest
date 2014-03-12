@@ -96,6 +96,15 @@ class FeatureContext extends MinkContext
     }
 
     /**
+     * @Given /^I click on a project$/
+     */
+    public function iClickOnAProject()
+    {
+        $this->getSession()->getPage()->find('css', '.projects-list .js-select-battle-project')->press();
+    }
+
+
+    /**
      * @Given /^I am logged in$/
      */
     public function iAmLoggedIn()

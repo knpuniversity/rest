@@ -65,11 +65,11 @@ class FixturesManager
         $battleTable = new Table('battle');
         $battleTable->addColumn('id', 'integer', array('unsigned' => true, 'autoincrement' => true));
         $battleTable->setPrimaryKey(array('id'));
-        $battleTable->addColumn('userId', 'integer');
+        $battleTable->addColumn('programmerId', 'integer');
         $battleTable->addColumn('projectId', 'integer');
         $battleTable->addColumn('didProgrammerWin', 'integer');
         $battleTable->addColumn('foughtAt', 'datetime');
-        $battleTable->addForeignKeyConstraint($userTable, array('userId'), array('id'));
+        $battleTable->addForeignKeyConstraint($programmerTable, array('programmerId'), array('id'));
         $battleTable->addForeignKeyConstraint($projectTable, array('projectId'), array('id'));
         $schemaManager->dropAndCreateTable($battleTable);
     }

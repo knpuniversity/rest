@@ -19,6 +19,7 @@ use KnpU\CodeBattle\DataFixtures\FixturesManager;
 use Silex\Provider\SecurityServiceProvider;
 use KnpU\CodeBattle\Repository\UserRepository;
 use KnpU\CodeBattle\Repository\ProgrammerRepository;
+use KnpU\CodeBattle\Battle\BattleManager;
 
 class Application extends SilexApplication
 {
@@ -92,6 +93,10 @@ class Application extends SilexApplication
         });
         $this['repository.battle'] = $this->share(function() use ($app) {
             return new BattleRepository($app['db']);
+        });
+
+        $this['battle.battle_manager'] = $this->share(function() use ($app) {
+            return new BattleManager($app['repository.battle']);
         });
 
         $this['fixtures_manager'] = $this->share(function () use ($app) {

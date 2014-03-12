@@ -7,7 +7,7 @@ class Battle
     /* All public properties are persisted */
     public $id;
 
-    public $userId;
+    public $programmerId;
 
     public $projectId;
 

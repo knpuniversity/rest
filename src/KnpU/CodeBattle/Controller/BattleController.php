@@ -2,6 +2,7 @@
 
 namespace KnpU\CodeBattle\Controller;
 
+use KnpU\CodeBattle\Model\Battle;
 use Silex\Application;
 use Silex\ControllerCollection;
 use KnpU\CodeBattle\Model\Programmer;
@@ -16,7 +17,8 @@ class BattleController extends BaseController
         /** @var ControllerCollection $controllers */
         $controllers = $app['controllers_factory'];
 
-        $controllers->get('/programmer/new', array($this, 'newAction'))->bind('programmer_new');
+        $controllers->post('/battle/new', array($this, 'newAction'))->bind('battle_new');
+        $controllers->get('/battle/{id}', array($this, 'showAction'))->bind('battle_show');
 
         return $controllers;
     }
@@ -24,11 +26,30 @@ class BattleController extends BaseController
     /**
      * Create a new programmer
      */
-    public function newAction()
+    public function newAction(Request $request)
     {
-        $programmer = new Programmer();
+        $programmerId = $request->request->get('programmer_id');
+        $projectId = $request->request->get('project_id');
+        $programmer = $this->getProgrammerRepository()->find($programmerId);
+        $project = $this->getProjectRepository()->find($projectId);
 
-        return $this->render('programmer/new.twig', array('programmer' => $programmer));
+        $battle = $this->getBattleManager()->battle($programmer, $project);
+
+        return $this->redirect($this->generateUrl('battle_show', array('id' => $battle->id)));
+    }
+
+    public function showAction($id)
+    {
+        /** @var Battle $battle */
+        $battle = $this->getBattleRepository()->find($id);
+        $programmer = $this->getProgrammerRepository()->find($battle->programmerId);
+        $project = $this->getProjectRepository()->find($battle->projectId);
+
+        return $this->render('battle/show.twig', array(
+            'battle' => $battle,
+            'programmer' => $programmer,
+            'project' => $project
+        ));
     }
 
     /**
@@ -37,5 +58,29 @@ class BattleController extends BaseController
     private function getBattleRepository()
     {
         return $this->container['repository.battle'];
+    }
+
+    /**
+     * @return \KnpU\CodeBattle\Repository\ProgrammerRepository
+     */
+    private function getProgrammerRepository()
+    {
+        return $this->container['repository.programmer'];
+    }
+
+    /**
+     * @return \KnpU\CodeBattle\Repository\ProjectRepository
+     */
+    private function getProjectRepository()
+    {
+        return $this->container['repository.project'];
+    }
+
+    /**
+     * @return \KnpU\CodeBattle\Battle\BattleManager
+     */
+    private function getBattleManager()
+    {
+        return $this->container['battle.battle_manager'];
     }
 }

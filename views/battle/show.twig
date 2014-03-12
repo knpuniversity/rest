@@ -1,0 +1,8 @@
+{% extends "layout.twig" %}
+{% import '_macros.twig' as macros %}
+
+{% block content %}
+    <h1>Battle between {{ programmer.nickname }} and {{ project.name }}</h1>
+
+    <h3>Winner: {{ battle.didProgrammerWin ? programmer.nickname : project.name }}</h3>
+{% endblock %}

@@ -48,7 +48,7 @@ Feature: Programmer
   @javascript
   Scenario: Start a battle
     Given I am on "/programmer/Kerry"
-    When I click "Start Battle"
-    And I wait for the modal to appear
+    When I press "Start Battle"
+    And I wait for the dialog to appear
     And I click on a project
-    Then I should see "Battle Commencing"
+    And I should see "Winner"

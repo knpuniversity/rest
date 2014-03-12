@@ -17,14 +17,19 @@
                     <ul class="projects-list">
                         {% for project in projects %}
                             <li>
-                                <a href="#">{{ project.name }}</a>
+                                <form action="{{ path('battle_new') }}" method="POST">
+                                    <input type="hidden" name="programmer_id" value="{{ programmer.id }}" />
+                                    <input type="hidden" name="project_id" id="js-receive-project-id" value="{{ project.id }}" />
+
+                                    <input type="submit" class="btn btn-danger js-select-battle-project" data-project="{{ project.id }}" value="{{ project.name }}" />
+                                </form>
                             </li>
                         {% endfor %}
                     </ul>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Wimp out</button>
-                    <button type="button" class="btn btn-primary">Start Battle! </button>
+                    <button type="button" class="btn btn-primary js-start-battle">Start Battle! </button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -36,4 +41,20 @@
 {% block javascripts %}
     {{ parent() }}
 
+    <script>
+        $(document).ready(function() {
+            var $modal = $('#chooseProject');
+
+            // when we submit, this updates the hidden project_id field
+            $modal.on('click', '.js-select-battle-project', function() {
+                var selectedProjectId = $(this).data('project');
+
+                $modal.find('#js-receive-project-id').val(selectedProjectId);
+
+                var $startBattleButton = $modal.find('.js-start-battle');
+                $startBattleButton.attr('disabled');
+                $startBattleButton.html('Battle Commencing...');
+            });
+        })
+    </script>
 {% endblock %}
