@@ -52,7 +52,7 @@ class ProjectContext extends BehatContext
         return $user;
     }
 
-    public function createProgrammer($nickname, User $owner = null, $avatar = null)
+    public function createProgrammer($nickname, User $owner = null, $avatar = null, $powerLevel = null)
     {
         $programmer = new Programmer();
         $programmer->nickname = $nickname;
@@ -62,6 +62,7 @@ class ProjectContext extends BehatContext
         }
         $programmer->userId = $owner->id;
         $programmer->avatarNumber = $avatar ? $avatar : rand(1, 6);
+        $programmer->powerLevel = $powerLevel === null ? rand(0, 10) : $powerLevel;
 
         $this->getProgrammerRepository()->save($programmer);
 

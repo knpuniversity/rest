@@ -558,7 +558,8 @@ class ApiFeatureContext extends BehatContext
         foreach ($table->getHash() as $row) {
             $nickname = $row['nickname'];
             $avatar = $row['avatar'];
-            $this->getProjectHelper()->createProgrammer($nickname, null, $avatar);
+            $powerLevel = isset($row['powerLevel']) ? $row['powerLevel'] : null;
+            $this->getProjectHelper()->createProgrammer($nickname, null, $avatar, $powerLevel);
         }
     }
 
