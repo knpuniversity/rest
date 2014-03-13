@@ -1,0 +1,42 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 72e4e7d..bc0c000 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -34,16 +34,12 @@ class ProgrammerController extends BaseController
+         $this->save($programmer);
+ 
+         $data = $this->serializeProgrammer($programmer);
+-        $response = new Response(
+-            json_encode($data),
+-            201
+-        );
++        $response = new JsonResponse($data, 201);
+         $programmerUrl = $this->generateUrl(
+             'api_programmers_show',
+             ['nickname' => $programmer->nickname]
+         );
+         $response->headers->set('Location', $programmerUrl);
+-        $response->headers->set('Content-Type', 'application/json');
+ 
+         return $response;
+     }
+@@ -58,8 +54,7 @@ class ProgrammerController extends BaseController
+ 
+         $data = $this->serializeProgrammer($programmer);
+ 
+-        $response = new Response(json_encode($data), 200);
+-        $response->headers->set('Content-Type', 'application/json');
++        $response = new JsonResponse($data, 200);
+ 
+         return $response;
+     }
+@@ -72,8 +67,7 @@ class ProgrammerController extends BaseController
+             $data['data'][] = $this->serializeProgrammer($programmer);
+         }
+ 
+-        $response = new Response(json_encode($data), 200);
+-        $response->headers->set('Content-Type', 'application/json');
++        $response = new JsonResponse($data, 200);
+ 
+         return $response;
+     }
