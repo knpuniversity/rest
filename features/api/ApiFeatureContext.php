@@ -21,7 +21,7 @@ require_once __DIR__.'/../../vendor/phpunit/phpunit/PHPUnit/Framework/Assert/Fun
  *
  * A Behat context aimed at doing one awesome thing: interacting with APIs
  */
-class ApiContext extends BehatContext
+class ApiFeatureContext extends BehatContext
 {
     /**
      * The Guzzle HTTP Client.
