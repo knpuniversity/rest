@@ -2,6 +2,7 @@
 
 namespace KnpU\CodeBattle\Controller;
 
+use KnpU\CodeBattle\Model\Programmer;
 use KnpU\CodeBattle\Model\User;
 use KnpU\CodeBattle\Repository\UserRepository;
 use KnpU\CodeBattle\Application;
@@ -11,6 +12,7 @@ use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\HttpFoundation\Request;
+use KnpU\CodeBattle\Repository\ProgrammerRepository;
 
 /**
  * Base controller class to hide Silex-related implementation details
@@ -118,10 +120,45 @@ abstract class BaseController implements ControllerProviderInterface
     }
 
     /**
+     * Used to find the fixtures user - I use it to cheat in the beginning
+     *
+     * @param $username
+     * @return User
+     */
+    public function findUserByUsername($username)
+    {
+        return $this->getUserRepository()->findUserByUsername($username);
+    }
+
+    /**
+     * Shortcut for saving objects
+     *
+     * @param $obj
+     */
+    public function save($obj)
+    {
+        switch (true) {
+            case ($obj instanceof Programmer):
+                $this->getProgrammerRepository()->save($obj);
+                break;
+            default:
+                throw new \Exception(sprintf('Shortcut for saving "%s" not implemented', get_class($obj)));
+        }
+    }
+
+    /**
      * @return UserRepository
      */
     protected function getUserRepository()
     {
         return $this->container['repository.user'];
+    }
+
+    /**
+     * @return ProgrammerRepository
+     */
+    protected function getProgrammerRepository()
+    {
+        return $this->container['repository.programmer'];
     }
 }

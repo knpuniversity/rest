@@ -69,14 +69,6 @@ class BattleController extends BaseController
     }
 
     /**
-     * @return \KnpU\CodeBattle\Repository\ProgrammerRepository
-     */
-    private function getProgrammerRepository()
-    {
-        return $this->container['repository.programmer'];
-    }
-
-    /**
      * @return \KnpU\CodeBattle\Repository\ProjectRepository
      */
     private function getProjectRepository()
