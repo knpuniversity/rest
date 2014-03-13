@@ -61,6 +61,16 @@
             "description": null
         },
         {
+            "id": "get-programmer-update-location-header",
+            "name": "GET Programmer: Update Location header",
+            "description": null
+        },
+        {
+            "id": "get-programmer-use-location-header-in-test",
+            "name": "GET Programmer: Use Location header in test",
+            "description": null
+        },
+        {
             "id": "get-programmer-total-endpoint-for-programmers",
             "name": "GET Programmer: Total endpoint for \/programmers",
             "description": null
