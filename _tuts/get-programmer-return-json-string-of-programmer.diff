@@ -1,0 +1,20 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 3387a4d..7cef615 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -36,6 +36,14 @@ class ProgrammerController extends BaseController
+ 
+     public function showAction($nickname)
+     {
+-        return new Response('Hello '.$nickname);
++        $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
++
++        $data = array(
++            'nickname' => $programmer->nickname,
++            'avatar' => $programmer->avatar,
++            'powerLevel' => $programmer->powerLevel,
++        );
++
++        return new Response(json_encode($data), 200);
+     }
+ }
