@@ -467,7 +467,7 @@ class ApiFeatureContext extends BehatContext
                         $message .= '(Unexpected control character found).';
                         break;
                     case JSON_ERROR_SYNTAX:
-                        $message .= '(Syntax error, malformed JSON).';
+                        $message .= '(Syntax error, malformed JSON): '."\n\n".$this->getResponse()->getBody(true);
                         break;
                     case JSON_ERROR_UTF8:
                         $message .= '(Malformed UTF-8 characters, possibly incorrectly encoded).';
