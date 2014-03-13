@@ -1,8 +1,8 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index ded96b8..5a95a82 100644
+index 9a781d5..30d1397 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -45,6 +45,9 @@ class ProgrammerController extends BaseController
+@@ -46,6 +46,9 @@ class ProgrammerController extends BaseController
              'powerLevel' => $programmer->powerLevel,
          );
  
