@@ -100,7 +100,7 @@ class WebFeatureContext extends MinkContext
             new Given('I am on "/login"'),
             new Given('I fill in "Email" with "ryan@knplabs.com"'),
             new Given('I fill in "Password" with "foo"'),
-            new Given('I press "Login!"'),
+            new Given('I press "Login"'),
         );
     }
 
