@@ -32,7 +32,6 @@ class ProjectContext extends BehatContext
      */
     public static function bootstrapApp()
     {
-        $env = 'test';
         self::$app = require __DIR__ . '/../../app/bootstrap.php';
     }
 

@@ -1,14 +1,13 @@
 # If you need to customize Behat, copy this to behat.yml and do it there
+imports:
+    - behat_defaults.yml
+
 default:
     context:
         parameters:
-            base_url: http://localhost:8000/index_test.php
+            base_url: http://localhost:8000
 
 web:
     extensions:
         Behat\MinkExtension\Extension:
-            base_url: http://localhost:8000/index_test.php
-
-
-imports:
-    - behat_defaults.yml
+            base_url: http://localhost:8000

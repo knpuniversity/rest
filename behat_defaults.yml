@@ -10,12 +10,12 @@ default:
         # from my WebFeatureContext, which you don't need to worry about :)
         class: ApiFeatureContext
         parameters:
-            base_url: http://localhost:8000/index_test.php
+            base_url: http://localhost:8000
 
 web:
     extensions:
         Behat\MinkExtension\Extension:
-            base_url: http://localhost:8000/index_test.php
+            base_url: http://localhost:8000
             goutte: ~
             selenium2: ~
     paths:

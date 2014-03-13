@@ -10,11 +10,8 @@ use KnpU\CodeBattle\Application;
  * This configures all of the routes, providers, etc (in the constructor)
  */
 
-$env = isset($env) ? $env : 'dev';
-
 $app = new Application(array(
     'debug' => true,
-    'environment' => $env
 ));
 /** show all errors! */
 ini_set('display_errors', 1);

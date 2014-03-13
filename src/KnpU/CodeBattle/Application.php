@@ -101,11 +101,8 @@ class Application extends SilexApplication
 
     private function configureParameters()
     {
-        $environment = $this['environment'];
-
         $this['root_dir'] = __DIR__.'/../../..';
-        // includes a little hack to have a different db in the test environment
-        $this['sqlite_path'] = $this['root_dir'].'/data/code_battles'.($environment == 'test' ? '_test' : '').'.sqlite';
+        $this['sqlite_path'] = $this['root_dir'].'/data/code_battles.sqlite';
     }
 
     private function configureServices()
