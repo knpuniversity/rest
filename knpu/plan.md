@@ -38,6 +38,9 @@ battle more *projects*.
   be where we get *some* of the "RESTful Web APIs" process to help you figure
   out what resources you have and how you should link them
 
+- I like the idea of laying out the resources and endpoints - the current
+    web interface will help with this a lot
+
 ##### CHAPTER 1: API basics
 
 - a bit of intro theory - but not too much to overdo it!
@@ -59,6 +62,8 @@ battle more *projects*.
 - GET /programmers endpoint - very simple
 - GET SHOW endpoint for each programmer - no links, no serialization - just
   getting raw programmers data and manually turning it into a JSON array
+
+#### CHAPTER 3.5: Testing
 
 ##### CHAPTER 4: Editing Resources
 
@@ -219,6 +224,13 @@ the web interface for our user.
   -> if we cover this, do it very briefly
 
 - where to break this into pieces? This is at least 2 screencasts
+
+- where to configure that exceptions under /api should be json?
+
+- when/how should we transform the avatar into into an actual path? Should
+    we turn this into its own resource later that we upload?
+
+- where to configure that exceptions under /api should be json?
 
 ### Notes
 
