@@ -551,11 +551,15 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^there is a programmer named "([^"]*)"$/
+     * @Given /^the following programmers exist:$/
      */
-    public function thereIsAProgrammerNamed($nickname)
+    public function theFollowingProgrammersExist(TableNode $table)
     {
-        $this->getProjectHelper()->createProgrammer($nickname);
+        foreach ($table->getHash() as $row) {
+            $nickname = $row['nickname'];
+            $avatar = $row['avatar'];
+            $this->getProjectHelper()->createProgrammer($nickname, null, $avatar);
+        }
     }
 
     /**
