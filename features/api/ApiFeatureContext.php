@@ -44,6 +44,11 @@ class ApiFeatureContext extends BehatContext
     protected $response;
 
     /**
+     * The last request that was used to make the response
+     */
+    protected $lastRequest;
+
+    /**
      * The decoded response object.
      */
     protected $responsePayload;
@@ -94,17 +99,19 @@ class ApiFeatureContext extends BehatContext
             switch ($httpMethod) {
                 case 'PUT':
                 case 'POST':
-                    $this->response = $this
+                    $this->lastRequest = $this
                         ->client
-                        ->$method($resource, null, $this->requestPayload)
-                        ->send();
+                        ->$method($resource, null, $this->requestPayload);
+
+                    $this->response = $this->lastRequest->send();
                     break;
 
                 default:
-                    $this->response = $this
+                    $this->lastRequest = $this
                         ->client
-                        ->$method($resource)
-                        ->send();
+                        ->$method($resource);
+
+                    $this->response = $this->lastRequest->send();
             }
         } catch (BadResponseException $e) {
 
@@ -122,7 +129,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Then /^I get a "([^"]*)" response$/
+     * @Then /^the response status code should be (?P<code>\d+)$/
      */
     public function iGetAResponse($statusCode)
     {
@@ -135,6 +142,15 @@ class ApiFeatureContext extends BehatContext
             $bodyOutput = 'Output is '.$contentType.', which is not JSON and is therefore scary. Run the request manually.';
         }
         assertSame((int) $statusCode, (int) $this->getResponse()->getStatusCode(), $bodyOutput);
+    }
+
+    /**
+     * @Given /^the "([^"]*)" header should be "([^"]*)"$/
+     */
+    public function theHeaderShouldBe($headerName, $expectedHeaderValue)
+    {
+        $response = $this->getResponse();
+        assertEquals($expectedHeaderValue, $response->getHeader($headerName));
     }
 
     /**
@@ -389,6 +405,28 @@ class ApiFeatureContext extends BehatContext
     public function castStringToNumber($string)
     {
         return intval($string);
+    }
+
+    /**
+     * @AfterScenario
+     */
+    public function printLastResponseOnError($scenarioEvent)
+    {
+        if ($scenarioEvent->getResult() != 0) {
+            if ($this->getResponse()) {
+                $body = $this->getResponse()->getBody(true);
+
+                // strip HTML errors to be a bit shorter
+                if ($this->getResponse()->isContentType('text/html')) {
+                    $body = substr($body, strpos($body, '<body>'));
+                }
+
+                $this->printDebug(
+                    sprintf('%s: %s', $this->lastRequest->getMethod(), $this->lastRequest->getUrl())."\n\n".
+                    $body
+                );
+            }
+        }
     }
 
     /**
