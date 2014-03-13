@@ -551,6 +551,14 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
+     * @Given /^there is a programmer named "([^"]*)"$/
+     */
+    public function thereIsAProgrammerNamed($nickname)
+    {
+        $this->getProjectHelper()->createProgrammer($nickname);
+    }
+
+    /**
      * @return ProjectContext
      */
     private function getProjectHelper()

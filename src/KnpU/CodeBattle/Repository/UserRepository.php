@@ -51,6 +51,23 @@ class UserRepository extends BaseRepository implements UserProviderInterface
     }
 
     /**
+     * A helper for testing things out - finds any user
+     *
+     * @return User
+     * @throws \Exception
+     */
+    public function findAny()
+    {
+        $users = $this->findAllBy(array(), 1);
+
+        if (empty($users)) {
+            throw new \Exception('Could not find any users');
+        }
+
+        return array_shift($users);
+    }
+
+    /**
      * Overridden to encode the password
      *
      * @param $obj

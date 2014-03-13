@@ -87,13 +87,17 @@ abstract class BaseRepository
         return $this->findAllBy(array());
     }
 
-    public function findAllBy(array $criteria)
+    public function findAllBy(array $criteria, $limit = null)
     {
         $qb = $this->createQueryBuilder('u');
         foreach ($criteria as $key => $val) {
             $qb->andWhere('u.'.$key.' = :'.$key)
                 ->setParameter($key, $val)
             ;
+        }
+
+        if ($limit !== null) {
+            $qb->setMaxResults($limit);
         }
 
         $stmt = $qb->execute();

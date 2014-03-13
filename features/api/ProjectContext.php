@@ -52,10 +52,14 @@ class ProjectContext extends BehatContext
         return $user;
     }
 
-    public function createProgrammer($nickname, User $owner)
+    public function createProgrammer($nickname, User $owner = null)
     {
         $programmer = new Programmer();
         $programmer->nickname = $nickname;
+
+        if (!$owner) {
+            $owner = $this->getUserRepository()->findAny();
+        }
         $programmer->userId = $owner->id;
         $programmer->avatarNumber = 5;
 
