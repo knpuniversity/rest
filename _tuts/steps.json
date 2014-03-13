@@ -24,6 +24,11 @@
             "id": "post-programmer-dump-request-content",
             "name": "POST Programmer: Dump request content",
             "description": null
+        },
+        {
+            "id": "post-programmer-creating-and-saving-entity",
+            "name": "POST Programmer: Creating and saving entity",
+            "description": null
         }
     ]
 }
