@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 0de4a1a..c47660a 100644
+index ded96b8..5a95a82 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -45,6 +45,9 @@ class ProgrammerController extends BaseController
