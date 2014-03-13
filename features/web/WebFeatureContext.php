@@ -13,11 +13,11 @@ use Behat\Behat\Context\Step\Given;
 use Behat\Behat\Context\Step\When;
 use Behat\Behat\Context\Step\Then;
 use KnpU\CodeBattle\Model\User;
-use KnpU\CodeBattle\Model\Programmer;
 use KnpU\CodeBattle\Model\Project;
 //
 // Require 3rd-party libraries here:
 //
+require_once __DIR__ . '/../api/ProjectContext.php';
 require_once __DIR__ . '/../../vendor/phpunit/phpunit/PHPUnit/Autoload.php';
 require_once __DIR__ . '/../../vendor/phpunit/phpunit/PHPUnit/Framework/Assert/Functions.php';
 
@@ -26,11 +26,6 @@ require_once __DIR__ . '/../../vendor/phpunit/phpunit/PHPUnit/Framework/Assert/F
  */
 class WebFeatureContext extends MinkContext
 {
-    /**
-     * @var Application
-     */
-    private static $app;
-
     /**
      * @var User
      */
@@ -44,7 +39,7 @@ class WebFeatureContext extends MinkContext
      */
     public function __construct(array $parameters)
     {
-        // Initialize your context here
+        $this->useContext('project', new ProjectContext());
     }
 
     /**
@@ -55,19 +50,7 @@ class WebFeatureContext extends MinkContext
      */
     public function reloadDatabase()
     {
-        /** @var \KnpU\CodeBattle\DataFixtures\FixturesManager $fixtures */
-        $fixtures = self::$app['fixtures_manager'];
-
-        $fixtures->clearTables();
-    }
-
-    /**
-     * @BeforeSuite
-     */
-    public static function bootstrapApp()
-    {
-        $env = 'test';
-        self::$app = require __DIR__ . '/../../app/bootstrap.php';
+        $this->getProjectHelper()->reloadDatabase();
     }
 
     /**
@@ -83,7 +66,7 @@ class WebFeatureContext extends MinkContext
      */
     public function thereIsAUserWithPassword($email, $plainPassword)
     {
-        $this->createUser($email, $plainPassword);
+        $this->getProjectHelper()->createUser($email, $plainPassword);
     }
 
     /**
@@ -111,7 +94,7 @@ class WebFeatureContext extends MinkContext
      */
     public function iAmLoggedIn()
     {
-        $this->currentUser = $this->createUser('ryan@knplabs.com', 'foo');
+        $this->currentUser = $this->getProjectHelper()->createUser('ryan@knplabs.com', 'foo');
 
         return array(
             new Given('I am on "/login"'),
@@ -127,7 +110,7 @@ class WebFeatureContext extends MinkContext
     public function iCreatedTheFollowingProgrammers(TableNode $table)
     {
         foreach ($table->getHash() as $row) {
-            $this->createProgrammer($row['nickname'], $this->currentUser);
+            $this->getProjectHelper()->createProgrammer($row['nickname'], $this->currentUser);
         }
     }
 
@@ -136,7 +119,7 @@ class WebFeatureContext extends MinkContext
      */
     public function theFollowingProjectsExist(TableNode $table)
     {
-        $projectRepo = $this->getProjectRepository();
+        $projectRepo = $this->getProjectHelper()->getProjectRepository();
         foreach ($table->getHash() as $row) {
             $project = new Project();
             $project->name = $row['name'];
@@ -150,9 +133,9 @@ class WebFeatureContext extends MinkContext
      */
     public function someoneElseCreatedAProgrammerNamed($nickname)
     {
-        $user = $this->createUser('foo'.rand(0, 999).'@bar.com', 'foobar');
+        $user = $this->getProjectHelper()->createUser('foo'.rand(0, 999).'@bar.com', 'foobar');
 
-        $this->createProgrammer($nickname, $user);
+        $this->getProjectHelper()->createProgrammer($nickname, $user);
     }
 
     /**
@@ -191,10 +174,16 @@ class WebFeatureContext extends MinkContext
     public function theFollowingBattlesHaveBeenValiantlyFought(TableNode $table)
     {
         foreach ($table->getHash() as $row) {
-            $programmer = $this->getProgrammerRepository()->findOneByNickname($row['programmer']);
-            $project = $this->getProjectRepository()->findOneByName($row['project']);
+            $programmer = $this->getProjectHelper()
+                ->getProgrammerRepository()
+                ->findOneByNickname($row['programmer']);
+            $project = $this->getProjectHelper()
+                ->getProjectRepository()
+                ->findOneByName($row['project']);
 
-            $battle = self::$app['battle.battle_manager']->battle($programmer, $project);
+            $this->getProjectHelper()
+                ->getBattleManager()
+                ->battle($programmer, $project);
         }
     }
 
@@ -240,43 +229,11 @@ class WebFeatureContext extends MinkContext
         return;
     }
 
-    private function createUser($email, $plainPassword)
-    {
-        $user = new User();
-        $user->email = $email;
-        $user->username = 'John'.rand(0, 10000);
-        $user->setPlainPassword($plainPassword);
-
-        self::$app['repository.user']->save($user);
-
-        return $user;
-    }
-
-    private function createProgrammer($nickname, User $owner)
-    {
-        $programmer = new Programmer();
-        $programmer->nickname = $nickname;
-        $programmer->userId = $owner->id;
-        $programmer->avatar = 'avatar5.jpg';
-
-        $this->getProgrammerRepository()->save($programmer);
-
-        return $programmer;
-    }
-
     /**
-     * @return \KnpU\CodeBattle\Repository\ProgrammerRepository
+     * @return ProjectContext
      */
-    private function getProgrammerRepository()
+    private function getProjectHelper()
     {
-        return self::$app['repository.programmer'];
-    }
-
-    /**
-     * @return \KnpU\CodeBattle\Repository\ProjectRepository
-     */
-    private function getProjectRepository()
-    {
-        return self::$app['repository.project'];
+        return $this->getSubcontext('project');
     }
 }
