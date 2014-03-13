@@ -1,8 +1,8 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index 69b1fe8..1ec0231 100644
+index 69b1fe8..90b9792 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
-@@ -7,3 +7,13 @@ Feature: Programmer
+@@ -7,3 +7,14 @@ Feature: Programmer
      Given the user "weaverryan" exists
  
    Scenario: Create a programmer
@@ -10,9 +10,10 @@ index 69b1fe8..1ec0231 100644
 +      """
 +      {
 +        "nickname": "ObjectOrienter555",
-+        "avatar" : "avatar1.jpg"
++        "avatarNumber" : "2"
 +      }
 +      """
 +    When I request "POST /api/programmers"
 +    Then the response status code should be 201
 +    And the "Location" header should be "/api/programmers/ObjectOrienter555"
++    And the "nickname" property equals "ObjectOrienter555"
