@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 3d4fb1b..1abe527 100644
+index 0109fa1..5ba0ad0 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -3,6 +3,7 @@
@@ -10,7 +10,7 @@ index 3d4fb1b..1abe527 100644
  use Silex\Application;
  use Silex\ControllerCollection;
  use Symfony\Component\HttpFoundation\Request;
-@@ -16,7 +17,15 @@ class ProgrammerController extends BaseController
+@@ -17,7 +18,15 @@ class ProgrammerController extends BaseController
  
      public function newAction(Request $request)
      {
