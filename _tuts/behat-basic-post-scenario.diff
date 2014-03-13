@@ -1,0 +1,18 @@
+diff --git a/features/api/programmer.feature b/features/api/programmer.feature
+index 69b1fe8..1ec0231 100644
+--- a/features/api/programmer.feature
++++ b/features/api/programmer.feature
+@@ -7,3 +7,13 @@ Feature: Programmer
+     Given the user "weaverryan" exists
+ 
+   Scenario: Create a programmer
++    Given I have the payload:
++      """
++      {
++        "nickname": "ObjectOrienter555",
++        "avatar" : "avatar1.jpg"
++      }
++      """
++    When I request "POST /api/programmers"
++    Then the response status code should be 201
++    And the "Location" header should be "/api/programmers/ObjectOrienter555"
