@@ -57,7 +57,7 @@ class ProjectContext extends BehatContext
         $programmer = new Programmer();
         $programmer->nickname = $nickname;
         $programmer->userId = $owner->id;
-        $programmer->avatar = 'avatar5.jpg';
+        $programmer->avatarNumber = 5;
 
         $this->getProgrammerRepository()->save($programmer);
 

@@ -51,7 +51,7 @@ class FixturesManager
         $programmerTable->setPrimaryKey(array('id'));
         $programmerTable->addColumn('nickname', 'string', array('length' => 255));
         $programmerTable->addUniqueIndex(array('nickname'));
-        $programmerTable->addColumn('avatar', 'string', array('length' => 255));
+        $programmerTable->addColumn('avatarNumber', 'integer');
         $programmerTable->addColumn('userId', 'integer');
         $programmerTable->addColumn('powerLevel', 'integer');
         $programmerTable->addForeignKeyConstraint($userTable, array('userId'), array('id'));

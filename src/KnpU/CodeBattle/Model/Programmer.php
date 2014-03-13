@@ -12,7 +12,12 @@ class Programmer
 
     public $nickname;
 
-    public $avatar;
+    /**
+     * Number of an avatar, from 1-9
+     *
+     * @var integer
+     */
+    public $avatarNumber;
 
     public $userId;
 

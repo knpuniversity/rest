@@ -42,7 +42,7 @@ class ProgrammerController extends BaseController
         $errors = array();
         $data = $this->getAndValidateData($request, $errors);
         $programmer->nickname = $data['nickname'];
-        $programmer->avatar = $data['avatar'];
+        $programmer->avatarNumber = $data['avatarNumber'];
         $programmer->userId = $this->getLoggedInUser()->id;
 
         if ($errors) {
@@ -101,13 +101,13 @@ class ProgrammerController extends BaseController
     private function getAndValidateData(Request $request, &$errors)
     {
         $nickname = $request->request->get('nickname');
-        $avatar = $request->request->get('avatar');
+        $avatarNumber = $request->request->get('avatarNumber');
 
         $errors = array();
         if (!$nickname) {
             $errors[] = 'Give your programmer a nickname!';
         }
-        if (!$avatar) {
+        if (!$avatarNumber) {
             $errors[] = 'Choose an awesome avatar bro!';
         }
 
@@ -116,7 +116,7 @@ class ProgrammerController extends BaseController
             $errors[] = 'Looks like that programmer already exists - try a different nickname';
         }
 
-        return array('nickname' => $nickname, 'avatar' => $avatar);
+        return array('nickname' => $nickname, 'avatarNumber' => $avatarNumber);
     }
 
     /**

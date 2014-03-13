@@ -15,14 +15,12 @@
 
                 <ul class="avatar-list js-selectable-tile">
                     {% for i in 1..6 %}
-                        {% set avatarFilename = 'avatar'~i~'.png' %}
-
-                        <li data-filename="{{ avatarFilename }}">
-                            <img src="{{ asset('img/'~avatarFilename) }}" alt="Avatar{{ i }}" />
+                        <li data-number="{{ i }}">
+                            <img src="{{ asset(i|avatar_path) }}" alt="Avatar{{ i }}" />
                         </li>
                     {% endfor %}
                 </ul>
-                <input type="hidden" class="js-selectable-target" name="avatar" value="{{ programmer.avatar }}" />
+                <input type="hidden" class="js-selectable-target" name="avatarNumber" value="{{ programmer.avatarNumber }}" />
 
                 <div class="form-group">
                     <button type="submit" class="btn">Compile!</button>
@@ -44,7 +42,7 @@
                 $(this).parent().find('li').removeClass('selected');
                 $(this).addClass('selected');
 
-                $('.js-selectable-target').val($(this).data('filename'))
+                $('.js-selectable-target').val($(this).data('number'))
             });
         });
     </script>

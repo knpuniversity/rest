@@ -38,6 +38,7 @@ class BattleExtension extends \Twig_Extension
             new \Twig_SimpleFilter('programmer', array($this, 'getProgrammer')),
             new \Twig_SimpleFilter('project', array($this, 'getProject')),
             new \Twig_SimpleFilter('powerLevelClass', array($this, 'getPowerLevelClass')),
+            new \Twig_SimpleFilter('avatar_path', array($this, 'getAvatarPath')),
         );
     }
 
@@ -58,6 +59,11 @@ class BattleExtension extends \Twig_Extension
     public function getAssetPath($path)
     {
         return $this->requestStack->getCurrentRequest()->getBasePath().'/'.$path;
+    }
+
+    public function getAvatarPath($number)
+    {
+        return sprintf('img/avatar%s.png', $number);
     }
 
     public function getPowerLevelClass(Programmer $programmer)
