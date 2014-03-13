@@ -1,23 +1,23 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index 6397a42..1a744c3 100644
+index 76aca3f..85223a0 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
-@@ -36,3 +36,18 @@ Feature: Programmer
+@@ -42,3 +42,18 @@ Feature: Programmer
      Then the response status code should be 200
      And the "data" property should be an array
      And the "data" property should contain 2 items
 +
-+  Scenario: GET a collection of programmers
++  Scenario: PUT to update a programmer
 +    Given the following programmers exist:
-+      | nickname    | avatar |
-+      | CowboyCoder | 5      |
++      | nickname    | avatarNumber |
++      | CowboyCoder | 5            |
 +    And I have the payload:
 +      """
 +      {
-+        "nickname": "CowgirlCoder",
-+        "avatarNumber" : "5"
++        "nickname": "CowboyCoder",
++        "avatarNumber" : 2
 +      }
 +      """
 +    When I request "PUT /api/programmers/CowboyCoder"
 +    Then the response status code should be 200
-+    And the "nickname" property should equal "CowgirlCoder"
++    And the "avatarNumber" property should equal "2"
