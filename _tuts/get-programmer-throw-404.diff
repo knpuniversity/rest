@@ -1,0 +1,28 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index f3a98c9..cea7523 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -38,6 +38,10 @@ class ProgrammerController extends BaseController
+     {
+         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
+ 
++        if (!$programmer) {
++            $this->throw404();
++        }
++
+         $data = array(
+             'nickname' => $programmer->nickname,
+             'avatar' => $programmer->avatar,
+diff --git a/testing.php b/testing.php
+index 651f16f..ee6b326 100644
+--- a/testing.php
++++ b/testing.php
+@@ -22,7 +22,7 @@ $request = $client->post('/api/programmers', null, json_encode($data));
+ $response = $request->send();
+ 
+ // 2) GET a programmer resource
+-$request = $client->get('/api/programmers/'.$nickname);
++$request = $client->get('/api/programmers/abcd'.$nickname);
+ $response = $request->send();
+ 
+ echo $response;
