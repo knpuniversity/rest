@@ -40,11 +40,11 @@ class ProjectContext extends BehatContext
         return self::$app[$name];
     }
 
-    public function createUser($email, $plainPassword)
+    public function createUser($email, $plainPassword, $username = null)
     {
         $user = new User();
         $user->email = $email;
-        $user->username = 'John'.rand(0, 10000);
+        $user->username = $username ? $username : 'John'.rand(0, 10000);
         $user->setPlainPassword($plainPassword);
 
         $this->getUserRepository()->save($user);

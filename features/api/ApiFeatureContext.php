@@ -543,6 +543,14 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
+     * @Given /^the user "([^"]*)" exists$/
+     */
+    public function theUserExists($username)
+    {
+        $this->getProjectHelper()->createUser($username.'@foo.com', 'foo', $username);
+    }
+
+    /**
      * @return ProjectContext
      */
     private function getProjectHelper()
