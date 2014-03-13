@@ -10,6 +10,7 @@ use Silex\Application as SilexApplication;
 use Silex\ControllerCollection;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\HttpFoundation\Request;
 use KnpU\CodeBattle\Repository\ProgrammerRepository;
@@ -144,6 +145,11 @@ abstract class BaseController implements ControllerProviderInterface
             default:
                 throw new \Exception(sprintf('Shortcut for saving "%s" not implemented', get_class($obj)));
         }
+    }
+
+    public function throw404($message = 'Page not found')
+    {
+        throw new NotFoundHttpException($message);
     }
 
     /**
