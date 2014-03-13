@@ -1,0 +1,26 @@
+diff --git a/features/api/programmer.feature b/features/api/programmer.feature
+index 6a91316..6397a42 100644
+--- a/features/api/programmer.feature
++++ b/features/api/programmer.feature
+@@ -18,3 +18,21 @@ Feature: Programmer
+     Then the response status code should be 201
+     And the "Location" header should be "/api/programmers/ObjectOrienter"
+     And the "nickname" property should equal "ObjectOrienter"
++
++  Scenario: GET one programmer
++    Given the following programmers exist:
++      | nickname   | avatar |
++      | UnitTester | 3      |
++    When I request "GET /api/programmers/UnitTester"
++    Then the response status code should be 200
++    And the "nickname" property should equal "UnitTester"
++
++  Scenario: GET a collection of programmers
++    Given the following programmers exist:
++      | nickname    | avatar |
++      | UnitTester  | 3      |
++      | CowboyCoder | 5      |
++    When I request "GET /api/programmers"
++    Then the response status code should be 200
++    And the "data" property should be an array
++    And the "data" property should contain 2 items
