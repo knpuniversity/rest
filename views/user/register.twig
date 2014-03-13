@@ -2,27 +2,22 @@
 {% import '_macros.twig' as macros %}
 
 {% block content %}
-    <h1>Start Fighting some Projects!</h1>
+    <h1>Start Battling Projects!</h1>
 
     {% if errors is defined %}
         {{ macros.print_errors(errors) }}
     {% endif %}
 
-    <div class="row">
-        <form class="form-horizontal" action="{{ path('user_register') }}" method="post">
+        <form class="form-register" action="{{ path('user_register') }}" method="post">
             <fieldset>
                 {{ macros.form_field('email', 'email', 'Email', user.email, 'foo@example.com') }}
-                {{ macros.form_field('text', 'username', 'Username', user.username, 'superman') }}
+                {{ macros.form_field('text', 'username', 'Username', user.username, 'herocoder') }}
                 {{ macros.form_field('password', 'plainPassword', 'Password', user.plainPassword, '') }}
-
                 <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                        <a class="btn btn-default" href="{{ path('homepage') }}">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Do it!</button>
-                    </div>
+                        <button type="submit" class="btn">Battle</button>
+                        <a class="cancel-link" href="{{ path('homepage') }}">Cancel</a>
                 </div>
             </fieldset>
         </form>
     </div>
-<div>
 {% endblock %}

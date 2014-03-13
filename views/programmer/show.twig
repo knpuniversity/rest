@@ -3,6 +3,7 @@
 
 {% block content %}
     <h1>{{ programmer.nickname }}</h1>
+	
     <h3>
         Power Level:
 
@@ -13,9 +14,9 @@
 
     {% if programmer.userId == app.user.id %}
         <form action="{{ path('programmer_powerup', {'nickname': programmer.nickname }) }}" method="POST">
-            <div class="btn-group">
-                <button type="submit" class="btn btn-success">Power Up!</button>
-                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#chooseProject">Start Battle!</button>
+            <div class="battle-btns">
+                <button type="submit" class="btn btn-lg">Power Up!</button>
+                <button class="btn btn-lg btn-battle" type="button" data-toggle="modal" data-target="#chooseProject">Start Battle!</button>
             </div>
         </form>
 

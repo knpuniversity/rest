@@ -27,7 +27,7 @@
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <p class="navbar-text navbar-right">Battle Projects!</p>
+				<a href="{{ path('homepage') }}"><img src="../img/logo-2.png" alt="code battle logo" class="logo"></a>
                 <a href="{{ path('homepage') }}" class="navbar-brand">Code Battles</a>
             </div>
             <div class="navbar-collapse collapse" id="navbar-main">
@@ -60,15 +60,7 @@
                             <a href="{{ path('user_logout') }}">Logout</a>
                         </li>
                     {% else %}
-                        <li><a href="{{ path('user_register') }}">Register</a>
-                        </li>
-                        <li><a href="{{ path('user_login') }}">Login</a>
-                        </li>
                     {% endif %}
-                    <li><a href="http://builtwithbootstrap.com/"
-                           target="_blank">Built With Bootstrap</a></li>
-                    <li><a href="http://startbootstrap.com/sb-admin"
-                           target="_blank">Start Bootstrap</a></li>
                 </ul>
             </div>
         </div>

@@ -2,37 +2,37 @@
 {% import '_macros.twig' as macros %}
 
 {% block content %}
-    <h1>Create your programmer!</h1>
+    <h1>Create a programmer!</h1>
 
     {% if errors is defined %}
         {{ macros.print_errors(errors) }}
     {% endif %}
 
-    <div class="row">
-        <form class="form-horizontal" action="{{ path('programmer_new_handle') }}" method="post">
+
+        <form class="" action="{{ path('programmer_new_handle') }}" method="post">
             <fieldset>
                 {{ macros.form_field('text', 'nickname', 'Nickname', programmer.nickname, 'SmilingCoder') }}
 
                 <ul class="avatar-list js-selectable-tile">
-                    {% for i in 1..9 %}
-                        {% set avatarFilename = 'avatar'~i~'.jpg' %}
+                    {% for i in 1..6 %}
+                        {% set avatarFilename = 'avatar'~i~'.png' %}
 
                         <li data-filename="{{ avatarFilename }}">
-                            <img src="{{ asset('images/avatars/'~avatarFilename) }}" alt="Avatar{{ i }}" />
+                            <img src="{{ asset('../img/'~avatarFilename) }}" alt="Avatar{{ i }}" />
                         </li>
                     {% endfor %}
                 </ul>
                 <input type="hidden" class="js-selectable-target" name="avatar" value="{{ programmer.avatar }}" />
 
                 <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                        <a class="btn btn-default" href="{{ path('homepage') }}">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Compile!</button>
+                    <div class="">
+                        <button type="submit" class="btn">Compile!</button>
+                        <a class="cancel-link" href="{{ path('homepage') }}">Cancel</a>
                     </div>
                 </div>
             </fieldset>
         </form>
-    </div>
+
 {% endblock %}
 
 {% block javascripts %}
