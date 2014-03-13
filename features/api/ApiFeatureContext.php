@@ -541,4 +541,12 @@ class ApiFeatureContext extends BehatContext
 
         return $array;
     }
+
+    /**
+     * @return ProjectContext
+     */
+    private function getProjectHelper()
+    {
+        return $this->getSubcontext('project');
+    }
 }
