@@ -62,18 +62,19 @@ class ApiFeatureContext extends BehatContext
      */
     public function __construct(array $parameters)
     {
-        $config = isset($parameters['guzzle']) && is_array($parameters['guzzle']) ? $parameters['guzzle'] : [];
+        $this->useContext('project', new ProjectContext());
 
+        $config = isset($parameters['guzzle']) && is_array($parameters['guzzle']) ? $parameters['guzzle'] : [];
         $config['request.options'] = isset($config['request.options']) ? $config['request.options'] : [];
 
-        $config['request.options']['Accept'] = 'application/vnd.com.example.api-v1+json';
-        $config['request.options']['Authorization'] = "Bearer {$parameters['access_token']}";
+        // $config['request.options']['Accept'] = 'application/vnd.com.example.api-v1+json';
+        // $config['request.options']['Authorization'] = "Bearer {$parameters['access_token']}";
 
         $this->client = new Client($parameters['base_url'], $config);
     }
 
     /**
-     * @Given /^I have the payload:$/
+     * @When /^I have the payload:$/
      */
     public function iHaveThePayload(PyStringNode $requestPayload)
     {
@@ -137,7 +138,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the "([^"]*)" property equals "([^"]*)"$/
+     * @Then /^the "([^"]*)" property equals "([^"]*)"$/
      */
     public function thePropertyEquals($property, $expectedValue)
     {
@@ -152,7 +153,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the "([^"]*)" property exists$/
+     * @Then /^the "([^"]*)" property exists$/
      */
     public function thePropertyExists($property)
     {
@@ -174,7 +175,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the "([^"]*)" property is an array$/
+     * @Then /^the "([^"]*)" property is an array$/
      */
     public function thePropertyIsAnArray($property)
     {
@@ -189,7 +190,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the "([^"]*)" property is an object$/
+     * @Then /^the "([^"]*)" property is an object$/
      */
     public function thePropertyIsAnObject($property)
     {
@@ -204,7 +205,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the "([^"]*)" property is an empty array$/
+     * @Then /^the "([^"]*)" property is an empty array$/
      */
     public function thePropertyIsAnEmptyArray($property)
     {
@@ -218,7 +219,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the "([^"]*)" property contains (\d+) items$/
+     * @Then /^the "([^"]*)" property contains (\d+) items$/
      */
     public function thePropertyContainsItems($property, $count)
     {
@@ -232,7 +233,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the "([^"]*)" property is an integer$/
+     * @Then /^the "([^"]*)" property is an integer$/
      */
     public function thePropertyIsAnInteger($property)
     {
@@ -246,7 +247,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the "([^"]*)" property is a string$/
+     * @Then /^the "([^"]*)" property is a string$/
      */
     public function thePropertyIsAString($property)
     {
@@ -260,7 +261,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the "([^"]*)" property is a string equalling "([^"]*)"$/
+     * @Then /^the "([^"]*)" property is a string equalling "([^"]*)"$/
      */
     public function thePropertyIsAStringEqualling($property, $expectedValue)
     {
@@ -278,7 +279,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the "([^"]*)" property is a boolean$/
+     * @Then /^the "([^"]*)" property is a boolean$/
      */
     public function thePropertyIsABoolean($property)
     {
@@ -291,7 +292,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the "([^"]*)" property is a boolean equalling "([^"]*)"$/
+     * @Then /^the "([^"]*)" property is a boolean equalling "([^"]*)"$/
      */
     public function thePropertyIsABooleanEqualling($property, $expectedValue)
     {
@@ -312,7 +313,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the "([^"]*)" property is a integer equalling "([^"]*)"$/
+     * @Then /^the "([^"]*)" property is a integer equalling "([^"]*)"$/
      */
     public function thePropertyIsAIntegerEqualling($property, $expectedValue)
     {
@@ -329,7 +330,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the "([^"]*)" property is either:$/
+     * @Then /^the "([^"]*)" property is either:$/
      */
     public function thePropertyIsEither($property, PyStringNode $options)
     {
@@ -349,7 +350,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^scope into the first "([^"]*)" property$/
+     * @Then /^scope into the first "([^"]*)" property$/
      */
     public function scopeIntoTheFirstProperty($scope)
     {
@@ -357,7 +358,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^scope into the "([^"]*)" property$/
+     * @Then /^scope into the "([^"]*)" property$/
      */
     public function scopeIntoTheProperty($scope)
     {
@@ -365,7 +366,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the properties exist:$/
+     * @Then /^the properties exist:$/
      */
     public function thePropertiesExist(PyStringNode $propertiesString)
     {
@@ -375,7 +376,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^reset scope$/
+     * @Then /^reset scope$/
      */
     public function resetScope()
     {
