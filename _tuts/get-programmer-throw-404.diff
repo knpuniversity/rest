@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index c47660a..1d0801a 100644
+index 5a95a82..ee45777 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -39,6 +39,10 @@ class ProgrammerController extends BaseController
@@ -12,9 +12,9 @@ index c47660a..1d0801a 100644
 +
          $data = array(
              'nickname' => $programmer->nickname,
-             'avatar' => $programmer->avatar,
+             'avatarNumber' => $programmer->avatarNumber,
 diff --git a/testing.php b/testing.php
-index 651f16f..ee6b326 100644
+index 0067f6a..d7a1322 100644
 --- a/testing.php
 +++ b/testing.php
 @@ -22,7 +22,7 @@ $request = $client->post('/api/programmers', null, json_encode($data));
