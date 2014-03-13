@@ -74,6 +74,16 @@
             "id": "get-programmer-total-endpoint-for-programmers",
             "name": "GET Programmer: Total endpoint for \/programmers",
             "description": null
+        },
+        {
+            "id": "behat-basic-post-scenario",
+            "name": "Behat: Basic POST scenario",
+            "description": null
+        },
+        {
+            "id": "behat-clear-data-between-tests",
+            "name": "Behat: Clear data between tests",
+            "description": null
         }
     ]
 }
