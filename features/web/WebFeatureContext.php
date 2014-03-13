@@ -18,13 +18,13 @@ use KnpU\CodeBattle\Model\Project;
 //
 // Require 3rd-party libraries here:
 //
-require_once __DIR__.'/../../vendor/phpunit/phpunit/PHPUnit/Autoload.php';
-require_once __DIR__.'/../../vendor/phpunit/phpunit/PHPUnit/Framework/Assert/Functions.php';
+require_once __DIR__ . '/../../vendor/phpunit/phpunit/PHPUnit/Autoload.php';
+require_once __DIR__ . '/../../vendor/phpunit/phpunit/PHPUnit/Framework/Assert/Functions.php';
 
 /**
  * Features context.
  */
-class FeatureContext extends MinkContext
+class WebFeatureContext extends MinkContext
 {
     /**
      * @var Application
@@ -67,7 +67,7 @@ class FeatureContext extends MinkContext
     public static function bootstrapApp()
     {
         $env = 'test';
-        self::$app = require __DIR__.'/../../app/bootstrap.php';
+        self::$app = require __DIR__ . '/../../app/bootstrap.php';
     }
 
     /**
