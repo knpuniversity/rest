@@ -18,6 +18,6 @@
 {% macro form_field(type, name, label, value, placeholder) %}
     <div class="form-group">
         <label for="form-{{ name }}" class="control-label">{{ label }}</label>
-            <input type="{{ type }}" class="form-control" id="form-{{ name }}" name="{{ name }}" placeholder="{{ placeholder }}" value="{{ value }}" />
+        <input type="{{ type }}" class="form-control" id="form-{{ name }}" name="{{ name }}" placeholder="{{ placeholder }}" value="{{ value }}" />
     </div>
 {% endmacro %}
