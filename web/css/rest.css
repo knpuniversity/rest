@@ -9,10 +9,10 @@ table.table.user-information td {
     border-top: none;
 }
 .logo {
-	margin: 10px;
-	height: 30px;
-	width: auto;
-	float: left;
+    margin: 10px;
+    height: 30px;
+    width: auto;
+    float: left;
 }
 .navbar-brand {
   float: left;
@@ -22,43 +22,43 @@ table.table.user-information td {
 }
 body {
     margin-top: 75px;
-	background: #fff url(../img/crossword.png);
+    background: #fff url(../img/crossword.png);
 }
 
 /*Login Form*/
 
 .form-login {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 .reg-btn,
 .cancel-link {
-	color: #7d7d7d;
-	text-decoration: underline;
-	font-size: 1.15em;
+    color: #7d7d7d;
+    text-decoration: underline;
+    font-size: 1.15em;
 }
 
 /* Styling for the main box wrapper used on each page */
 .main-console-screen {
-	color: #f7f7f7;
+    color: #f7f7f7;
     border: 1px solid #ccc;
-	background: #33cc99;
-	box-shadow: 5px 5px 1px 0px rgba(220,220,220,.5);
-	border-radius: 6px;
-	padding: 0px 20px 10px 20px;
+    background: #33cc99;
+    box-shadow: 5px 5px 1px 0px rgba(220,220,220,.5);
+    border-radius: 6px;
+    padding: 0px 20px 10px 20px;
 } 
 /*
  * HOMEPAGE
  */
  
 .button-list {
-	padding: 20px 0px 0px 0px;
+    padding: 20px 0px 0px 0px;
 }
 
 ul.action-buttons-list {
     list-style: none;
     text-align: center;
-	padding: 0px;
+    padding: 0px;
 }
 ul.action-buttons-list li {
     margin-bottom: 20px;
@@ -75,7 +75,7 @@ ul.action-buttons-list .btn {
 }
 
 ul.js-selectable-tile{
-	padding: 0px;
+    padding: 0px;
 }
 .js-selectable-tile {
     padding-left: 10px;
@@ -87,11 +87,11 @@ ul.js-selectable-tile{
     display: inline-block;
     border: 2px solid transparent;
     margin: 0 3px 10px 3px;
-	cursor: pointer;
+    cursor: pointer;
 }
 .js-selectable-tile li.selected {
     border: 2px solid #000;
-	box-shadow: 2px 2px 2px gray;
+    box-shadow: 2px 2px 2px gray;
 
 }
 
@@ -100,7 +100,7 @@ ul.js-selectable-tile{
  */
 
 .btn-battle {
-	background: #ed0345;
+    background: #ed0345;
 }
 
 /*
@@ -108,7 +108,7 @@ ul.js-selectable-tile{
  */
 
 ul.programmers-list {
-	list-style: none;
+    list-style: none;
 }
 
 /*

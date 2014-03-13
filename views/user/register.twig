@@ -14,10 +14,9 @@
                 {{ macros.form_field('text', 'username', 'Username', user.username, 'herocoder') }}
                 {{ macros.form_field('password', 'plainPassword', 'Password', user.plainPassword, '') }}
                 <div class="form-group">
-                        <button type="submit" class="btn">Battle</button>
-                        <a class="cancel-link" href="{{ path('homepage') }}">Cancel</a>
+                    <button type="submit" class="btn">Battle</button>
+                    <a class="cancel-link" href="{{ path('homepage') }}">Cancel</a>
                 </div>
             </fieldset>
         </form>
-    </div>
 {% endblock %}

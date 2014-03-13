@@ -7,14 +7,14 @@
     {% if error %}
         {{ macros.print_errors([error]) }}
     {% endif %}
-	
+    
         <form class="form-login" action="{{ path('user_login_check') }}" method="post">
             <fieldset>
                 {{ macros.form_field('text', '_username', 'Email', last_username, 'foo@example.com') }}
                 {{ macros.form_field('password', '_password', 'Password', '', '') }}
                 <div class="form-group">
                     <button type="submit" class="btn">Login</button>
-				    <a class= "reg-btn" href="{{ path('user_register') }}">Register</a>
+                    <a class= "reg-btn" href="{{ path('user_register') }}">Register</a>
                 </div>
             </fieldset>
         </form>

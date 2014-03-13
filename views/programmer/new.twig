@@ -9,7 +9,7 @@
     {% endif %}
 
 
-        <form class="" action="{{ path('programmer_new_handle') }}" method="post">
+        <form action="{{ path('programmer_new_handle') }}" method="post">
             <fieldset>
                 {{ macros.form_field('text', 'nickname', 'Nickname', programmer.nickname, 'SmilingCoder') }}
 
@@ -18,17 +18,15 @@
                         {% set avatarFilename = 'avatar'~i~'.png' %}
 
                         <li data-filename="{{ avatarFilename }}">
-                            <img src="{{ asset('../img/'~avatarFilename) }}" alt="Avatar{{ i }}" />
+                            <img src="{{ asset('img/'~avatarFilename) }}" alt="Avatar{{ i }}" />
                         </li>
                     {% endfor %}
                 </ul>
                 <input type="hidden" class="js-selectable-target" name="avatar" value="{{ programmer.avatar }}" />
 
                 <div class="form-group">
-                    <div class="">
-                        <button type="submit" class="btn">Compile!</button>
-                        <a class="cancel-link" href="{{ path('homepage') }}">Cancel</a>
-                    </div>
+                    <button type="submit" class="btn">Compile!</button>
+                    <a class="cancel-link" href="{{ path('homepage') }}">Cancel</a>
                 </div>
             </fieldset>
         </form>
