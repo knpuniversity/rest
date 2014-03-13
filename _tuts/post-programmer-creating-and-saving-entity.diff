@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 0109fa1..5ba0ad0 100644
+index 0109fa1..36f9b01 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -3,6 +3,7 @@
@@ -20,7 +20,7 @@ index 0109fa1..5ba0ad0 100644
 +
 +        $programmer = new Programmer();
 +        $programmer->nickname = $data['nickname'];
-+        $programmer->avatar = $data['avatar'];
++        $programmer->avatarNumber = $data['avatarNumber'];
 +        $programmer->userId = $this->findUserByUsername('weaverryan')->id;
 +
 +        $this->save($programmer);
