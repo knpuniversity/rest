@@ -76,6 +76,16 @@
             "description": null
         },
         {
+            "id": "get-programmer-return-body-on-post",
+            "name": "GET Programmer: Return body on POST",
+            "description": null
+        },
+        {
+            "id": "get-programmer-use-jsonresponse",
+            "name": "GET Programmer: Use JsonResponse",
+            "description": null
+        },
+        {
             "id": "behat-basic-post-scenario",
             "name": "Behat: Basic POST scenario",
             "description": null
@@ -83,6 +93,16 @@
         {
             "id": "behat-clear-data-between-tests",
             "name": "Behat: Clear data between tests",
+            "description": null
+        },
+        {
+            "id": "behat-list-and-show-tests",
+            "name": "Behat: List and show tests",
+            "description": null
+        },
+        {
+            "id": "put-programmer-write-the-test",
+            "name": "PUT Programmer: Write the test",
             "description": null
         }
     ]
