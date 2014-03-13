@@ -79,7 +79,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @When /^I have the payload:$/
+     * @Given /^I have the payload:$/
      */
     public function iHaveThePayload(PyStringNode $requestPayload)
     {
