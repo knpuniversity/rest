@@ -150,7 +150,7 @@ class ApiFeatureContext extends BehatContext
     public function theHeaderShouldBe($headerName, $expectedHeaderValue)
     {
         $response = $this->getResponse();
-        assertEquals($expectedHeaderValue, $response->getHeader($headerName));
+        assertEquals($expectedHeaderValue, (string) $response->getHeader($headerName));
     }
 
     /**
@@ -413,7 +413,7 @@ class ApiFeatureContext extends BehatContext
     public function printLastResponseOnError($scenarioEvent)
     {
         if ($scenarioEvent->getResult() != 0) {
-            if ($this->getResponse()) {
+            if ($this->response) {
                 $body = $this->getResponse()->getBody(true);
 
                 // strip HTML errors to be a bit shorter
