@@ -1,0 +1,15 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 7cef615..f3a98c9 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -44,6 +44,9 @@ class ProgrammerController extends BaseController
+             'powerLevel' => $programmer->powerLevel,
+         );
+ 
+-        return new Response(json_encode($data), 200);
++        $response = new Response(json_encode($data), 200);
++        $response->headers->set('Content-Type', 'application/json');
++
++        return $response;
+     }
+ }
