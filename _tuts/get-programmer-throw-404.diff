@@ -1,8 +1,8 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index f3a98c9..cea7523 100644
+index c47660a..1d0801a 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -38,6 +38,10 @@ class ProgrammerController extends BaseController
+@@ -39,6 +39,10 @@ class ProgrammerController extends BaseController
      {
          $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
  
