@@ -1,0 +1,15 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index c1cafe0..0120ae0 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -27,6 +27,9 @@ class ProgrammerController extends BaseController
+ 
+         $this->save($programmer);
+ 
+-        return new Response('It worked. Believe me - I\'m an API', 201);
++        $response = new Response('It worked. Believe me - I\'m an API', 201);
++        $response->headers->set('Location', '/some/programmer/url');
++
++        return $response;
+     }
+ }
