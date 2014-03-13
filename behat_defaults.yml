@@ -1,10 +1,4 @@
 default:
-    extensions:
-        Behat\MinkExtension\Extension:
-            base_url: http://localhost:8000/index_test.php
-            goutte: ~
-            selenium2: ~
-
     # this customized Behat a little bit to look in features/api only by
     # default for the feature files. Normally, it loads everything in "features".
     # By doing this, when we run Behat by default, it only runs our API features
@@ -15,9 +9,15 @@ default:
         # the default is FeatureContext - I've changed it just to be distinct
         # from my WebFeatureContext, which you don't need to worry about :)
         class: ApiFeatureContext
-
+        parameters:
+            base_url: http://localhost:8000/index_test.php
 
 web:
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: http://localhost:8000/index_test.php
+            goutte: ~
+            selenium2: ~
     paths:
         bootstrap: features/web
         features: features/web

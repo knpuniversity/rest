@@ -1,10 +1,14 @@
 # If you need to customize Behat, copy this to behat.yml and do it there
 default:
+    context:
+        parameters:
+            base_url: http://localhost:8000/index_test.php
+
+web:
     extensions:
         Behat\MinkExtension\Extension:
             base_url: http://localhost:8000/index_test.php
-            goutte: ~
-            selenium2: ~
+
 
 imports:
     - behat_defaults.yml
