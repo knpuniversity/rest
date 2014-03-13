@@ -104,6 +104,16 @@
             "id": "put-programmer-write-the-test",
             "name": "PUT Programmer: Write the test",
             "description": null
+        },
+        {
+            "id": "put-programmer-create-put-endpoint",
+            "name": "PUT Programmer: Create PUT endpoint",
+            "description": null
+        },
+        {
+            "id": "put-programmer-refactor-the-form-update-code",
+            "name": "PUT Programmer: Refactor the \"form\" update code",
+            "description": null
         }
     ]
 }
