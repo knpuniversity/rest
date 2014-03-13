@@ -1,0 +1,45 @@
+diff --git a/features/api/programmer.feature b/features/api/programmer.feature
+index 85223a0..6081a3f 100644
+--- a/features/api/programmer.feature
++++ b/features/api/programmer.feature
+@@ -45,15 +45,18 @@ Feature: Programmer
+ 
+   Scenario: PUT to update a programmer
+     Given the following programmers exist:
+-      | nickname    | avatarNumber |
+-      | CowboyCoder | 5            |
++      | nickname    | avatarNumber | powerLevel |
++      | CowboyCoder | 5            | 4          |
+     And I have the payload:
+       """
+       {
+-        "nickname": "CowboyCoder",
+-        "avatarNumber" : 2
++        "nickname": "CowgirlCoder",
++        "avatarNumber" : 2,
++        "powerLevel": 10
+       }
+       """
+     When I request "PUT /api/programmers/CowboyCoder"
+     Then the response status code should be 200
+     And the "avatarNumber" property should equal "2"
++    But the "powerLevel" property should equal "4"
++    But the "nickname" property should equal "CowboyCoder"
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 4851293..38c635e 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -93,8 +93,12 @@ class ProgrammerController extends BaseController
+     private function updateProgrammerFromRequest(Request $request, Programmer $programmer)
+     {
+         $data = json_decode($request->getContent(), true);
++        $isNew = !$programmer->id;
+ 
+-        $programmer->nickname = $data['nickname'];
++        // only set the nickname on create - don't allow it to be modified
++        if ($isNew) {
++            $programmer->nickname = $data['nickname'];
++        }
+         $programmer->avatarNumber = $data['avatarNumber'];
+         $programmer->userId = $this->findUserByUsername('weaverryan')->id;
+ 
