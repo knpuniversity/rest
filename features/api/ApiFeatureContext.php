@@ -419,15 +419,32 @@ class ApiFeatureContext extends BehatContext
             if ($this->response) {
                 $body = $this->getResponse()->getBody(true);
 
-                // strip HTML errors to be a bit shorter
-                if ($this->getResponse()->isContentType('text/html')) {
-                    $body = substr($body, strpos($body, '<body>'));
-                }
+                // could we even ask them if they want to print out the error?
+                // or do it based on verbosity
 
-                $this->printDebug(
-                    sprintf('%s: %s', $this->lastRequest->getMethod(), $this->lastRequest->getUrl())."\n\n".
-                    $body
-                );
+                // print some debug details
+                $this->printDebug(sprintf('%s: %s', $this->lastRequest->getMethod(), $this->lastRequest->getUrl())."\n\n");
+
+                $process = new Process('echo "<h1>TEST</h1>" | hermit');
+                $process->run();
+                if ($process->isSuccessful()) {
+                    // we have this cool hermit application! Awesomsauce!
+                    $process = new Process(sprintf('echo %s | hermit', escapeshellarg($body)));
+                    $process->run();
+
+                    // output the HTML page
+                    echo $process->getOutput();
+                } else {
+                    // let's just print the HTML to the terminal
+                    // but you should really run "sudo npm -g install hermit"
+
+                    // strip HTML errors to be a bit shorter
+                    if ($this->getResponse()->isContentType('text/html')) {
+                        $body = substr($body, strpos($body, '<body>'));
+                    }
+
+                    $this->printDebug($body);
+                }
             }
         }
     }
