@@ -9,9 +9,10 @@ use Behat\Gherkin\Node\PyStringNode,
 
 use Guzzle\Service\Client,
     Guzzle\Http\Exception\BadResponseException;
-use Symfony\Component\Process\Process;
 use Behat\Behat\Event\BaseScenarioEvent;
 use Behat\Behat\Event\StepEvent;
+use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\DomCrawler\Crawler;
 
 require_once __DIR__.'/../../vendor/phpunit/phpunit/PHPUnit/Autoload.php';
 require_once __DIR__.'/../../vendor/phpunit/phpunit/PHPUnit/Framework/Assert/Functions.php';
@@ -63,6 +64,23 @@ class ApiFeatureContext extends BehatContext
     protected $scope;
 
     /**
+     * On HTML errors, if this is true, it prints out the h1/h2 to the console
+     * to help debugging. It's assumed (like with Silex) that the most important
+     * messages are sroted in h1/h2 tags. That might not be true for your
+     * project, in which case you could set this to false. This isn't configurable
+     * anywhere currently - just set this to false in the code or tweak
+     * how the printing is done in printLastResponseOnError
+     *
+     * @var boolean
+     */
+    protected $useFancyExceptionReporting = true;
+
+    /**
+     * @var ConsoleOutput
+     */
+    protected $output;
+
+    /**
      * Initializes context.
      * Every scenario gets it's own context object.
      *
@@ -90,7 +108,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @When /^I request "(GET|PUT|POST|DELETE) ([^"]*)"$/
+     * @When /^I request "(GET|PUT|POST|DELETE|PATCH) ([^"]*)"$/
      */
     public function iRequest($httpMethod, $resource)
     {
@@ -102,6 +120,7 @@ class ApiFeatureContext extends BehatContext
             switch ($httpMethod) {
                 case 'PUT':
                 case 'POST':
+                case 'PATCH':
                     $this->lastRequest = $this
                         ->client
                         ->$method($resource, null, $this->requestPayload);
@@ -423,26 +442,19 @@ class ApiFeatureContext extends BehatContext
                 // or do it based on verbosity
 
                 // print some debug details
-                $this->printDebug(sprintf('%s: %s', $this->lastRequest->getMethod(), $this->lastRequest->getUrl())."\n\n");
+                $this->printDebug('');
+                $this->printDebug('<error>Failure!</error> when making the following request:');
+                $this->printDebug(sprintf('<comment>%s</comment>: <info>%s</info>', $this->lastRequest->getMethod(), $this->lastRequest->getUrl())."\n");
 
-                $process = new Process('echo "<h1>TEST</h1>" | hermit');
-                $process->run();
-                if ($process->isSuccessful()) {
-                    // we have this cool hermit application! Awesomsauce!
-                    $process = new Process(sprintf('echo %s | hermit', escapeshellarg($body)));
-                    $process->run();
+                if ($this->useFancyExceptionReporting) {
+                    $this->printDebug('<error>Failure!</error> Below is a summary of the HTML response from the server.');
 
-                    // output the HTML page
-                    echo $process->getOutput();
-                } else {
-                    // let's just print the HTML to the terminal
-                    // but you should really run "sudo npm -g install hermit"
-
-                    // strip HTML errors to be a bit shorter
-                    if ($this->getResponse()->isContentType('text/html')) {
-                        $body = substr($body, strpos($body, '<body>'));
+                    // finds the h1 and h2 tags and prints them only
+                    $crawler = new Crawler($body);
+                    foreach ($crawler->filter('h1, h2')->extract(array('_text')) as $header) {
+                        $this->printDebug(sprintf('        '.$header));
                     }
-
+                } else {
                     $this->printDebug($body);
                 }
             }
@@ -589,5 +601,22 @@ class ApiFeatureContext extends BehatContext
     private function getProjectHelper()
     {
         return $this->getSubcontext('project');
+    }
+
+    public function printDebug($string)
+    {
+        $this->getOutput()->writeln($string);
+    }
+
+    /**
+     * @return ConsoleOutput
+     */
+    private function getOutput()
+    {
+        if ($this->output === null)  {
+            $this->output = new ConsoleOutput();
+        }
+
+        return $this->output;
     }
 }
