@@ -1,8 +1,12 @@
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+$loader = require __DIR__.'/../vendor/autoload.php';
 
 use KnpU\CodeBattle\Application;
+use Doctrine\Common\Annotations\AnnotationRegistry;
+
+// configure the annotation class loader
+AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 /*
  * Create our application object

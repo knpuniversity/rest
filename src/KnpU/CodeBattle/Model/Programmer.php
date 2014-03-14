@@ -11,9 +11,6 @@ class Programmer
     /* All public properties are persisted */
     public $id;
 
-    /**
-     * @Assert\NotBlank
-     */
     public $nickname;
 
     /**

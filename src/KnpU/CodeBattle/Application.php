@@ -2,7 +2,6 @@
 
 namespace KnpU\CodeBattle;
 
-use Behat\Gherkin\Cache\FileCache;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\CachedReader;
 use Doctrine\Common\Cache\PhpFileCache;
@@ -108,9 +107,11 @@ class Application extends SilexApplication
         // Validation
         $this->register(new ValidatorServiceProvider());
         // configure validation to load from a YAML file
-        $app['validator.mapping.class_metadata_factory'] = new ClassMetadataFactory(
-            new AnnotationLoader($this['annotation_reader'])
-        );
+        $this['validator.mapping.class_metadata_factory'] = $this->share(function() {
+            return new ClassMetadataFactory(
+                new AnnotationLoader($this['annotation_reader'])
+            );
+        });
     }
 
     private function configureParameters()
@@ -163,7 +164,9 @@ class Application extends SilexApplication
             );
         });
 
-        $this['annotation_reader'] = new AnnotationReader();
+        $this['annotation_reader'] = $this->share(function() {
+            return new AnnotationReader();
+        });
         // you could use a cache with annotations if you want
         //$this['annotations.cache'] = new PhpFileCache($this['root_dir'].'/cache');
         //$this['annotation_reader'] = new CachedReader($this['annotations_reader'], $this['annotations.cache'], $this['debug']);
