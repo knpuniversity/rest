@@ -1,9 +1,9 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 9a781d5..30d1397 100644
+index 580d821..17cca3f 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -46,6 +46,9 @@ class ProgrammerController extends BaseController
-             'powerLevel' => $programmer->powerLevel,
+@@ -48,6 +48,9 @@ class ProgrammerController extends BaseController
+             'tagLine' => $programmer->tagLine,
          );
  
 -        return new Response(json_encode($data), 200);
