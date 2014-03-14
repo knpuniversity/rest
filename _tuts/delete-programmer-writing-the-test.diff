@@ -1,8 +1,8 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index 65e57a4..9422aac 100644
+index cd43ccd..9b6e52e 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
-@@ -62,3 +62,10 @@ Feature: Programmer
+@@ -63,3 +63,10 @@ Feature: Programmer
      And the "avatarNumber" property should equal "2"
      But the "powerLevel" property should equal "4"
      But the "nickname" property should equal "CowboyCoder"
@@ -12,4 +12,4 @@ index 65e57a4..9422aac 100644
 +      | nickname   | avatarNumber |
 +      | UnitTester | 3            |
 +    When I request "DELETE /api/programmers/UnitTester"
-+    Then the response status should be 204
++    Then the response status code should be 204
