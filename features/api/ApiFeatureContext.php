@@ -271,7 +271,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Then /^the "([^"]*)" property should contain (\d+) items$/
+     * @Then /^the "([^"]*)" property should contain (\d+) item(?:|s)$/
      */
     public function thePropertyContainsItems($property, $count)
     {
@@ -560,7 +560,7 @@ class ApiFeatureContext extends BehatContext
             return $payload;
         }
 
-        return $this->arrayGet($payload, $this->scope);
+        return $this->arrayGet($payload, $this->scope, true);
     }
 
     /**
@@ -573,7 +573,7 @@ class ApiFeatureContext extends BehatContext
      * @param       mixed   $default
      * @return      mixed
      */
-    protected function arrayGet($array, $key)
+    protected function arrayGet($array, $key, $throwOnMissing = false)
     {
         if (is_null($key)) {
             return $array;
@@ -587,12 +587,20 @@ class ApiFeatureContext extends BehatContext
 
             if (is_object($array)) {
                 if (! isset($array->{$segment})) {
+                    if ($throwOnMissing) {
+                        throw new \Exception(sprintf('Cannot find the key "%s"', $key));
+                    }
+
                     return;
                 }
                 $array = $array->{$segment};
 
             } elseif (is_array($array)) {
                 if (! array_key_exists($segment, $array)) {
+                    if ($throwOnMissing) {
+                        throw new \Exception(sprintf('Cannot find the key "%s"', $key));
+                    }
+
                     return;
                 }
                 $array = $array[$segment];
