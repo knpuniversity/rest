@@ -1,22 +1,67 @@
+diff --git a/features/api/ApiFeatureContext.php b/features/api/ApiFeatureContext.php
+index e50cd07..56c58e3 100644
+--- a/features/api/ApiFeatureContext.php
++++ b/features/api/ApiFeatureContext.php
+@@ -427,15 +427,32 @@ class ApiFeatureContext extends BehatContext
+             if ($this->response) {
+                 $body = $this->getResponse()->getBody(true);
+ 
+-                // strip HTML errors to be a bit shorter
+-                if ($this->getResponse()->isContentType('text/html')) {
+-                    $body = substr($body, strpos($body, '<body>'));
++                // could we even ask them if they want to print out the error?
++                // or do it based on verbosity
++
++                // print some debug details
++                $this->printDebug(sprintf('%s: %s', $this->lastRequest->getMethod(), $this->lastRequest->getUrl())."\n\n");
++
++                $process = new Process('echo "<h1>TEST</h1>" | hermit');
++                $process->run();
++                if ($process->isSuccessful()) {
++                    // we have this cool hermit application! Awesomsauce!
++                    $process = new Process(sprintf('echo %s | hermit', escapeshellarg($body)));
++                    $process->run();
++
++                    // output the HTML page
++                    echo $process->getOutput();
++                } else {
++                    // let's just print the HTML to the terminal
++                    // but you should really run "sudo npm -g install hermit"
++
++                    // strip HTML errors to be a bit shorter
++                    if ($this->getResponse()->isContentType('text/html')) {
++                        $body = substr($body, strpos($body, '<body>'));
++                    }
++
++                    $this->printDebug($body);
+                 }
+-
+-                $this->printDebug(
+-                    sprintf('%s: %s', $this->lastRequest->getMethod(), $this->lastRequest->getUrl())."\n\n".
+-                    $body
+-                );
+             }
+         }
+     }
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index 85223a0..6081a3f 100644
+index d6fd839..65e57a4 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
-@@ -45,15 +45,18 @@ Feature: Programmer
+@@ -46,16 +46,19 @@ Feature: Programmer
  
    Scenario: PUT to update a programmer
      Given the following programmers exist:
--      | nickname    | avatarNumber |
--      | CowboyCoder | 5            |
-+      | nickname    | avatarNumber | powerLevel |
-+      | CowboyCoder | 5            | 4          |
+-      | nickname    | avatarNumber | tagLine |
+-      | CowboyCoder | 5            | foo     |
++      | nickname    | avatarNumber | tagLine | powerLevel |
++      | CowboyCoder | 5            | foo     | 4          |
      And I have the payload:
        """
        {
 -        "nickname": "CowboyCoder",
--        "avatarNumber" : 2
 +        "nickname": "CowgirlCoder",
-+        "avatarNumber" : 2,
+         "avatarNumber" : 2,
+         "tagLine": "foo"
 +        "powerLevel": 10
        }
        """
