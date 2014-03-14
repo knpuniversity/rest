@@ -44,6 +44,8 @@ class ApiFeatureContext extends BehatContext
 
     /**
      * The Guzzle HTTP Response.
+     *
+     * @var \Guzzle\Http\Message\Response
      */
     protected $response;
 
@@ -446,16 +448,30 @@ class ApiFeatureContext extends BehatContext
                 $this->printDebug('<error>Failure!</error> when making the following request:');
                 $this->printDebug(sprintf('<comment>%s</comment>: <info>%s</info>', $this->lastRequest->getMethod(), $this->lastRequest->getUrl())."\n");
 
-                if ($this->useFancyExceptionReporting) {
-                    $this->printDebug('<error>Failure!</error> Below is a summary of the HTML response from the server.');
-
-                    // finds the h1 and h2 tags and prints them only
-                    $crawler = new Crawler($body);
-                    foreach ($crawler->filter('h1, h2')->extract(array('_text')) as $header) {
-                        $this->printDebug(sprintf('        '.$header));
+                if ($this->response->isContentType('application/json')) {
+                    $data = json_decode($body);
+                    if ($data === null) {
+                        // invalid JSON!
+                        $this->printDebug($body);
+                    } else {
+                        // valid JSON, print it pretty
+                        $this->printDebug(json_encode($data, JSON_PRETTY_PRINT));
                     }
                 } else {
-                    $this->printDebug($body);
+                    // the response is HTML - see if we should print all of it or some of it
+                    $isValidHtml = strpos($body, '</body>') !== false;
+
+                    if ($this->useFancyExceptionReporting && $isValidHtml) {
+                        $this->printDebug('<error>Failure!</error> Below is a summary of the HTML response from the server.');
+
+                        // finds the h1 and h2 tags and prints them only
+                        $crawler = new Crawler($body);
+                        foreach ($crawler->filter('h1, h2')->extract(array('_text')) as $header) {
+                            $this->printDebug(sprintf('        '.$header));
+                        }
+                    } else {
+                        $this->printDebug($body);
+                    }
                 }
             }
         }
