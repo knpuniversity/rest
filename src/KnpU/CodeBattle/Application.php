@@ -9,6 +9,7 @@ use KnpU\CodeBattle\Battle\PowerManager;
 use KnpU\CodeBattle\Repository\BattleRepository;
 use KnpU\CodeBattle\Repository\ProjectRepository;
 use KnpU\CodeBattle\Twig\BattleExtension;
+use KnpU\CodeBattle\Validator\ApiValidator;
 use Silex\Application as SilexApplication;
 use Silex\Provider\SessionServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
@@ -170,6 +171,10 @@ class Application extends SilexApplication
         // you could use a cache with annotations if you want
         //$this['annotations.cache'] = new PhpFileCache($this['root_dir'].'/cache');
         //$this['annotation_reader'] = new CachedReader($this['annotations_reader'], $this['annotations.cache'], $this['debug']);
+
+        $this['api.validator'] = $this->share(function() use ($app) {
+            return new ApiValidator($app['validator']);
+        });
     }
 
     private function configureSecurity()
