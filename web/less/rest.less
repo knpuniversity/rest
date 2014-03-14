@@ -37,15 +37,20 @@ body {
     text-decoration: underline;
     font-size: 1.15em;
 }
+.cancel-link:hover {
+    color: black;
+}
 
 /* Styling for the main box wrapper used on each page */
 .main-console-screen {
+    margin: 0 auto;
+    padding: 0px 20px 10px 20px;
+    max-width: 370px;
     color: #f7f7f7;
     border: 1px solid #ccc;
     background: #33cc99;
     box-shadow: 5px 5px 1px 0px rgba(220,220,220,.5);
     border-radius: 6px;
-    padding: 0px 20px 10px 20px;
 } 
 /*
  * HOMEPAGE
@@ -54,7 +59,6 @@ body {
 .button-list {
     padding: 20px 0px 0px 0px;
 }
-
 ul.action-buttons-list {
     list-style: none;
     text-align: center;
@@ -66,41 +70,75 @@ ul.action-buttons-list li {
 ul.action-buttons-list .btn {
     width: 200px;
 }
+.btn-create {
+    color: white;
+    background: #bababa;
+}
+.btn-create:hover {
+    color: white;
+    background: #e0e0e0;
+}
+.btn-start-battle {
+    color: white;
+    background: #ef6a32;
+}
+.btn-start-battle:hover {
+    color: white;
+    background: #FF7338;
+}    
+.btn-scores {
+    color: white;
+    background: #01545a;
+}
+.btn-scores:hover {
+    color: white;
+    background: #618C8F;
+}
 
 /*
  * CREATE PROGRAMMER
  */
+ 
+#create {
+     text-align: center;
+ }
 .avatar-list {
     list-style: none;
 }
 
-ul.js-selectable-tile{
+ul.js-selectable-tile {
     padding: 0px;
 }
-.js-selectable-tile {
-    padding-left: 10px;
+.js-selectable-tile li:hover {
+    box-shadow: 4px 4px 10px gray;
 }
+
 .js-selectable-tile li {
-    height: 104px;
-    width: 104px;
+    width: 30%;
+    margin: 1.6666666666667%;
+    float: left;
     display: -moz-inline-box;
     display: inline-block;
-    border: 2px solid transparent;
-    margin: 0 3px 10px 3px;
     cursor: pointer;
 }
 .js-selectable-tile li.selected {
-    border: 2px solid #000;
-    box-shadow: 2px 2px 2px gray;
+    box-shadow: 4px 4px 10px gray;
 
+}
+.create-buttons {
+    margin: 10px 0 0 0;
 }
 
 /*
  * Programmer Show Page
  */
 
-.btn-battle {
-    background: #ed0345;
+.btn-power {
+    background: #a6d96a;
+}
+.btn-power:hover {
+    background: #d9ef8b;
+    color: white;
 }
 
 /*
@@ -110,7 +148,3 @@ ul.js-selectable-tile{
 ul.programmers-list {
     list-style: none;
 }
-
-/*
- * Bootstrap overrides
- */

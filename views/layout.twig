@@ -15,10 +15,8 @@
     <link href="{{ app.request.basePath }}/css/bootstrap.css" rel="stylesheet" />
 
     <!-- Add custom CSS here -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ app.request.basePath }}/css/rest.css">
+    <link rel="stylesheet" href="{{ app.request.basePath }}/css/styles.css">
 </head>
 <body>
     <!--[if lt IE 7]>
@@ -70,7 +68,7 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-offset-4 col-md-4 main-console-screen">
+            <div class="main-console-screen">
                 {% if app.request.session.flashbag.has('notice_happy') %}
                     {{ macros.flashMessage(app.request.session.flashbag.get('notice_happy'), true) }}
                 {% endif %}

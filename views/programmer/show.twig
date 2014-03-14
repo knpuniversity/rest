@@ -15,8 +15,8 @@
     {% if programmer.userId == app.user.id %}
         <form action="{{ path('programmer_powerup', {'nickname': programmer.nickname }) }}" method="POST">
             <div class="battle-btns">
-                <button type="submit" class="btn btn-lg">Power Up!</button>
-                <button class="btn btn-lg btn-battle" type="button" data-toggle="modal" data-target="#chooseProject">Start Battle!</button>
+                <button type="submit" class="btn btn-lg btn-power">Power Up!</button>
+                <button class="btn btn-lg btn-start-battle" type="button" data-toggle="modal" data-target="#chooseProject">Start Battle!</button>
             </div>
         </form>
 
