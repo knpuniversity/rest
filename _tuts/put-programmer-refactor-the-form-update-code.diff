@@ -1,8 +1,8 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index dd8e8ba..4851293 100644
+index 3349be0..5891057 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -25,14 +25,8 @@ class ProgrammerController extends BaseController
+@@ -25,15 +25,8 @@ class ProgrammerController extends BaseController
  
      public function newAction(Request $request)
      {
@@ -11,6 +11,7 @@ index dd8e8ba..4851293 100644
          $programmer = new Programmer();
 -        $programmer->nickname = $data['nickname'];
 -        $programmer->avatarNumber = $data['avatarNumber'];
+-        $programmer->tagLine = $data['tagLine'];
 -        $programmer->userId = $this->findUserByUsername('weaverryan')->id;
 -
 -        $this->save($programmer);
@@ -18,7 +19,7 @@ index dd8e8ba..4851293 100644
  
          $data = $this->serializeProgrammer($programmer);
          $response = new JsonResponse($data, 201);
-@@ -81,6 +75,23 @@ class ProgrammerController extends BaseController
+@@ -82,20 +75,35 @@ class ProgrammerController extends BaseController
              $this->throw404();
          }
  
@@ -41,8 +42,13 @@ index dd8e8ba..4851293 100644
 +    {
          $data = json_decode($request->getContent(), true);
  
++        if ($data === null) {
++            throw new \Exception(sprintf('Invalid JSON: '.$request->getContent()));
++        }
++
          $programmer->nickname = $data['nickname'];
-@@ -88,12 +99,6 @@ class ProgrammerController extends BaseController
+         $programmer->avatarNumber = $data['avatarNumber'];
+         $programmer->tagLine = $data['tagLine'];
          $programmer->userId = $this->findUserByUsername('weaverryan')->id;
  
          $this->save($programmer);
