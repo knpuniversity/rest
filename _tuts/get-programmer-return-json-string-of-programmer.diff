@@ -1,8 +1,8 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 8c48f32..9a781d5 100644
+index ecdcfc6..580d821 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -38,6 +38,14 @@ class ProgrammerController extends BaseController
+@@ -39,6 +39,15 @@ class ProgrammerController extends BaseController
  
      public function showAction($nickname)
      {
@@ -13,6 +13,7 @@ index 8c48f32..9a781d5 100644
 +            'nickname' => $programmer->nickname,
 +            'avatarNumber' => $programmer->avatarNumber,
 +            'powerLevel' => $programmer->powerLevel,
++            'tagLine' => $programmer->tagLine,
 +        );
 +
 +        return new Response(json_encode($data), 200);
