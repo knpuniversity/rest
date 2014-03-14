@@ -12,6 +12,7 @@
         <form action="{{ path('programmer_new_handle') }}" method="post">
             <fieldset>
                 {{ macros.form_field('text', 'nickname', 'Nickname', programmer.nickname, 'SmilingCoder') }}
+                {{ macros.form_field('textarea', 'tagLine', 'Tag Line', programmer.tagLine, 'No, sleep, til coding') }}
 
                 <ul class="avatar-list js-selectable-tile">
                     {% for i in 1..6 %}

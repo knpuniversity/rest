@@ -19,6 +19,8 @@ class Programmer
      */
     public $avatarNumber;
 
+    public $tagLine;
+
     public $userId;
 
     public $powerLevel = 0;
