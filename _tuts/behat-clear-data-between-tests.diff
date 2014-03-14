@@ -1,8 +1,8 @@
 diff --git a/features/api/ApiFeatureContext.php b/features/api/ApiFeatureContext.php
-index 880c98f..6a71e9b 100644
+index 0f7cbc9..e50cd07 100644
 --- a/features/api/ApiFeatureContext.php
 +++ b/features/api/ApiFeatureContext.php
-@@ -79,6 +79,14 @@ class ApiFeatureContext extends BehatContext
+@@ -82,6 +82,14 @@ class ApiFeatureContext extends BehatContext
      }
  
      /**
@@ -17,22 +17,3 @@ index 880c98f..6a71e9b 100644
       * @Given /^I have the payload:$/
       */
      public function iHaveThePayload(PyStringNode $requestPayload)
-diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index 90b9792..6a91316 100644
---- a/features/api/programmer.feature
-+++ b/features/api/programmer.feature
-@@ -10,11 +10,11 @@ Feature: Programmer
-     Given I have the payload:
-       """
-       {
--        "nickname": "ObjectOrienter555",
-+        "nickname": "ObjectOrienter",
-         "avatarNumber" : "2"
-       }
-       """
-     When I request "POST /api/programmers"
-     Then the response status code should be 201
--    And the "Location" header should be "/api/programmers/ObjectOrienter555"
--    And the "nickname" property equals "ObjectOrienter555"
-+    And the "Location" header should be "/api/programmers/ObjectOrienter"
-+    And the "nickname" property should equal "ObjectOrienter"
