@@ -147,6 +147,22 @@ abstract class BaseController implements ControllerProviderInterface
         }
     }
 
+    /**
+     * Shortcut for deleting objects
+     *
+     * @param $obj
+     */
+    public function delete($obj)
+    {
+        switch (true) {
+            case ($obj instanceof Programmer):
+                $this->getProgrammerRepository()->delete($obj);
+                break;
+            default:
+                throw new \Exception(sprintf('Shortcut for saving "%s" not implemented', get_class($obj)));
+        }
+    }
+
     public function throw404($message = 'Page not found')
     {
         throw new NotFoundHttpException($message);

@@ -59,6 +59,11 @@ abstract class BaseRepository
         }
     }
 
+    public function delete($obj)
+    {
+        $this->connection->delete($this->getTableName(), array('id' => $obj->id));
+    }
+
     /**
      * @param array $criteria
      * @return object
