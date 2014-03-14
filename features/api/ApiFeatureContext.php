@@ -9,6 +9,9 @@ use Behat\Gherkin\Node\PyStringNode,
 
 use Guzzle\Service\Client,
     Guzzle\Http\Exception\BadResponseException;
+use Symfony\Component\Process\Process;
+use Behat\Behat\Event\BaseScenarioEvent;
+use Behat\Behat\Event\StepEvent;
 
 require_once __DIR__.'/../../vendor/phpunit/phpunit/PHPUnit/Autoload.php';
 require_once __DIR__.'/../../vendor/phpunit/phpunit/PHPUnit/Framework/Assert/Functions.php';
@@ -410,9 +413,9 @@ class ApiFeatureContext extends BehatContext
     /**
      * @AfterScenario
      */
-    public function printLastResponseOnError($scenarioEvent)
+    public function printLastResponseOnError(BaseScenarioEvent $scenarioEvent)
     {
-        if ($scenarioEvent->getResult() != 0) {
+        if ($scenarioEvent->getResult() == StepEvent::FAILED) {
             if ($this->response) {
                 $body = $this->getResponse()->getBody(true);
 
