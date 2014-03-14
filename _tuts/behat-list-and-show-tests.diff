@@ -1,8 +1,8 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index 6a91316..76aca3f 100644
+index a25a42b..9c34a15 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
-@@ -18,3 +18,27 @@ Feature: Programmer
+@@ -19,3 +19,27 @@ Feature: Programmer
      Then the response status code should be 201
      And the "Location" header should be "/api/programmers/ObjectOrienter"
      And the "nickname" property should equal "ObjectOrienter"
