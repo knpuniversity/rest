@@ -52,7 +52,7 @@ class ProjectContext extends BehatContext
         return $user;
     }
 
-    public function createProgrammer($nickname, User $owner = null, $avatar = null, $powerLevel = null)
+    public function createProgrammer($nickname, User $owner = null, array $data = array())
     {
         $programmer = new Programmer();
         $programmer->nickname = $nickname;
@@ -61,8 +61,15 @@ class ProjectContext extends BehatContext
             $owner = $this->getUserRepository()->findAny();
         }
         $programmer->userId = $owner->id;
-        $programmer->avatarNumber = $avatar ? $avatar : rand(1, 6);
-        $programmer->powerLevel = $powerLevel === null ? rand(0, 10) : $powerLevel;
+
+        $data = array_merge(array(
+            'avatarNumber' => rand(1, 6),
+            'powerLevel' => rand(0, 10),
+        ), $data);
+
+        foreach ($data as $prop => $val) {
+            $programmer->$prop = $val;
+        }
 
         $this->getProgrammerRepository()->save($programmer);
 
