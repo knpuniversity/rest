@@ -2,9 +2,10 @@
     "require": {
         "silex/silex": "~1.0",
         "symfony/twig-bridge": "~2.1.0",
-        "symfony/security": "~2.3",
+        "symfony/security": "~2.4",
         "doctrine/dbal": "~2.4.0",
-        "monolog/monolog": "~1.7.0"
+        "monolog/monolog": "~1.7.0",
+        "symfony/validator": "~2.4"
     },
     "require-dev": {
         "behat/mink": "~1.5",

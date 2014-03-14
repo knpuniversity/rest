@@ -2,6 +2,10 @@
 
 namespace KnpU\CodeBattle;
 
+use Behat\Gherkin\Cache\FileCache;
+use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\CachedReader;
+use Doctrine\Common\Cache\PhpFileCache;
 use KnpU\CodeBattle\Battle\PowerManager;
 use KnpU\CodeBattle\Repository\BattleRepository;
 use KnpU\CodeBattle\Repository\ProjectRepository;
@@ -18,6 +22,9 @@ use Silex\Provider\SecurityServiceProvider;
 use KnpU\CodeBattle\Repository\UserRepository;
 use KnpU\CodeBattle\Repository\ProgrammerRepository;
 use KnpU\CodeBattle\Battle\BattleManager;
+use Silex\Provider\ValidatorServiceProvider;
+use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
+use Symfony\Component\Validator\Mapping\Loader\AnnotationLoader;
 
 class Application extends SilexApplication
 {
@@ -97,6 +104,13 @@ class Application extends SilexApplication
         $this->register(new MonologServiceProvider(), array(
             'monolog.logfile' => $this['root_dir'].'/logs/development.log',
         ));
+
+        // Validation
+        $this->register(new ValidatorServiceProvider());
+        // configure validation to load from a YAML file
+        $app['validator.mapping.class_metadata_factory'] = new ClassMetadataFactory(
+            new AnnotationLoader($this['annotation_reader'])
+        );
     }
 
     private function configureParameters()
@@ -148,6 +162,11 @@ class Application extends SilexApplication
                 $app['repository.project']
             );
         });
+
+        $this['annotation_reader'] = new AnnotationReader();
+        // you could use a cache with annotations if you want
+        //$this['annotations.cache'] = new PhpFileCache($this['root_dir'].'/cache');
+        //$this['annotation_reader'] = new CachedReader($this['annotations_reader'], $this['annotations.cache'], $this['debug']);
     }
 
     private function configureSecurity()
