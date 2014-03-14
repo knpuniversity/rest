@@ -206,12 +206,24 @@ class ApiFeatureContext extends BehatContext
             json_encode($payload)
         );
 
-        if (is_object($payload)) {
-            assertTrue(array_key_exists($property, get_object_vars($payload)), $message);
+        assertNotNull($this->arrayGet($payload, $property), $message);
+    }
 
-        } else {
-            assertTrue(array_key_exists($property, $payload), $message);
-        }
+    /**
+     * @Then /^the "([^"]*)" property should not exist$/
+     */
+    public function thePropertyDoesNotExist($property)
+    {
+        $payload = $this->getScopePayload();
+
+        $message = sprintf(
+            'Asserting the [%s] property does not exist in the scope [%s]: %s',
+            $property,
+            $this->scope,
+            json_encode($payload)
+        );
+
+        assertNull($this->arrayGet($payload, $property), $message);
     }
 
     /**
