@@ -1,0 +1,32 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 0348b51..b2c3bf4 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -21,6 +21,7 @@ class ProgrammerController extends BaseController
+ 
+         $controllers->get('/api/programmers', array($this, 'listAction'));
+         $controllers->put('/api/programmers/{nickname}', array($this, 'updateAction'));
++        $controllers->delete('/api/programmers/{nickname}', array($this, 'deleteAction'));
+     }
+ 
+     public function newAction(Request $request)
+@@ -84,6 +85,19 @@ class ProgrammerController extends BaseController
+         return $response;
+     }
+ 
++    public function deleteAction($nickname)
++    {
++        $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
++
++        if (!$programmer) {
++            $this->throw404();
++        }
++
++        $this->delete($programmer);
++
++        return new Response(null, 204);
++    }
++
+     /**
+      * Reads data from the Request, updates the Programmer and saves it.
+      *
