@@ -124,6 +124,21 @@
             "id": "delete-programmer-writing-the-test",
             "name": "DELETE Programmer: Writing the test",
             "description": null
+        },
+        {
+            "id": "delete-programmer-implement-the-controller",
+            "name": "DELETE Programmer: Implement the controller",
+            "description": null
+        },
+        {
+            "id": "patch-programmer-write-the-test",
+            "name": "PATCH Programmer: Write the test",
+            "description": null
+        },
+        {
+            "id": "patch-programmer-adding-the-controller",
+            "name": "PATCH Programmer: Adding the controller",
+            "description": null
         }
     ]
 }
