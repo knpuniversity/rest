@@ -119,6 +119,11 @@
             "id": "put-programmer-making-certain-properties-not-mutable",
             "name": "PUT Programmer: Making certain properties not mutable",
             "description": null
+        },
+        {
+            "id": "delete-programmer-writing-the-test",
+            "name": "DELETE Programmer: Writing the test",
+            "description": null
         }
     ]
 }
