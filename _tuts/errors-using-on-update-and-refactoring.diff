@@ -1,0 +1,50 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 14e7c39..c98e278 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -35,15 +35,8 @@ class ProgrammerController extends BaseController
+         $programmer = new Programmer();
+         $this->updateProgrammerFromRequest($request, $programmer);
+ 
+-        $errors = $this->validate($programmer);
+-        if (!empty($errors)) {
+-            $data = array(
+-                'type' => 'validation_error',
+-                'title' => 'There was a validation error',
+-                'errors' => $errors
+-            );
+-
+-            return new JsonResponse($data, 400);
++        if ($errors = $this->validate($programmer)) {
++            return $this->handleValidationResponse($errors);
+         }
+ 
+         $this->save($programmer);
+@@ -95,6 +88,11 @@ class ProgrammerController extends BaseController
+         }
+ 
+         $this->updateProgrammerFromRequest($request, $programmer);
++
++        if ($errors = $this->validate($programmer)) {
++            return $this->handleValidationResponse($errors);
++        }
++
+         $this->save($programmer);
+ 
+         $data = $this->serializeProgrammer($programmer);
+@@ -161,4 +159,15 @@ class ProgrammerController extends BaseController
+             'tagLine' => $programmer->tagLine,
+         );
+     }
++
++    private function handleValidationResponse(array $errors)
++    {
++        $data = array(
++            'type' => 'validation_error',
++            'title' => 'There was a validation error',
++            'errors' => $errors
++        );
++
++        return new JsonResponse($data, 400);
++    }
+ }
