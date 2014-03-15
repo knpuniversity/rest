@@ -149,6 +149,46 @@
             "id": "errors-playing-with-validation",
             "name": "Errors: Playing with validation",
             "description": null
+        },
+        {
+            "id": "errors-using-on-update-and-refactoring",
+            "name": "Errors: Using on update and refactoring",
+            "description": null
+        },
+        {
+            "id": "errors-standard-content-type",
+            "name": "Errors: Standard content-type",
+            "description": null
+        },
+        {
+            "id": "errors-standard-apiproblem-class",
+            "name": "Errors: Standard ApiProblem class",
+            "description": null
+        },
+        {
+            "id": "errors-apiproblem-type-constants",
+            "name": "Errors: ApiProblem type constants",
+            "description": null
+        },
+        {
+            "id": "errors-invalid-json-format",
+            "name": "Errors: Invalid JSON format",
+            "description": null
+        },
+        {
+            "id": "errors-print-bad-response-in-test",
+            "name": "Errors: Print bad response in test",
+            "description": null
+        },
+        {
+            "id": "errors-create-apiproblemexception",
+            "name": "Errors: Create ApiProblemException",
+            "description": null
+        },
+        {
+            "id": "errors-exception-listener-for-apiproblemexception",
+            "name": "Errors: Exception listener for ApiProblemException",
+            "description": null
         }
     ]
 }
