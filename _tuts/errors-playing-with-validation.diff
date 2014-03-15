@@ -1,0 +1,39 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 2b39b31..14e7c39 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -34,8 +34,19 @@ class ProgrammerController extends BaseController
+     {
+         $programmer = new Programmer();
+         $this->updateProgrammerFromRequest($request, $programmer);
+-        $this->save($programmer);
+ 
++        $errors = $this->validate($programmer);
++        if (!empty($errors)) {
++            $data = array(
++                'type' => 'validation_error',
++                'title' => 'There was a validation error',
++                'errors' => $errors
++            );
++
++            return new JsonResponse($data, 400);
++        }
++
++        $this->save($programmer);
+         $data = $this->serializeProgrammer($programmer);
+         $response = new JsonResponse($data, 201);
+         $programmerUrl = $this->generateUrl(
+diff --git a/src/KnpU/CodeBattle/Model/Programmer.php b/src/KnpU/CodeBattle/Model/Programmer.php
+index 089339c..fbb3412 100644
+--- a/src/KnpU/CodeBattle/Model/Programmer.php
++++ b/src/KnpU/CodeBattle/Model/Programmer.php
+@@ -11,6 +11,9 @@ class Programmer
+     /* All public properties are persisted */
+     public $id;
+ 
++    /**
++     * @Assert\NotBlank(message="Please enter a nickname")
++     */
+     public $nickname;
+ 
+     /**
