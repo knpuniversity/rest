@@ -91,6 +91,7 @@ battle more *projects*.
 - introduce the idea of a standard! Api Problem
 - add validation errors to the form (editing/creating programmer)
 - handle 404's and other errors
+- handling bad input - e.g. invalid JSON
 
 #### Authentication
 
@@ -146,6 +147,7 @@ the web interface for our user.
 ##### CHAPTER 13:  Content-Negotiation
 
 - content-negotiation and serialization to HAL-XML
+- read the Accept header
 
 ##### CHAPTER 14: Documenting Links
 
@@ -202,12 +204,12 @@ the web interface for our user.
 - we still don't know what fields can be used on any filter - that's a docs todo
 - why query paramters? To avoid /programmers/{id}/page/{page}/name/{name}
 
-#### CHAPTER 22: Versioning
+##### CHAPTER 22: Versioning
 
 - Versioning: we could say that there is no need for versioning if we rely
   on HATEOAS, and also that URL-based versioning is a bad practice.
 
-#### CHAPTER 23: Intro to Caching
+##### CHAPTER 23: Intro to Caching
 
 - Show some basic headers that you should consider returning to your client
 - Show how Guzzle can automatically respond to these cache headers
@@ -230,7 +232,13 @@ the web interface for our user.
 - when/how should we transform the avatar into into an actual path? Should
     we turn this into its own resource later that we upload?
 
-- where to configure that exceptions under /api should be json?
+- consider using getters/setters so we can make sure items are cast into
+    the right type
+
+- we should do a schema change
+
+### Questions
+
 
 ### Notes
 
