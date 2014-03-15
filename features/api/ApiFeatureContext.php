@@ -649,6 +649,16 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
+     * @Given /^print last response$/
+     */
+    public function printLastResponse()
+    {
+        if ($this->response) {
+            $this->printDebug($this->response->getBody(true));
+        }
+    }
+
+    /**
      * @return ProjectContext
      */
     private function getProjectHelper()
