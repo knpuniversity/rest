@@ -1,8 +1,8 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 3349be0..5891057 100644
+index 3349be0..017c6cd 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -25,15 +25,8 @@ class ProgrammerController extends BaseController
+@@ -25,14 +25,8 @@ class ProgrammerController extends BaseController
  
      public function newAction(Request $request)
      {
@@ -14,24 +14,29 @@ index 3349be0..5891057 100644
 -        $programmer->tagLine = $data['tagLine'];
 -        $programmer->userId = $this->findUserByUsername('weaverryan')->id;
 -
--        $this->save($programmer);
 +        $this->updateProgrammerFromRequest($request, $programmer);
+         $this->save($programmer);
  
          $data = $this->serializeProgrammer($programmer);
-         $response = new JsonResponse($data, 201);
-@@ -82,20 +75,35 @@ class ProgrammerController extends BaseController
+@@ -82,13 +76,7 @@ class ProgrammerController extends BaseController
              $this->throw404();
          }
  
+-        $data = json_decode($request->getContent(), true);
+-
+-        $programmer->nickname = $data['nickname'];
+-        $programmer->avatarNumber = $data['avatarNumber'];
+-        $programmer->tagLine = $data['tagLine'];
+-        $programmer->userId = $this->findUserByUsername('weaverryan')->id;
+-
 +        $this->updateProgrammerFromRequest($request, $programmer);
-+
-+        $data = $this->serializeProgrammer($programmer);
-+
-+        $response = new JsonResponse($data, 200);
-+
-+        return $response;
-+    }
-+
+         $this->save($programmer);
+ 
+         $data = $this->serializeProgrammer($programmer);
+@@ -98,6 +86,26 @@ class ProgrammerController extends BaseController
+         return $response;
+     }
+ 
 +    /**
 +     * Reads data from the Request, updates the Programmer and saves it.
 +     *
@@ -40,24 +45,18 @@ index 3349be0..5891057 100644
 +     */
 +    private function updateProgrammerFromRequest(Request $request, Programmer $programmer)
 +    {
-         $data = json_decode($request->getContent(), true);
- 
++        $data = json_decode($request->getContent(), true);
++
 +        if ($data === null) {
 +            throw new \Exception(sprintf('Invalid JSON: '.$request->getContent()));
 +        }
 +
-         $programmer->nickname = $data['nickname'];
-         $programmer->avatarNumber = $data['avatarNumber'];
-         $programmer->tagLine = $data['tagLine'];
-         $programmer->userId = $this->findUserByUsername('weaverryan')->id;
- 
-         $this->save($programmer);
--
--        $data = $this->serializeProgrammer($programmer);
--
--        $response = new JsonResponse($data, 200);
--
--        return $response;
-     }
- 
++        $programmer->nickname = $data['nickname'];
++        $programmer->avatarNumber = $data['avatarNumber'];
++        $programmer->tagLine = $data['tagLine'];
++        $programmer->userId = $this->findUserByUsername('weaverryan')->id;
++    }
++
      private function serializeProgrammer(Programmer $programmer)
+     {
+         return array(
