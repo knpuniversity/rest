@@ -1,0 +1,43 @@
+diff --git a/features/api/programmer.feature b/features/api/programmer.feature
+index 90baa8c..f5e012c 100644
+--- a/features/api/programmer.feature
++++ b/features/api/programmer.feature
+@@ -40,6 +40,17 @@ Feature: Programmer
+     But the "errors.avatarNumber" property should not exist
+     And the "Content-Type" header should be "application/problem+json"
+ 
++  Scenario: Error response on invalid JSON
++    Given I have the payload:
++      """
++      {
++        "avatarNumber" : "2
++        "tagLine": "I'm from a test!"
++      }
++      """
++    When I request "POST /api/programmers"
++    Then the response status code should be 400
++
+   Scenario: GET one programmer
+     Given the following programmers exist:
+       | nickname   | avatarNumber |
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 0d2bee9..89032af 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -10,6 +10,7 @@ use Silex\ControllerCollection;
+ use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\HttpFoundation\Response;
+ use Symfony\Component\HttpFoundation\JsonResponse;
++use Symfony\Component\HttpKernel\Exception\HttpException;
+ 
+ class ProgrammerController extends BaseController
+ {
+@@ -128,7 +129,7 @@ class ProgrammerController extends BaseController
+         $isNew = !$programmer->id;
+ 
+         if ($data === null) {
+-            throw new \Exception(sprintf('Invalid JSON: '.$request->getContent()));
++            throw new HttpException(400, sprintf('Invalid JSON: '.$request->getContent()));
+         }
+ 
+         // determine which properties should be changeable on this request
