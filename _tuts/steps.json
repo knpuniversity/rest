@@ -189,6 +189,21 @@
             "id": "errors-exception-listener-for-apiproblemexception",
             "name": "Errors: Exception listener for ApiProblemException",
             "description": null
+        },
+        {
+            "id": "errors-throw-apiproblemexception-on-validation-errors",
+            "name": "Errors: Throw ApiProblemException on validation errors",
+            "description": null
+        },
+        {
+            "id": "errors-handling-404-s",
+            "name": "Errors: Handling 404's",
+            "description": null
+        },
+        {
+            "id": "errors-extra-information-on-error",
+            "name": "Errors: Extra information on error",
+            "description": null
         }
     ]
 }
