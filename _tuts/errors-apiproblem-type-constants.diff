@@ -1,0 +1,26 @@
+diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
+index b1b874c..a9c2fd0 100644
+--- a/src/KnpU/CodeBattle/Api/ApiProblem.php
++++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
+@@ -7,6 +7,8 @@ namespace KnpU\CodeBattle\Api;
+  */
+ class ApiProblem
+ {
++    const TYPE_VALIDATION_ERROR = 'validation_error';
++
+     private $type;
+ 
+     private $title;
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 809e2f8..0d2bee9 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -164,7 +164,7 @@ class ProgrammerController extends BaseController
+     private function handleValidationResponse(array $errors)
+     {
+         $apiProblem = new ApiProblem(
+-            'validation_error',
++            ApiProblem::TYPE_VALIDATION_ERROR,
+             'There was a validation error'
+         );
+         $apiProblem->set('errors', $errors);
