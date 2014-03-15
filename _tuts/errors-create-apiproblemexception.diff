@@ -1,0 +1,79 @@
+diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
+index a9c2fd0..a0136d2 100644
+--- a/src/KnpU/CodeBattle/Api/ApiProblem.php
++++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
+@@ -9,6 +9,8 @@ class ApiProblem
+ {
+     const TYPE_VALIDATION_ERROR = 'validation_error';
+ 
++    const TYPE_INVALID_REQUEST_BODY_FORMAT = 'invalid_body_format';
++
+     private $type;
+ 
+     private $title;
+@@ -33,4 +35,12 @@ class ApiProblem
+     {
+         $this->extraData[$name] = $value;
+     }
++
++    /**
++     * @return string
++     */
++    public function getTitle()
++    {
++        return $this->title;
++    }
+ }
+diff --git a/src/KnpU/CodeBattle/Api/ApiProblemException.php b/src/KnpU/CodeBattle/Api/ApiProblemException.php
+new file mode 100644
+index 0000000..11a11e1
+--- /dev/null
++++ b/src/KnpU/CodeBattle/Api/ApiProblemException.php
+@@ -0,0 +1,22 @@
++<?php
++
++namespace KnpU\CodeBattle\Api;
++
++use Symfony\Component\HttpKernel\Exception\HttpException;
++
++class ApiProblemException extends HttpException
++{
++    private $apiProblem;
++
++    public function __construct($statusCode, ApiProblem $apiProblem, \Exception $previous = null, array $headers = array(), $code = 0)
++    {
++        $this->apiProblem = $apiProblem;
++
++        parent::__construct($statusCode, $apiProblem->getTitle(), $previous, $headers, $code);
++    }
++
++    public function getApiProblem()
++    {
++        return $this->apiProblem;
++    }
++}
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 89032af..0ecdd79 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -3,6 +3,7 @@
+ namespace KnpU\CodeBattle\Controller\Api;
+ 
+ use KnpU\CodeBattle\Api\ApiProblem;
++use KnpU\CodeBattle\Api\ApiProblemException;
+ use KnpU\CodeBattle\Controller\BaseController;
+ use KnpU\CodeBattle\Model\Programmer;
+ use Silex\Application;
+@@ -129,7 +130,11 @@ class ProgrammerController extends BaseController
+         $isNew = !$programmer->id;
+ 
+         if ($data === null) {
+-            throw new HttpException(400, sprintf('Invalid JSON: '.$request->getContent()));
++            $problem = new ApiProblem(
++                ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT,
++                'Invalid JSON format sent'
++            );
++            throw new ApiProblemException(400, $problem);
+         }
+ 
+         // determine which properties should be changeable on this request
