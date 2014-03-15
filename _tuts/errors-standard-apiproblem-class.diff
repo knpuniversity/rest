@@ -1,0 +1,71 @@
+diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
+new file mode 100644
+index 0000000..b1b874c
+--- /dev/null
++++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
+@@ -0,0 +1,34 @@
++<?php
++
++namespace KnpU\CodeBattle\Api;
++
++/**
++ * A wrapper for holding data to be used for a application/problem+json response
++ */
++class ApiProblem
++{
++    private $type;
++
++    private $title;
++
++    private $extraData = array();
++
++    public function __construct($type, $title)
++    {
++        $this->type = $type;
++        $this->title = $title;
++    }
++
++    public function toArray()
++    {
++        return array_merge(
++            $this->extraData,
++            ['type' => $this->type, 'title' => $this->title]
++        );
++    }
++
++    public function set($name, $value)
++    {
++        $this->extraData[$name] = $value;
++    }
++}
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 91c496f..809e2f8 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -2,6 +2,7 @@
+ 
+ namespace KnpU\CodeBattle\Controller\Api;
+ 
++use KnpU\CodeBattle\Api\ApiProblem;
+ use KnpU\CodeBattle\Controller\BaseController;
+ use KnpU\CodeBattle\Model\Programmer;
+ use Silex\Application;
+@@ -162,13 +163,13 @@ class ProgrammerController extends BaseController
+ 
+     private function handleValidationResponse(array $errors)
+     {
+-        $data = array(
+-            'type' => 'validation_error',
+-            'title' => 'There was a validation error',
+-            'errors' => $errors
++        $apiProblem = new ApiProblem(
++            'validation_error',
++            'There was a validation error'
+         );
++        $apiProblem->set('errors', $errors);
+ 
+-        $response = new JsonResponse($data, 400);
++        $response = new JsonResponse($apiProblem->toArray(), 400);
+         $response->headers->set('Content-Type', 'application/problem+json');
+ 
+         return $response;
