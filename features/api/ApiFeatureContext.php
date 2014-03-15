@@ -206,7 +206,7 @@ class ApiFeatureContext extends BehatContext
             json_encode($payload)
         );
 
-        assertNotNull($this->arrayGet($payload, $property), $message);
+        assertTrue($this->arrayHas($payload, $property), $message);
     }
 
     /**
@@ -223,7 +223,7 @@ class ApiFeatureContext extends BehatContext
             json_encode($payload)
         );
 
-        assertNull($this->arrayGet($payload, $property), $message);
+        assertFalse($this->arrayHas($payload, $property), $message);
     }
 
     /**
@@ -566,32 +566,35 @@ class ApiFeatureContext extends BehatContext
     /**
      * Get an item from an array using "dot" notation.
      *
+     * Adapted further in this project
+     *
      * @copyright   Taylor Otwell
      * @link        http://laravel.com/docs/helpers
      * @param       array   $array
      * @param       string  $key
-     * @param       mixed   $default
-     * @return      mixed
+     * @param bool  $throwOnMissing
+     * @param bool  $checkForPresenceOnly If true, this function turns into arrayHas
+     *                                    it just returns true/false if it exists
+     * @return mixed
+     * @throws Exception
      */
-    protected function arrayGet($array, $key, $throwOnMissing = false)
+    protected function arrayGet($array, $key, $throwOnMissing = false, $checkForPresenceOnly = false)
     {
+        // this seems like an odd case :/
         if (is_null($key)) {
-            return $array;
+            return $checkForPresenceOnly ? true : $array;
         }
-
-        // if (isset($array[$key])) {
-        //     return $array[$key];
-        // }
 
         foreach (explode('.', $key) as $segment) {
 
             if (is_object($array)) {
-                if (! isset($array->{$segment})) {
+                if (!property_exists($array, $segment)) {
                     if ($throwOnMissing) {
                         throw new \Exception(sprintf('Cannot find the key "%s"', $key));
                     }
 
-                    return;
+                    // if we're checking for presence, return false - does not exist
+                    return $checkForPresenceOnly ? false : null;
                 }
                 $array = $array->{$segment};
 
@@ -601,13 +604,27 @@ class ApiFeatureContext extends BehatContext
                         throw new \Exception(sprintf('Cannot find the key "%s"', $key));
                     }
 
-                    return;
+                    // if we're checking for presence, return false - does not exist
+                    return $checkForPresenceOnly ? false : null;
                 }
                 $array = $array[$segment];
             }
         }
 
-        return $array;
+        // if we're checking for presence, return true - *does* exist
+        return $checkForPresenceOnly ? true : $array;
+    }
+
+    /**
+     * Same as arrayGet (handles dot.operators), but just returns a boolean
+     *
+     * @param $array
+     * @param $key
+     * @return boolean
+     */
+    protected function arrayHas($array, $key)
+    {
+        return $this->arrayGet($array, $key, false, true);
     }
 
     /**
