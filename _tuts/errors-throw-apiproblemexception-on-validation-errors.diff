@@ -1,0 +1,42 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 0ecdd79..2d1362e 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -39,7 +39,7 @@ class ProgrammerController extends BaseController
+         $this->updateProgrammerFromRequest($request, $programmer);
+ 
+         if ($errors = $this->validate($programmer)) {
+-            return $this->handleValidationResponse($errors);
++            $this->throwApiProblemValidationException($errors);
+         }
+ 
+         $this->save($programmer);
+@@ -93,7 +93,7 @@ class ProgrammerController extends BaseController
+         $this->updateProgrammerFromRequest($request, $programmer);
+ 
+         if ($errors = $this->validate($programmer)) {
+-            return $this->handleValidationResponse($errors);
++            $this->throwApiProblemValidationException($errors);
+         }
+ 
+         $this->save($programmer);
+@@ -167,7 +167,7 @@ class ProgrammerController extends BaseController
+         );
+     }
+ 
+-    private function handleValidationResponse(array $errors)
++    private function throwApiProblemValidationException(array $errors)
+     {
+         $apiProblem = new ApiProblem(
+             ApiProblem::TYPE_VALIDATION_ERROR,
+@@ -175,9 +175,6 @@ class ProgrammerController extends BaseController
+         );
+         $apiProblem->set('errors', $errors);
+ 
+-        $response = new JsonResponse($apiProblem->toArray(), 400);
+-        $response->headers->set('Content-Type', 'application/problem+json');
+-
+-        return $response;
++        throw new ApiProblemException(400, $apiProblem);
+     }
+ }
