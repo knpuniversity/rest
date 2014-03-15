@@ -139,6 +139,16 @@
             "id": "patch-programmer-adding-the-controller",
             "name": "PATCH Programmer: Adding the controller",
             "description": null
+        },
+        {
+            "id": "errors-write-test-for-missing-fields",
+            "name": "Errors: Write test for missing fields",
+            "description": null
+        },
+        {
+            "id": "errors-playing-with-validation",
+            "name": "Errors: Playing with validation",
+            "description": null
         }
     ]
 }
