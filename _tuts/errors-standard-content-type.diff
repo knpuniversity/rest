@@ -1,0 +1,27 @@
+diff --git a/features/api/programmer.feature b/features/api/programmer.feature
+index 51ecd9d..90baa8c 100644
+--- a/features/api/programmer.feature
++++ b/features/api/programmer.feature
+@@ -38,6 +38,7 @@ Feature: Programmer
+       """
+     And the "errors.nickname" property should exist
+     But the "errors.avatarNumber" property should not exist
++    And the "Content-Type" header should be "application/problem+json"
+ 
+   Scenario: GET one programmer
+     Given the following programmers exist:
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index c98e278..91c496f 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -168,6 +168,9 @@ class ProgrammerController extends BaseController
+             'errors' => $errors
+         );
+ 
+-        return new JsonResponse($data, 400);
++        $response = new JsonResponse($data, 400);
++        $response->headers->set('Content-Type', 'application/problem+json');
++
++        return $response;
+     }
+ }
