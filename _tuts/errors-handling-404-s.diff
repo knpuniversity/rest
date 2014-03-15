@@ -1,0 +1,71 @@
+diff --git a/features/api/programmer.feature b/features/api/programmer.feature
+index faa797f..83ccb52 100644
+--- a/features/api/programmer.feature
++++ b/features/api/programmer.feature
+@@ -53,6 +53,12 @@ Feature: Programmer
+     And the "Content-Type" header should be "application/problem+json"
+     And the "type" property should equal "invalid_body_format"
+ 
++  Scenario: Proper 404 exception on no programmer
++    When I request "GET /api/programmers/fake"
++    Then the response status code should be 404
++    And the "Content-Type" header should be "application/problem+json"
++    And the "type" property should equal "404"
++
+   Scenario: GET one programmer
+     Given the following programmers exist:
+       | nickname   | avatarNumber |
+diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
+index 585abe6..2a95cc8 100644
+--- a/src/KnpU/CodeBattle/Application.php
++++ b/src/KnpU/CodeBattle/Application.php
+@@ -5,6 +5,7 @@ namespace KnpU\CodeBattle;
+ use Doctrine\Common\Annotations\AnnotationReader;
+ use Doctrine\Common\Annotations\CachedReader;
+ use Doctrine\Common\Cache\PhpFileCache;
++use KnpU\CodeBattle\Api\ApiProblem;
+ use KnpU\CodeBattle\Api\ApiProblemException;
+ use KnpU\CodeBattle\Battle\PowerManager;
+ use KnpU\CodeBattle\Repository\BattleRepository;
+@@ -25,6 +26,7 @@ use KnpU\CodeBattle\Repository\ProgrammerRepository;
+ use KnpU\CodeBattle\Battle\BattleManager;
+ use Silex\Provider\ValidatorServiceProvider;
+ use Symfony\Component\HttpFoundation\JsonResponse;
++use Symfony\Component\HttpFoundation\Response;
+ use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
+ use Symfony\Component\Validator\Mapping\Loader\AnnotationLoader;
+ 
+@@ -217,14 +219,29 @@ class Application extends SilexApplication
+ 
+     private function configureListeners()
+     {
+-        $this->error(function(\Exception $e, $statusCode) {
+-            // only do something special if we have an ApiProblemException!
+-            if (!$e instanceof ApiProblemException) {
++        $app = $this;
++
++        $this->error(function(\Exception $e, $statusCode) use ($app) {
++            // only act on /api URLs
++            if (strpos($app['request']->getPathInfo(), '/api') !== 0) {
+                 return;
+             }
+ 
++            if ($e instanceof ApiProblemException) {
++                $apiProblem = $e->getApiProblem();
++            } else {
++                $title = isset(Response::$statusTexts[$statusCode])
++                    ? Response::$statusTexts[$statusCode]
++                    : 'Unknown HTTP status code :(';
++
++                $apiProblem = new ApiProblem(
++                    $statusCode,
++                    $title
++                );
++            }
++
+             $response = new JsonResponse(
+-                $e->getApiProblem()->toArray(),
++                $apiProblem->toArray(),
+                 $statusCode
+             );
+             $response->headers->set('Content-Type', 'application/problem+json');
