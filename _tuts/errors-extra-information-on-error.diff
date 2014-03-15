@@ -1,0 +1,72 @@
+diff --git a/features/api/programmer.feature b/features/api/programmer.feature
+index 83ccb52..fd6f115 100644
+--- a/features/api/programmer.feature
++++ b/features/api/programmer.feature
+@@ -58,6 +58,7 @@ Feature: Programmer
+     Then the response status code should be 404
+     And the "Content-Type" header should be "application/problem+json"
+     And the "type" property should equal "404"
++    And the "detail" property should equal "The programmer fake does not exist!"
+ 
+   Scenario: GET one programmer
+     Given the following programmers exist:
+diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
+index 2a95cc8..a18da19 100644
+--- a/src/KnpU/CodeBattle/Application.php
++++ b/src/KnpU/CodeBattle/Application.php
+@@ -27,6 +27,7 @@ use KnpU\CodeBattle\Battle\BattleManager;
+ use Silex\Provider\ValidatorServiceProvider;
+ use Symfony\Component\HttpFoundation\JsonResponse;
+ use Symfony\Component\HttpFoundation\Response;
++use Symfony\Component\HttpKernel\Exception\HttpException;
+ use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
+ use Symfony\Component\Validator\Mapping\Loader\AnnotationLoader;
+ 
+@@ -240,6 +241,16 @@ class Application extends SilexApplication
+                 );
+             }
+ 
++            /*
++             * If it's an HttpException message (e.g. for 404, 403),
++             * we'll say as a rule that the exception message is safe
++             * for the client. Otherwise, it could be some sensitive
++             * low-level exception, which should *not* be exposed
++             */
++            if ($e instanceof HttpException) {
++                $apiProblem->set('detail', $e->getMessage());
++            }
++
+             $response = new JsonResponse(
+                 $apiProblem->toArray(),
+                 $statusCode
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 2d1362e..74b5a7b 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -59,7 +59,7 @@ class ProgrammerController extends BaseController
+         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
+ 
+         if (!$programmer) {
+-            $this->throw404();
++            $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
+         }
+ 
+         $data = $this->serializeProgrammer($programmer);
+@@ -87,7 +87,7 @@ class ProgrammerController extends BaseController
+         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
+ 
+         if (!$programmer) {
+-            $this->throw404();
++            $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
+         }
+ 
+         $this->updateProgrammerFromRequest($request, $programmer);
+@@ -110,7 +110,7 @@ class ProgrammerController extends BaseController
+         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
+ 
+         if (!$programmer) {
+-            $this->throw404();
++            $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
+         }
+ 
+         $this->delete($programmer);
