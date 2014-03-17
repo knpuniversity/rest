@@ -26,10 +26,10 @@ index 21c1021..714fae0 100644
          return $response;
      }
 diff --git a/testing.php b/testing.php
-index d7a1322..7cd7696 100644
+index 4bd9bd1..edead1b 100644
 --- a/testing.php
 +++ b/testing.php
-@@ -21,6 +21,10 @@ $data = array(
+@@ -22,6 +22,10 @@ $data = array(
  $request = $client->post('/api/programmers', null, json_encode($data));
  $response = $request->send();
  
