@@ -40,7 +40,7 @@ index 2a95cc8..a18da19 100644
                  $apiProblem->toArray(),
                  $statusCode
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 2d1362e..74b5a7b 100644
+index 7b4096b..15822ee 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -59,7 +59,7 @@ class ProgrammerController extends BaseController
