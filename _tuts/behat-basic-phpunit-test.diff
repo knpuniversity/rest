@@ -1,0 +1,13 @@
+diff --git a/src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php b/src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php
+new file mode 100644
+index 0000000..585ab2d
+--- /dev/null
++++ b/src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php
+@@ -0,0 +1,7 @@
++<?php
++namespace KnpU\CodeBattle\Tests;
++
++class ProgrammerControllerTest extends \PHPUnit_Framework_TestCase
++{
++
++}
