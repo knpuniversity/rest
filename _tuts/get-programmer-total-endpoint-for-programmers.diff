@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 714fae0..1f0b4f0 100644
+index 714fae0..7aa33f3 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -18,6 +18,8 @@ class ProgrammerController extends BaseController
@@ -32,7 +32,7 @@ index 714fae0..1f0b4f0 100644
 +    public function listAction()
 +    {
 +        $programmers = $this->getProgrammerRepository()->findAll();
-+        $data = ['data' => []];
++        $data = array('data' => array());
 +        foreach ($programmers as $programmer) {
 +            $data['data'][] = $this->serializeProgrammer($programmer);
 +        }
@@ -54,10 +54,10 @@ index 714fae0..1f0b4f0 100644
 +    }
  }
 diff --git a/testing.php b/testing.php
-index 703ca16..ecd1be2 100644
+index 9767aa1..55d06c6 100644
 --- a/testing.php
 +++ b/testing.php
-@@ -27,5 +27,9 @@ $programmerUrl = $response->getHeader('Location');
+@@ -28,5 +28,9 @@ $programmerUrl = $response->getHeader('Location');
  $request = $client->get($programmerUrl);
  $response = $request->send();
  
