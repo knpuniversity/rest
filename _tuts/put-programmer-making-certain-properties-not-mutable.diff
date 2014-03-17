@@ -27,7 +27,7 @@ index 51efc15..cd43ccd 100644
 +    But the "powerLevel" property should equal "4"
 +    But the "nickname" property should equal "CowboyCoder"
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 017c6cd..3dd031d 100644
+index 12ffd1f..ea2c211 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -95,14 +95,24 @@ class ProgrammerController extends BaseController
