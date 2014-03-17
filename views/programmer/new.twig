@@ -2,7 +2,7 @@
 {% import '_macros.twig' as macros %}
 
 {% block content %}
-    <h1>Create a programmer!</h1>
+    <h1 id="create">Create a Programmer!</h1>
 
     {% if errors is defined %}
         {{ macros.print_errors(errors) }}
@@ -23,10 +23,8 @@
                 </ul>
                 <input type="hidden" class="js-selectable-target" name="avatarNumber" value="{{ programmer.avatarNumber }}" />
 
-                <div class="form-group">
-                    <button type="submit" class="btn">Compile!</button>
+                    <button type="submit" class="btn create-buttons">Compile!</button>
                     <a class="cancel-link" href="{{ path('homepage') }}">Cancel</a>
-                </div>
             </fieldset>
         </form>
 

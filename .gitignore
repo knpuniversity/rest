@@ -3,3 +3,4 @@
 /data/*.sqlite
 /behat.yml
 /logs/*
+/.sass-cache

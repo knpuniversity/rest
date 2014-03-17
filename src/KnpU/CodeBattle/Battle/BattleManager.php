@@ -35,7 +35,7 @@ class BattleManager
         $battle->foughtAt = new \DateTime();
 
         if ($programmer->powerLevel < $project->difficultyLevel) {
-            // not even energy
+            // not enough energy
             $battle->didProgrammerWin = false;
             $battle->notes = 'You don\'t have the skills to even start this project. Read the documentation (i.e. power up) and try again!';
         } else {

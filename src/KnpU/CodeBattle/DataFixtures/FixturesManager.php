@@ -100,13 +100,35 @@ class FixturesManager
         $userRepo = $this->app['repository.user'];
         $userRepo->save($user);
 
-        for ($i = 0; $i < 3; $i++) {
-            $project = new Project();
-            $project->name = 'Project '.$i;
-            $project->difficultyLevel = rand(1, 10);
-            $projectRepo = $this->app['repository.project'];
-            $projectRepo->save($project);
-        }
+        $project1 = new Project();
+        $project1->name = 'BurningBot';
+        $project1->difficultyLevel = rand(1, 10);
+        $projectRepo = $this->app['repository.project'];
+        $projectRepo->save($project1);
+
+        $project2 = new Project();
+        $project2->name = 'InstaFaceTweet';
+        $project2->difficultyLevel = rand(1, 10);
+        $projectRepo = $this->app['repository.project'];
+        $projectRepo->save($project2);
+        
+        $project3 = new Project();
+        $project3->name = 'MountBox';
+        $project3->difficultyLevel = rand(1, 10);
+        $projectRepo = $this->app['repository.project'];
+        $projectRepo->save($project3);
+        
+        $project4 = new Project();
+        $project4->name = 'Video Game';
+        $project4->difficultyLevel = rand(1, 10);
+        $projectRepo = $this->app['repository.project'];
+        $projectRepo->save($project4);
+        
+        $project5 = new Project();
+        $project5->name = 'Bike Shop Project';
+        $project5->difficultyLevel = rand(1, 10);
+        $projectRepo = $this->app['repository.project'];
+        $projectRepo->save($project5);
     }
 
     /**

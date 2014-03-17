@@ -11,14 +11,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <!-- Bootstrap core CSS -->
-    <link href="{{ app.request.basePath }}/css/bootstrap.css" rel="stylesheet" />
-
     <!-- Add custom CSS here -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ app.request.basePath }}/css/rest.css">
+    <link rel="stylesheet" href="{{ app.request.basePath }}/css/styles.css">
 </head>
 <body>
     <!--[if lt IE 7]>
@@ -30,6 +24,14 @@
             <div class="navbar-header">
                 <a href="{{ path('homepage') }}"><img src="../img/logo-2.png" alt="code battle logo" class="logo"></a>
                 <a href="{{ path('homepage') }}" class="navbar-brand">Code Battles</a>
+               {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <button class = "navbar-toggle" data-toggle = "collapse" data-target = "#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                {% else %}
+                {% endif %}
             </div>
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav navbar-right">
@@ -70,7 +72,7 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-offset-4 col-md-4 main-console-screen">
+            <div class="main-console-screen">
                 {% if app.request.session.flashbag.has('notice_happy') %}
                     {{ macros.flashMessage(app.request.session.flashbag.get('notice_happy'), true) }}
                 {% endif %}

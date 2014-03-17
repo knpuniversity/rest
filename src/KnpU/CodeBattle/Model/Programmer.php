@@ -14,7 +14,7 @@ class Programmer
     public $nickname;
 
     /**
-     * Number of an avatar, from 1-9
+     * Number of an avatar, from 1-6
      *
      * @var integer
      */
