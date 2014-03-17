@@ -11,7 +11,8 @@
             {{ programmer.powerLevel }}
         </span>
     </h3>
-
+    {{ programmer.tagLine }}
+    <img src="{{ asset(programmer.avatarNumber|avatar_path) }}" alt="Avatar{{ programmer.avatarNumber }}" />
     {% if programmer.userId == app.user.id %}
         <form action="{{ path('programmer_powerup', {'nickname': programmer.nickname }) }}" method="POST">
             <div class="battle-btns">
