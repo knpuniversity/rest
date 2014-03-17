@@ -1,13 +1,14 @@
 h1 {
     font-size: 30px;
 }
-table.table.user-information th {
-    white-space: nowrap;
-    border-top: none;
+body {
+    margin-top: 75px;
+    background: #fff url(../img/crossword.png);
 }
-table.table.user-information td {
-    border-top: none;
-}
+
+/*
+ * Navigation
+*/
 .logo {
     margin: 10px;
     height: 30px;
@@ -20,9 +21,15 @@ table.table.user-information td {
     font-size: 2em;
     line-height: 20px;
 }
-body {
-    margin-top: 75px;
-    background: #fff url(../img/crossword.png);
+.reg-nav {
+    text-decoration: none;
+}
+table.table.user-information th {
+    white-space: nowrap;
+    border-top: none;
+}
+table.table.user-information td {
+    border-top: none;
 }
 
 /*Login Form*/
@@ -33,7 +40,7 @@ body {
 
 .reg-btn,
 .cancel-link {
-    color: #7d7d7d;
+    color: #585757;
     text-decoration: underline;
     font-size: 1.15em;
 }
@@ -81,6 +88,7 @@ ul.action-buttons-list .btn {
 .btn-start-battle {
     color: white;
     background: #ef6a32;
+    border: none;
 }
 .btn-start-battle:hover {
     color: white;
@@ -110,7 +118,7 @@ ul.js-selectable-tile {
     padding: 0px;
 }
 .js-selectable-tile li:hover {
-    box-shadow: 4px 4px 10px gray;
+    box-shadow: 4px 4px 10px #585757;
 }
 
 .js-selectable-tile li {
@@ -122,7 +130,7 @@ ul.js-selectable-tile {
     cursor: pointer;
 }
 .js-selectable-tile li.selected {
-    box-shadow: 4px 4px 10px gray;
+    box-shadow: 4px 4px 10px #585757;
 
 }
 .create-buttons {
@@ -133,27 +141,113 @@ ul.js-selectable-tile {
  * Programmer Show Page
  */
 
+.nickname,
+.prog-level,
+.show-power {
+    text-align: center;
+}
+
+.prog-level {
+    font-size: 1.2em;
+}
+.prog-show {
+    display: block;
+    margin: auto;
+    padding-top: 10px;
+}
+.show-power {
+    padding-bottom: 15px;
+}
 .btn-power {
-    background: #a6d96a;
+    background: #9AC962;
+}
+.btn-power,
+.btn-start-battle {
+    display: inline-block;
 }
 .btn-power:hover {
-    background: #d9ef8b;
+    background: #C5D97B;
     color: white;
 }
 
 /*
  * Choose a Programmer
  */
+.programmers-list li a{
+    color: white;
+}
 
 ul.programmers-list {
     list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.programmers-list li {
+    width: 30%;
+    margin: 1.6666666666667%;
+    float: left;
+    display: -moz-inline-box;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/*
+ * Battle Modal
+ */
+
+.modal-title {
+     color: #585757;
+ }
+ul.projects-list {
+    list-style: none;
+    margin: 0px auto;
+}
+.projects-list li {
+    display: block;
+    padding: 5px 0 5px 0;
+}    
+.btn-enemy {
+    background: #B41212;
 }
 
 /*
  * Post Battle Results
  */
  
+.battle-result {
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+}
+
+.results {
+    font-size: 1.5em;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+ 
 .btn-surrender {
     background: white;
     color: black;
+}
+
+/*
+ * Table of results
+ */
+.table {
+    background: white;
+}
+td,
+th {
+    color: #585757;
+}
+    
+td a {
+    color: #585757;
+}
+
+td a:hover {
+    text-decoration: none;
 }

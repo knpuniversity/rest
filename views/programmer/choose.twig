@@ -7,11 +7,13 @@
     <ul class="programmers-list">
         {% for programmer in programmers %}
             <li>
-                <a href="{{ path('programmer_show', {'nickname': programmer.nickname}) }}">{{ programmer.nickname }}</a>
+                <a href="{{ path('programmer_show', {'nickname': programmer.nickname}) }}">{{ programmer.nickname }} </a><br>
+                <a class="programmers-list-img"href="{{ path('programmer_show', {'nickname': programmer.nickname}) }}"><img src="{{ asset(programmer.avatarNumber|avatar_path) }}" alt="Avatar{{ programmer.avatarNumber }}" /></a>
+                
             </li>
         {% endfor %}
     </ul>
-    <a class="btn btn-sm btn-surrender" href="{{ path('homepage') }}">Retreat</a>
+    <a class="btn btn-small btn-surrender" href="{{ path('homepage') }}">Retreat</a>
 
 
 {% endblock %}

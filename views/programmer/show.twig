@@ -2,17 +2,16 @@
 {% import '_macros.twig' as macros %}
 
 {% block content %}
-    <h1>{{ programmer.nickname }}</h1>
-	
-    <h3>
+    <h1 class="nickname">{{ programmer.nickname }}</h1>
+    <div class="prog-level">{{ programmer.tagLine }}</div>
+	<img class="prog-show" src="{{ asset(programmer.avatarNumber|avatar_path) }}" alt="Avatar{{ programmer.avatarNumber }}" />
+    <h3 class="show-power">
         Power Level:
 
         <span class="label label-{{ programmer|powerLevelClass }}">
             {{ programmer.powerLevel }}
         </span>
     </h3>
-    {{ programmer.tagLine }}
-    <img src="{{ asset(programmer.avatarNumber|avatar_path) }}" alt="Avatar{{ programmer.avatarNumber }}" />
     {% if programmer.userId == app.user.id %}
         <form action="{{ path('programmer_powerup', {'nickname': programmer.nickname }) }}" method="POST">
             <div class="battle-btns">
@@ -36,15 +35,22 @@
                                         <input type="hidden" name="programmer_id" value="{{ programmer.id }}" />
                                         <input type="hidden" name="project_id" id="js-receive-project-id" value="{{ project.id }}" />
 
-                                        <input type="submit" class="btn btn-danger js-select-battle-project" data-project="{{ project.id }}" value="{{ project.name }} (difficulty: {{ project.difficultyLevel }})" />
+                                        <input type="submit" class="btn btn-lg btn-enemy" data-project="{{ project.id }}" value="{{ project.name }} (difficulty: {{ project.difficultyLevel }})" />
                                     </form>
                                 </li>
                             {% endfor %}
                         </ul>
                     </div>
+                    
+                    <div class="progress progress-striped active">
+                      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                        <span class="sr-only">60% Complete (warning)</span>
+                      </div>
+                    </div>
+                    
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Wimp out</button>
-                        <button type="button" class="btn btn-primary js-start-battle">Start Battle! </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Surrender</button>
+                        <button type="button" class="btn btn-start-battle js-start-battle">Start Battle! </button>
                     </div>
                 </div>
                 <!-- /.modal-content -->

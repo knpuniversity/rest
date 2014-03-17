@@ -24,6 +24,14 @@
             <div class="navbar-header">
                 <a href="{{ path('homepage') }}"><img src="../img/logo-2.png" alt="code battle logo" class="logo"></a>
                 <a href="{{ path('homepage') }}" class="navbar-brand">Code Battles</a>
+               {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <button class = "navbar-toggle" data-toggle = "collapse" data-target = "#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                {% else %}
+                {% endif %}
             </div>
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav navbar-right">
