@@ -86,6 +86,21 @@
             "description": null
         },
         {
+            "id": "behat-basic-phpunit-test",
+            "name": "Behat: Basic PHPUnit test",
+            "description": null
+        },
+        {
+            "id": "behat-fill-in-phpunit-test",
+            "name": "Behat: Fill in PHPUnit test",
+            "description": null
+        },
+        {
+            "id": "behat-adding-asserts-to-phpunit-test",
+            "name": "Behat: Adding asserts to PHPUnit test",
+            "description": null
+        },
+        {
             "id": "behat-basic-post-scenario",
             "name": "Behat: Basic POST scenario",
             "description": null
