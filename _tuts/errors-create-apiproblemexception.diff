@@ -53,7 +53,7 @@ index 0000000..11a11e1
 +    }
 +}
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 89032af..0ecdd79 100644
+index 2baeec0..136f091 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -3,6 +3,7 @@
