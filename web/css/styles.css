@@ -9807,8 +9807,13 @@ table.table.user-information td {
   color: black;
 }
 
+/* line 50, ../sass/_rest.scss */
+.reg-btn:hover {
+  color: black;
+}
+
 /* Styling for the main box wrapper used on each page */
-/* line 52, ../sass/_rest.scss */
+/* line 54, ../sass/_rest.scss */
 .main-console-screen {
   margin: 0 auto;
   padding: 0px 20px 10px 20px;
@@ -9823,60 +9828,60 @@ table.table.user-information td {
 /*
  * HOMEPAGE
  */
-/* line 66, ../sass/_rest.scss */
+/* line 68, ../sass/_rest.scss */
 .button-list {
   padding: 20px 0px 0px 0px;
 }
 
-/* line 69, ../sass/_rest.scss */
+/* line 71, ../sass/_rest.scss */
 ul.action-buttons-list {
   list-style: none;
   text-align: center;
   padding: 0px;
 }
 
-/* line 74, ../sass/_rest.scss */
+/* line 76, ../sass/_rest.scss */
 ul.action-buttons-list li {
   margin-bottom: 20px;
 }
 
-/* line 77, ../sass/_rest.scss */
+/* line 79, ../sass/_rest.scss */
 ul.action-buttons-list .btn {
   width: 200px;
 }
 
-/* line 80, ../sass/_rest.scss */
+/* line 82, ../sass/_rest.scss */
 .btn-create {
   color: white;
   background: #bababa;
 }
 
-/* line 84, ../sass/_rest.scss */
+/* line 86, ../sass/_rest.scss */
 .btn-create:hover {
   color: white;
   background: #e0e0e0;
 }
 
-/* line 88, ../sass/_rest.scss */
+/* line 90, ../sass/_rest.scss */
 .btn-start-battle {
   color: white;
   background: #ef6a32;
   border: none;
 }
 
-/* line 93, ../sass/_rest.scss */
+/* line 95, ../sass/_rest.scss */
 .btn-start-battle:hover {
   color: white;
   background: #FF7338;
 }
 
-/* line 97, ../sass/_rest.scss */
+/* line 99, ../sass/_rest.scss */
 .btn-scores {
   color: white;
   background: #01545a;
 }
 
-/* line 101, ../sass/_rest.scss */
+/* line 103, ../sass/_rest.scss */
 .btn-scores:hover {
   color: white;
   background: #618C8F;
@@ -9885,27 +9890,27 @@ ul.action-buttons-list .btn {
 /*
  * CREATE PROGRAMMER
  */
-/* line 110, ../sass/_rest.scss */
+/* line 112, ../sass/_rest.scss */
 #create {
   text-align: center;
 }
 
-/* line 113, ../sass/_rest.scss */
+/* line 115, ../sass/_rest.scss */
 .avatar-list {
   list-style: none;
 }
 
-/* line 117, ../sass/_rest.scss */
+/* line 119, ../sass/_rest.scss */
 ul.js-selectable-tile {
   padding: 0px;
 }
 
-/* line 120, ../sass/_rest.scss */
+/* line 122, ../sass/_rest.scss */
 .js-selectable-tile li:hover {
   box-shadow: 4px 4px 10px #585757;
 }
 
-/* line 124, ../sass/_rest.scss */
+/* line 126, ../sass/_rest.scss */
 .js-selectable-tile li {
   width: 30%;
   margin: 1.6666666666667%;
@@ -9915,12 +9920,12 @@ ul.js-selectable-tile {
   cursor: pointer;
 }
 
-/* line 132, ../sass/_rest.scss */
+/* line 134, ../sass/_rest.scss */
 .js-selectable-tile li.selected {
   box-shadow: 4px 4px 10px #585757;
 }
 
-/* line 136, ../sass/_rest.scss */
+/* line 138, ../sass/_rest.scss */
 .create-buttons {
   margin: 10px 0 0 0;
 }
@@ -9928,42 +9933,42 @@ ul.js-selectable-tile {
 /*
  * Programmer Show Page
  */
-/* line 146, ../sass/_rest.scss */
+/* line 148, ../sass/_rest.scss */
 .nickname,
 .prog-level,
 .show-power {
   text-align: center;
 }
 
-/* line 150, ../sass/_rest.scss */
+/* line 152, ../sass/_rest.scss */
 .prog-level {
   font-size: 1.2em;
 }
 
-/* line 153, ../sass/_rest.scss */
+/* line 155, ../sass/_rest.scss */
 .prog-show {
   display: block;
   margin: auto;
   padding-top: 10px;
 }
 
-/* line 158, ../sass/_rest.scss */
+/* line 160, ../sass/_rest.scss */
 .show-power {
   padding-bottom: 15px;
 }
 
-/* line 161, ../sass/_rest.scss */
+/* line 163, ../sass/_rest.scss */
 .btn-power {
   background: #9AC962;
 }
 
-/* line 165, ../sass/_rest.scss */
+/* line 167, ../sass/_rest.scss */
 .btn-power,
 .btn-start-battle {
   display: inline-block;
 }
 
-/* line 168, ../sass/_rest.scss */
+/* line 170, ../sass/_rest.scss */
 .btn-power:hover {
   background: #C5D97B;
   color: white;
@@ -9972,19 +9977,19 @@ ul.js-selectable-tile {
 /*
  * Choose a Programmer
  */
-/* line 176, ../sass/_rest.scss */
+/* line 178, ../sass/_rest.scss */
 .programmers-list li a {
   color: white;
 }
 
-/* line 180, ../sass/_rest.scss */
+/* line 182, ../sass/_rest.scss */
 ul.programmers-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* line 186, ../sass/_rest.scss */
+/* line 188, ../sass/_rest.scss */
 .programmers-list li {
   width: 30%;
   margin: 1.6666666666667%;
@@ -9997,24 +10002,24 @@ ul.programmers-list {
 /*
  * Battle Modal
  */
-/* line 199, ../sass/_rest.scss */
+/* line 201, ../sass/_rest.scss */
 .modal-title {
   color: #585757;
 }
 
-/* line 202, ../sass/_rest.scss */
+/* line 204, ../sass/_rest.scss */
 ul.projects-list {
   list-style: none;
   margin: 0px auto;
 }
 
-/* line 206, ../sass/_rest.scss */
+/* line 208, ../sass/_rest.scss */
 .projects-list li {
   display: block;
   padding: 5px 0 5px 0;
 }
 
-/* line 210, ../sass/_rest.scss */
+/* line 212, ../sass/_rest.scss */
 .btn-enemy {
   background: #B41212;
 }
@@ -10022,14 +10027,14 @@ ul.projects-list {
 /*
  * Post Battle Results
  */
-/* line 218, ../sass/_rest.scss */
+/* line 220, ../sass/_rest.scss */
 .battle-result {
   white-space: nowrap;
   overflow: hidden;
   text-align: center;
 }
 
-/* line 224, ../sass/_rest.scss */
+/* line 226, ../sass/_rest.scss */
 .results {
   font-size: 1.5em;
   text-align: center;
@@ -10037,7 +10042,7 @@ ul.projects-list {
   margin: 0;
 }
 
-/* line 231, ../sass/_rest.scss */
+/* line 233, ../sass/_rest.scss */
 .btn-surrender {
   background: white;
   color: black;
@@ -10046,23 +10051,23 @@ ul.projects-list {
 /*
  * Table of results
  */
-/* line 239, ../sass/_rest.scss */
+/* line 241, ../sass/_rest.scss */
 .table {
   background: white;
 }
 
-/* line 243, ../sass/_rest.scss */
+/* line 245, ../sass/_rest.scss */
 td,
 th {
   color: #585757;
 }
 
-/* line 247, ../sass/_rest.scss */
+/* line 249, ../sass/_rest.scss */
 td a {
   color: #585757;
 }
 
-/* line 251, ../sass/_rest.scss */
+/* line 253, ../sass/_rest.scss */
 td a:hover {
   text-decoration: none;
 }
