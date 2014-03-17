@@ -39,16 +39,7 @@ This is a basic request and it has 3 important pieces:
 
 With that in mind, a POST request might look like this:
 
-.. code-block:: text
-
-    POST /api/programmers HTTP/1.1
-    Host: CodeBattles.io
-    Authorization: Bearer b2gG66D1Tx6d89f3bM6oacHLPSz55j19DEC83x3GkY
-    Content-Type: application/json
-
-    {
-        "nickname": "Namespacinator"
-    }
+.. include:: includes/_post_programmer.rst.inc
 
 Ok, so same basic idea except the method is POST and we're sending data
 in the body of the request. We also have 2 extra headers, one for authentication
@@ -85,15 +76,111 @@ stuff.
 Resources and Representations
 -----------------------------
 
-- what is a resource
-- what is a representation
-- REST
-- RMM
+REST: Representational state transfer. The term was coined famously by Roy
+Fielding in a doctoral dissertation in 2000. So yea, it's complex, and a lot
+of the challenges around building a RESTful API are in understanding and
+debating the many rules, or constraints laid out in the dissertation.
 
-PLAN
-----
+When you build an API, it's pretty common to think in terms of endpoints,
+or the URLs your API will have. And when you give something a URL, it turns
+that thing into a resource. So, ``/programmers/Namespacinator`` is probably
+the address to a programmer resource and ``/programmers`` is probably the address
+to a resource that's actually a collection of programmers posts. This is already
+how we build the web, so we get this.
 
-- a bit of intro theory - but not too much to overdo it!
-- mention Richardson Maturity Model (RMM) 0 and 1 
-- Very basic REST introduction - the HTTP message, the GET method, status code
-- Resources and representations (but not too heavy)
+But instead of thinking about resources, I want to think about representations.
+Suppose a client makes a GET request to ``/programmers/Namespacinator`` and
+gets back a JSON response:
+
+.. code-block:: json
+
+    {
+        "nickname": "Namespacinator",
+        "powerLevel": 5
+    }
+
+That's the programmer resource, right? Wrong! No!
+
+This is a representation of the programmer resource. It happens to be in
+JSON, but the server could have represented the programmer in other ways,
+like in XML, YAML or even in JSON with a different format.
+
+The same applies when a client sends a request that contains programmer data:
+
+.. include:: includes/_post_programmer.rst.inc
+
+The client doesn't send a programmer resource, it just sends a representation.
+The server's job is to interpret this representation and update the resource.
+
+Representation State
+--------------------
+
+This is exactly how browing the web works. An HTML page is *not* a resource,
+it's just one representation. And when we fill out a form, we're just sending
+a different representation back to the server.
+
+A representation is a machine readable explanation of the current state of
+a resource.
+
+Yes, I said the current "state" of the resource, and that's another important
+and confusing term. What REST calls state, you probably think of as simply
+whatever data a resource has. Like earlier, when the client makes a GET request
+to ``/programmer/Namespacinator``, the JSON is a representation of its current
+state, or current data. And if the client made a request to update that programmer,
+the client is said to be sending a representation in order to update the
+state of the resource.
+
+So a client and server exchange representations of a resource, which reflect
+its current state or its desired state. So REST, or Representational state
+transfer, is a way for a two machines to transfer the state of a resource
+via representations.
+
+We just took an easy idea and turned it upside down. But if you can understand
+*this* way of thinking, a lot or what you read about REST will make a lot
+more sense.
+
+Transitions
+-----------
+
+Ok, just one more thing: state transitions. We already know about resource
+state, and how a client can transition the resource state by sending a representation
+with its new state, or data.
+
+There's also application state. When you browse the web, you're always only
+just *one* page of a site. That's your application state. When you click
+a link, you transition your application state to a different page. Whatever
+state we're in, or page we're on, helps us get to the next state or page,
+because it shows us the most relevant links. Oh, and HTML forms are also
+links. When we submit a form, it's just like a link, it POST's to a URL,
+which is our new app state. If the server redirects us, that's once again
+our new app state. Application state is kept in our browser, but the server
+helps guide us by sending us links, in the form of ``a`` tags, HTML forms,
+or even redirect responses.
+
+The same is true for an API, though maybe not the API's that you're used to.
+We won't talk about it initially, but a big part of building a RESTful API
+is sending back links along with your data. These tell you the most likely
+URLs you'll want your API to follow and are meant to be a guide. When you
+think about an API client following links, you can start to see how there's
+application state, even in an API. And so our job is to help the client with
+links.
+
+Richardson Maturity Model
+-------------------------
+
+We just accidentally talked through something called the `Richardson Maturity Model`_,
+which describes the different levels of RESTfulness. If your API is built
+where each resource has a specific URL, you've reached level 1. If you take
+advantage of HTTP verbs, like GET, POST, PUT and DELETE, congats: you're
+level 2! And if you take advantage of these links I've been talking about,
+that means you've reached hypermedia, a term we'll discuss later. But anyways,
+hypermedia means you're a Richardson Maturity Model grand master, or something.
+
+We'll keep this model in mind, but for now, let's start building!
+
+
+
+NOTES
+-----
+
+- too much theory? Should I wait and explain much of this later?
