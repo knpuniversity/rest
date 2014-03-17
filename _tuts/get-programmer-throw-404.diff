@@ -14,10 +14,10 @@ index 17cca3f..21c1021 100644
              'nickname' => $programmer->nickname,
              'avatarNumber' => $programmer->avatarNumber,
 diff --git a/testing.php b/testing.php
-index 0067f6a..d7a1322 100644
+index 0d8e288..4bd9bd1 100644
 --- a/testing.php
 +++ b/testing.php
-@@ -22,7 +22,7 @@ $request = $client->post('/api/programmers', null, json_encode($data));
+@@ -23,7 +23,7 @@ $request = $client->post('/api/programmers', null, json_encode($data));
  $response = $request->send();
  
  // 2) GET a programmer resource
