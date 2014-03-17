@@ -22,11 +22,11 @@ index 79f688b..ecdcfc6 100644
 +    }
  }
 diff --git a/testing.php b/testing.php
-index f45f5ae..0067f6a 100644
+index 2cabb17..0d8e288 100644
 --- a/testing.php
 +++ b/testing.php
-@@ -17,8 +17,13 @@ $data = array(
-     'avatarNumber' => 5,
+@@ -18,8 +18,13 @@ $data = array(
+     'tagLine' => 'a test dev!'
  );
  
 +// 1) Create a programmer resource
