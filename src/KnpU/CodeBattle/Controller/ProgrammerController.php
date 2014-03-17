@@ -86,9 +86,12 @@ class ProgrammerController extends BaseController
             throw new AccessDeniedException;
         }
 
-        $powerupMessage = $this->container['battle.power_manager']->powerUp($programmer);
+        $powerupDetails = $this->container['battle.power_manager']->powerUp($programmer);
 
-        $this->setFlash($powerupMessage);
+        $this->setFlash(
+            $powerupDetails['message'],
+            $powerupDetails['powerChange'] > 0
+        );
 
         return $this->redirect($this->generateUrl('programmer_show', array('nickname' => $programmer->nickname)));
     }

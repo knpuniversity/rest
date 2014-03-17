@@ -1,3 +1,4 @@
+{% import '_macros.twig' as macros -%}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -70,13 +71,14 @@
 
         <div class="row">
             <div class="col-md-offset-4 col-md-4 main-console-screen">
-                {% if app.request.session.flashbag.has('notice') %}
-                    <div class="alert alert-info flash-message">
-                        {% for message in app.request.session.flashbag.get('notice') %}
-                            {{ message }}
-                        {% endfor %}
-                    </div>
+                {% if app.request.session.flashbag.has('notice_happy') %}
+                    {{ macros.flashMessage(app.request.session.flashbag.get('notice_happy'), true) }}
                 {% endif %}
+
+                {% if app.request.session.flashbag.has('notice_sad') %}
+                    {{ macros.flashMessage(app.request.session.flashbag.get('notice_sad'), false) }}
+                {% endif %}
+
                 {% block content %}{% endblock %}
             </div>
         </div>

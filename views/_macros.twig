@@ -21,3 +21,17 @@
         <input type="{{ type }}" class="form-control" id="form-{{ name }}" name="{{ name }}" placeholder="{{ placeholder }}" value="{{ value }}" />
     </div>
 {% endmacro %}
+
+{% macro flashMessage(messages, isPositive) %}
+    <div class="alert alert-info flash-message">
+        {% if isPositive %}
+            :)
+        {% else %}
+            :(
+        {% endif %}
+
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endmacro %}

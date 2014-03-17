@@ -112,12 +112,13 @@ abstract class BaseController implements ControllerProviderInterface
         $this->container['security']->setToken($token);
     }
 
-    public function setFlash($message)
+    public function setFlash($message, $positiveNotice = true)
     {
         /** @var Request $request */
         $request = $this->container['request_stack']->getCurrentRequest();
+        $noticeKey = $positiveNotice ? 'notice_happy' : 'notice_sad';
 
-        $request->getSession()->getFlashbag()->add('notice', $message);
+        $request->getSession()->getFlashbag()->add($noticeKey, $message);
     }
 
     /**

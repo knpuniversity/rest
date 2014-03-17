@@ -73,11 +73,16 @@ class PowerManager
         if ($powerChange > 0) {
             $key = array_rand(self::$positiveMessages);
 
-            return sprintf(self::$positiveMessages[$key], $powerChange);
+            $message = sprintf(self::$positiveMessages[$key], $powerChange);
         } else {
             $key = array_rand(self::$negativeMessages);
 
-            return sprintf(self::$negativeMessages[$key], $powerChange);
+            $message = sprintf(self::$negativeMessages[$key], $powerChange);
         }
+
+        return array(
+            'message' => $message,
+            'powerChange' => $powerChange,
+        );
     }
 } 
