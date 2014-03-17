@@ -23,6 +23,10 @@ class UserController extends BaseController
      */
     public function registerAction()
     {
+        if ($this->isUserLoggedIn()) {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
+
         return $this->render('user/register.twig', array('user' => new User()));
     }
 
@@ -79,6 +83,10 @@ class UserController extends BaseController
      */
     public function loginAction(Application $app, Request $request)
     {
+        if ($this->isUserLoggedIn()) {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
+
         return $this->render('user/login.twig', array(
             'error'         => $app['security.last_error']($request),
             'last_username' => $app['session']->get('_security.last_username'),
