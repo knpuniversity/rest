@@ -1,8 +1,8 @@
 diff --git a/testing.php b/testing.php
-index 7cd7696..703ca16 100644
+index edead1b..9767aa1 100644
 --- a/testing.php
 +++ b/testing.php
-@@ -21,12 +21,10 @@ $data = array(
+@@ -22,12 +22,10 @@ $data = array(
  $request = $client->post('/api/programmers', null, json_encode($data));
  $response = $request->send();
  
