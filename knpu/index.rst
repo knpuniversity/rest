@@ -6,3 +6,6 @@ Starting in Symfony2: Episode2
 
     intro
     rest-basics
+    post
+    get
+    testing
