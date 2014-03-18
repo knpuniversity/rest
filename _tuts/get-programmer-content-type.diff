@@ -1,8 +1,8 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 580d821..17cca3f 100644
+index afec1bc..10e2841 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -48,6 +48,9 @@ class ProgrammerController extends BaseController
+@@ -46,6 +46,9 @@ class ProgrammerController extends BaseController
              'tagLine' => $programmer->tagLine,
          );
  
