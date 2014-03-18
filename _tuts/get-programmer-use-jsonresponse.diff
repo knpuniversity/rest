@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 79387fe..2b94a02 100644
+index 4700aa5..f79830e 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -33,16 +33,12 @@ class ProgrammerController extends BaseController
@@ -31,7 +31,7 @@ index 79387fe..2b94a02 100644
          return $response;
      }
 @@ -71,8 +66,7 @@ class ProgrammerController extends BaseController
-             $data['data'][] = $this->serializeProgrammer($programmer);
+             $data['programmers'][] = $this->serializeProgrammer($programmer);
          }
  
 -        $response = new Response(json_encode($data), 200);
