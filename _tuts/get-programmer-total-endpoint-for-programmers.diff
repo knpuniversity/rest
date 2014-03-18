@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 714fae0..7aa33f3 100644
+index af3631e..15cdb0f 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -18,6 +18,8 @@ class ProgrammerController extends BaseController
@@ -11,7 +11,7 @@ index 714fae0..7aa33f3 100644
      }
  
      public function newAction(Request $request)
-@@ -50,16 +52,35 @@ class ProgrammerController extends BaseController
+@@ -48,16 +50,35 @@ class ProgrammerController extends BaseController
              $this->throw404();
          }
  
