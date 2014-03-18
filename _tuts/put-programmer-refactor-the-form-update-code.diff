@@ -1,24 +1,23 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index a12fe3e..12ffd1f 100644
+index 032842a..12ffd1f 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -25,14 +25,8 @@ class ProgrammerController extends BaseController
+@@ -25,12 +25,8 @@ class ProgrammerController extends BaseController
  
      public function newAction(Request $request)
      {
 -        $data = json_decode($request->getContent(), true);
 -
-         $programmer = new Programmer();
--        $programmer->nickname = $data['nickname'];
--        $programmer->avatarNumber = $data['avatarNumber'];
+-        $programmer = new Programmer($data['nickname'], $data['avatarNumber']);
 -        $programmer->tagLine = $data['tagLine'];
 -        $programmer->userId = $this->findUserByUsername('weaverryan')->id;
 -
++        $programmer = new Programmer();
 +        $this->updateProgrammerFromRequest($request, $programmer);
          $this->save($programmer);
  
          $data = $this->serializeProgrammer($programmer);
-@@ -82,13 +76,7 @@ class ProgrammerController extends BaseController
+@@ -80,13 +76,7 @@ class ProgrammerController extends BaseController
              $this->throw404();
          }
  
@@ -33,7 +32,7 @@ index a12fe3e..12ffd1f 100644
          $this->save($programmer);
  
          $data = $this->serializeProgrammer($programmer);
-@@ -98,6 +86,26 @@ class ProgrammerController extends BaseController
+@@ -96,6 +86,26 @@ class ProgrammerController extends BaseController
          return $response;
      }
  
