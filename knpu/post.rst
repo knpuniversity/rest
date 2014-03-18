@@ -257,9 +257,7 @@ creating a new ``Programmer`` object.
     {
         $data = json_decode($request->getContent(), true);
 
-        $programmer = new Programmer();
-        $programmer->nickname = $data['nickname'];
-        $programmer->avatarNumber = $data['avatarNumber'];
+        $programmer = new Programmer($data['nickname'], $data['avatarNumber']);
         $programmer->tagLine = $data['tagLine'];
         $programmer->userId = $this->findUserByUsername('weaverryan')->id;
 
