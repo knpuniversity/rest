@@ -115,9 +115,10 @@ abstract class BaseRepository
 
     protected function fetchToObject(ResultStatement $stmt)
     {
-        $stmt->setFetchMode(PDO::FETCH_CLASS, $this->getClassName());
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $object = $stmt->fetch(PDO::FETCH_CLASS);
+        $object = $this->createObjectFromData($data);
+
         $this->finishHydrateObject($object);
 
         return $object;
@@ -125,13 +126,38 @@ abstract class BaseRepository
 
     protected function fetchAllToObject(ResultStatement $stmt)
     {
-        $objects = $stmt->fetchAll(PDO::FETCH_CLASS, $this->getClassName());
+        $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($objects as $object) {
+        $objects = array();
+        foreach ($datas as $data) {
+            $object = $this->createObjectFromData($data);
             $this->finishHydrateObject($object);
+
+            $objects[] = $object;
         }
 
         return $objects;
+    }
+
+    /**
+     * After we query for the associative array, this creates the right
+     * object then populates each public property with that data.
+     *
+     * This is the heart of our crappy ORM: all properties must be public
+     * and they all must have the same name as the column in the database.
+     *
+     * @param array $data
+     * @return object
+     */
+    private function createObjectFromData(array $data)
+    {
+        $class = $this->getClassName();
+        $object = new $class();
+        foreach ($data as $key => $val) {
+            $object->$key = $val;
+        }
+
+        return $object;
     }
 
     protected function finishHydrateObject($obj)
