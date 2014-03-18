@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 21c1021..714fae0 100644
+index 8f52fd3..af3631e 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -16,7 +16,8 @@ class ProgrammerController extends BaseController
@@ -12,7 +12,7 @@ index 21c1021..714fae0 100644
      }
  
      public function newAction(Request $request)
-@@ -32,7 +33,11 @@ class ProgrammerController extends BaseController
+@@ -30,7 +31,11 @@ class ProgrammerController extends BaseController
          $this->save($programmer);
  
          $response = new Response('It worked. Believe me - I\'m an API', 201);
