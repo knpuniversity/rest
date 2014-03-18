@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index af3631e..15cdb0f 100644
+index af3631e..1f9d43e 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -18,6 +18,8 @@ class ProgrammerController extends BaseController
@@ -32,9 +32,9 @@ index af3631e..15cdb0f 100644
 +    public function listAction()
 +    {
 +        $programmers = $this->getProgrammerRepository()->findAll();
-+        $data = array('data' => array());
++        $data = array('programmers' => array());
 +        foreach ($programmers as $programmer) {
-+            $data['data'][] = $this->serializeProgrammer($programmer);
++            $data['programmers'][] = $this->serializeProgrammer($programmer);
 +        }
 +
 +        $response = new Response(json_encode($data), 200);
