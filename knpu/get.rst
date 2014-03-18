@@ -5,7 +5,15 @@ Since we can create programmer resources, let's make an endpoint that's able
 to GET an individual programmer representation. Let's start by adding *how*
 we want this endpoint to look to our ``testing.php`` script::
 
-    TODO GET Programmer: Hardcoded show page - testing.php
+    // testing.php
+    // ...
+
+    // 2) GET a programmer resource
+    $request = $client->get('/api/programmers/'.$nickname);
+    $response = $request->send();
+
+    echo $response;
+    echo "\n\n";
 
 The URL is ``/api/programmers/{nickname}``, where the ``nickname`` part changes
 based on which programmer you want to get. In a RESTful API, the URL structures
@@ -22,13 +30,27 @@ Basic Routing and Controller
 To make this endpoint work, go back to ``ProgrammerController``, add another
 routing line, but make this page respond to the ``GET`` method::
 
-    TODO: GET Programmer: Hardcoded show page
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    protected function addRoutes(ControllerCollection $controllers)
+    {
+        $controllers->post('/api/programmers', array($this, 'newAction'));
+
+        $controllers->get('/api/programmers/{nickname}', array($this, 'showAction'));
+    }
 
 The ``{nickname}`` in the URL means that this route will be matched by any
 GET request that has ``/api/programmers/*``. Next, make a ``showAction`` method
 and just return a simple message::
 
-    TODO: GET Programmer: Hardcoded show page
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function showAction($nickname)
+    {
+        return new Response('Hello '.$nickname);
+    }
 
 If we go to ``/api/programmers/foo``, the ``$nickname`` variable will be
 equal to ``foo``. This is special to Silex, but you can do this kind of stuff
@@ -59,7 +81,22 @@ my simple ORM. This gives us a ``Programmer`` object, which we can easily
 turn into an array. Now, just create a new ``Response`` object and ``json_encode``
 the array so that we're returning a nice JSON string::
 
-    TODO: GET Programmer: Return JSON string of Programmer
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function showAction($nickname)
+    {
+        $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
+
+        $data = array(
+            'nickname' => $programmer->nickname,
+            'avatarNumber' => $programmer->avatarNumber,
+            'powerLevel' => $programmer->powerLevel,
+            'tagLine' => $programmer->tagLine,
+        );
+
+        return new Response(json_encode($data), 200);
+    }
 
 The status code here is 200 Ok. We're going to learn about several other
 status codes, but you'll still use this in most cases, especially for GET
@@ -90,7 +127,18 @@ an API client.
 Fix this by manually setting the ``Content-Type`` header on the ``Response``
 before returning it::
 
-    GET Programmer: Content-type
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function showAction($nickname)
+    {
+        // ...
+
+        $response = new Response(json_encode($data), 200);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
 
 *How* you set a header may be different in your app, but there is definitely
 a way to do this. And because the ``Content-Type`` header is so important,
@@ -112,7 +160,19 @@ header correctly and using the right status code. Great work.
 But let's not forget to return a 404 if we're passed a bad nickname. In our
 app, I've created a shortcut for this called ``throw404``::
 
-    TODO: GET Programmer: Throw 404
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function showAction($nickname)
+    {
+        $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
+
+        if (!$programmer) {
+            $this->throw404();
+        }
+
+        // ...
+    }
 
 Under the surface, this throws a special type of exception that's converted
 by Silex into a 404 response. In your app, just return a 404 page however
@@ -121,7 +181,15 @@ you normally do.
 Try it out by temporarily changing our testing script to point to a made-up
 nickname::
 
-    TODO GET Programmer: Throw 404
+    // testing.php
+    // ...
+
+    // 2) GET a programmer resource
+    $request = $client->get('/api/programmers/abcd'.$nickname);
+    $response = $request->send();
+
+    echo $response;
+    echo "\n\n";
 
 When we run the script now, we *do* see a 404 page, though it's a big ugly
 HTML page instead of JSON. We'll talk about properly handling API errors
@@ -136,12 +204,36 @@ that to be a real value.
 
 To do this, first add a ``bind`` function to our programmer route::
 
-    TODO GET Programmer: Update Location header
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    protected function addRoutes(ControllerCollection $controllers)
+    {
+        $controllers->post('/api/programmers', array($this, 'newAction'));
+
+        $controllers->get('/api/programmers/{nickname}', array($this, 'showAction'))
+            ->bind('api_programmers_show');
+    }
 
 This gives the route an internal name of ``api_programmers_show``. We can
 use that below to generate a proper URL to the new programmer resource::
 
-    TODO GET Programmer: Update Location header
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function newAction(Request $request)
+    {
+        // ...
+
+        $response = new Response('It worked. Believe me - I\'m an API', 201);
+        $programmerUrl = $this->generateUrl(
+            'api_programmers_show',
+            ['nickname' => $programmer->nickname]
+        );
+        $response->headers->set('Location', $programmerUrl);
+
+        return $response;
+    }
 
 The ``generateUrl`` method is a shortcut I added for our app, and it combines
 the ``nickname`` with the rest of the URL for the route. This will be different
@@ -159,7 +251,19 @@ outside of Silex, but very similar.
 Let's update the ``testing.php`` script to print out the response from the
 original POST so we can check this out::
 
-    TODO GET Programmer: Update Location header
+    // testing.php
+    // ...
+
+    // 1) Create a programmer resource
+    $request = $client->post('/api/programmers', null, json_encode($data));
+    $response = $request->send();
+
+    echo $response;
+    echo "\n\n";
+    die;
+
+    // 2) GET a programmer resource
+    // ...
 
 And when we run it again, we've got a working ``Location`` header:
 
@@ -179,7 +283,21 @@ go next without needing to hardcode URLs or URL patterns. In fact, we can
 update our testing script to read the ``Location`` header and use it for
 the next request::
 
-    GET Programmer: Use Location header in test
+    // testing.php
+    // ...
+
+    // 1) Create a programmer resource
+    $request = $client->post('/api/programmers', null, json_encode($data));
+    $response = $request->send();
+
+    $programmerUrl = $response->getHeader('Location');
+
+    // 2) GET a programmer resource
+    $request = $client->get($programmerUrl);
+    $response = $request->send();
+
+    echo $response;
+    echo "\n\n";
 
 That's really powerful. But it's also where things start to get complicated.
 But we'll save that for later!
@@ -199,23 +317,75 @@ will probably assume it exists anyways.
 
 Like always, let's start by updating our testing script to try the new endpoint::
 
-    TODO: GET Programmer: Total endpoint for /programmers
+    // testing.php
+    // ...
+
+    // 3) GET a list of all programmers
+    $request = $client->get('/api/programmers');
+    $response = $request->send();
+
+    echo $response;
+    echo "\n\n";
 
 Next, create a new route that points to a new ``listAction`` method in our
 ``ProgrammerController`` class::
 
-    TODO: GET Programmer: Total endpoint for /programmers
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    protected function addRoutes(ControllerCollection $controllers)
+    {
+        // the 2 other routes ...
+
+        $controllers->get('/api/programmers', array($this, 'listAction'));
+    }
 
 I'll copy the ``showAction`` and modify it for ``listAction``. We'll query
 for *all* programmers for now, then transform them all into a big array::
 
-    TODO: GET Programmer: Total endpoint for /programmers
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function listAction()
+    {
+        $programmers = $this->getProgrammerRepository()->findAll();
+        $data = array('data' => array());
+        foreach ($programmers as $programmer) {
+            $data['data'][] = $this->serializeProgrammer($programmer);
+        }
+
+        $response = new Response(json_encode($data), 200);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
 
 The ``serializeProgrammer`` method doesn't exist yet, but we can create it
 by using the code from ``showAction`` to avoid duplication. We're going to
 use some fancier methods of turning objects into JSON a bit later::
 
-    TODO: GET Programmer: Total endpoint for /programmers
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function showAction($nickname)
+    {
+        // ...
+
+        // replace the manual creation of the array with this function call
+        $data = $this->serializeProgrammer($programmer);
+
+        // ...
+    }
+
+    private function serializeProgrammer(Programmer $programmer)
+    {
+        return array(
+            'nickname' => $programmer->nickname,
+            'avatarNumber' => $programmer->avatarNumber,
+            'powerLevel' => $programmer->powerLevel,
+            'tagLine' => $programmer->tagLine,
+        );
+    }
 
 Let's try it out!
 
@@ -259,18 +429,65 @@ We now have 3 working endpoints, but one still has a big issue. The POST
 contain after creating a resource? Your best option is to return a representation
 of the new resource. So let's do that::
 
-    TODO:  GET Programmer: Return body on POST
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function newAction(Request $request)
+    {
+        // ...
+        $this->save($programmer);
+
+        $data = $this->serializeProgrammer($programmer);
+        $response = new Response(
+            json_encode($data),
+            201
+        );
+        $programmerUrl = $this->generateUrl(
+            'api_programmers_show',
+            ['nickname' => $programmer->nickname]
+        );
+        $response->headers->set('Location', $programmerUrl);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
 
 And of course, don't forget to set the ``Content-Type`` header to ``application/json``.
 To test, print out that response temporarily and try it::
 
-    TODO:  GET Programmer: Return body on POST
+    // testing.php
+    // ...
+
+    // 1) Create a programmer resource
+    $request = $client->post('/api/programmers', null, json_encode($data));
+    $response = $request->send();
+
+    echo $response;
+    echo "\n\n";die;
 
 And actually, since returning JSON is so common, Silex has a shortcut: the
 ``JsonResponse`` class. It takes care of running ``json_encode`` *and* setting
 the ``Content-Type`` header for us::
 
-    GET Programmer: Use JsonResponse
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+    use Symfony\Component\HttpFoundation\JsonResponse;
+
+    public function newAction(Request $request)
+    {
+        // ...
+        $this->save($programmer);
+
+        $data = $this->serializeProgrammer($programmer);
+        $response = new JsonResponse($data, 201);
+        $programmerUrl = $this->generateUrl(
+            'api_programmers_show',
+            ['nickname' => $programmer->nickname]
+        );
+        $response->headers->set('Location', $programmerUrl);
+
+        return $response;
+    }
 
 That's just there for convenience, but it cuts down on some code.
 

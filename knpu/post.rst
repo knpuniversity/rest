@@ -52,12 +52,24 @@ Basic Routing
 Find the ``src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php``
 file and uncomment the route definition::
 
-    TODO: POST Programmer: Create endpoint
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    protected function addRoutes(ControllerCollection $controllers)
+    {
+        $controllers->post('/api/programmers', array($this, 'newAction'));
+    }
 
 Next, create a ``newAction`` inside of this class and just return the classic
 and boring ``hello world!``::
 
-    TODO: POST Programmer: Create endpoint
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function newAction()
+    {
+        return 'hello world!';
+    }
 
 This creates a new endpoint with the URL ``/api/programmers``. If we make
 a POST request here, the ``newAction`` function will be executed.
@@ -77,7 +89,19 @@ Testing the Endpoint
 Let's test it so far! That's actually not so easy in a browser, since only
 a POST request will work. Instead, open up the ``testing.php`` file::
 
-    TODO: POST Programmer: Create endpoint
+    <?php
+    // testing.php
+    require __DIR__.'/vendor/autoload.php';
+
+    use Guzzle\Http\Client;
+
+    // create our http client (Guzzle)
+    $client = new Client('http://localhost:8000', array(
+        'request.options' => array(
+            'exceptions' => false,
+        )
+    ));
+
 
 All this does so far is instantiate a `Guzzle`_ Client object. Guzzle is
 a crazy-good library that lets you make HTTP curl requests and receive responses.
@@ -85,7 +109,19 @@ If you're talking to an API in PHP, this is what you use.
 
 Let's make a POST request to ``/api/programmers`` and print out the response::
 
-    TODO: POST Programmer: Start basic test
+    // testing.php
+    // ...
+    $client = new Client('http://localhost:8000', array(
+        'request.options' => array(
+            'exceptions' => false,
+        )
+    ));
+
+    $request = $client->post('/api/programmers');
+    $response = $request->send();
+
+    echo $response;
+    echo "\n\n";
 
 Try it out by running the file from the command line. You'll need to open
 a new terminal tab and make sure you're at the root of the project where
@@ -138,7 +174,21 @@ usually pass the representation as XML or JSON:
 
 Creating a request like this with Guzzle is easy::
 
-    TODO POST Programmer: Update test with POST data
+    // testing.php
+    // ...
+
+    $nickname = 'ObjectOrienter'.rand(0, 999);
+    $data = array(
+        'nickname' => $nickname,
+        'avatarNumber' => 5,
+        'tagLine' => 'a test dev!'
+    );
+
+    $request = $client->post('/api/programmers', null, json_encode($data));
+    $response = $request->send();
+
+    echo $response;
+    echo "\n\n";
 
 Coding up the Endpoint
 ----------------------
@@ -148,7 +198,14 @@ work. First, how do we get the JSON string passed in the request? In Silex,
 you do this by getting the ``Request`` object and calling ``getContent()``
 on it. Let's just return the data from the endpoint so we can see it::
 
-    TODO POST Programmer: Dump request content
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function newAction(Request $request)
+    {
+        $data = $request->getContent();
+        return $data;
+    }
 
 .. tip::
 
@@ -177,7 +234,23 @@ This time, you should see the JSON string being echo'ed back at you:
 Awesome! Now that we have the JSON string, we can just decode it and start
 creating a new ``Programmer`` object.
 
-    TODO POST Programmer: Creating and saving entity
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function newAction(Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $programmer = new Programmer();
+        $programmer->nickname = $data['nickname'];
+        $programmer->avatarNumber = $data['avatarNumber'];
+        $programmer->tagLine = $data['tagLine'];
+        $programmer->userId = $this->findUserByUsername('weaverryan')->id;
+
+        $this->save($programmer);
+
+        return 'It worked. Believe me - I\'m an API';
+    }
 
 Our app already comes ready with classes for ``Programmer``, ``Battle`` and
 ``Project``, as well as a really simple ORM. At the bottom, I'm just returning
@@ -185,7 +258,7 @@ a really reassuring message that everything went ok.
 
 I've also added one really ugly detail::
 
-    TODO POST Programmer: Creating and saving entity - just the one line
+    $programmer->userId = $this->findUserByUsername('weaverryan')->id;
 
 Every programmer is created and owned by one user. On the web, making this
 relation is simple, because I'm logged in. But our API is completely anonymous
@@ -219,7 +292,16 @@ since we've just created a resource, the HTTP elders say that we should return
 a 201 status code. In Silex, we just need to return a new ``Response`` object
 and set the status code as the second argument::
 
-    TODO: POST Programmer: 201 status code
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function newAction(Request $request)
+    {
+        // ...
+        $this->save($programmer);
+
+        return new Response('It worked. Believe me - I\'m an API', 201);
+    }
 
 Location Header
 ---------------
@@ -229,7 +311,19 @@ header that points to the new resource. We don't have a page that displays
 a programmer in our API yet, so let's just hardcode the ``Location`` header
 to a made-up URL::
 
-    TODO: POST Programmer: First Location header
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function newAction(Request $request)
+    {
+        // ...
+        $this->save($programmer);
+
+        $response = new Response('It worked. Believe me - I\'m an API', 201);
+        $response->headers->set('Location', '/some/programmer/url');
+
+        return $response;
+    }
 
 If you think about it, this is just how the web works. When we submit the
 form to create a new programmer, the server returns a redirect that takes
