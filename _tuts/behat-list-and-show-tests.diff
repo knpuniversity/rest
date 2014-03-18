@@ -1,5 +1,5 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index a25a42b..661658a 100644
+index a25a42b..1f0c4dc 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
 @@ -19,3 +19,28 @@ Feature: Programmer
@@ -29,5 +29,5 @@ index a25a42b..661658a 100644
 +      | CowboyCoder | 5            |
 +    When I request "GET /api/programmers"
 +    Then the response status code should be 200
-+    And the "data" property should be an array
-+    And the "data" property should contain 2 items
++    And the "programmers" property should be an array
++    And the "programmers" property should contain 2 items
