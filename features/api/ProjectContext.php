@@ -54,22 +54,21 @@ class ProjectContext extends BehatContext
 
     public function createProgrammer($nickname, User $owner = null, array $data = array())
     {
-        $programmer = new Programmer();
-        $programmer->nickname = $nickname;
-
-        if (!$owner) {
-            $owner = $this->getUserRepository()->findAny();
-        }
-        $programmer->userId = $owner->id;
+        $avatarNumber = isset($data['avatarNumber']) ? $data['avatarNumber'] : rand(1, 6);
+        $programmer = new Programmer($nickname, $avatarNumber);
 
         $data = array_merge(array(
-            'avatarNumber' => rand(1, 6),
             'powerLevel' => rand(0, 10),
         ), $data);
 
         foreach ($data as $prop => $val) {
             $programmer->$prop = $val;
         }
+
+        if (!$owner) {
+            $owner = $this->getUserRepository()->findAny();
+        }
+        $programmer->userId = $owner->id;
 
         $this->getProgrammerRepository()->save($programmer);
 

@@ -25,4 +25,12 @@ class Programmer
     public $userId;
 
     public $powerLevel = 0;
+
+    public function __construct($nickname = null, $avatarNumber = null)
+    {
+        $this->nickname = $nickname;
+        $this->avatarNumber = $avatarNumber;
+    }
+
+
 }
