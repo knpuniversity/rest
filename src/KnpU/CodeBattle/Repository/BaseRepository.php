@@ -117,6 +117,11 @@ abstract class BaseRepository
     {
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        // if we don't find any data, just return null
+        if (!$data) {
+            return null;
+        }
+
         $object = $this->createObjectFromData($data);
 
         $this->finishHydrateObject($object);
