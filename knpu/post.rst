@@ -33,9 +33,13 @@ About the App
 -------------
 
 Our application is built in `Silex`_, a PHP microframework. If you're not
-familiar with Silex, that's no problem. First, it's really easy. And second,
-most of what we'll do will basically be the same in any other framework.
-Sure, you'l need to do a little bit of work to hook in your framework's validation
+familiar with Silex, take a few minutes in `its Documentation`_ to get familiar
+with it. It basically let's us design routes, or pages and easily write the
+code to render those pages. Our setup will look just a little bit different
+than this, but the idea is the same.
+
+And wost of what we'll do will basically be the same in any other framework.
+Sure, you'll need to do a little bit of work to hook in your framework's validation
 system instead of the one we'll use, but these things are easy compared with
 all the tough REST stuff.
 
@@ -79,6 +83,12 @@ URLs and Resources
 
 Remember that every URL is the address to a resource. Here, ``/api/programmers``
 is a resource that represents the collection of programmers in the system.
+Actually, ``/api`` is just a prefix we're using to keep our API separate
+
+ we're choosing to have so that our API
+doesn't crash into our application.
+
+
 A resource can be one thing - like a programmer - or many things - like a
 collection of programmers. Typically, when you POST to a collection, you're
 saying that you want to add a new item to it.
@@ -190,6 +200,9 @@ Creating a request like this with Guzzle is easy::
     echo $response;
     echo "\n\n";
 
+The second ``null`` argument is an array of request headers we want to send.
+We're not worried about that yet, so we can just leave it blank.
+
 Coding up the Endpoint
 ----------------------
 
@@ -214,6 +227,9 @@ on it. Let's just return the data from the endpoint so we can see it::
     of code::
     
         $data = file_get_contents('php://input');
+
+    This is a special stream that reads the request body. For more details,
+    see `php.net: php://`_.
 
 Try running our ``testing.php`` file again::
 
@@ -351,3 +367,4 @@ great. Now to GET a programmer.
 .. _`downloading`: http://knpuniversity.com/screencast/download/rest
 .. _`cloning`: github.com/knpuniversity/rest
 .. _`README`: https://github.com/knpuniversity/rest/blob/master/README.md
+.. _`php.net: php://`: http://www.php.net/manual/en/wrappers.php.php#wrappers.php.input

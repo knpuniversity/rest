@@ -307,8 +307,8 @@ GET /programmers: A collection of Programmers
 
 We now have 2 URLs and 2 resources:
 
-* ``/programmers``, which represents a collection of resources;
-* ``/programmers/{nickname}``, which represents on programmer.
+* ``/api/programmers``, which represents a collection of resources (i.e. all programmers);
+* ``/api/programmers/{nickname}``, which represents one programmer.
 
 We can't yet make a GET request to ``/programmers``, and there's nothing
 that says we *must* make this possible, it's up to us to decide if we need

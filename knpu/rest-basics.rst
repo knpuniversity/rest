@@ -115,7 +115,7 @@ The server's job is to interpret this representation and update the resource.
 Representation State
 --------------------
 
-This is exactly how browing the web works. An HTML page is *not* a resource,
+This is exactly how browsing the web works. An HTML page is *not* a resource,
 it's just one representation. And when we fill out a form, we're just sending
 a different representation back to the server.
 
