@@ -275,9 +275,11 @@ I've also added one really ugly detail::
     $programmer->userId = $this->findUserByUsername('weaverryan')->id;
 
 Every programmer is created and owned by one user. On the web, making this
-relation is simple, because I'm logged in. But our API is completely anonymous
-so far. We'll fix this, but for now - I'll just make *every* programmer owned
-by me. Make sure to use my username - it's setup as test data that'll always
+relation is simple, because I'm logged in. But our API has no idea who *we*
+are - we're just a client making requests without any identification.
+
+We'll fix this, but for now - I'll just make *every* programmer owned by
+me. Make sure to use my username - it's setup as test data that'll always
 be in our database.
 
 Moment of truth! Run the testing script again:

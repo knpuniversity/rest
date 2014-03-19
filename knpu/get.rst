@@ -349,9 +349,9 @@ for *all* programmers for now, then transform them all into a big array::
     public function listAction()
     {
         $programmers = $this->getProgrammerRepository()->findAll();
-        $data = array('data' => array());
+        $data = array('programmers' => array());
         foreach ($programmers as $programmer) {
-            $data['data'][] = $this->serializeProgrammer($programmer);
+            $data['programmers'][] = $this->serializeProgrammer($programmer);
         }
 
         $response = new Response(json_encode($data), 200);
@@ -400,7 +400,7 @@ Let's try it out!
     Content-Type: application/json
 
     {
-        "data": [
+        "programmers": [
             {
                 "nickname":"ObjectOrienter14",
                 "avatarNumber":"5",
@@ -416,7 +416,7 @@ Let's try it out!
         ]
     }
 
-Awesome! Why did I put things under a ``data`` key? Actually, no special
+Awesome! Why did I put things under a ``programmers`` key? Actually, no special
 reason, I just invented this. But there *are* pre-existing standards for
 organizing your JSON structures, an important idea we'll talk about later.
 For now, we'll just worry about being consistent throughout the API.
