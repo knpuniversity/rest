@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 6d4fe07..85000ab 100644
+index 6d4fe07..a46235f 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -25,12 +25,8 @@ class ProgrammerController extends BaseController
@@ -13,7 +13,7 @@ index 6d4fe07..85000ab 100644
 -        $programmer->userId = $this->findUserByUsername('weaverryan')->id;
 -
 +        $programmer = new Programmer();
-+        $this->updateProgrammerFromRequest($request, $programmer);
++        $this->handleRequest($request, $programmer);
          $this->save($programmer);
  
          $data = $this->serializeProgrammer($programmer);
@@ -28,7 +28,7 @@ index 6d4fe07..85000ab 100644
 -        $programmer->tagLine = $data['tagLine'];
 -        $programmer->userId = $this->findUserByUsername('weaverryan')->id;
 -
-+        $this->updateProgrammerFromRequest($request, $programmer);
++        $this->handleRequest($request, $programmer);
          $this->save($programmer);
  
          $data = $this->serializeProgrammer($programmer);
@@ -42,7 +42,7 @@ index 6d4fe07..85000ab 100644
 +     * @param Request $request
 +     * @param Programmer $programmer
 +     */
-+    private function updateProgrammerFromRequest(Request $request, Programmer $programmer)
++    private function handleRequest(Request $request, Programmer $programmer)
 +    {
 +        $data = json_decode($request->getContent(), true);
 +
