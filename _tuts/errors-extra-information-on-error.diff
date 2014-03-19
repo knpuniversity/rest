@@ -40,7 +40,7 @@ index 2a95cc8..a18da19 100644
                  $apiProblem->toArray(),
                  $statusCode
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 54d9129..ce7f697 100644
+index ea4f42d..8796676 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -59,7 +59,7 @@ class ProgrammerController extends BaseController
@@ -60,7 +60,7 @@ index 54d9129..ce7f697 100644
 +            $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
          }
  
-         $this->updateProgrammerFromRequest($request, $programmer);
+         $this->handleRequest($request, $programmer);
 @@ -110,7 +110,7 @@ class ProgrammerController extends BaseController
          $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
  
