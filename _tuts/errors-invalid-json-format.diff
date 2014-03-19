@@ -21,7 +21,7 @@ index 743a5fb..6284861 100644
      Given the following programmers exist:
        | nickname   | avatarNumber |
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 96ddb8e..5919149 100644
+index b83d29a..34cd651 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -10,6 +10,7 @@ use Silex\ControllerCollection;
