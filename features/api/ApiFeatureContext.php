@@ -654,7 +654,7 @@ class ApiFeatureContext extends BehatContext
     public function printLastResponse()
     {
         if ($this->response) {
-            $this->printDebug($this->response->getBody(true));
+            $this->printDebug((string) $this->response);
         }
     }
 
