@@ -27,11 +27,11 @@ index 5980364..0d9c962 100644
 +    But the "powerLevel" property should equal "4"
 +    But the "nickname" property should equal "CowboyCoder"
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 85000ab..5456eae 100644
+index a46235f..f1e90fe 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -95,14 +95,24 @@ class ProgrammerController extends BaseController
-     private function updateProgrammerFromRequest(Request $request, Programmer $programmer)
+     private function handleRequest(Request $request, Programmer $programmer)
      {
          $data = json_decode($request->getContent(), true);
 +        $isNew = !$programmer->id;
