@@ -4,6 +4,6 @@ Feature: Programmer
   I need to be able to create programmers and power them up
 
   Background:
-    Given the user "weaverryan" exists
+    # Given the user "weaverryan" exists
 
   Scenario: Create a programmer
