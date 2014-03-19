@@ -1,9 +1,9 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 55b817a..54d9129 100644
+index a51426f..ea4f42d 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -39,7 +39,7 @@ class ProgrammerController extends BaseController
-         $this->updateProgrammerFromRequest($request, $programmer);
+         $this->handleRequest($request, $programmer);
  
          if ($errors = $this->validate($programmer)) {
 -            return $this->handleValidationResponse($errors);
@@ -12,7 +12,7 @@ index 55b817a..54d9129 100644
  
          $this->save($programmer);
 @@ -93,7 +93,7 @@ class ProgrammerController extends BaseController
-         $this->updateProgrammerFromRequest($request, $programmer);
+         $this->handleRequest($request, $programmer);
  
          if ($errors = $this->validate($programmer)) {
 -            return $this->handleValidationResponse($errors);
