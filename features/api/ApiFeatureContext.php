@@ -160,10 +160,10 @@ class ApiFeatureContext extends BehatContext
         $response = $this->getResponse();
         $contentType = $response->getHeader('Content-Type');
 
-        if ($contentType === 'application/json') {
+        if ($contentType == 'application/json') {
             $bodyOutput = $response->getBody();
         } else {
-            $bodyOutput = 'Output is '.$contentType.', which is not JSON and is therefore scary. Run the request manually.';
+            $bodyOutput = 'Output is "'.$contentType.'", which is not JSON and is therefore scary. Run the request manually.';
         }
         assertSame((int) $statusCode, (int) $this->getResponse()->getStatusCode(), $bodyOutput);
     }
