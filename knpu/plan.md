@@ -72,6 +72,7 @@ battle more *projects*.
 - idempotency
 - we're sending a "representation" of the resource, which the server uses
   to update the underlying resource
+- how PUT should equie the whole body (or next chpt?)
 
 ##### CHAPTER 5: Patch versus PUT
 
@@ -163,6 +164,8 @@ the web interface for our user.
 2. Representations are sent in JSON or XML
 3. Submitted data is expected to be application/x-www-form-urlencoded
 
+- fix the ApiProblem to be a URL that points to some page here
+
 ##### CHAPTER 16: URL Structures
 
 - create /programmers/{id}/battles to show the battles for this user
@@ -180,6 +183,7 @@ the web interface for our user.
 ##### CHAPTER 18: Custom Endpoint PUT
 
 - custom PUT endpoint - PUT /programmers/{id}/avatar
+- https://github.com/knpuniversity/rest/issues/1#issuecomment-37961745
 - idempotency
 - add link: show how links can be anything, and how this is kind of like
   embedding an image on an HTML page
@@ -239,6 +243,10 @@ the web interface for our user.
 
 - should mention all of the HTTP methods somewhere, and that you could support
     HEAD and options if you want
+
+- some sort of /me endpoint, or a way to get "my" programmers
+
+- use Symfony's Form component?
 
 ### Questions
 

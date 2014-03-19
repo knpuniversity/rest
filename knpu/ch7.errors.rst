@@ -1,3 +1,8 @@
+TODOS
+-----
+
+- still need to convert the code into a URL! OR mention that this is wrong.
+
 Steps
 -----
 
