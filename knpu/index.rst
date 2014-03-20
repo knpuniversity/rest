@@ -7,6 +7,7 @@ Starting in Symfony2: Episode2
     intro
     http
     rest
+    client-state
     post
     get
     testing
