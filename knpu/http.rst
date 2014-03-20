@@ -2,7 +2,7 @@ HTTP Basics
 ===========
 
 Yep, we need cover a bit of theory. Wait, come back! This stuff is *super*
-important stuff and *fascinating* too. Put on your thinking cap and let's
+important and *fascinating* too. Put on your thinking cap and let's
 get to it!
 
 HTTP
@@ -30,12 +30,12 @@ This is a basic request and it has 3 important pieces:
    you have 5 resources.
 
 2. ``GET`` is the HTTP method and describes what *action* you want to take
-   against the resource. You're already know about GET and POST, and possibly
+   against the resource. You already know about GET and POST, and possibly
    also DELETE, PUT and the infamous PATCH. There are others, but mostly
    we don't care about those.
 
 3. Every line after the first is just a colon-separated list of headers.
-   This request only has two headers, but a client could send anything.
+   This request only has two, but a client could send anything.
 
 With that in mind, a POST request might look like this:
 
