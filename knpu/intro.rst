@@ -10,7 +10,7 @@ We'll of course use best practices and learn all about the theory behind
 REST. But we're also going to be pragmatic. If you stick to the rules too
 much, you'll get buried in technical draft specifications and blog post.
 You'll also get the feeling that a perfectly RESTful API might be impossible,
-and would probably be pretty tough to use anyways.
+and it would probably be pretty tough to use anyways.
 
 Instead, we'll build a really nice API, keep to the best parts of REST, tell
 you when we're breaking the rules and when the rules are still being debated.
@@ -25,10 +25,10 @@ The project? Introducing Code Battles: a super-serious site where programmers
 battle against projects. After you register, you can create a programmer and
 choose an avatar. REST is based around the idea of resources. If you're using
 this screencast as a drinking game, you might *not* want to drink each time
-I say "resource". It's too important to REST... so you won't make it through
+I say "resource". It's too important to REST... you won't make it through
 chapter 2. The same goes for "representations".
 
-Pay special attention also to the links on each page and how resources interact.
+Pay special attention to the links on each page and how resources interact.
 Our API will feel a lot like the web interface.
 
 With a programmer, you can take an action on her: power up! Based on a little
