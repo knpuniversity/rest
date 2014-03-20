@@ -25,9 +25,9 @@
 {% macro flashMessage(messages, isPositive) %}
     <div class="alert alert-warning flash-message">
         {% if isPositive %}
-            :)
+            <i class="fa fa-bolt"></i>
         {% else %}
-            :(
+            <i class="fa fa-exclamation-triangle"></i>
         {% endif %}
 
         {% for message in messages %}

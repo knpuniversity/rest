@@ -173,7 +173,7 @@ Programmer Show Page
 /***********************
 Choose a Programmer
 ***********************/
-.programmers-list li a{
+.programmers-list li a {
     color: white;
 }
 
@@ -190,6 +190,11 @@ ul.programmers-list {
     display: -moz-inline-box;
     display: inline-block;
     cursor: pointer;
+}
+
+.choose-button {
+    clear: left;
+    text-align: center;
 }
 
 /***********************
@@ -221,6 +226,21 @@ Post Battle Results
     text-align: center;
 }
 
+#winner {
+    color: black;
+    text-align: center;
+    background: white;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 5px 5px 1px 0px rgba(220,220,220,.5);    
+}
+
+#battle-notes{
+    font-size: 1.2em;
+    padding-top: 10px;
+    text-align: center;
+}
+
 .results {
     font-size: 1.5em;
     text-align: center;
@@ -231,6 +251,7 @@ Post Battle Results
 .btn-surrender {
     background: white;
     color: black;
+    border: none;
 }
 
 /***********************

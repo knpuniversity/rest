@@ -9999,27 +9999,33 @@ ul.programmers-list {
   cursor: pointer;
 }
 
+/* line 195, ../sass/_rest.scss */
+.choose-button {
+  clear: left;
+  text-align: center;
+}
+
 /***********************
 Battle Modal
 ***********************/
-/* line 199, ../sass/_rest.scss */
+/* line 204, ../sass/_rest.scss */
 .modal-title {
   color: #585757;
 }
 
-/* line 202, ../sass/_rest.scss */
+/* line 207, ../sass/_rest.scss */
 ul.projects-list {
   list-style: none;
   margin: 0px auto;
 }
 
-/* line 206, ../sass/_rest.scss */
+/* line 211, ../sass/_rest.scss */
 .projects-list li {
   display: block;
   padding: 5px 0 5px 0;
 }
 
-/* line 210, ../sass/_rest.scss */
+/* line 215, ../sass/_rest.scss */
 .btn-enemy {
   background: #B41212;
 }
@@ -10027,14 +10033,31 @@ ul.projects-list {
 /***********************
 Post Battle Results
 ***********************/
-/* line 218, ../sass/_rest.scss */
+/* line 223, ../sass/_rest.scss */
 .battle-result {
   white-space: nowrap;
   overflow: hidden;
   text-align: center;
 }
 
-/* line 224, ../sass/_rest.scss */
+/* line 229, ../sass/_rest.scss */
+#winner {
+  color: black;
+  text-align: center;
+  background: white;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 5px 5px 1px 0px rgba(220, 220, 220, 0.5);
+}
+
+/* line 238, ../sass/_rest.scss */
+#battle-notes {
+  font-size: 1.2em;
+  padding-top: 10px;
+  text-align: center;
+}
+
+/* line 244, ../sass/_rest.scss */
 .results {
   font-size: 1.5em;
   text-align: center;
@@ -10042,32 +10065,33 @@ Post Battle Results
   margin: 0;
 }
 
-/* line 231, ../sass/_rest.scss */
+/* line 251, ../sass/_rest.scss */
 .btn-surrender {
   background: white;
   color: black;
+  border: none;
 }
 
 /***********************
 Table of results
 ***********************/
-/* line 239, ../sass/_rest.scss */
+/* line 260, ../sass/_rest.scss */
 .table {
   background: white;
 }
 
-/* line 243, ../sass/_rest.scss */
+/* line 264, ../sass/_rest.scss */
 td,
 th {
   color: #585757;
 }
 
-/* line 247, ../sass/_rest.scss */
+/* line 268, ../sass/_rest.scss */
 td a {
   color: #585757;
 }
 
-/* line 251, ../sass/_rest.scss */
+/* line 272, ../sass/_rest.scss */
 td a:hover {
   text-decoration: none;
 }

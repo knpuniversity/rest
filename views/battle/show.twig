@@ -5,17 +5,19 @@
     <h1 class="battle-result">Battle:</h1>
     <p class="results">{{ programmer.nickname }} vs. {{ project.name }}</p>
 
-    <h3>Winner: {{ battle.didProgrammerWin ? programmer.nickname : project.name }}</h3>
+    <h3 id="winner">Winner: {{ battle.didProgrammerWin ? programmer.nickname : project.name }}</h3>
 
-    <div>
+    <div id="battle-notes">
         {{ battle.notes }}
     </div>
 
     {% if programmer.userId == app.user.id %}
         <div style="margin-top: 20px;">
+        <hr>
+        <div class="battle-btns">
             <a class="btn btn-small btn-start-battle" href="{{ path('programmer_show', {'nickname': programmer.nickname}) }}">Fight again</a>
-            <a class="btn btn-small btn-surrender" href="{{ path('homepage') }}">Retreat</a>
-            
+            <a class="btn btn-small btn-surrender" href="{{ path('homepage') }}">Retreat!</a>
+        </div>
         </div>
     {% endif %}
 {% endblock %}
