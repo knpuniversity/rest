@@ -5,7 +5,7 @@ Starting in Symfony2: Episode2
     :hidden:
 
     intro
-    rest-basics
+    rest
     post
     get
     testing
