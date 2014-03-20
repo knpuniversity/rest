@@ -5,6 +5,7 @@ Starting in Symfony2: Episode2
     :hidden:
 
     intro
+    http
     rest
     post
     get
