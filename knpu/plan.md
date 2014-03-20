@@ -63,7 +63,7 @@ battle more *projects*.
 - GET SHOW endpoint for each programmer - no links, no serialization - just
   getting raw programmers data and manually turning it into a JSON array
 
-##### CHAPTER 3.5: Testing
+#### CHAPTER 3.5: Testing
 
 ##### CHAPTER 4: Editing Resources
 
@@ -72,6 +72,12 @@ battle more *projects*.
 - idempotency
 - we're sending a "representation" of the resource, which the server uses
   to update the underlying resource
+- how PUT should equie the whole body (or next chpt?)
+
+##### CHAPTER 5: Patch versus PUT
+
+- mention PUT versus PATCH
+- Perhaps allow PATCH /programmers/{id} as a valid endpoint
 
 ##### CHAPTER 6: DELETE
 
@@ -81,20 +87,14 @@ battle more *projects*.
 - tease "custom verbs" - like what happens if you are doing something
   beyond creating, showing, editing or deleting a resource?
 
-##### CHAPTER 5: Patch versus PUT
-
-- mention PUT versus PATCH
-- Perhaps allow PATCH /programmers/{id} as a valid endpoint
-
 ##### CHAPTER 7: Form Validation errors and other API Problems
 
 - introduce the idea of a standard! Api Problem
 - add validation errors to the form (editing/creating programmer)
 - handle 404's and other errors
 - handling bad input - e.g. invalid JSON
-- error codes?
 
-##### CHAPTER 7.5 Authentication
+#### Authentication
 
 - create (or just hook up) a basic token-based authentication system
 - talk about how users might get authentication tokens (we will need a UI
@@ -107,7 +107,7 @@ battle more *projects*.
 Here we'll create a new "battle". We'll look up a projectId manually from
 the web interface for our user.
 
-- create a new battle (POST) /battles (send projectId and programmerNikcname in body)
+- create a new battle (POST) /battles (send projectId and userId in body)
 - create a GET /battles/{id} (update the previous POST to have Location header)
 - make link back to the programmer from /battles/{id}
 - maybe tease RMM level 3 as a segway into the next chapter
@@ -164,6 +164,8 @@ the web interface for our user.
 2. Representations are sent in JSON or XML
 3. Submitted data is expected to be application/x-www-form-urlencoded
 
+- fix the ApiProblem to be a URL that points to some page here
+
 ##### CHAPTER 16: URL Structures
 
 - create /programmers/{id}/battles to show the battles for this user
@@ -181,6 +183,7 @@ the web interface for our user.
 ##### CHAPTER 18: Custom Endpoint PUT
 
 - custom PUT endpoint - PUT /programmers/{id}/avatar
+- https://github.com/knpuniversity/rest/issues/1#issuecomment-37961745
 - idempotency
 - add link: show how links can be anything, and how this is kind of like
   embedding an image on an HTML page
@@ -238,21 +241,15 @@ the web interface for our user.
 
 - we should do a schema change
 
+- should mention all of the HTTP methods somewhere, and that you could support
+    HEAD and options if you want
+
+- some sort of /me endpoint, or a way to get "my" programmers
+
+- use Symfony's Form component?
+
 ### Questions
 
-- how do we feel about error codes?
-
-- I'm just kind of making up error codes - like invalid_format
-
-- how is the whole ApiProblem and listener stuff looking? Should we put
-    the status code in the ApiProblem class, or have you set it when you
-    instantiate the exception?
-
-- Different Api Problem codes for different 404 situations? Or just a page_not_found?
-
-- Using "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" as API problem
-    type when you're simply returning a response that has no application-specific
-    semantics? (e.g. 404, 403). Or just return the status code as "type"
 
 ### Notes
 
