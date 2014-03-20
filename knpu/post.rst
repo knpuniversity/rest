@@ -50,6 +50,32 @@ Imagine we're building the API to support an iPhone app. Other than authenticati
 which we'll push off until later, what's the first thing the user will do?
 Create a programmer of course. And that's our first API endpoint.
 
+Separate URLs from our Web Interface?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+But wait! In the web version of our app, we're already able to fill out a
+form that submits a POST request to ``/programmers`` to create a new programmer.
+This either re-renders the HTML page with errors or redirects us.
+
+So could we just expand the existing ``/programmers`` URL to work for our
+API? We'd just need to make it able to accept JSON request data, and be smart
+enough to return errors as JSON and do something other than a redirect on
+success. If we did that, ``/programmers`` could be used by a browser to get
+HTML *or* by an API client to pass JSON back and forth.
+
+That would be awesome, and later, we'll talk about how you could do that.
+But for now, things will be a lot easier to understand if we leave the web
+interface alone, prefix our API with ``/api``, and write separate code to
+support it.
+
+This *does* break a rule of REST, because our one resource will have 2 different
+URLs: one for the HTML representation and one for the JSON representation.
+In a perfect world, a resource has just *one* URI, and we use some other
+tricks to get either HTML, JSON or any other format from it.
+
+So our first endpoint will be ``/api/programmers``, and I want you to think
+about the web interface as a totally separate app for now.
+
 Basic Routing
 ~~~~~~~~~~~~~
 

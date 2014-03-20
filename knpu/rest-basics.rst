@@ -116,8 +116,12 @@ Representation State
 --------------------
 
 This is exactly how browsing the web works. An HTML page is *not* a resource,
-it's just one representation. And when we fill out a form, we're just sending
-a different representation back to the server.
+it's just one representation. And when we submit a form, we're just sending
+a different representation back to the server
+
+JSON and XML are other representations. Heck, you could get crazy and have
+an API that returns XML, JSON or HTML representations of the *same* resource.
+We're just crazy enough that we'll do some of that.
 
 A representation is a machine readable explanation of the current state of
 a resource.
@@ -184,3 +188,5 @@ NOTES
 -----
 
 - too much theory? Should I wait and explain much of this later?
+- add a note that things will be hard, but it's worth it. And that the theory
+    will be hard, but it's worth it.
