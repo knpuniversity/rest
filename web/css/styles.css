@@ -9753,67 +9753,7 @@ body {
   background: white url(../img/crossword.png);
 }
 
-/*
- * Navigation
-*/
-/* line 12, ../sass/_rest.scss */
-.logo {
-  margin: 10px;
-  height: 30px;
-  width: auto;
-  float: left;
-}
-
-/* line 18, ../sass/_rest.scss */
-.navbar-brand {
-  float: left;
-  padding: 18px 15px;
-  font-size: 2em;
-  line-height: 20px;
-}
-
-/* line 24, ../sass/_rest.scss */
-.reg-nav {
-  text-decoration: none;
-}
-
-/* line 27, ../sass/_rest.scss */
-table.table.user-information th {
-  white-space: nowrap;
-  border-top: none;
-}
-
-/* line 31, ../sass/_rest.scss */
-table.table.user-information td {
-  border-top: none;
-}
-
-/*Login Form*/
-/* line 37, ../sass/_rest.scss */
-.form-login {
-  margin-top: 20px;
-}
-
-/* line 42, ../sass/_rest.scss */
-.reg-btn,
-.cancel-link {
-  color: #585757;
-  text-decoration: underline;
-  font-size: 1.15em;
-}
-
-/* line 47, ../sass/_rest.scss */
-.cancel-link:hover {
-  color: black;
-}
-
-/* line 50, ../sass/_rest.scss */
-.reg-btn:hover {
-  color: black;
-}
-
-/* Styling for the main box wrapper used on each page */
-/* line 54, ../sass/_rest.scss */
+/* line 8, ../sass/_rest.scss */
 .main-console-screen {
   margin: 0 auto;
   padding: 0px 20px 10px 20px;
@@ -9825,9 +9765,70 @@ table.table.user-information td {
   border-radius: 6px;
 }
 
-/*
- * HOMEPAGE
- */
+/***********************
+Navigation
+***********************/
+/* line 21, ../sass/_rest.scss */
+.logo {
+  margin: 10px;
+  height: 30px;
+  width: auto;
+  float: left;
+}
+
+/* line 27, ../sass/_rest.scss */
+.navbar-brand {
+  float: left;
+  padding: 18px 15px;
+  font-size: 2em;
+  line-height: 20px;
+}
+
+/* line 33, ../sass/_rest.scss */
+.reg-nav {
+  text-decoration: none;
+}
+
+/* line 36, ../sass/_rest.scss */
+table.table.user-information th {
+  white-space: nowrap;
+  border-top: none;
+}
+
+/* line 40, ../sass/_rest.scss */
+table.table.user-information td {
+  border-top: none;
+}
+
+/***********************
+Login Form
+***********************/
+/* line 48, ../sass/_rest.scss */
+.form-login {
+  margin-top: 20px;
+}
+
+/* line 53, ../sass/_rest.scss */
+#reg-btn,
+.cancel-link {
+  color: #585757;
+  text-decoration: underline;
+  font-size: 1.15em;
+}
+
+/* line 58, ../sass/_rest.scss */
+.cancel-link:hover {
+  color: black;
+}
+
+/* line 61, ../sass/_rest.scss */
+#reg-btn:hover {
+  color: black;
+}
+
+/***********************
+HOMEPAGE
+***********************/
 /* line 68, ../sass/_rest.scss */
 .button-list {
   padding: 20px 0px 0px 0px;
@@ -9887,9 +9888,9 @@ ul.action-buttons-list .btn {
   background: #618C8F;
 }
 
-/*
- * CREATE PROGRAMMER
- */
+/***********************
+CREATE PROGRAMMER
+***********************/
 /* line 112, ../sass/_rest.scss */
 #create {
   text-align: center;
@@ -9925,71 +9926,70 @@ ul.js-selectable-tile {
   box-shadow: 4px 4px 10px #585757;
 }
 
-/* line 138, ../sass/_rest.scss */
+/* line 137, ../sass/_rest.scss */
 .create-buttons {
   margin: 10px 0 0 0;
 }
 
-/*
- * Programmer Show Page
- */
-/* line 148, ../sass/_rest.scss */
+/***********************
+Programmer Show Page
+***********************/
+/* line 147, ../sass/_rest.scss */
 .nickname,
 .prog-level,
 .show-power {
   text-align: center;
 }
 
-/* line 152, ../sass/_rest.scss */
+/* line 151, ../sass/_rest.scss */
 .prog-level {
   font-size: 1.2em;
 }
 
-/* line 155, ../sass/_rest.scss */
+/* line 154, ../sass/_rest.scss */
 .prog-show {
   display: block;
   margin: auto;
   padding-top: 10px;
 }
 
-/* line 160, ../sass/_rest.scss */
+/* line 159, ../sass/_rest.scss */
 .show-power {
   padding-bottom: 15px;
 }
 
-/* line 163, ../sass/_rest.scss */
+/* line 162, ../sass/_rest.scss */
 .btn-power {
   background: #9AC962;
 }
 
-/* line 167, ../sass/_rest.scss */
-.btn-power,
-.btn-start-battle {
-  display: inline-block;
+/* line 165, ../sass/_rest.scss */
+.battle-btns {
+  text-align: center;
 }
 
-/* line 170, ../sass/_rest.scss */
+/* line 168, ../sass/_rest.scss */
 .btn-power:hover {
   background: #C5D97B;
   color: white;
 }
 
-/*
- * Choose a Programmer
- */
-/* line 178, ../sass/_rest.scss */
+/***********************
+Choose a Programmer
+***********************/
+/* line 176, ../sass/_rest.scss */
 .programmers-list li a {
   color: white;
 }
 
-/* line 182, ../sass/_rest.scss */
+/* line 180, ../sass/_rest.scss */
 ul.programmers-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* line 188, ../sass/_rest.scss */
+/* line 186, ../sass/_rest.scss */
 .programmers-list li {
   width: 30%;
   margin: 1.6666666666667%;
@@ -9999,42 +9999,42 @@ ul.programmers-list {
   cursor: pointer;
 }
 
-/*
- * Battle Modal
- */
-/* line 201, ../sass/_rest.scss */
+/***********************
+Battle Modal
+***********************/
+/* line 199, ../sass/_rest.scss */
 .modal-title {
   color: #585757;
 }
 
-/* line 204, ../sass/_rest.scss */
+/* line 202, ../sass/_rest.scss */
 ul.projects-list {
   list-style: none;
   margin: 0px auto;
 }
 
-/* line 208, ../sass/_rest.scss */
+/* line 206, ../sass/_rest.scss */
 .projects-list li {
   display: block;
   padding: 5px 0 5px 0;
 }
 
-/* line 212, ../sass/_rest.scss */
+/* line 210, ../sass/_rest.scss */
 .btn-enemy {
   background: #B41212;
 }
 
-/*
- * Post Battle Results
- */
-/* line 220, ../sass/_rest.scss */
+/***********************
+Post Battle Results
+***********************/
+/* line 218, ../sass/_rest.scss */
 .battle-result {
   white-space: nowrap;
   overflow: hidden;
   text-align: center;
 }
 
-/* line 226, ../sass/_rest.scss */
+/* line 224, ../sass/_rest.scss */
 .results {
   font-size: 1.5em;
   text-align: center;
@@ -10042,32 +10042,32 @@ ul.projects-list {
   margin: 0;
 }
 
-/* line 233, ../sass/_rest.scss */
+/* line 231, ../sass/_rest.scss */
 .btn-surrender {
   background: white;
   color: black;
 }
 
-/*
- * Table of results
- */
-/* line 241, ../sass/_rest.scss */
+/***********************
+Table of results
+***********************/
+/* line 239, ../sass/_rest.scss */
 .table {
   background: white;
 }
 
-/* line 245, ../sass/_rest.scss */
+/* line 243, ../sass/_rest.scss */
 td,
 th {
   color: #585757;
 }
 
-/* line 249, ../sass/_rest.scss */
+/* line 247, ../sass/_rest.scss */
 td a {
   color: #585757;
 }
 
-/* line 253, ../sass/_rest.scss */
+/* line 251, ../sass/_rest.scss */
 td a:hover {
   text-decoration: none;
 }

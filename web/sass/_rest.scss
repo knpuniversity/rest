@@ -5,10 +5,19 @@ body {
     margin-top: 75px;
     background: #fff url(../img/crossword.png);
 }
-
-/*
- * Navigation
-*/
+.main-console-screen {
+    margin: 0 auto;
+    padding: 0px 20px 10px 20px;
+    max-width: 370px;
+    color: #f7f7f7;
+    border: 1px solid #ccc;
+    background: #2DB084;
+    box-shadow: 5px 5px 1px 0px rgba(220,220,220,.5);
+    border-radius: 6px;
+} 
+/***********************
+Navigation
+***********************/
 .logo {
     margin: 10px;
     height: 30px;
@@ -32,13 +41,15 @@ table.table.user-information td {
     border-top: none;
 }
 
-/*Login Form*/
+/***********************
+Login Form
+***********************/
 
 .form-login {
     margin-top: 20px;
 }
 
-.reg-btn,
+#reg-btn,
 .cancel-link {
     color: #585757;
     text-decoration: underline;
@@ -47,23 +58,12 @@ table.table.user-information td {
 .cancel-link:hover {
     color: black;
 }
-.reg-btn:hover {
+#reg-btn:hover {
     color: black;
 }
-/* Styling for the main box wrapper used on each page */
-.main-console-screen {
-    margin: 0 auto;
-    padding: 0px 20px 10px 20px;
-    max-width: 370px;
-    color: #f7f7f7;
-    border: 1px solid #ccc;
-    background: #2DB084;
-    box-shadow: 5px 5px 1px 0px rgba(220,220,220,.5);
-    border-radius: 6px;
-} 
-/*
- * HOMEPAGE
- */
+/***********************
+HOMEPAGE
+***********************/
  
 .button-list {
     padding: 20px 0px 0px 0px;
@@ -105,9 +105,9 @@ ul.action-buttons-list .btn {
     background: #618C8F;
 }
 
-/*
- * CREATE PROGRAMMER
- */
+/***********************
+CREATE PROGRAMMER
+***********************/
  
 #create {
      text-align: center;
@@ -133,15 +133,14 @@ ul.js-selectable-tile {
 }
 .js-selectable-tile li.selected {
     box-shadow: 4px 4px 10px #585757;
-
 }
 .create-buttons {
     margin: 10px 0 0 0;
 }
 
-/*
- * Programmer Show Page
- */
+/***********************
+Programmer Show Page
+***********************/
 
 .nickname,
 .prog-level,
@@ -163,18 +162,17 @@ ul.js-selectable-tile {
 .btn-power {
     background: #9AC962;
 }
-.btn-power,
-.btn-start-battle {
-    display: inline-block;
+.battle-btns {
+    text-align: center;
 }
 .btn-power:hover {
     background: #C5D97B;
     color: white;
 }
 
-/*
- * Choose a Programmer
- */
+/***********************
+Choose a Programmer
+***********************/
 .programmers-list li a{
     color: white;
 }
@@ -194,9 +192,9 @@ ul.programmers-list {
     cursor: pointer;
 }
 
-/*
- * Battle Modal
- */
+/***********************
+Battle Modal
+***********************/
 
 .modal-title {
      color: #585757;
@@ -213,9 +211,9 @@ ul.projects-list {
     background: #B41212;
 }
 
-/*
- * Post Battle Results
- */
+/***********************
+Post Battle Results
+***********************/
  
 .battle-result {
     white-space: nowrap;
@@ -235,9 +233,9 @@ ul.projects-list {
     color: black;
 }
 
-/*
- * Table of results
- */
+/***********************
+Table of results
+***********************/
 .table {
     background: white;
 }
