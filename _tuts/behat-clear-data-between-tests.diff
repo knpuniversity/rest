@@ -1,5 +1,5 @@
 diff --git a/features/api/ApiFeatureContext.php b/features/api/ApiFeatureContext.php
-index ef7f0e3..0152deb 100644
+index 4cd371a..a783d77 100644
 --- a/features/api/ApiFeatureContext.php
 +++ b/features/api/ApiFeatureContext.php
 @@ -102,6 +102,14 @@ class ApiFeatureContext extends BehatContext
@@ -17,3 +17,16 @@ index ef7f0e3..0152deb 100644
       * @Given /^I have the payload:$/
       */
      public function iHaveThePayload(PyStringNode $requestPayload)
+diff --git a/features/api/programmer.feature b/features/api/programmer.feature
+index b10336b..a25a42b 100644
+--- a/features/api/programmer.feature
++++ b/features/api/programmer.feature
+@@ -4,7 +4,7 @@ Feature: Programmer
+   I need to be able to create programmers and power them up
+ 
+   Background:
+-    # Given the user "weaverryan" exists
++    Given the user "weaverryan" exists
+ 
+   Scenario: Create a programmer
+     Given I have the payload:
