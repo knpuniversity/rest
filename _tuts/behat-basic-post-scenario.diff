@@ -1,9 +1,9 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index 69b1fe8..a25a42b 100644
+index 50a533e..b10336b 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
 @@ -7,3 +7,15 @@ Feature: Programmer
-     Given the user "weaverryan" exists
+     # Given the user "weaverryan" exists
  
    Scenario: Create a programmer
 +    Given I have the payload:
