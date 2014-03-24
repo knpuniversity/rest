@@ -1,0 +1,23 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index a46235f..e4b1349 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -100,9 +100,15 @@ class ProgrammerController extends BaseController
+             throw new \Exception(sprintf('Invalid JSON: '.$request->getContent()));
+         }
+ 
+-        $programmer->nickname = $data['nickname'];
+-        $programmer->avatarNumber = $data['avatarNumber'];
+-        $programmer->tagLine = $data['tagLine'];
++        // determine which properties should be changeable on this request
++        $apiProperties = array('nickname', 'avatarNumber', 'tagLine');
++
++        // update the properties
++        foreach ($apiProperties as $property) {
++            $val = isset($data[$property]) ? $data[$property] : null;
++            $programmer->$property = $val;
++        }
++
+         $programmer->userId = $this->findUserByUsername('weaverryan')->id;
+     }
+ 
