@@ -1,5 +1,16 @@
+diff --git a/features/api/programmer.feature b/features/api/programmer.feature
+index dac11bd..5980364 100644
+--- a/features/api/programmer.feature
++++ b/features/api/programmer.feature
+@@ -58,6 +58,5 @@ Feature: Programmer
+       }
+       """
+     When I request "PUT /api/programmers/CowboyCoder"
+-    And print last response
+     Then the response status code should be 200
+     And the "avatarNumber" property should equal "2"
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 6d4fe07..a46235f 100644
+index 2e3b65b..a46235f 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -25,12 +25,8 @@ class ProgrammerController extends BaseController
@@ -17,10 +28,12 @@ index 6d4fe07..a46235f 100644
          $this->save($programmer);
  
          $data = $this->serializeProgrammer($programmer);
-@@ -80,13 +76,7 @@ class ProgrammerController extends BaseController
+@@ -80,15 +76,7 @@ class ProgrammerController extends BaseController
              $this->throw404();
          }
  
+-        throw new \Exception('This is scary!');
+-
 -        $data = json_decode($request->getContent(), true);
 -
 -        $programmer->nickname = $data['nickname'];
@@ -32,7 +45,7 @@ index 6d4fe07..a46235f 100644
          $this->save($programmer);
  
          $data = $this->serializeProgrammer($programmer);
-@@ -96,6 +86,26 @@ class ProgrammerController extends BaseController
+@@ -98,6 +86,26 @@ class ProgrammerController extends BaseController
          return $response;
      }
  
