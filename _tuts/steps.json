@@ -126,8 +126,18 @@
             "description": null
         },
         {
+            "id": "put-programmer-temporarily-making-the-test-fail",
+            "name": "PUT Programmer: Temporarily making the test fail",
+            "description": null
+        },
+        {
             "id": "put-programmer-refactor-the-form-update-code",
             "name": "PUT Programmer: Refactor the \"form\" update code",
+            "description": null
+        },
+        {
+            "id": "put-programmer-make-handlerequest-a-little-fancier",
+            "name": "PUT Programmer: make handleRequest a little fancier",
             "description": null
         },
         {
