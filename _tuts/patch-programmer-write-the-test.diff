@@ -1,9 +1,9 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index f19fa8a..8e25ea7 100644
+index bcbf22f..37987c6 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
-@@ -64,6 +64,21 @@ Feature: Programmer
-     But the "powerLevel" property should equal "4"
+@@ -62,6 +62,21 @@ Feature: Programmer
+     And the "avatarNumber" property should equal "2"
      But the "nickname" property should equal "CowboyCoder"
  
 +  Scenario: PATCH to update a programmer
