@@ -1,36 +1,26 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index 5980364..0d9c962 100644
+index 5980364..0c889cd 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
-@@ -47,16 +47,19 @@ Feature: Programmer
- 
-   Scenario: PUT to update a programmer
-     Given the following programmers exist:
--      | nickname    | avatarNumber | tagLine |
--      | CowboyCoder | 5            | foo     |
-+      | nickname    | avatarNumber | tagLine | powerLevel |
-+      | CowboyCoder | 5            | foo     | 4          |
+@@ -52,7 +52,7 @@ Feature: Programmer
      And I have the payload:
        """
        {
 -        "nickname": "CowboyCoder",
 +        "nickname": "CowgirlCoder",
          "avatarNumber" : 2,
--        "tagLine": "foo"
-+        "tagLine": "foo",
-+        "powerLevel": 10
+         "tagLine": "foo"
        }
-       """
+@@ -60,3 +60,4 @@ Feature: Programmer
      When I request "PUT /api/programmers/CowboyCoder"
      Then the response status code should be 200
      And the "avatarNumber" property should equal "2"
-+    But the "powerLevel" property should equal "4"
 +    But the "nickname" property should equal "CowboyCoder"
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index a46235f..f1e90fe 100644
+index e4b1349..f1e90fe 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -95,14 +95,24 @@ class ProgrammerController extends BaseController
+@@ -95,13 +95,17 @@ class ProgrammerController extends BaseController
      private function handleRequest(Request $request, Programmer $programmer)
      {
          $data = json_decode($request->getContent(), true);
@@ -40,21 +30,12 @@ index a46235f..f1e90fe 100644
              throw new \Exception(sprintf('Invalid JSON: '.$request->getContent()));
          }
  
--        $programmer->nickname = $data['nickname'];
--        $programmer->avatarNumber = $data['avatarNumber'];
--        $programmer->tagLine = $data['tagLine'];
-+        // determine which properties should be changeable on this request
+         // determine which properties should be changeable on this request
+-        $apiProperties = array('nickname', 'avatarNumber', 'tagLine');
 +        $apiProperties = array('avatarNumber', 'tagLine');
 +        if ($isNew) {
 +            $apiProperties[] = 'nickname';
 +        }
-+
-+        // update the properties
-+        foreach ($apiProperties as $property) {
-+            $val = isset($data[$property]) ? $data[$property] : null;
-+            $programmer->$property = $val;
-+        }
-+
-         $programmer->userId = $this->findUserByUsername('weaverryan')->id;
-     }
  
+         // update the properties
+         foreach ($apiProperties as $property) {
