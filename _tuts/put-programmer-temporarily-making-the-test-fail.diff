@@ -1,0 +1,24 @@
+diff --git a/features/api/programmer.feature b/features/api/programmer.feature
+index 5980364..dac11bd 100644
+--- a/features/api/programmer.feature
++++ b/features/api/programmer.feature
+@@ -58,5 +58,6 @@ Feature: Programmer
+       }
+       """
+     When I request "PUT /api/programmers/CowboyCoder"
++    And print last response
+     Then the response status code should be 200
+     And the "avatarNumber" property should equal "2"
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 6d4fe07..2e3b65b 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -80,6 +80,8 @@ class ProgrammerController extends BaseController
+             $this->throw404();
+         }
+ 
++        throw new \Exception('This is scary!');
++
+         $data = json_decode($request->getContent(), true);
+ 
+         $programmer->nickname = $data['nickname'];
