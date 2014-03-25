@@ -10030,17 +10030,24 @@ ul.projects-list {
   background: #B41212;
 }
 
+/* line 218, ../sass/_rest.scss */
+.battle-progress-message {
+  text-align: center;
+  color: #000;
+  font-size: 20px;
+}
+
 /***********************
 Post Battle Results
 ***********************/
-/* line 223, ../sass/_rest.scss */
+/* line 228, ../sass/_rest.scss */
 .battle-result {
   white-space: nowrap;
   overflow: hidden;
   text-align: center;
 }
 
-/* line 229, ../sass/_rest.scss */
+/* line 234, ../sass/_rest.scss */
 #winner {
   color: black;
   text-align: center;
@@ -10050,14 +10057,14 @@ Post Battle Results
   box-shadow: 5px 5px 1px 0px rgba(220, 220, 220, 0.5);
 }
 
-/* line 238, ../sass/_rest.scss */
+/* line 243, ../sass/_rest.scss */
 #battle-notes {
   font-size: 1.2em;
   padding-top: 10px;
   text-align: center;
 }
 
-/* line 244, ../sass/_rest.scss */
+/* line 249, ../sass/_rest.scss */
 .results {
   font-size: 1.5em;
   text-align: center;
@@ -10065,7 +10072,7 @@ Post Battle Results
   margin: 0;
 }
 
-/* line 251, ../sass/_rest.scss */
+/* line 256, ../sass/_rest.scss */
 .btn-surrender {
   background: white;
   color: black;
@@ -10075,23 +10082,23 @@ Post Battle Results
 /***********************
 Table of results
 ***********************/
-/* line 260, ../sass/_rest.scss */
+/* line 265, ../sass/_rest.scss */
 .table {
   background: white;
 }
 
-/* line 264, ../sass/_rest.scss */
+/* line 269, ../sass/_rest.scss */
 td,
 th {
   color: #585757;
 }
 
-/* line 268, ../sass/_rest.scss */
+/* line 273, ../sass/_rest.scss */
 td a {
   color: #585757;
 }
 
-/* line 272, ../sass/_rest.scss */
+/* line 277, ../sass/_rest.scss */
 td a:hover {
   text-decoration: none;
 }

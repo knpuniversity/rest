@@ -41,11 +41,10 @@
                             {% endfor %}
                         </ul>
                     </div>
-                    
-                    <div class="progress progress-striped active">
-                      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                        <span class="sr-only">60% Complete (warning)</span>
-                      </div>
+
+                    <div class="js-progress-messages battle-progress-message"></div>
+                    <div class="progress progress-striped active js-battle-status" style="display: none;">
+                      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
                     </div>
                     
                     <div class="modal-footer">
@@ -63,19 +62,75 @@
     {{ parent() }}
 
     <script>
+        var Battle = function($modal) {
+            this.initialize($modal);
+        };
+
+        $.extend(Battle.prototype, {
+            messages: [
+                'Cloning the repository',
+                'Stting through some planning meetings',
+                'Running Composer install',
+                'Working into the night on the search feature',
+                'Writing tests'
+            ],
+
+            initialize: function($modal) {
+                this.$modal = $modal;
+
+                this.$modal.on(
+                    'click',
+                    '.js-select-battle-project',
+                    $.proxy(this._handleBattleStart, this)
+                );
+            },
+
+            startBattle: function($form) {
+                var self = this;
+
+                var $battleButtons = this.$modal.find('.js-select-battle-project');
+                $battleButtons.attr('disabled');
+
+                var $progressBar = this.$modal.find('.js-battle-status');
+                var $movingBar = $progressBar.find('.progress-bar');
+                $progressBar.show();
+
+                var $messages = this.$modal.find('.js-progress-messages');
+                var messages = this.messages;
+
+                var max = 5;
+                (function loopOverMessages (i) {
+                   setTimeout(function () {
+                       $messages.html(messages[max-i]);
+                       $movingBar.width((100/max*(max-i))+'%');
+                       if (i--) {
+                           loopOverMessages(i);
+                       } else {
+                           self.finishBattle($form);
+                       }
+                   }, 300)
+                })(max);
+            },
+
+            finishBattle: function($form) {
+                var $messages = this.$modal.find('.js-progress-messages');
+                $messages.html('Battle Concluded!');
+
+                $form.submit();
+            },
+
+            _handleBattleStart: function(e) {
+                e.preventDefault();
+                $form = $(e.currentTarget).closest('form');
+
+                this.startBattle($form);
+            }
+        });
+
         $(document).ready(function() {
             var $modal = $('#chooseProject');
 
-            // when we submit, this updates the hidden project_id field
-            $modal.on('click', '.js-select-battle-project', function() {
-                var selectedProjectId = $(this).data('project');
-
-                $modal.find('#js-receive-project-id').val(selectedProjectId);
-
-                var $startBattleButton = $modal.find('.js-start-battle');
-                $startBattleButton.attr('disabled');
-                $startBattleButton.html('Battle Commencing...');
-            });
+            var battle = new Battle($modal);
         })
     </script>
 {% endblock %}
