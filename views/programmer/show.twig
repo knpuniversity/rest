@@ -33,9 +33,9 @@
                                 <li>
                                     <form action="{{ path('battle_new') }}" method="POST">
                                         <input type="hidden" name="programmer_id" value="{{ programmer.id }}" />
-                                        <input type="hidden" name="project_id" id="js-receive-project-id" value="{{ project.id }}" />
+                                        <input type="hidden" name="project_id" value="{{ project.id }}" />
 
-                                        <input type="submit" class="btn btn-lg btn-enemy js-select-battle-project" data-project="{{ project.id }}" value="{{ project.name }} (difficulty: {{ project.difficultyLevel }})" />
+                                        <input type="submit" class="btn btn-lg btn-enemy js-select-battle-project" value="{{ project.name }} (difficulty: {{ project.difficultyLevel }})" />
                                     </form>
                                 </li>
                             {% endfor %}
