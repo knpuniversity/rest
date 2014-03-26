@@ -84,7 +84,7 @@ directory:
 
 The result is a lot of green and a message that says our 1 scenario passed.
 In the background, a real HTTP request was made to our server and a real
-response was sent back and then checked. In on browser, we can actually see
+response was sent back and then checked. In our browser, we can actually see
 the new ``ObjectOrienter`` programmer.
 
 Oh, and it knows what our hostname is because of a configuration file: ``behat.yml.dist``.
@@ -100,7 +100,7 @@ to this host.
 How Behat Works
 ~~~~~~~~~~~~~~~
 
-This looks like magic, but it's actually really simple. Open up the the
+This looks like magic, but it's actually really simple. Open up the
 ``ApiFeatureContext`` file that lives in the ``features/api`` directory.
 If we scroll down, you'll immediately see functions with regular expressions
 above them::
@@ -109,7 +109,7 @@ above them::
 
 Behat reads each line under a scenario and then looks for a function here
 whose regular expression matches it. So when we say ``I request "POST /api/programmers"``,
-it calls the ``iRequest`` fucntion and passes ``POST`` and ``/api/programmers``
+it calls the ``iRequest`` function and passes ``POST`` and ``/api/programmers``
 as arguments. In there, our old friend Guzzle is used to make HTTP requests,
 just like we're doing in our ``testing.php`` script.
 

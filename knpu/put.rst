@@ -23,9 +23,9 @@ Things get trickier with POST and PUT. I'm about to say something that's
 
 POST is used for creating resources and PUT is used for updating.
 
-Seriously, this is **not true**, and it's dangerous to say: there are REST
-fanatics waiting around every corner to tackle you when you say bad things
-like this.
+Seriously, this is **not true**, and it's dangerous to say: there might be
+hardcore REST fans waiting around any corner ready to correct you when you
+say bad things like this.
 
 But in practice, this statement is pretty close. So let's use the PUT method
 for our edit endpoint. Afterwards, we'll geek out on the *real* difference
@@ -231,7 +231,11 @@ Now run the test:
 
     $ php vendir/bin/behat
 
-Perfect!
+Perfect! We've decided just to ignore these "extra" properties. You could
+also decide to return an error response instead. It just depends on if your
+taste. What we did here is easier to use, but our client may also not notice
+that we're ignoring some of the submitted data. We'll talk about error responses
+in a few minutes.
 
 POST versus PUT
 ---------------
