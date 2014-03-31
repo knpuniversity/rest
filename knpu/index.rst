@@ -8,6 +8,7 @@ Starting in Symfony2: Episode2
     http
     rest
     client-state
+    project-routing
     post
     get
     testing
