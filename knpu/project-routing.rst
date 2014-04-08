@@ -1,8 +1,8 @@
 POST, 201, Location header and Testing
 ======================================
 
-Let's start by `downloading`_ or `cloning`_ the CodeBattles project. Next,
-follow the `README.md`_ file to get things working. It involves `downloading Composer`_
+Ok, let's get start by `downloading`_ or `cloning`_ the CodeBattles project.
+Now, follow the `README.md`_ file to get things working. It involves `downloading Composer`_
 and installing the vendor libraries:
 
 .. code-block:: bash
@@ -36,9 +36,9 @@ Awesome!
 About the App
 -------------
 
-CodeBattles is built in `Silex`_, a PHP microframework. If you're not familiar
-with Silex, take a few minutes with `its Documentation`_ to get familiar with
-it. It basically let's us design routes, or pages and easily write the code
+CodeBattles is built in `Silex`_, a PHP microframework. If this is your first
+time using Silex, take a few minutes with `its Documentation`_ to get to
+know it. It basically let's us design routes, or pages and easily write the code
 to render those pages. Our setup will look just a little bit different than
 this, but the idea is the same.
 
@@ -59,7 +59,7 @@ Separate URLs from our Web Interface?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 But wait! In the web version of our app, we're already able to fill out a
-form that submits a POST request to ``/programmers`` to create a new programmer.
+form and submit it via POST to ``/programmers`` to create a new programmer.
 This either re-renders the HTML page with errors or redirects us.
 
 Why not just reuse the ``/programmers`` URL and make it work for our API?
@@ -71,13 +71,13 @@ HTML *or* by an API client to pass JSON back and forth.
 That would be sweet! And later, we'll talk about how you could do that.
 But for now, things will be a lot easier to understand if we leave the web
 interface alone, prefix our API URLs with ``/api``, and write separate code
-to for it.
+for it.
 
-This *does* break a rule of REST, because each resource will have 2 different
-URLs: one for the HTML representation and one for the JSON representation.
-In a perfect world, a resource has just *one* URI, and we use a request
-header to tell the server whether we want the resource in HTML, JSON or any
-other representation.
+This *does* break a rule of REST, because, philosophically speaking, each
+resource will have 2 different URLs: one for the HTML representation and
+one for the JSON representation. In a perfect world, a resource has just *one*
+URI, and we use a request header to tell the server whether we want the resource
+in HTML, JSON or some other representation.
 
 But REST has a lot of rules, and yea, we're going to break some. I'll show
 you the "right" way later, and you can decide which you like better. Plenty
@@ -109,8 +109,9 @@ and boring ``hello world!``::
     }
 
 And just like that, we have a new endpoint with the URL ``/api/programmers``.
-If we make a POST request here, the ``newAction`` function will be executed.
-This is the core of what Silex gives us.
+If we make a POST request here, the ``newAction`` function will be executed
+and these famous words will be returned in the response. This is the core
+of what Silex gives us.
 
 URLs and Resources
 ~~~~~~~~~~~~~~~~~~
@@ -122,19 +123,19 @@ programmers in the system.
 So a resource can be one thing - like one programmer - or many things - like
 a collection.
 
-And according to some HTTP rules I'll show you later, when you POST to a
-collection resource, you're saying that you want to add a new resource to it.
-So our choice of ``POST`` wasn't accidental: we're following the rules of
-the web.
+And according to some HTTP rules I'll show you later, when you make a POST
+request to a collection resource, you're saying that you want to add a new
+resource to it. So our choice of ``POST`` wasn't accidental: we're following
+the rules of the web. And in the API world, if you follow the rules, you'll
+have more friends.
 
 Testing the Endpoint
 ~~~~~~~~~~~~~~~~~~~~
 
-Well let's try it! That's actually not easy in a browser, since only a POST
-request will work. Instead, open up the ``testing.php`` file I created for
-us::
+Well let's try it already! That's actually not easy in a browser, since we
+need to make a POST request. Instead, open up the ``testing.php`` file at
+the root of the project that I already prep'ed for us::
 
-    <?php
     // testing.php
     require __DIR__.'/vendor/autoload.php';
 
@@ -147,7 +148,7 @@ us::
         )
     ));
 
-All this does so far is instantiate a `Guzzle`_ Client object. Guzzle is
+This is a plain PHP file that creates a `Guzzle`_ Client object. Guzzle is
 a crazy-good library that lets you make HTTP curl requests and receive responses.
 If you're talking to an API in PHP, this is what you use.
 
