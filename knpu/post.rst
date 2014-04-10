@@ -1,10 +1,10 @@
 POST: Creation, Location Header and 201
 =======================================
 
-In reality, we're going to pass some programmer details up to the server.
-In REST-speak, we're passing a representation of a programmer, which can
-be done in a number of different formats. It's invisible to us, but HTML
-forms do this by sending data in a format called ``application/x-www-form-urlencoded``:
+Once the POST endpoint works, the client will send programmer details to
+the server. In REST-speak, it will send a representation of a programmer,
+which can be done in a bunch of different ways. It's invisible to us, but
+HTML forms do this by sending data in a format called ``application/x-www-form-urlencoded``:
 
 .. code-block:: text
 
@@ -14,9 +14,9 @@ forms do this by sending data in a format called ``application/x-www-form-urlenc
     
     nickname=Geek+Dev1&avatarNumber=5
 
-PHP automatically reads that and puts it into the ``$_POST`` super global.
-That's fine for the web, but in the API world, this is ugly. Instead, we'll
-usually pass the representation as XML or JSON:
+PHP reads this and puts it into the ``$_POST`` array. That's ok for the web,
+but in the API world, it's ugly. Instead, we'll have the client send us the
+representation as JSON:
 
     POST /api/programmers HTTP/1.1
     Host: localhost:8000
@@ -46,15 +46,15 @@ Creating a request like this with Guzzle is easy::
     echo "\n\n";
 
 The second ``null`` argument is an array of request headers we want to send.
-We're not worried about that yet, so we can just leave it blank.
+We're not worried about headers yet, so we can just leave it blank.
 
 Coding up the Endpoint
 ----------------------
 
-Back in the ``ProgrammerController`` class, let's start coding to make this
-work. First, how do we get the JSON string passed in the request? In Silex,
-you do this by getting the ``Request`` object and calling ``getContent()``
-on it. Let's just return the data from the endpoint so we can see it::
+Back in the ``ProgrammerController`` class, let's code to make this work.
+First, how do we get the JSON string passed in the request? In Silex, you
+do this by getting the ``Request`` object and calling ``getContent()`` on
+it. Let's just return the data from the endpoint so we can see it::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
@@ -82,7 +82,7 @@ Try running our ``testing.php`` file again::
 
     $ php testing.php
 
-This time, you should see the JSON string being echo'ed back at you:
+This time, we see the JSON string being echo'ed right back at us:
 
 .. code-block:: text
 
@@ -92,8 +92,11 @@ This time, you should see the JSON string being echo'ed back at you:
 
     {"nickname":"ObjectOrienter31","avatarNumber":5}
 
-Awesome! Now that we have the JSON string, we can just decode it and start
-creating a new ``Programmer`` object.
+Creating the Programmer Resource Object
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Awesome! Now that we have the JSON string, we can decode it and start creating
+a new ``Programmer`` object.
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
@@ -112,22 +115,33 @@ creating a new ``Programmer`` object.
     }
 
 Our app already comes ready with classes for ``Programmer``, ``Battle`` and
-``Project``, as well as a really simple ORM. At the bottom, I'm just returning
-a really reassuring message that everything went ok.
+``Project``, as well as a really simple ORM that lets us save these to the
+database. How you save things to your database will be different. The key
+piece is that we have a ``Programmer`` class, which models how we want our
+API to look. We'll have a PHP class for each of our API resources.
+
+At the bottom, I'm just returning a really reassuring message that everything
+went ok.
+
+Faking the Authenticated User
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 I've also added one really ugly detail::
 
     $programmer->userId = $this->findUserByUsername('weaverryan')->id;
 
-Every programmer is created and owned by one user. On the web, making this
-relation is simple, because I'm logged in. But our API has no idea who *we*
-are - we're just a client making requests without any identification.
+Every programmer is created and owned by one user. On the web, finding out
+*who* is creating the programmer is as easy as finding out which user is
+currently logged in.
 
-We'll fix this, but for now - I'll just make *every* programmer owned by
-me. Make sure to use my username - it's setup as test data that'll always
+But our API has no idea who *we* are - we're just a client making requests
+without any identification.
+
+We'll fix this later. Right now, I'll just make *every* programmer owned by
+me. Make sure to use my username: it's setup as test data that'll always
 be in our database.
 
-Moment of truth! Run the testing script again:
+Ok, the moment of truth! Run the testing script again:
 
 .. code-block:: bash
 
@@ -148,9 +162,9 @@ with password ``foo`` on the web, you'll see this programmer in the list.
 Status Code 201
 ---------------
 
-But it's not time to celebrate yet. Our response is a little sad. First,
-since we've just created a resource, the HTTP elders say that we should return
-a 201 status code. In Silex, we just need to return a new ``Response`` object
+But no time to celebrate! Our response is a little sad. First, since we've
+just created a resource, the HTTP elders say that we should return a 201
+status code. In Silex, we just need to return a new ``Response`` object
 and set the status code as the second argument::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
@@ -168,9 +182,9 @@ Location Header
 ---------------
 
 And when we use the 201 status code, there's another rule: include a ``Location``
-header that points to the new resource. We don't have a page that displays
-a programmer in our API yet, so let's just hardcode the ``Location`` header
-to a made-up URL::
+header that points to the new resource. We don't have a URI that returns
+a programmer representation in our API yet, so let's just hardcode the ``Location``
+header to a made-up URL::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
@@ -186,10 +200,10 @@ to a made-up URL::
         return $response;
     }
 
-If you think about it, this is just how the web works. When we submit the
-form to create a new programmer, the server returns a redirect that takes
-us to view that one programmer. In an API, the status code is 201 instead
-of 301 or 302, but the server is trying to help us in both cases.
+If you stop and think about it, this is how the web works. When we submit
+a form to create a programmer, the server returns a redirect that takes us
+to view that one programmer. In an API, the status code is 201 instead of
+301 or 302, but the server is trying to help show us the way in both cases.
 
 Try the final product out in our test script:
 
@@ -207,7 +221,7 @@ Try the final product out in our test script:
     It worked. Believe me - I'm an API
 
 Other than the random text we're still returning, this endpoint is looking
-great. Now to GET a programmer.
+great. Now to GET a programmer!
 
 .. _`php.net: php://`: http://www.php.net/manual/en/wrappers.php.php#wrappers.php.input
 .. _`The Wonderful World of Composer`: http://knpuniversity.com/screencast/composer
