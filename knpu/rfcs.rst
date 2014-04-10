@@ -1,10 +1,13 @@
 Fixing the Content-Type on POST
--------------------------------
+===============================
 
 We now have 3 working endpoints, but one still has a big issue. The POST
-*still* returns a text string as its response. So what *should* a POST body
-contain after creating a resource? Your best option is to return a representation
-of the new resource. So let's do that::
+*still* returns a text string as its response. Even if you don't know what
+it *should* return, that's embarassing. Come on, we can do better!
+
+After creating a resource, one great option is to return a representation
+of the new resource. If the client needs that information, then we've just
+saved them one API request::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
@@ -29,8 +32,9 @@ of the new resource. So let's do that::
         return $response;
     }
 
-And of course, don't forget to set the ``Content-Type`` header to ``application/json``.
-To test, print out that response temporarily and try it::
+Now that we're sending back JSON, don't forget to set the ``Content-Type``
+response header to ``application/json``. To test, print out that response
+temporarily and try it::
 
     // testing.php
     // ...
@@ -41,6 +45,9 @@ To test, print out that response temporarily and try it::
 
     echo $response;
     echo "\n\n";die;
+
+A JsonResponse Shortcut
+-----------------------
 
 And actually, since returning JSON is so common, Silex has a shortcut: the
 ``JsonResponse`` class. It takes care of running ``json_encode`` *and* setting
@@ -66,13 +73,15 @@ the ``Content-Type`` header for us::
         return $response;
     }
 
-That's just there for convenience, but it cuts down on some code.
+That's just there for convenience, but it cuts down on some code. If your
+framework or application doesn't have anything like this, create a class
+or function to help with this: it will go a long way towards being consistent.
 
 Finding Spec Information
 ------------------------
 
 By the way, how do I know these rules, like that a 201 response should have
-a status code or that it should return the entity body? These guidelines
+a ``Location`` header or that it should return the entity body? These guidelines
 come from the IETF and the W3C in the form of big technical RFC's. They're
 not always easy to interpret, but sometimes they're awesome. For example,
 if you google for ``http status 201`` you'll find a the famous `RFC 2616`_,
@@ -80,6 +89,8 @@ which gives us the details about the 201 status code and most of the underlying
 guidelines for how HTTP works.
 
 I'll help you navigate these rules. But as we go, try googling for answers
-and seeing what's out there.
+and seeing what's out there. Some RFC's, like 2616, are older and well adopted.
+Others are still up for comment and being interpreted. We'll see some of
+those later.
 
 .. _`RFC 2616`: http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
