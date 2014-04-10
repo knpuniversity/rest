@@ -12,4 +12,6 @@ Starting in Symfony2: Episode2
     post
     get
     location-header
+    get-collection
+    rfcs
     testing
