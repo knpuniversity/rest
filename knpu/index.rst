@@ -11,4 +11,5 @@ Starting in Symfony2: Episode2
     project-routing
     post
     get
+    location-header
     testing
