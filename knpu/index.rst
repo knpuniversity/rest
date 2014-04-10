@@ -14,4 +14,6 @@ Starting in Symfony2: Episode2
     location-header
     get-collection
     rfcs
+    testing-phpunit
     testing
+    testing-data

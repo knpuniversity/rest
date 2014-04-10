@@ -1,0 +1,98 @@
+Handling Data in Tests
+======================
+
+Let's run our test a second time:
+
+    $ php vendir/bin/behat
+
+It fails! The nickname of a programmer is unique in the database, and if
+you look closely, this fails because the API tries to insert another ``ObjectOrienter``
+and blows up. To fix this, add a new function in ``ApiFeatureContext`` with
+a special ``@BeforeScenario`` anotation above it::
+
+    Behat: Clear data between tests
+
+The body of this function is specific to my app - it calls out to some code
+that truncates all of my tables. If you can write code to empty your database
+tables, at least the ones we'll be messing with in our tests, then you can
+do this.
+
+.. tip::
+
+    In order to access your framework's normal database-related functions,
+    you'll need to bootstrap your app inside this class. For many frameworks,
+    libraries exist to glue Behat and it together. If you have issues or
+    questions, feel free to post them in the comments.
+
+The ``@BeforeScenario`` annotation, or comment, tells Behat to automatically
+run this before every scenario. This guarantees that we're starting with
+a very predictable, empty database before each test.
+
+Try the test again:
+
+    $ php vendir/bin/behat
+
+Dang, it failed again. Ah, remember how we're relating all programmers to
+the ``weaverryan`` user? Well, when we empty the tables before the scenario,
+this user gets deleted too. That's expected, and I already have a sentence
+to take care of this. Uncomment the ``Background`` line above the scenario:
+
+    TODO: Behat: Clear data between tests Background
+
+Eventually we'll have many scenarios in this one file. Lines below ``Background``
+are executed before each ``Scenario``. Ok, try it one more time!
+
+    $ php vendir/bin/behat
+
+Success! When you test, it's critical to make sure that your database is
+in a predictable state before each test. Don't assume that a user exists
+in your database: create it with a scenario or background step.
+
+And, every test, or scenario in Behat, should work independently. So don't
+make one scenario depend on the data of a scenario that comes before it.
+That's a huge and common mistake. Eventually, it'll make your tests unpredictable
+and hard to debug. If you do a little bit of work early on to get all this
+data stuff right, you and Behat are going to be very happy together.
+
+Test: GET One Programmer
+------------------------
+
+Let's add a second scenario for making a GET request to view a single programmer.
+This entirely uses language that I've already prepped for us:
+
+.. code-block:: gherkin
+
+    Behat: List and show tests: Scenario GET one
+
+The ``Given`` statement actually inserts that user into the database before
+we start the test. That's exactly what I was just talking about: if I need
+a user, write a scenario step that adds one.
+
+After that, everything looks normal: make an HTTP request and check some
+things.
+
+Run it!
+
+    $ php vendir/bin/behat
+
+Success!
+
+Test: GET all Programmers
+-------------------------
+
+That was easy, so let's add a third scenario for making a GET request to
+see the collection of all programmers. Oh, and the title that we give to
+each scenario - like ``GET one programmer``: is just for our benefit, it's
+not read by Behat. And for that matter, neither are the first 4 lines of
+the feature file. But you should still learn more about the importance of
+these - don't skip them!
+
+.. code-block:: gherkin
+
+    Behat: List and show tests: Scenario GET collection
+
+Here, we insert 2 programmers into the database before the test, make the
+HTTP request and then check some basic things on the response. It's the same,
+boring process over and over again. 
+
+I hope you're seeing how awesome testing our API with Behat is going to be!
