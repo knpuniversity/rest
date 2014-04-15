@@ -9,6 +9,25 @@ For more details, see the following blog posts:
 * [What the REST?](http://knpuniversity.com/blog/what-the-rest)
 * [REST Revisited](http://knpuniversity.com/blog/rest-revisited)
 
+Installation
+------------
+
+1) Download/install Composer into this directory. See http://getcomposer.org
+
+2) Download the vendor files by running:
+
+    php composer.phar install
+
+3) Point your web server at this directory, or use the built-in PHP web
+   server, which is nice and friendly (but requires PHP 5.4+)
+
+   cd web
+   php -S localhost:8000
+
+4) Load up the app in your browser!
+
+    http://localhost:8000
+
 Collaboration
 -------------
 
