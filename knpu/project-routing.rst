@@ -61,7 +61,7 @@ But hold up! In the web version of our app, we're already able to create a
 programmer by filling out a form and submitting it via POST to ``/programmers/new``.
 This either re-renders the HTML page with errors or redirects us.
 
-Why not just reuse the cde from ``/programmers`` and make it work for our API?
+Why not just reuse the code from this URL and make it work for our API?
 To do this we'd need to make it accept JSON request data, become smart
 enough to return errors as JSON and do something other than a redirect on
 success. Then, ``/programmers`` could be used by a browser to get HTML *or*
