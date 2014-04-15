@@ -16,7 +16,7 @@ and installing the vendor libraries:
 
     If you're new to Composer, watch `The Wonderful World of Composer`_.
 
-When that's done, start up the app running by using PHP's awesome built-in
+When that's done, start up the app by using PHP's awesome built-in
 web server:
 
 .. code-block:: bash
@@ -43,9 +43,9 @@ to render those pages. Our setup will look just a little bit different than
 this, but the idea is the same.
 
 But this is *not* a tutorial on building a REST API on only Silex! Most of
-what we'll do will basically be the same across any framework. You *will* need
+what we'll do is basically the same across any framework. You *will* need
 to do a little bit of work here and there, like hooking into *your* framework's
-validation system instead of the one we'll use. But trust me, these things
+validation system instead of the one we're using. But trust me, these things
 are a pleasure to do compared with all the tough REST stuff.
 
 First Endpoint: POST /api/programmers
@@ -58,12 +58,12 @@ user will do? Create a programmer of course! And that's our first API endpoint.
 Separate URLs from our Web Interface?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-But wait! In the web version of our app, we're already able to fill out a
-form and submit it via POST to ``/programmers`` to create a new programmer.
+But hold up! In the web version of our app, we're already able to create a new
+programmer by filling out a form and submitting it via POST to ``/programmers``.
 This either re-renders the HTML page with errors or redirects us.
 
 Why not just reuse the ``/programmers`` URL and make it work for our API?
-We'd just need to make it able to accept JSON request data, and be smart
+To do this we'd need to make it accept JSON request data, become smart
 enough to return errors as JSON and do something other than a redirect on
 success. If we did that, ``/programmers`` could be used by a browser to get
 HTML *or* by an API client to pass JSON back and forth.
@@ -79,9 +79,9 @@ one for the JSON representation. In a perfect world, a resource has just *one*
 URI, and we use a request header to tell the server whether we want the resource
 in HTML, JSON or some other representation.
 
-But REST has a lot of rules, and yea, we're going to break some. I'll show
-you the "right" way later, and you can decide which you like better. Plenty
-of successful APIs bend this rule.
+But REST has a lot of rules, unlike Codebattles which has just one. And yea, 
+we're going to break some. I'll show you the "right" way later, and you can 
+decide which you like better. Plenty of successful APIs bend this rule.
 
 Basic Routing
 ~~~~~~~~~~~~~
@@ -97,21 +97,20 @@ file and uncomment the route definition::
         $controllers->post('/api/programmers', array($this, 'newAction'));
     }
 
-Next, create a ``newAction`` inside of this class and just return the classic
-and boring ``hello world!``::
+Next, create a ``newAction`` inside of this class and return ``let's battle!``::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
 
     public function newAction()
     {
-        return 'hello world!';
+        return 'let's battle!';
     }
 
-And just like that, we have a new endpoint with the URL ``/api/programmers``.
-If we make a POST request here, the ``newAction`` function will be executed
-and these famous words will be returned in the response. This is the core
-of what Silex gives us.
+And just like that, we're making threats and we have a new endpoint with 
+the URL ``/api/programmers``. If we make a POST request here, the ``newAction`` 
+function will be executed and these famous last words will be returned in the response. 
+This is the core of what Silex gives us.
 
 URLs and Resources
 ~~~~~~~~~~~~~~~~~~
@@ -134,7 +133,7 @@ Testing the Endpoint
 
 Well let's try it already! That's actually not easy in a browser, since we
 need to make a POST request. Instead, open up the ``testing.php`` file at
-the root of the project that I already prep'ed for us::
+the root of the project that I've already prep'ed for us::
 
     // testing.php
     require __DIR__.'/vendor/autoload.php';
@@ -184,7 +183,7 @@ the file is:
     Cache-Control: no-cache
     Content-Type: text/html; charset=UTF-8
 
-    hello world!
+    let's battle!
 
 Success!
 
