@@ -44,44 +44,39 @@ this, but the idea is the same.
 
 But this is *not* a tutorial on building a REST API on only Silex! Most of
 what we'll do is basically the same across any framework. You *will* need
-to do a little bit of work here and there, like hooking into *your* framework's
-validation system instead of the one we're using. But trust me, these things
+to do a little bit of work here and there. But trust me, these things
 are a pleasure to do compared with all the tough REST stuff.
 
 First Endpoint: POST /api/programmers
 -------------------------------------
 
-Let's pretend we're building the API to support an iPhone app. Other than
-authentication, which we'll ignore until later, what's the first thing the
-user will do? Create a programmer of course! And that's our first API endpoint.
+Let's pretend we're building the API for an iPhone app. Ignoring authentication,
+what's the first thing the user will do in the app? Create a programmer of course!
+And that's our first API endpoint.
 
 Separate URLs from our Web Interface?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-But hold up! In the web version of our app, we're already able to create a new
+But hold up! In the web version of our app, we're already able to create a
 programmer by filling out a form and submitting it via POST to ``/programmers``.
 This either re-renders the HTML page with errors or redirects us.
 
-Why not just reuse the ``/programmers`` URL and make it work for our API?
+Why not just reuse the cde from ``/programmers`` and make it work for our API?
 To do this we'd need to make it accept JSON request data, become smart
 enough to return errors as JSON and do something other than a redirect on
-success. If we did that, ``/programmers`` could be used by a browser to get
-HTML *or* by an API client to pass JSON back and forth.
+success. Then, ``/programmers`` could be used by a browser to get HTML *or*
+by an API client to pass JSON back and forth.
 
 That would be sweet! And later, we'll talk about how you could do that.
 But for now, things will be a lot easier to understand if we leave the web
 interface alone, prefix our API URLs with ``/api``, and write separate code
 for it.
 
-This *does* break a rule of REST, because, philosophically speaking, each
-resource will have 2 different URLs: one for the HTML representation and
-one for the JSON representation. In a perfect world, a resource has just *one*
-URI, and we use a request header to tell the server whether we want the resource
-in HTML, JSON or some other representation.
-
-But REST has a lot of rules, unlike Codebattles which has just one. And yea, 
-we're going to break some. I'll show you the "right" way later, and you can 
-decide which you like better. Plenty of successful APIs bend this rule.
+This *does* break a rule of REST, because each resource will now have 2
+URLs: one for HTML and one for the JSON representation. But REST has a lot
+of rules, too many for our rebel Codebattles site. We'll break this one, like
+many APIs. But later, I'll show you how we *could* use 1 URL to return multiple
+representation.
 
 Basic Routing
 ~~~~~~~~~~~~~
@@ -115,18 +110,13 @@ This is the core of what Silex gives us.
 URLs and Resources
 ~~~~~~~~~~~~~~~~~~
 
-Do you remember me repeating that every URL is the address to a resource?
-Here, ``/api/programmers`` is a resource that represents the collection of
-programmers in the system.
+My choice of a POST request to create a programmer isn't accidental.
+``/api/programmers`` is a collection resource. And according to some HTTP
+rules I'll show you later, when you want to create a resource, you should
+send a POST request to its collection.
 
-So a resource can be one thing - like one programmer - or many things - like
-a collection.
-
-And according to some HTTP rules I'll show you later, when you make a POST
-request to a collection resource, you're saying that you want to add a new
-resource to it. So our choice of ``POST`` wasn't accidental: we're following
-the rules of the web. And in the API world, if you follow the rules, you'll
-have more friends.
+In other words, I'm not making this all up: I'm following the rules of the
+web. And in the API world, if you follow the rules, you'll have more friends.
 
 Testing the Endpoint
 ~~~~~~~~~~~~~~~~~~~~
@@ -148,8 +138,7 @@ the root of the project that I've already prep'ed for us::
     ));
 
 This is a plain PHP file that creates a `Guzzle`_ Client object. Guzzle is
-a crazy-good library that lets you make HTTP curl requests and receive responses.
-If you're talking to an API in PHP, this is what you use.
+a simple library for making HTTP requests and receving responses.
 
 Let's make a POST request to ``/api/programmers`` and print out the response::
 
