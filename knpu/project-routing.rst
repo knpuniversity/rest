@@ -58,7 +58,7 @@ Separate URLs from our Web Interface?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 But hold up! In the web version of our app, we're already able to create a
-programmer by filling out a form and submitting it via POST to ``/programmers``.
+programmer by filling out a form and submitting it via POST to ``/programmers/new``.
 This either re-renders the HTML page with errors or redirects us.
 
 Why not just reuse the cde from ``/programmers`` and make it work for our API?
