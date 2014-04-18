@@ -1,9 +1,9 @@
 GET'ing Resources, and Content-Type
 ===================================
 
-Now that we can create a programmer resource, let's make an endpoint that's
-able to fetch a programmer representation. Let's start by writing how it'll
-look when a client makes the request::
+We just created ObjectOrienter -- how tough and scary-- now let's make an endpoint that's
+able to fetch that programmer representation. Start by writing how it'll look when a 
+client makes the request::
 
     // testing.php
     // ...
@@ -17,14 +17,13 @@ look when a client makes the request::
 
 The URL is ``/api/programmers/{nickname}``, where the ``nickname`` part changes
 based on which programmer you want to get. In a RESTful API, the URL structures
-don't actually matter. But to keep your sanity, if ``/programmers`` returns
-the collection of programmers, then make ``/programmers/{id}`` the URI to
+don't actually matter. But to keep your sanity, if ``/api/programmers`` returns
+the collection of programmers, then make ``/api/programmers/{id}`` return
 a single programmer, where ``{id}`` is something unique. And be consistent:
-if your collection resources are plural - like ``/programmers``, use the plural
-form for all collection resources.
-
-Heck, consitency is probably one of the most important things you can do.
-Be inconsistent, and even the best API will make your users hate you.
+if your collection resources are plural - like ``/api/programmers``, use the plural
+form for all collection resources. If you make these URLs inconsistent you are going
+to make your future self really really miserable. Be consistent and your API users
+will leave you lots of happy emoticons.
 
 Basic Routing and Controller
 ----------------------------
@@ -76,7 +75,7 @@ Returning a JSON Response
 -------------------------
 
 Our goal is to return a representation of the programmer resource. This could
-be in JSON, XML or some invented format if you really hate your API users.
+be in JSON, XML and if it's April Fools try some invented format.
 We'll use JSON, because it's easy simple, and all languages support it.
 To do this, first query for the programmer by using its nickname. I'll do
 this using a ``findOneByNickname`` method from my simple ORM::
@@ -95,9 +94,9 @@ This returns a ``Programmer`` object. The code you use to query for data
 will be different. The really important part is to finish with an object
 that has all the data you want to send back in your API.
 
-Next, just turn the ``Programmer`` object into an array by manually. And
-finally, create a new ``Response`` object just like with did with the POST
-endpoint. But this time, set its body to be the JSON-encoded string::
+Next, just turn the ``Programmer`` object into an array manually. And
+finally, create a new ``Response`` object just like the POST endpoint. 
+But this time, set its body to be the JSON-encoded string::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
@@ -116,7 +115,7 @@ endpoint. But this time, set its body to be the JSON-encoded string::
         return new Response(json_encode($data), 200);
     }
 
-The correct status code is 200. We're learn about other status codes, but
+The correct status code is 200. We'll learn about other status codes, but
 you'll still use the good ol' 200 in most cases, especially for GET requests.
 
 Test it out!
