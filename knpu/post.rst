@@ -15,8 +15,8 @@ HTML forms do this by sending data in a format called ``application/x-www-form-u
     nickname=Geek+Dev1&avatarNumber=5
 
 PHP reads this and puts it into the ``$_POST`` array. That's ok for the web,
-but in the API world, it's ugly. Instead, we'll have the client send us the
-representation as JSON:
+but in the API world, it's ugly. Why not, have the client send us the
+representation in a beautiful boquet of curly braces known as JSON:
 
     POST /api/programmers HTTP/1.1
     Host: localhost:8000
@@ -45,16 +45,17 @@ Creating a request like this with Guzzle is easy::
     echo $response;
     echo "\n\n";
 
-The second ``null`` argument is an array of request headers we want to send.
+The second ``null`` argument is the request headers to send.
 We're not worried about headers yet, so we can just leave it blank.
 
 Coding up the Endpoint
 ----------------------
 
-Back in the ``ProgrammerController`` class, let's code to make this work.
-First, how do we get the JSON string passed in the request? In Silex, you
-do this by getting the ``Request`` object and calling ``getContent()`` on
-it. Let's just return the data from the endpoint so we can see it::
+Back in the ``ProgrammerController`` class, let's make this work by doing
+our favorite thing - coding! First, how do we get the JSON string passed 
+in the request? In Silex, you do this by getting the ``Request`` object 
+and calling ``getContent()`` on it. Let's just return the data from the 
+endpoint so we can see it::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
@@ -96,7 +97,7 @@ Creating the Programmer Resource Object
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Awesome! Now that we have the JSON string, we can decode it and start creating
-a new ``Programmer`` object.
+a new ``Programmer`` object. We've got to get this character fit for battle!
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
