@@ -38,10 +38,40 @@ Next, create a new route that points to a new ``listAction`` method in our
         $controllers->get('/api/programmers', array($this, 'listAction'));
     }
 
-I'll copy the ``showAction`` and modify it for ``listAction``. We'll query
-for *all* programmers using another method from my ORM. Once again, the important
-thing is that this gives me an array of ``Programmer`` objects. Next, I'll
-transform these into a big array::
+I'll copy the ``showAction`` and modify it for ``listAction``. First, remove
+the ``$nickname`` argument, since there's no ``{nickname}`` in this new URI.
+Next, query for *all* programmers using another method from my ORM. The key
+is that this gives us an array of ``Programmer`` objects.
+
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function listAction()
+    {
+        $programmers = $this->getProgrammerRepository()->findAll();
+        // ...
+    }
+
+Like before, we need to turn each Programmer into an array. I really don't
+want to duplicate this logic. Instead, create a new ```serializeProgrammer``
+function right in this class that converts a ``Programmer`` object
+into an array. This is still manual, but later I'll show you some fancier ways
+to do this::
+
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    private function serializeProgrammer(Programmer $programmer)
+    {
+        return array(
+            'nickname' => $programmer->nickname,
+            'avatarNumber' => $programmer->avatarNumber,
+            'powerLevel' => $programmer->powerLevel,
+            'tagLine' => $programmer->tagLine,
+        );
+    }
+
+Now, use this to build a big array of the programmers in ``listAction``
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
@@ -60,9 +90,7 @@ transform these into a big array::
         return $response;
     }
 
-The ``serializeProgrammer`` method doesn't exist yet, but we can create it
-by using the code from ``showAction`` to avoid duplication. We're going to
-use some fancier methods of turning objects into JSON a bit later::
+And make sure to also update ``showAction`` to use ``serializeProgrammer``::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
@@ -75,16 +103,6 @@ use some fancier methods of turning objects into JSON a bit later::
         $data = $this->serializeProgrammer($programmer);
 
         // ...
-    }
-
-    private function serializeProgrammer(Programmer $programmer)
-    {
-        return array(
-            'nickname' => $programmer->nickname,
-            'avatarNumber' => $programmer->avatarNumber,
-            'powerLevel' => $programmer->powerLevel,
-            'tagLine' => $programmer->tagLine,
-        );
     }
 
 Cool - let's try it!
