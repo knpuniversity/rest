@@ -143,5 +143,8 @@ for organizing your JSON structures. These answer questions like, "should
 I put the data under a ``programmers`` key?" or "how should I organize details
 on how to paginate through the results?".
 
-This is real important stuff, but more on it later. For now, we just have
-to follow one golden rule: find a standard and be consistent with it.
+This is real important stuff, and we'll go into more detail later. For now, 
+we just have to follow one golden rule: find a standard and be consistent.
+
+Now rewind back 10 seconds and listen to that again at least 5 times. Consistency
+people!
