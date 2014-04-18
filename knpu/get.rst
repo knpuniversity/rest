@@ -50,7 +50,7 @@ method and just return a simple message::
 
     public function showAction($nickname)
     {
-        return new Response('Hello '.$nickname);
+        return 'Hello '.$nickname;
     }
 
 If we go to ``/api/programmers/foo``, the ``$nickname`` variable will be
@@ -184,7 +184,7 @@ app, I've created a shortcut for this called ``throw404``::
         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
 
         if (!$programmer) {
-            $this->throw404();
+            $this->throw404('Crap! This programmer has deserted! We\'ll send a search party');
         }
 
         // ...
