@@ -1,8 +1,8 @@
 Updating the Location Header
 ============================
 
-Hey, we have a working endpoint to view a single programmer! Nowm do you
-remember the ``Location`` response header we're return after creating a new
+Hey, we have a working endpoint to view a single programmer! We're awesome :)
+Now do you remember the ``Location`` response header we're return after creating a new
 programmer? Let's update that to be a real value.
 
 To do this, first add a ``bind`` function to our programmer route::
@@ -39,9 +39,9 @@ use that below to generate a proper URL to the new programmer resource::
     }
 
 The ``generateUrl`` method is a shortcut I added for our app, and it combines
-the ``nickname`` with the rest of the URL for the route. How you generate
-a URL will be different in your app, but the idea is the same: set the ``Location``
-header to the URI where I can GET this new resource.
+the ``nickname`` with the rest of the URL. You may make URLs differently in 
+your app, but the idea is the same: set the ``Location`` header to the URI where 
+I can GET this new resource.
 
 .. tip::
 
@@ -86,7 +86,7 @@ The ``Location`` header is more than just a nice thing. Its purpose is to
 help the client know where to go next without needing to hardcode URLs or
 URL patterns. To prove this, we can update our testing script to read the
 ``Location`` header and use it for the next request. This lets us *remove*
-the hardcoded URL pattern we had there before::
+the hardcoded URL pattern we had before::
 
     // testing.php
     // ...
@@ -106,5 +106,5 @@ the hardcoded URL pattern we had there before::
 
 If the URL pattern to view a programmer changes in the future, our client
 won't break. That's really powerful. But it's also where things start to get
-complicated. More on that later.
+complicated. More on that later, dear warrior.
 
