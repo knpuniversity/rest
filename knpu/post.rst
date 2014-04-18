@@ -97,11 +97,12 @@ Creating the Programmer Resource Object
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Awesome! I've already created a ``Programmer`` class, which
-just has a few properties on it. I also created simple classes for the other two
+has just a few properties on it. I also created simple classes for the other two
 resources - ``Project`` and ``Battle``. We'll use these later.
 
 In ``newAction``, we have the JSON string, so let's decode it and use the data
-to create a new ``Programmer`` object that's ready for battle.
+to create a new ``Programmer`` object that's ready for battle. We'll use
+each key that the client sends to populate a property on the object.
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
@@ -154,8 +155,8 @@ But our API has no idea who *we* are - we're just a client making requests
 without any identification.
 
 We'll fix this later. Right now, I'll just make *every* programmer owned by
-me. Make sure to use my username: it's setup as test data that'll always
-be in our database.
+me. Make sure to use my username: it's setup as test data that's always
+in our database. This test data is also known as fixtures.
 
 Ok, the moment of truth! Run the testing script again:
 
@@ -173,7 +174,8 @@ Ok, the moment of truth! Run the testing script again:
     It worked. Believe me - I'm an API
 
 The message tells us that it probably worked. And if you login as ``weaverryan``
-with password ``foo`` on the web, you'll see this programmer in the list.
+with password ``foo`` on the web, you'll see this fierce programmer-warrior 
+in the list.
 
 Status Code 201
 ---------------
@@ -194,13 +196,15 @@ and set the status code as the second argument::
         return new Response('It worked. Believe me - I\'m an API', 201);
     }
 
+Running the testing script this time shows us a 201 status code.
+
 Location Header
 ---------------
 
 And when we use the 201 status code, there's another rule: include a ``Location``
-header that points to the new resource. We don't have a URI that returns
-a programmer representation in our API yet, so let's just hardcode the ``Location``
-header to a made-up URL::
+header that points to the new resource. Hmm, we don't have an endpoint to get
+a single programmer representation yet. To avoid angering the RESTful elders,
+let's add a location header, and just fake the URL for now::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
@@ -218,7 +222,7 @@ header to a made-up URL::
 
 If you stop and think about it, this is how the web works. When we submit
 a form to create a programmer, the server returns a redirect that takes us
-to view that one programmer. In an API, the status code is 201 instead of
+to the page to view it. In an API, the status code is 201 instead of
 301 or 302, but the server is trying to help show us the way in both cases.
 
 Try the final product out in our test script:
