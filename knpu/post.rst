@@ -96,8 +96,29 @@ This time, we see the JSON string being echo'ed right back at us:
 Creating the Programmer Resource Object
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Awesome! Now that we have the JSON string, we can decode it and start creating
-a new ``Programmer`` object. We've got to get this character fit for battle!
+Awesome! I've already created a ``Programmer`` class, which
+just has a few properties on it. I also created simple classes for the other two
+resources - ``Project`` and ``Battle``. We'll use these later.
+
+In ``newAction``, we have the JSON string, so let's decode it and use the data
+to create a new ``Programmer`` object that's ready for battle.
+
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function newAction(Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $programmer = new Programmer($data['nickname'], $data['avatarNumber']);
+        $programmer->tagLine = $data['tagLine'];
+        // ...
+    }
+
+My app also has a really simple ORM that lets us save these objects to the
+database. How you save things to your database will be different. The key
+point is that we have a ``Programmer`` class that models how we want our
+API to look, and that we can somehow save this.
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
@@ -114,12 +135,6 @@ a new ``Programmer`` object. We've got to get this character fit for battle!
 
         return 'It worked. Believe me - I\'m an API';
     }
-
-Our app already comes ready with classes for ``Programmer``, ``Battle`` and
-``Project``, as well as a really simple ORM that lets us save these to the
-database. How you save things to your database will be different. The key
-piece is that we have a ``Programmer`` class, which models how we want our
-API to look. We'll have a PHP class for each of our API resources.
 
 At the bottom, I'm just returning a really reassuring message that everything
 went ok.
