@@ -3,7 +3,8 @@ Behat for Testing
 
 The great thing about using PHPUnit is that it's dead-simple: make an HTTP
 request and assert some things about its response. If you want to test your
-APIs using Guzzle and PHPUnit, you'll be very successful.
+APIs using Guzzle and PHPUnit, you'll be very successful and your office
+will smell of rich mahogany.
 
 But in our app, we're going to make our tests much more interesting by using
 a tool called `Behat`_. If you're new to Behat, you're in for a treat! But
@@ -11,7 +12,7 @@ also don't worry: we're going to use Behat, but not dive into it too deeply.
 And when you want to know more, watch our `Behat Screencast`_ and then use
 the code that comes with this project to jumpstart testing your API.
 
-With Behat, we right human-readable statements, called scenarios, and run
+With Behat, we write human-readable statements, called scenarios, and run
 these as tests. To see what I mean, find the ``features/api/programmer.feature``
 file:
 
