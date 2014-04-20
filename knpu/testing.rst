@@ -21,10 +21,7 @@ file:
     TODO: Behat: Adding asserts to PHPUnit test
 
 As you'll see, each feature file will contain many scenarios. I'll fill you
-in with more details as we go. For now, let's add our first scenario: `Create a Programmer`.
-Using normal language, I'm just describing the API request, step by step. First,
-we make the POST request and include a payload of JSON data. Next, we check that
-the response looks how we expect:
+in with more details as we go. For now, let's add our first scenario: `Create a Programmer`:
 
 .. code-block:: gherkin
 
@@ -78,7 +75,8 @@ just like we're doing in our ``testing.php`` script.
     this file for Phil's `Build APIs you Won't Hate`_ book.
 
 To sum it up: we write human readable sentences, Behat executes a function
-for each line and those functions use Guzzle to make real HTTP requests.
+for each line and those functions use Guzzle to make real HTTP requests. Behat
+is totally kicking butt for us!
 
 Seeing our Library of Behat Sentences
 -------------------------------------
@@ -91,7 +89,7 @@ the same command with a ``-dl`` option:
 
     $ php vendor/bin/behat -dl
 
-Obviously, anywhere you see the quote, parentheses mess, that's a wildcard
+Anywhere you see the quote-parentheses mess that's a wildcard
 that matches anything. So as long as we write scenarios using this language,
 we can test without writing any PHP code in ``ApiFeatureContext``. That's powerful.
 
