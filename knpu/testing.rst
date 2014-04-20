@@ -21,7 +21,10 @@ file:
     TODO: Behat: Adding asserts to PHPUnit test
 
 As you'll see, each feature file will contain many scenarios. I'll fill you
-in with more details as we go. For now, let's add our first scenario: `Create a Programmer`:
+in with more details as we go. For now, let's add our first scenario: `Create a Programmer`.
+Using normal language, I'm just describing the API request, step by step. First,
+we make the POST request and include a payload of JSON data. Next, we check that
+the response looks how we expect:
 
 .. code-block:: gherkin
 
