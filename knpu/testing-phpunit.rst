@@ -15,8 +15,8 @@ Guzzle, like we are in our ``testing.php`` file. So, the easiest way to create
 tests is just to put `PHPUnit`_ and Guzzle together.
 
 I already have PHPUnit installed in our app via Composer, so let's go straight
-to writing a test. Create a new ``ProgrammerControllerTest.php`` file and
-setup its class to extend the normal ``PHPUnit_Framework_TestCase``::
+to writing a test. Create a new ``Tests`` directory and put a ``ProgrammerControllerTest.php``
+file there. Create a class inside and extend the normal PHPUnit base class::
 
     TODO: Behat: Basic PHPUnit test
 
@@ -31,13 +31,13 @@ we have a ``Location`` header and that we get back valid JSON::
     TODO: Behat: Adding asserts to PHPUnit test
 
 To try it out, use the ``vendor/bin/phpunit`` executable and point it at
-the test fi
+the test file.
 
 .. code-block:: bash
 
     $ php vendor/bin/phpunit src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php
 
-With any luck, Sebastian Bergmanns will tell you that everything is ok! Of
+With any luck, Sebastian Bergmann will tell you that everything is ok! Of
 course I never trust a test that passes on the first try, so be sure to change
 things and make sure it fails when it should too.
 
