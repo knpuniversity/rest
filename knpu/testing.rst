@@ -57,7 +57,7 @@ to ``http://localhost:8000/api/programmers``.
 How Behat Works
 ---------------
 
-Behat looks like magic, but it's actually really simple. Open up the ``ApiFeatureContext`
+Behat looks like magic, but it's actually really simple. Open up the ``ApiFeatureContext``
 file that lives in the ``features/api`` directory. If we scroll down, you'll
 immediately see functions with regular expressions above them::
 
