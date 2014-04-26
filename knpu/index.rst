@@ -17,3 +17,4 @@ Starting in Symfony2: Episode2
     testing-phpunit
     testing
     testing-data
+    put-editing
