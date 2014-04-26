@@ -22,3 +22,4 @@ Starting in Symfony2: Episode2
     put-improvements
     different-representations
     put-versus-post
+    delete
