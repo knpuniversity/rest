@@ -61,8 +61,23 @@ Let's add a second scenario for making a GET request to view a single programmer
 This entirely uses language that I've already prepped for us:
 
 .. code-block:: gherkin
-
-    Behat: List and show tests: Scenario GET one
+  
+    # features/api/programmer.feature
+    # ...
+    Scenario: GET one programmer
+      Given the following programmers exist:
+        | nickname   | avatarNumber |
+        | UnitTester | 3            |
+      When I request "GET /api/programmers/UnitTester"
+      Then the response status code should be 200
+      And the following properties should exist:
+        """
+        nickname
+        avatarNumber
+        powerLevel
+        tagLine
+        """
+      And the "nickname" property should equal "UnitTester"
 
 The ``Given`` statement actually inserts that user into the database before
 we start the test. That's exactly what I was just talking about: if I need
@@ -89,7 +104,18 @@ these - don't skip them!
 
 .. code-block:: gherkin
 
-    Behat: List and show tests: Scenario GET collection
+    # features/api/programmer.feature
+    # ...
+
+    Scenario: GET a collection of programmers
+      Given the following programmers exist:
+        | nickname    | avatarNumber |
+        | UnitTester  | 3            |
+        | CowboyCoder | 5            |
+      When I request "GET /api/programmers"
+      Then the response status code should be 200
+      And the "programmers" property should be an array
+      And the "programmers" property should contain 2 items
 
 Here, we insert 2 programmers into the database before the test, make the
 HTTP request and then check some basic things on the response. It's the same,

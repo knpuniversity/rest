@@ -24,7 +24,22 @@ in with more details as we go. For now, let's add our first scenario: `Create a 
 
 .. code-block:: gherkin
 
-    TODO: Behat: Basic POST scenario
+    # api/features/programmer.feature
+    # ...
+
+    Scenario: Create a programmer
+      Given I have the payload:
+        """
+        {
+          "nickname": "ObjectOrienter",
+          "avatarNumber" : "2",
+          "tagLine": "I'm from a test!"
+        }
+        """
+      When I request "POST /api/programmers"
+      Then the response status code should be 201
+      And the "Location" header should be "/api/programmers/ObjectOrienter"
+      And the "nickname" property should equal "ObjectOrienter"
 
 I'm basically writing a user story, where our user is an API client. This
 describes a client that makes a POST request with a JSON body. It then checks

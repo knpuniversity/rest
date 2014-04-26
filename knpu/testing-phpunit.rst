@@ -18,17 +18,61 @@ I already have PHPUnit installed in our app via Composer, so let's go straight
 to writing a test. Create a new ``ProgrammerControllerTest.php`` file and
 setup its class to extend the normal ``PHPUnit_Framework_TestCase``::
 
-    TODO: Behat: Basic PHPUnit test
+    // src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php
+    namespace KnpU\CodeBattle\Tests;
+
+    class ProgrammerControllerTest extends \PHPUnit_Framework_TestCase
+    {
+
+    }
 
 Next, add a ``testPOST`` method and copy in the POST logic from the ``testing.php``
 script::
 
-    TODO: Behat: Fill in PHPUnit test
+    // src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php
+    // ...
+
+    public function testPOST()
+    {
+        // create our http client (Guzzle)
+        $client = new Client('http://localhost:8000', array(
+            'request.options' => array(
+                'exceptions' => false,
+            )
+        ));
+
+        $nickname = 'ObjectOrienter'.rand(0, 999);
+        $data = array(
+            'nickname' => $nickname,
+            'avatarNumber' => 5,
+            'tagLine' => 'a test dev!'
+        );
+
+        $request = $client->post('/api/programmers', null, json_encode($data));
+        $response = $request->send();
+    }
 
 Finally, let's add some asserts to check that the status code is 201, that
 we have a ``Location`` header and that we get back valid JSON::
 
-    TODO: Behat: Adding asserts to PHPUnit test
+    // src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php
+    // ...
+
+    public function testPOST()
+    {
+        // ...
+
+        $request = $client->post('/api/programmers', null, json_encode($data));
+        $response = $request->send();
+
+        $request = $client->post('/api/programmers', null, json_encode($data));
+        $response = $request->send();
+
+        $this->assertEquals(201, $response->getStatusCode());
+        $this->assertTrue($response->hasHeader('Location'));
+        $data = json_decode($response->getBody(true), true);
+        $this->assertArrayHasKey('nickname', $data);
+    }
 
 To try it out, use the ``vendor/bin/phpunit`` executable and point it at
 the test fi
@@ -40,8 +84,6 @@ the test fi
 With any luck, Sebastian Bergmanns will tell you that everything is ok! Of
 course I never trust a test that passes on the first try, so be sure to change
 things and make sure it fails when it should too.
-
-
 
 .. _`Postman`: http://www.getpostman.com/
 .. _`PHPUnit`: http://phpunit.de/
