@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index a51426f..ea4f42d 100644
+index 9cbfa01..0d98f90 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -39,7 +39,7 @@ class ProgrammerController extends BaseController
@@ -33,10 +33,10 @@ index a51426f..ea4f42d 100644
          );
          $apiProblem->set('errors', $errors);
  
--        $response = new JsonResponse($apiProblem->toArray(), 400);
+-        $response = new JsonResponse($apiProblem->toArray(), $apiProblem->getStatusCode());
 -        $response->headers->set('Content-Type', 'application/problem+json');
 -
 -        return $response;
-+        throw new ApiProblemException(400, $apiProblem);
++        throw new ApiProblemException($apiProblem);
      }
  }
