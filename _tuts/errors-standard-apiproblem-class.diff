@@ -1,9 +1,9 @@
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
 new file mode 100644
-index 0000000..b1b874c
+index 0000000..9dbb5ec
 --- /dev/null
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
-@@ -0,0 +1,34 @@
+@@ -0,0 +1,46 @@
 +<?php
 +
 +namespace KnpU\CodeBattle\Api;
@@ -17,11 +17,14 @@ index 0000000..b1b874c
 +
 +    private $title;
 +
++    private $statusCode;
++
 +    private $extraData = array();
 +
-+    public function __construct($type, $title)
++    public function __construct($type, $statusCode, $title)
 +    {
 +        $this->type = $type;
++        $this->statusCode = $statusCode;
 +        $this->title = $title;
 +    }
 +
@@ -29,7 +32,11 @@ index 0000000..b1b874c
 +    {
 +        return array_merge(
 +            $this->extraData,
-+            ['type' => $this->type, 'title' => $this->title]
++            [
++                'type' => $this->type,
++                'title' => $this->title,
++                'status' => $this->statusCode
++            ]
 +        );
 +    }
 +
@@ -37,9 +44,14 @@ index 0000000..b1b874c
 +    {
 +        $this->extraData[$name] = $value;
 +    }
++
++    public function getStatusCode()
++    {
++        return $this->statusCode;
++    }
 +}
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index fc6492c..f31c32b 100644
+index fc6492c..b76f218 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -2,6 +2,7 @@
@@ -50,7 +62,7 @@ index fc6492c..f31c32b 100644
  use KnpU\CodeBattle\Controller\BaseController;
  use KnpU\CodeBattle\Model\Programmer;
  use Silex\Application;
-@@ -162,13 +163,13 @@ class ProgrammerController extends BaseController
+@@ -162,13 +163,14 @@ class ProgrammerController extends BaseController
  
      private function handleValidationResponse(array $errors)
      {
@@ -60,12 +72,13 @@ index fc6492c..f31c32b 100644
 -            'errors' => $errors
 +        $apiProblem = new ApiProblem(
 +            'validation_error',
++            400,
 +            'There was a validation error'
          );
 +        $apiProblem->set('errors', $errors);
  
 -        $response = new JsonResponse($data, 400);
-+        $response = new JsonResponse($apiProblem->toArray(), 400);
++        $response = new JsonResponse($apiProblem->toArray(), $apiProblem->getStatusCode());
          $response->headers->set('Content-Type', 'application/problem+json');
  
          return $response;
