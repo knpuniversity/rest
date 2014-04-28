@@ -1,8 +1,8 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index a52e61c..2e893f2 100644
+index a52e61c..667ef35 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
-@@ -53,6 +53,12 @@ Feature: Programmer
+@@ -53,6 +53,13 @@ Feature: Programmer
      And the "Content-Type" header should be "application/problem+json"
      And the "type" property should equal "invalid_body_format"
  
@@ -10,13 +10,58 @@ index a52e61c..2e893f2 100644
 +    When I request "GET /api/programmers/fake"
 +    Then the response status code should be 404
 +    And the "Content-Type" header should be "application/problem+json"
-+    And the "type" property should equal "404"
++    And the "type" property should equal "about:blank"
++    And the "title" property should equal "Not Found"
 +
    Scenario: GET one programmer
      Given the following programmers exist:
        | nickname   | avatarNumber |
+diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
+index fee4490..70789be 100644
+--- a/src/KnpU/CodeBattle/Api/ApiProblem.php
++++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
+@@ -2,6 +2,8 @@
+ 
+ namespace KnpU\CodeBattle\Api;
+ 
++use Symfony\Component\HttpFoundation\Response;
++
+ /**
+  * A wrapper for holding data to be used for a application/problem+json response
+  */
+@@ -24,16 +26,25 @@ class ApiProblem
+ 
+     private $extraData = array();
+ 
+-    public function __construct($type, $statusCode)
++    public function __construct($type = null, $statusCode)
+     {
+         $this->type = $type;
+         $this->statusCode = $statusCode;
+ 
+-        if (!isset(self::$titles[$type])) {
+-            throw new \InvalidArgumentException('No title for type '.$type);
+-        }
++        if (!$type) {
++            // no type? The default is about:blank and the title should
++            // be the standard status code message
++            $this->type = 'about:blank';
++            $this->title = isset(Response::$statusTexts[$statusCode])
++                ? Response::$statusTexts[$statusCode]
++                : 'Unknown HTTP status code :(';
++        } else {
++            if (!isset(self::$titles[$type])) {
++                throw new \InvalidArgumentException('No title for type '.$type);
++            }
+ 
+-        $this->title = self::$titles[$type];
++            $this->title = self::$titles[$type];
++        }
+     }
+ 
+     public function toArray()
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 585abe6..2a95cc8 100644
+index 585abe6..9cca049 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -5,6 +5,7 @@ namespace KnpU\CodeBattle;
@@ -27,15 +72,7 @@ index 585abe6..2a95cc8 100644
  use KnpU\CodeBattle\Api\ApiProblemException;
  use KnpU\CodeBattle\Battle\PowerManager;
  use KnpU\CodeBattle\Repository\BattleRepository;
-@@ -25,6 +26,7 @@ use KnpU\CodeBattle\Repository\ProgrammerRepository;
- use KnpU\CodeBattle\Battle\BattleManager;
- use Silex\Provider\ValidatorServiceProvider;
- use Symfony\Component\HttpFoundation\JsonResponse;
-+use Symfony\Component\HttpFoundation\Response;
- use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
- use Symfony\Component\Validator\Mapping\Loader\AnnotationLoader;
- 
-@@ -217,14 +219,29 @@ class Application extends SilexApplication
+@@ -217,14 +218,25 @@ class Application extends SilexApplication
  
      private function configureListeners()
      {
@@ -53,13 +90,9 @@ index 585abe6..2a95cc8 100644
 +            if ($e instanceof ApiProblemException) {
 +                $apiProblem = $e->getApiProblem();
 +            } else {
-+                $title = isset(Response::$statusTexts[$statusCode])
-+                    ? Response::$statusTexts[$statusCode]
-+                    : 'Unknown HTTP status code :(';
-+
 +                $apiProblem = new ApiProblem(
-+                    $statusCode,
-+                    $title
++                    null,
++                    $statusCode
 +                );
 +            }
 +
