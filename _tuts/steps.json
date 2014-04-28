@@ -229,6 +229,11 @@
             "id": "errors-extra-information-on-error",
             "name": "Errors: Extra information on error",
             "description": null
+        },
+        {
+            "id": "errors-making-type-a-url",
+            "name": "Errors: Making type a URL",
+            "description": null
         }
     ]
 }
