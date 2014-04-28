@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 2d4e0f6..585abe6 100644
+index 618b958..585abe6 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -5,6 +5,7 @@ namespace KnpU\CodeBattle;
@@ -18,21 +18,11 @@ index 2d4e0f6..585abe6 100644
  use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
  use Symfony\Component\Validator\Mapping\Loader\AnnotationLoader;
  
-@@ -36,6 +38,7 @@ class Application extends SilexApplication
-         $this->configureProviders();
-         $this->configureServices();
-         $this->configureSecurity();
-+        $this->configureListeners();
-     }
+@@ -215,6 +217,19 @@ class Application extends SilexApplication
  
-     /**
-@@ -211,4 +214,22 @@ class Application extends SilexApplication
-             return is_object($user) ? $user : null;
-         });
-     }
-+
-+    private function configureListeners()
-+    {
+     private function configureListeners()
+     {
+-        // todo
 +        $this->error(function(\Exception $e, $statusCode) {
 +            // only do something special if we have an ApiProblemException!
 +            if (!$e instanceof ApiProblemException) {
@@ -47,6 +37,6 @@ index 2d4e0f6..585abe6 100644
 +
 +            return $response;
 +        });
-+    }
+     }
  } 
 \ No newline at end of file
