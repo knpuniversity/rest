@@ -36,6 +36,7 @@ class Application extends SilexApplication
         $this->configureProviders();
         $this->configureServices();
         $this->configureSecurity();
+        $this->configureListeners();
     }
 
     /**
@@ -210,5 +211,10 @@ class Application extends SilexApplication
 
             return is_object($user) ? $user : null;
         });
+    }
+
+    private function configureListeners()
+    {
+        // todo
     }
 } 
