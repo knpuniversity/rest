@@ -23,3 +23,4 @@ Starting in Symfony2: Episode2
     different-representations
     put-versus-post
     delete
+    patch
