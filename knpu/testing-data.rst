@@ -14,7 +14,7 @@ a special ``@BeforeScenario`` anotation above it::
 
 The body of this function is specific to my app - it calls out to some code
 that truncates all of my tables. If you can write code to empty your database
-tables, at least the ones we'll be messing with in our tests, then you can
+tables, or at least the ones we'll be messing with in our tests, then you can
 do this.
 
 .. tip::
@@ -35,7 +35,8 @@ Try the test again:
 Dang, it failed again. Ah, remember how we're relating all programmers to
 the ``weaverryan`` user? Well, when we empty the tables before the scenario,
 this user gets deleted too. That's expected, and I already have a sentence
-to take care of this. Uncomment the ``Background`` line above the scenario:
+to take care of this. Uncomment the ``Background`` line above the scenario.
+This runs a function that inserts my user:
 
     TODO: Behat: Clear data between tests Background
 
@@ -79,12 +80,12 @@ This entirely uses language that I've already prepped for us:
         """
       And the "nickname" property should equal "UnitTester"
 
-The ``Given`` statement actually inserts that user into the database before
+The ``Given`` statement actually inserts the user into the database before
 we start the test. That's exactly what I was just talking about: if I need
 a user, write a scenario step that adds one.
 
-After that, everything looks normal: make an HTTP request and check some
-things.
+The rest of the test just checks the status code and whatever data we think
+is important, just like in the previous scenario.
 
 Run it!
 
@@ -95,12 +96,12 @@ Success!
 Test: GET all Programmers
 -------------------------
 
-That was easy, so let's add a third scenario for making a GET request to
-see the collection of all programmers. Oh, and the title that we give to
-each scenario - like ``GET one programmer``: is just for our benefit, it's
-not read by Behat. And for that matter, neither are the first 4 lines of
-the feature file. But you should still learn more about the importance of
-these - don't skip them!
+We're on a roll at this point, so let's add a third scenario for making 
+a GET request to see the collection of all programmers. Oh, and the title 
+that we give to each scenario - like ``GET one programmer``: is just for 
+our benefit, it's not read by Behat. And for that matter, neither are the 
+first 4 lines of the feature file. But you should still learn more about 
+the importance of these - don't skip them!
 
 .. code-block:: gherkin
 

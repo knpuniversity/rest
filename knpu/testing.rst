@@ -3,7 +3,8 @@ Behat for Testing
 
 The great thing about using PHPUnit is that it's dead-simple: make an HTTP
 request and assert some things about its response. If you want to test your
-APIs using Guzzle and PHPUnit, you'll be very successful.
+APIs using Guzzle and PHPUnit, you'll be very successful and your office
+will smell of rich mahogany.
 
 But in our app, we're going to make our tests much more interesting by using
 a tool called `Behat`_. If you're new to Behat, you're in for a treat! But
@@ -11,7 +12,7 @@ also don't worry: we're going to use Behat, but not dive into it too deeply.
 And when you want to know more, watch our `Behat Screencast`_ and then use
 the code that comes with this project to jumpstart testing your API.
 
-With Behat, we right human-readable statements, called scenarios, and run
+With Behat, we write human-readable statements, called scenarios, and run
 these as tests. To see what I mean, find the ``features/api/programmer.feature``
 file:
 
@@ -71,7 +72,7 @@ to ``http://localhost:8000/api/programmers``.
 How Behat Works
 ---------------
 
-Behat looks like magic, but it's actually really simple. Open up the ``ApiFeatureContext`
+Behat looks like magic, but it's actually really simple. Open up the ``ApiFeatureContext``
 file that lives in the ``features/api`` directory. If we scroll down, you'll
 immediately see functions with regular expressions above them::
 
@@ -89,7 +90,8 @@ just like we're doing in our ``testing.php`` script.
     this file for Phil's `Build APIs you Won't Hate`_ book.
 
 To sum it up: we write human readable sentences, Behat executes a function
-for each line and those functions use Guzzle to make real HTTP requests.
+for each line and those functions use Guzzle to make real HTTP requests. Behat
+is totally kicking butt for us!
 
 Seeing our Library of Behat Sentences
 -------------------------------------
@@ -102,7 +104,7 @@ the same command with a ``-dl`` option:
 
     $ php vendor/bin/behat -dl
 
-Obviously, anywhere you see the quote, parentheses mess, that's a wildcard
+Anywhere you see the quote-parentheses mess that's a wildcard
 that matches anything. So as long as we write scenarios using this language,
 we can test without writing any PHP code in ``ApiFeatureContext``. That's powerful.
 
