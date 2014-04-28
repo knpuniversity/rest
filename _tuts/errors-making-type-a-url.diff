@@ -1,0 +1,17 @@
+diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
+index fab1da9..6b8f5de 100644
+--- a/src/KnpU/CodeBattle/Application.php
++++ b/src/KnpU/CodeBattle/Application.php
+@@ -246,8 +246,11 @@ class Application extends SilexApplication
+                 $apiProblem->set('detail', $e->getMessage());
+             }
+ 
++            $data = $apiProblem->toArray();
++            // making type a URL, to a temporarily fake page
++            $data['type'] = 'http://localhost:8000/api/docs/errors#'.$data['type'];
+             $response = new JsonResponse(
+-                $apiProblem->toArray(),
++                $data,
+                 $statusCode
+             );
+             $response->headers->set('Content-Type', 'application/problem+json');
