@@ -40,7 +40,25 @@ Let's write a scenario for PATCH, one that looks like our PUT scenario, but
 want to check that the ``tagLine`` was updated, but also that the ``avatarNumber``
 is unchanged:
 
-    TODO: PATCH Programmer: Write the test
+.. code-block:: gherkin
+
+    # features/api/programmer.feature
+    # ...
+
+    Scenario: PATCH to update a programmer
+      Given the following programmers exist:
+        | nickname    | avatarNumber | tagLine | powerLevel |
+        | CowboyCoder | 5            | foo     | 4          |
+      And I have the payload:
+        """
+        {
+          "tagLine": "bar"
+        }
+        """
+      When I request "PATCH /api/programmers/CowboyCoder"
+      Then the response status code should be 200
+      And the "avatarNumber" property should equal "5"
+      And the "tagLine" property should equal "bar"
 
 Coding the Endpoint
 -------------------
@@ -50,7 +68,22 @@ the same ``/api/programmers/{nickname}`` URI, but only on PATCH requests.
 This looks a little bit different only because Silex doesn't natively support
 PATCH request. But the result is the same as the other routing lines::
 
-    TODO - PATCH Programmer: Adding the controller
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    protected function addRoutes(ControllerCollection $controllers)
+    {
+        // ...
+
+        // point PUT and PATCH at the same controller
+        $controllers->put('/api/programmers/{nickname}', array($this, 'updateAction'));
+
+        // PATCH isn't natively supported, hence the different syntax
+        $controllers->match('/api/programmers/{nickname}', array($this, 'updateAction'))
+            ->method('PATCH');
+
+        // ...
+    }
 
 You've probably noticed that I've made this route use the same ``updateAction``
 function as the PUT route. That's not on accident: these two HTTP methods
@@ -63,7 +96,25 @@ statement in this function that checks to see if this is a ``PATCH`` method
 and also if the field is missing from the JSON. If both are ``true``, let's
 do nothing::
 
-    TODO - PATCH Programmer: Adding the controller
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    private function handleRequest(Request $request, Programmer $programmer)
+    {
+        // ...
+
+        foreach ($apiProperties as $property) {
+            // if a property is missing on PATCH, that's ok - just skip it
+            if (!isset($data[$property]) && $request->isMethod('PATCH')) {
+                continue;
+            }
+
+            $val = isset($data[$property]) ? $data[$property] : null;
+            $programmer->$property = $val;
+        }
+
+        // ...
+    }
 
 And just like that, we *should* have a working PATCH endpoint. And if we
 somehow broke our PUT endpoint, our tests will tell us!

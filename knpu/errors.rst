@@ -37,7 +37,9 @@ errors, it may be a more proper choice:
 
 .. code-block:: gherkin
 
-    # api/programmer.feature
+    # features/api/programmer.feature
+    # ...
+
     Scenario: Validation errors
       Given I have the payload:
         """
@@ -68,7 +70,9 @@ an ``avatarNumber`` error.
 
 .. code-block:: gherkin
 
-    # api/programmer.feature
+    # features/api/programmer.feature
+    # ...
+
     Scenario: Validation errors
       Given I have the payload:
         """
@@ -97,13 +101,40 @@ is how we *communicate* those errors to the client.
 
 In Silex, to make the ``nickname`` field required, we need to open up the
 ``Programmer`` class itself. Here, add a ``NotBlank`` annotation with a nice
-message. 
+message::
+
+    // src/KnpU/CodeBattle/Model/Programmer.php
+    // ...
+
+    class Programmer
+    {
+        // ...
+
+        /**
+         * @Assert\NotBlank(message="Please enter a nickname")
+         */
+        public $nickname;
+
+        // ...
+    }
 
 Cool! Next, open up the ``ProgrammerController`` class. In ``newAction``,
 we should check the validation before saving the new ``Programmer``. I've
 created a shortcut method called ``validate`` that does this::
 
-    TODO: Errors: Playing with validation
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function newAction(Request $request)
+    {
+        // ...
+        $this->handleRequest($request, $programmer);
+
+        $errors = $this->validate($programmer);
+
+        $this->save($programmer);
+        // ...
+    }
 
 It uses the annotation we just added to the ``Programmer`` class and returns
 an array of errors: one error for each field. If you *are* using Silex or
@@ -114,7 +145,29 @@ If the ``$errors`` array isn't empty, we've got a problem! And since we already
 wrote the test, we know *how* we want to tell the user. Create an array with
 the ``type``, ``title`` and ``errors`` fields. The ``$errors`` variable is
 already an associative array of messages, where the keys are the field names.
-So we can just set it on the ``errors`` field.
+So we can just set it on the ``errors`` field::
+
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function newAction(Request $request)
+    {
+        // ...
+
+        $errors = $this->validate($programmer);
+        if (!empty($errors)) {
+            $data = array(
+                'type' => 'validation_error',
+                'title' => 'There was a validation error',
+                'errors' => $errors
+            );
+
+            return new JsonResponse($data, 400);
+        }
+
+        $this->save($programmer);
+        // ...
+    }
 
 Just like with any other API response, we can create a ``JsonResponse`` class,
 pass it our data. The only difference with this endpoint is that it has a
@@ -137,6 +190,9 @@ To avoid duplication, create a new private function in the controller called
 ``handleValidationResponse``. We'll pass it an array of errors and it will
 transform it into the proper 400 JSON response::
 
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
     private function handleValidationResponse(array $errors)
     {
         $data = array(
@@ -148,13 +204,17 @@ transform it into the proper 400 JSON response::
         return new JsonResponse($data, 400);
     }
 
-Now that we have this, use it in ``newAction``:
+Now that we have this, use it in ``newAction`` and ``updateAction``::
 
-    TODO: Errors: Using on update and refactoring
+    // newAction and updateAction
 
-And now use it in exactly the same way in ``updateAction``:
+    $this->handleRequest($request, $programmer);
 
-    TODO: Errors: Using on update and refactoring
+    if ($errors = $this->validate($programmer)) {
+        return $this->handleValidationResponse($errors);
+    }
+
+    $this->save($programmer);
 
 To make sure we didn't break anything, we can run our tests:
 
@@ -223,12 +283,29 @@ data by researching the ``application/problem+json`` Content-Type.
 We definitely want to do this, so first let's update the test to look for
 this ``Content-Type`` header:
 
-    TODO: Errors: Standard content-type
+    # features/api/programmer.feature
+    # ...
+
+    Scenario: Validation errors
+      # all the current scenario lines
+      # ...
+      And the "Content-Type" header should be "application/problem+json"
 
 Next, add the to our response. We've added plenty of response headers already,
 so this is no different::
 
-    TODO Errors: Standard content-type
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    private function handleValidationResponse(array $errors)
+    {
+        // ...
+
+        $response = new JsonResponse($data, 400);
+        $response->headers->set('Content-Type', 'application/problem+json');
+
+        return $response;
+    }
 
 When we try the tests, they still pass!
 
@@ -246,39 +323,126 @@ We'll be returning a lot of ``application/problem+json`` responses, and I
 want us to *always* be consistent. To make this really easy, why not create
 a new ``ApiProblem`` class that can hold all the fields?
 
-Start by creating a new ``Api`` directory and class called ``ApiResponse``::
+Start by creating a new ``Api`` directory and class called ``ApiProblem``::
 
-    TODO: Errors: Standard ApiProblem class
+    // src/KnpU/CodeBattle/Api/ApiProblem.php
+    namespace KnpU\CodeBattle\Api;
+
+    class ApiProblem
+    {
+    }
 
 By looking at the spec, I've decided that I want my problem responses to
 always have ``status``, ``type`` and ``title`` fields, so I'll create these
 three properties and a ``__construct`` function that requires them. I also
-create a ``getStatusCode`` function, which we'll use in a second::
+create a ``getStatusCode`` function, which we'll use in a moment::
 
-    TODO: Errors: Standard ApiProblem class
+    // src/KnpU/CodeBattle/Api/ApiProblem.php
+    namespace KnpU\CodeBattle\Api;
+
+    class ApiProblem
+    {
+        private $type;
+
+        private $title;
+
+        private $statusCode;
+
+        public function __construct($type, $statusCode, $title)
+        {
+            $this->type = $type;
+            $this->statusCode = $statusCode;
+            $this->title = $title;
+        }
+
+        public function getStatusCode()
+        {
+            return $this->statusCode;
+        }
+    }
 
 Finally, since I'll need the ability to add additional fields, let's create
 a ``$extraData`` array property and a ``set`` function that can be used to
 populate it::
 
-    TODO: Errors: Standard ApiProblem class
+    // src/KnpU/CodeBattle/Api/ApiProblem.php
+    namespace KnpU\CodeBattle\Api;
+
+    class ApiProblem
+    {
+        // ...
+
+        private $extraData = array();
+
+        // ...
+
+        public function set($name, $value)
+        {
+            $this->extraData[$name] = $value;
+        }
+    }
 
 Back in the controller, instead of creating an array, we can now create a
 new ``ApiProblem`` object and set the data on it. This helps us enforce the
 structure and avoid typos::
 
-    TODO: Errors: Standard ApiProblem class
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    private function handleValidationResponse(array $errors)
+    {
+        $apiProblem = new ApiProblem(
+            'validation_error',
+            400,
+            'There was a validation error'
+        );
+        $apiProblem->set('errors', $errors);
+
+        // ...
+    }
 
 Now, if we can turn the ``ApiProblem`` into an array, then we could pass
 it to the new ``JsonResponse``. To do that, we can just add a new ``toArray``
 function to ``ApiProblem``::
 
-    TODO: Errors: Standard ApiProblem class
+    // src/KnpU/CodeBattle/Api/ApiProblem.php
+    namespace KnpU\CodeBattle\Api;
 
-Use the new function in the controller as the data for our response and use
-the ``getStatusCode`` function to get the 400 status code::
+    class ApiProblem
+    {
+        // ...
 
-    TODO: Errors: Standard ApiProblem class
+        public function toArray()
+        {
+            return array_merge(
+                $this->extraData,
+                [
+                    'type' => $this->type,
+                    'title' => $this->title,
+                    'status' => $this->statusCode
+                ]
+            );
+        }
+    }
+
+Use it and the ``getStatusCode`` function to create the ``JsonResponse``::
+
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    private function handleValidationResponse(array $errors)
+    {
+        // ...
+        $apiProblem->set('errors', $errors);
+
+        $response = new JsonResponse(
+            $apiProblem->toArray(),
+            $apiProblem->getStatusCode()
+        );
+        $response->headers->set('Content-Type', 'application/problem+json');
+
+        return $response;
+    }
 
 Ok! This step made no difference to our API externally, but gave us a solid
 class to use for errors. This will make our code more consistent and easy
@@ -304,11 +468,31 @@ that we keep track of *all* of our types and ever misspell them.
 Instead of typing ``validation_error`` manually when we create an ``ApiProblem``,
 let's create a new constant on the class itself::
 
-    TODO: Errors: ApiProblem type constants
+    // src/KnpU/CodeBattle/Api/ApiProblem.php
+    // ...
+
+    class ApiProblem
+    {
+        const TYPE_VALIDATION_ERROR = 'validation_error';
+
+        // ...
+    }
 
 Now, just reference the constant when instantiating ``ApiProblem``::
 
-    TODO: Errors: ApiProblem type constants
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    private function handleValidationResponse(array $errors)
+    {
+        $apiProblem = new ApiProblem(
+            ApiProblem::TYPE_VALIDATION_ERROR,
+            400,
+            'There was a validation error'
+        );
+
+        // ...
+    }
 
 That's one less spot where we can accidentally mess something up.
 
@@ -322,7 +506,19 @@ same ``title`` everywhere that we have the ``validation_error`` ``type``.
 To force this consistency, let's create an array map on ``ApiProblem`` from
 the ``type``, to its human-description.
 
-    TODO: Errors: ApiProblem type constants
+    // src/KnpU/CodeBattle/Api/ApiProblem.php
+    // ...
+
+    class ApiProblem
+    {
+        const TYPE_VALIDATION_ERROR = 'validation_error';
+
+        static private $titles = array(
+            self::TYPE_VALIDATION_ERROR => 'There was a validation error'
+        );
+
+        // ...
+    }
 
 .. note::
 
@@ -333,12 +529,41 @@ And instead of passing the ``$title`` as the second argument to the constructor,
 we can just look it up by the ``$type``. And like the good programmers we
 are, we'll throw a huge ugly and descriptive error if we don't find a title::
 
-    TODO: Errors: ApiProblem type constants
+    // src/KnpU/CodeBattle/Api/ApiProblem.php
+    // ...
 
-Back in the controller, we can now safely remove the second argument when
+    class ApiProblem
+    {
+        // ...
+
+        public function __construct($type, $statusCode)
+        {
+            $this->type = $type;
+            $this->statusCode = $statusCode;
+
+            if (!isset(self::$titles[$type])) {
+                throw new \InvalidArgumentException('No title for type '.$type);
+            }
+
+            $this->title = self::$titles[$type];
+        }
+    }
+
+Back in the controller, we can now safely remove the last argument when
 constructing the ``ApiProblem`` object::
 
-    TODO: Errors: ApiProblem type constants
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    private function handleValidationResponse(array $errors)
+    {
+        $apiProblem = new ApiProblem(
+            ApiProblem::TYPE_VALIDATION_ERROR,
+            400
+        );
+
+        // ...
+    }
 
 Great work! We have an ``ApiProblem`` class to keep things consistent, a
 constant for the one problem type we have so far, and a ``title`` that's
@@ -355,22 +580,63 @@ status code with a clear explanation.
 Let's write a test! I'll can copy valdiation error scenario, but remove a
 quote so that the JSON is invalid:
 
-    TODO: Errors: Invalid JSON format
+    # features/api/programmer.feature
+    # ...
+
+    Scenario: Error response on invalid JSON
+      Given I have the payload:
+        """
+        {
+          "avatarNumber" : "2
+          "tagLine": "I'm from a test!"
+        }
+        """
+      When I request "POST /api/programmers"
+      Then the response status code should be 400
 
 For now, let's just continue to check that the status code is 400. If we
 run the test immediately, it fails with a 500 error instead.
 
 In our controller, we're already checking to see if the JSON is invalid, but
 right now, we're throwing a normal PHP Exception message, which results in
-the 500 error.
+the 500 error::
+
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    private function handleRequest(Request $request, Programmer $programmer)
+    {
+        // ...
+
+        if ($data === null) {
+            throw new \Exception(sprintf('Invalid JSON: '.$request->getContent());
+        }
+
+        // ...
+    }
 
 To make this a 400 error, we could do 2 things. First, we could create a
 new ``Response`` object and make sure its status code is 400. That's what
 we're already doing with the validation error.
 
-Second, in Silex, we can throw a special ``HttpException``::
+Second, in Silex, we could throw a special ``HttpException``::
 
-    Errors: Invalid JSON format
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    private function handleRequest(Request $request, Programmer $programmer)
+    {
+        // ...
+
+        if ($data === null) {
+            throw new HttpException(
+                400,
+                sprintf('Invalid JSON: '.$request->getContent())
+            );
+        }
+
+        // ...
+    }
 
 In most frameworks, if you throw an exception, it results in a 500 status
 code. That's true in Silex too, unless you throw this very special type of
@@ -405,17 +671,55 @@ Since invalid JSON is a "problem", we should really send back an ``application/p
 response. Let's first update the test to look for this ``Content-Type`` header
 and a ``type`` field that's equal to a new type called ``invalid_body_format``:
 
-    Errors: Print bad response in test
+    # features/api/programmer.feature
+    # ...
+
+    Scenario: Error response on invalid JSON
+      # the rest of the scenario
+      # ...
+      And the "Content-Type" header should be "application/problem+json"
+      And the "type" property should equal "invalid_body_format"
 
 To make this work, we'll create a new ApiProblem object. But first, let's
 add the new ``invalid_body_format`` type as a constant to the class and give
 it a title::
 
-    Errors: Create ApiProblemException
+    // src/KnpU/CodeBattle/Api/ApiProblem.php
+    // ...
+
+    class ApiProblem
+    {
+        // ...
+        const TYPE_INVALID_REQUEST_BODY_FORMAT = 'invalid_body_format';
+
+        static private $titles = array(
+            // ...
+            self::TYPE_INVALID_REQUEST_BODY_FORMAT => 'Invalid JSON format sent',
+        );
+
+        // ...
+    }
 
 Now create the new ``ApiProblem`` in the controller::
 
-    Errors: Create ApiProblemException
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    private function handleRequest(Request $request, Programmer $programmer)
+    {
+        // ...
+
+        if ($data === null) {
+            $problem = new ApiProblem(
+                ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT,
+                400
+            );
+
+            // ...
+        }
+
+        // ...
+    }
 
 But now what? When we had validation errors, we just created a new ``JsonResponse``,
 passed ``$problem->toArray()`` to it as data, and returned it. But here, we
@@ -433,26 +737,99 @@ The ApiProblemException
 First, create a new class called ``ApiProblemException`` and make it extend
 that special ``HttpException`` class::
 
-    TODO: Errors: Create ApiProblemException
+    // src/KnpU/CodeBattle/Api/ApiProblemException.php
+    namespace KnpU\CodeBattle\Api;
+
+    use Symfony\Component\HttpKernel\Exception\HttpException;
+
+    class ApiProblemException extends HttpException
+    {
+    }
 
 The purpose of this class is to act like a normal exception, but also to
-hold the ``ApiProblem`` inside of it. So let's add a ``$apiProblem`` property
+hold the ``ApiProblem`` inside of it. So let's add an ``$apiProblem`` property
 and override the ``__construct`` method so we pass the ApiProblem in when
 creating it::
 
-    TODO: Errors: Create ApiProblemException
+    // src/KnpU/CodeBattle/Api/ApiProblemException.php
+    namespace KnpU\CodeBattle\Api;
+
+    use Symfony\Component\HttpKernel\Exception\HttpException;
+
+    class ApiProblemException extends HttpException
+    {
+        private $apiProblem;
+
+        public function __construct(ApiProblem $apiProblem, \Exception $previous = null, array $headers = array(), $code = 0)
+        {
+            $this->apiProblem = $apiProblem;
+
+            parent::__construct(
+                $apiProblem->getStatusCode(),
+                $apiProblem->getTitle(),
+                $previous,
+                $headers,
+                $code
+            );
+        }
+    }
 
 The object still needs an exception and I'm calling ``getTitle`` on the ``ApiProblem``
 object to get it. Make sure to add this function there::
 
-    TODO: Errors: Create ApiProblemException
+    // src/KnpU/CodeBattle/Api/ApiProblem.php
+    // ...
+
+    class ApiProblem
+    {
+        // ...
+
+        public function getTitle()
+        {
+            return $this->title;
+        }
+    }
 
 Finally, add a ``getApiProblem`` function, which we'll use later::
 
-    TODO: Errors: Create ApiProblemException
+    // src/KnpU/CodeBattle/Api/ApiProblemException.php
+    namespace KnpU\CodeBattle\Api;
+
+    use Symfony\Component\HttpKernel\Exception\HttpException;
+
+    class ApiProblemException extends HttpException
+    {
+        // ...
+
+        public function getApiProblem()
+        {
+            return $this->apiProblem;
+        }
+    }
 
 Back in the controller, throw a new ``ApiProblemException`` and pass the
-``ApiProblem`` object into it.
+``ApiProblem`` object into it::
+
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+    use KnpU\CodeBattle\Api\ApiProblemException;
+    // ...
+
+    private function handleRequest(Request $request, Programmer $programmer)
+    {
+        // ...
+
+        if ($data === null) {
+            $problem = new ApiProblem(
+                ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT,
+                400
+            );
+
+            throw new ApiProblemException($problem);
+        }
+
+        // ...
+    }
 
 Exception Listener
 ~~~~~~~~~~~~~~~~~~
@@ -471,6 +848,9 @@ This is the heart of my application, but you don't need to worry about it
 too much. At the bottom of the class, I've created a ``configureListeners``
 function. Use an ``error`` function and pass it an anonymous function with
 a debug statement::
+
+    // src/KnpU/CodeBattle/Application.php
+    // ...
 
     private function configureListeners()
     {
@@ -494,6 +874,9 @@ Filling in the Exception Listener
 When Silex calls the function, it passes the function 2 arguments: the exception
 that was thrown and the status code we should use::
 
+    // src/KnpU/CodeBattle/Application.php
+    // ...
+
     private function configureListeners()
     {
         $this->error(function(\Exception $e, $statusCode) {
@@ -506,6 +889,9 @@ we can automatically transform it into the proper ``JsonResponse``. Let's
 first check for this - if it's not an ``ApiProblemException``, we won't do
 any special processing. And if it is, we can create a ``JsonResponse`` like
 we might normally do in a controller::
+
+    // src/KnpU/CodeBattle/Application.php
+    // ...
 
     private function configureListeners()
     {
@@ -544,6 +930,9 @@ and throw a new ``ApiProblemException`` instead of creating and returning
 a response. And to keep things clear, let's also rename this function to
 ``throwApiProblemValidationException``::
 
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
     private function throwApiProblemValidationException(array $errors)
     {
         $apiProblem = new ApiProblem(
@@ -557,6 +946,9 @@ a response. And to keep things clear, let's also rename this function to
 Now, just update ``newAction`` and ``updateAction`` to use the new function
 name. We can also remove the ``return`` statements from each: we don't need
 that anymore::
+
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
 
     // newAction() and updateAction()
     if ($errors = $this->validate($programmer)) {
@@ -590,6 +982,8 @@ First, let's write a test!
 .. code-block:: gherkin
 
     # features/api/programmer.feature
+    # ...
+
     Scenario: Proper 404 exception on no programmer
       When I request "GET /api/programmers/fake"
       Then the response status code should be 404
@@ -609,18 +1003,24 @@ listener function. Now, we want to handle *any* exception if the URL starts
 with ``/api``. I can use this object to get Silex's ``Request`` object and
 use an ``if`` statement to check for this::
 
-    $app = $this;
+    // src/KnpU/CodeBattle/Application.php
+    // ...
 
-    $this->error(function(\Exception $e, $statusCode) use ($app) {
-        // only act on /api URLs
-        if (strpos($app['request']->getPathInfo(), '/api') !== 0) {
-            return;
-        }
+    public function configureListeners()
+    {
+        $app = $this;
+
+        $this->error(function(\Exception $e, $statusCode) use ($app) {
+            // only act on /api URLs
+            if (strpos($app['request']->getPathInfo(), '/api') !== 0) {
+                return;
+            }
         
-        // ...
+            // ...
 
-        return $response;
-    });
+            return $response;
+        });
+    }
 
 If you're not using Silex, just make sure you can check the current URL to
 see if it's for your API.
@@ -628,6 +1028,9 @@ see if it's for your API.
 Next, we need an ``ApiProblem`` object so we can create our ``application/problem+json``
 response. If the exception is an instance of ``ApiProblemException``, then
 we can get it easily. If not, then we have to do our best to create one::
+
+    // src/KnpU/CodeBattle/Application.php
+    // ...
 
     $this->error(function(\Exception $e, $statusCode) use ($app) {
         // only act on /api URLs
@@ -650,6 +1053,9 @@ we can get it easily. If not, then we have to do our best to create one::
 In this second case, the only information we have is the status code. This
 is where we should use ``about:blank`` as the type. But instead of doing
 that here, let's add a bit of logic into ``ApiProblem``::
+
+    // src/KnpU/CodeBattle/Api/ApiProblem.php
+    // ...
 
     public function __construct($type = null, $statusCode)
     {
@@ -681,6 +1087,9 @@ to create a ``JsonResponse`` and set the ``application/problem+json`` ``Content-
 header on it. Now, if an exception is thrown from *anywhere* in the system
 for a URL beginning with ``/api``, the client will get back an API problem
 response. It took a little bit of work, but this is huge!
+
+    // src/KnpU/CodeBattle/Application.php
+    // ...
 
     $this->error(function(\Exception $e, $statusCode) use ($app) {
         // ...
@@ -715,6 +1124,9 @@ One remaining problem is that the ``type`` should be a URL, not just a string.
 One simple solution would be to prefix the ``type`` with the URL to some
 documentation page and use our code as the anchor. Let's do this inside our
 anonymous function::
+
+    // src/KnpU/CodeBattle/Application.php
+    // ...
 
     $data = $apiProblem->toArray();
     $data['type'] = 'http://localhost:8000/docs/errors#'.$data['type'];

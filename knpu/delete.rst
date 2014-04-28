@@ -18,7 +18,16 @@ add yet another scenario, this time for deleting a programmer resource. We
 need to use a ``Given`` like in the other scenarios to first make sure that
 we have a programmer in the database to delete:
 
-    TODO - features/api/programmer.feature
+.. code-block:: gherkin
+
+    # features/api/programmer.feature
+    # ...
+
+    Scenario: DELETE a programmer
+      Given the following programmers exist:
+        | nickname   | avatarNumber |
+        | UnitTester | 3            |
+      When I request "DELETE /api/programmers/UnitTester"
 
 After deleting a resource, what should the endpoint return and what about
 the status code? There's not total agreement on this, but one common approach
@@ -26,7 +35,15 @@ is to return a 204 status code, which means "No Content". It's the server's
 way of saying "I completed your request, but I really don't have anything
 to say back to you". In other words, the response will have an empty body:
 
-    TODO - features/api/programmer.feature
+    # features/api/programmer.feature
+    # ...
+
+    Scenario: DELETE a programmer
+      Given the following programmers exist:
+        | nickname   | avatarNumber |
+        | UnitTester | 3            |
+      When I request "DELETE /api/programmers/UnitTester"
+      Then the response status code should be 204
 
 Coding the Endpoint
 -------------------
@@ -35,12 +52,32 @@ To make this work, we'll need to create a route that responds to the HTTP
 ``DELETE`` method. Make sure the URL is the same as what we use to GET one
 programmer, because we want to take the DELETE action on that resource:
 
-    TODO - src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    protected function addRoutes(ControllerCollection $controllers)
+    {
+        // ...
+
+        $controllers->delete('/api/programmers/{nickname}', array($this, 'deleteAction'));
+    }
 
 Next, create the ``deleteAction`` method. We can copy a little bit of code
 that queries for a programmer and throws a 404 error if one doesn't exist::
 
-    TODO - src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function deleteAction($nickname)
+    {
+        $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
+
+        if (!$programmer) {
+            $this->throw404();
+        }
+
+        // ...
+    }
 
 .. note::
 
@@ -53,12 +90,30 @@ Now, just delete the programmer. I've created a shortcut method for this
 called ``delete`` in my project. Your code will be different, but fortunately,
 deleting things is pretty easy::
 
-    TODO - src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function deleteAction($nickname)
+    {
+        // ...
+        $this->delete($programmer);
+
+        // ...
+    }
 
 And finally, we just need to send a Response back to the user. The important
 part is the 204 status code and the blank content, which is what 204 means::
 
-    TODO - src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function deleteAction($nickname)
+    {
+        // ...
+        $this->delete($programmer);
+
+        return new Response(null, 204);
+    }
 
 Dang, that was really easy! Execute Behat to make sure we didn't mess anything
 up. Awesome! Like with everything else, be consistent with how resources
