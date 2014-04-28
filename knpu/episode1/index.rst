@@ -24,3 +24,5 @@ Starting in Symfony2: Episode2
     put-versus-post
     delete
     patch
+    errors
+    whats-next
