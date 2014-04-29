@@ -18,3 +18,7 @@ Starting in Symfony2: Episode2
     testing
     testing-data
     put-editing
+    debugging-tests
+    put-improvements
+    different-representations
+    put-versus-post

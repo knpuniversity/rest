@@ -92,6 +92,26 @@ chapters:
         is_free:    false
         is_finished: 0
         length:     0:00
+    debugging-tests:
+        title:      Debugging Tests
+        is_free:    false
+        is_finished: 0
+        length:     0:00
+    put-improvements:
+        title:      PUT: Killing Duplicated Code
+        is_free:    false
+        is_finished: 0
+        length:     0:00
+    different-representations:
+        title:      GET Representation != POST Representation
+        is_free:    false
+        is_finished: 0
+        length:     0:00
+    put-versus-post:
+        title:      PUT Versus POST
+        is_free:    false
+        is_finished: 0
+        length:     0:00
     delete:
         title:      DELETE: For Deleting
         is_free:    false
