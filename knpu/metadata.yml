@@ -34,56 +34,52 @@ chapters:
     intro:
         title:      Introduction
         is_free:    true
-        length:     0:00
+        length:     3:07
     http:
         title:      HTTP Basics
         is_free:    true
-        length:     0:00
+        length:     2:10
     rest:
         title:      REST: Resources and Representations
         is_free:    true
-        length:     0:00
+        length:     3:12
     client-state:
         title:      Transitions and Client State
         is_free:    true
-        length:     0:00
+        length:     2:11
     project-routing:
         title:      Project Routing
         is_free:    true
-        length:     0:00
+        length:     5:22
     post:
         title:      "POST: Creation, Location Header and 201"
         is_free:    true
-        length:     0:00
+        length:     4:53
     get:
         title:      "GET'ing Resources, and Content-Type"
         is_free:    false
-        length:     0:00
+        length:     4:36
     location-header:
         title:      Updating the Location Header
         is_free:    false
-        length:     0:00
+        length:     1:47
     get-collection:
         title:      GET /programmers: A collection of Programmers
         is_free:    false
-        length:     0:00
+        length:     3:32
     rfcs:
         title:      Fixing the Content-Type on POST
         is_free:    false
-        length:     0:00
+        length:     2:37
     testing-phpunit:
         title:      Testing your API with PHPUnit
         is_free:    false
-        length:     0:00
+        length:     2:34
     testing:
         title:      Behat for Testing
         is_free:    false
-        length:     0:00
+        length:     4:34
     testing-data:
         title:      Handling Data in Tests
         is_free:    false
-        length:     0:00
-    put-editing:
-        title:      PUT: Editing Resources
-        is_free:    false
-        length:     0:00
+        length:     3:56
