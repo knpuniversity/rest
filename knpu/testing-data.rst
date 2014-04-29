@@ -3,6 +3,8 @@ Handling Data in Tests
 
 Let's run our test a second time:
 
+.. code-block:: bash
+
     $ php vendir/bin/behat
 
 It fails! The nickname of a programmer is unique in the database, and if
@@ -42,6 +44,8 @@ Using Background to Add a User
 
 Try the test again:
 
+.. code-block:: bash
+
     $ php vendir/bin/behat
 
 Dang, it failed again. Ah, remember how we're relating all programmers to
@@ -63,6 +67,8 @@ This runs a function that inserts my user:
 
 Eventually we'll have many scenarios in this one file. Lines below ``Background``
 are executed before each ``Scenario``. Ok, try it one more time!
+
+.. code-block:: bash
 
     $ php vendir/bin/behat
 

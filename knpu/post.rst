@@ -79,7 +79,7 @@ endpoint so we can see it::
     This is a special stream that reads the request body. For more details,
     see `php.net: php://`_.
 
-Try running our ``testing.php`` file again::
+Try running our ``testing.php`` file again:
 
 .. code-block:: bash
 
