@@ -41,16 +41,30 @@ Yep, let's add *another* scenario:
 
 .. code-block:: gherkin
 
-    TODO: PUT Programmer: Write the test
+    // features/api/programmer.feature
+    // ...
+
+    Scenario: PUT to update a programmer
+      Given the following programmers exist:
+        | nickname    | avatarNumber | tagLine |
+        | CowboyCoder | 5            | foo     |
+      And I have the payload:
+        """
+        {
+          "nickname": "CowboyCoder",
+          "avatarNumber" : 2,
+          "tagLine": "foo"
+        }
+        """
+      When I request "PUT /api/programmers/CowboyCoder"
+      Then the response status code should be 200
+      And the "avatarNumber" property should equal "2"
 
 This looks a lot like our POST scenario, and with good reason: consistency!
 It would be a real bummer if the data we sent to the server looked dramatically
 different based no whether we're creating or updating a programmer. The status
 code *is* different: 201 is used when an asset is created but the normal 200
 is used when it's an update.
-
-- we're sending a "representation" of the resource, which the server uses
-  to update the underlying resource
 
 Just to keep us tied into the theory of things, I'll describe this using
 REST-nerd language. Ready? Ok.
@@ -80,7 +94,15 @@ Coding up the PUT Endpoint
 Let's add the PUT support! First, create the route, except this time you'll
 use the ``put`` method to make this route respond only to PUT requests::
 
-    TODO: PUT Programmer: Create PUT endpoint - routing
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    protected function addRoutes(ControllerCollection $controllers)
+    {
+        // ...
+
+        $controllers->put('/api/programmers/{nickname}', array($this, 'updateAction'));
+    }
 
 Next, copy the ``newAction`` and rename it to ``updateAction``, because these
 will do almost the same thing. The biggest difference is that instead of
@@ -88,12 +110,47 @@ creating a new ``Programmer`` object, we'll query the database for an existing
 object and update it. Heck, we can steal that code from ``showAction``. Just
 be sure that you're still setting the ``nickname`` and ``avatar`` properties::
 
-    TODO: PUT Programmer: Create PUT endpoint - part of controller
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function updateAction($nickname, Request $request)
+    {
+        $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
+
+        if (!$programmer) {
+            $this->throw404();
+        }
+
+        $data = json_decode($request->getContent(), true);
+
+        $programmer->nickname = $data['nickname'];
+        $programmer->avatarNumber = $data['avatarNumber'];
+        $programmer->tagLine = $data['tagLine'];
+        $programmer->userId = $this->findUserByUsername('weaverryan')->id;
+
+        $this->save($programmer);
+
+        // ...
+    }
 
 Now just change the status code from 201 to 200, since we're no longer creating
 a resource. And you can also remove the ``Location`` header::
 
-    TODO: PUT Programmer: Create PUT endpoint - method
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function updateAction($nickname, Request $request)
+    {
+        // ...
+
+        $this->save($programmer);
+
+        $data = $this->serializeProgrammer($programmer);
+
+        $response = new JsonResponse($data, 200);
+
+        return $response;
+    }
 
 We only need this header with the 201 status code when a resource is created.
 And it makes sense: when we create a new resource, we don't know what its
@@ -117,7 +174,21 @@ Debugging Tests
 But what if this had failed? Let's pretend we coded something wrong by throwing
 a big ugly exception in our controller::
 
-    PUT Programmer: Temporarily making the test fail
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function updateAction($nickname, Request $request)
+    {
+        $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
+
+        if (!$programmer) {
+            $this->throw404();
+        }
+
+        throw new \Exception('This is scary!');
+        
+        // ...
+    }
 
 Now run the test again:
 
@@ -142,7 +213,25 @@ If this doesn't tell you enough, we can print out the last response in its
 entirety. To do this, add "And print last response" to our scenario, just
 *before* the failing line:
 
-    PUT Programmer: Temporarily making the test fail
+    // features/api/programmer.feature
+    // ...
+
+    Scenario: PUT to update a programmer
+      Given the following programmers exist:
+        | nickname    | avatarNumber | tagLine |
+        | CowboyCoder | 5            | foo     |
+      And I have the payload:
+        """
+        {
+          "nickname": "CowboyCoder",
+          "avatarNumber" : 2,
+          "tagLine": "foo"
+        }
+        """
+      When I request "PUT /api/programmers/CowboyCoder"
+      And print last response
+      Then the response status code should be 200
+      And the "avatarNumber" property should equal "2"
 
 Now just re-run the test:
 
@@ -165,11 +254,50 @@ We can do better than that! Create a new private function called ``handleRequest
 and copy the code into it that reads the request body and sets the data on
 the Programmer::
 
-    PUT Programmer: Refactor the "form" update code: new function
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    private function handleRequest(Request $request, Programmer $programmer)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        if ($data === null) {
+            throw new \Exception(sprintf('Invalid JSON: '.$request->getContent()));
+        }
+
+        $programmer->nickname = $data['nickname'];
+        $programmer->avatarNumber = $data['avatarNumber'];
+        $programmer->tagLine = $data['tagLine'];
+        $programmer->userId = $this->findUserByUsername('weaverryan')->id;
+    }
 
 Cool! Now we can just call this from ``newAction`` and ``updateAction``::
 
-    PUT Programmer: Refactor the "form" update code: using function
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    public function newAction(Request $request)
+    {
+        $programmer = new Programmer();
+        $this->handleRequest($request, $programmer);
+        $this->save($programmer);
+        
+        // ...
+    }
+
+    public function updateAction($nickname, Request $request)
+    {
+        $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
+
+        if (!$programmer) {
+            $this->throw404();
+        }
+
+        $this->handleRequest($request, $programmer);
+        $this->save($programmer);
+
+        // ...
+    }
 
 Re-run the tests to see if we broke anything:
 
@@ -180,7 +308,28 @@ Re-run the tests to see if we broke anything:
 Cool! I'm going to change how this code is written *just* a little bit so
 that it's even more dynamic::
 
-    PUT Programmer: make handleRequest a little fancier
+    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+    // ...
+
+    private function handleRequest(Request $request, Programmer $programmer)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        if ($data === null) {
+            throw new \Exception(sprintf('Invalid JSON: '.$request->getContent()));
+        }
+
+        // determine which properties should be changeable on this request
+        $apiProperties = array('nickname', 'avatarNumber', 'tagLine');
+
+        // update the properties
+        foreach ($apiProperties as $property) {
+            $val = isset($data[$property]) ? $data[$property] : null;
+            $programmer->$property = $val;
+        }
+
+        $programmer->userId = $this->findUserByUsername('weaverryan')->id;
+    }
 
 There's nothing important in this change, but it'll make some future changes
 easier to understand. If you're using a form library or have a fancier ORM,
@@ -218,12 +367,42 @@ field, the resource's nickname doesn't change:
 
 .. code-block:: gherkin
 
-    PUT Programmer: Making certain properties not mutable
+    # features/api/programmer.feature
+    # ...
+
+    Scenario: PUT to update a programmer
+      # ...
+      And I have the payload:
+        """
+        {
+          "nickname": "CowgirlCoder",
+          "avatarNumber" : 2,
+          "tagLine": "foo"
+        }
+        """
+      # ...
+      But the "nickname" property should equal "CowboyCoder"
 
 Run the test first to make sure it's failing. Next, let's update the ``handleRequest``
 function to only set the ``nickname`` on a *new* Programmer::
 
-    PUT Programmer: Making certain properties not mutable
+    private function handleRequest(Request $request, Programmer $programmer)
+    {
+        $data = json_decode($request->getContent(), true);
+        $isNew = !$programmer->id;
+
+        if ($data === null) {
+            throw new \Exception(sprintf('Invalid JSON: '.$request->getContent()));
+        }
+
+        // determine which properties should be changeable on this request
+        $apiProperties = array('avatarNumber', 'tagLine');
+        if ($isNew) {
+            $apiProperties[] = 'nickname';
+        }
+        
+        // ...
+    }
 
 Now run the test:
 

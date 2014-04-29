@@ -14,6 +14,7 @@ summary: |
     * Resources and Representations
     * Resource state, client state
     * GET, POST, PUT, PATCH, DELETE
+    * Idemptotency and safe methods
     * Proper Status Codes, Location header and Content-Type
     * Testing your API
     * RFCs and where the "rules" come from

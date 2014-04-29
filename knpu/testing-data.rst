@@ -50,7 +50,14 @@ this user gets deleted too. That's expected, and I already have a sentence
 to take care of this. Uncomment the ``Background`` line above the scenario.
 This runs a function that inserts my user:
 
-    TODO: Behat: Clear data between tests Background
+    # features/api/programmer.feature
+    Feature: Programmer
+      # ...
+
+      Background:
+        Given the user "weaverryan" exists
+
+      # ...
 
 Eventually we'll have many scenarios in this one file. Lines below ``Background``
 are executed before each ``Scenario``. Ok, try it one more time!
