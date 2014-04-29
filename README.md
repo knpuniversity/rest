@@ -1,8 +1,9 @@
 REST PHP Tutorial
 =================
 
-This repository holds the screencast code, script and HATEOAS for the WIP
-"REST in PHP" course from KnpUniversity.
+This repository holds the screencast code, script and HATEOAS for the
+[RESTful APIs in the Real World Episode 1](http://knpuniversity.com/screencast/rest)
+course from KnpUniversity.
 
 For more details, see the following blog posts:
 
