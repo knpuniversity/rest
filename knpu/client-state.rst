@@ -1,5 +1,5 @@
 Transitions and Client State
-----------------------------
+============================
 
 Ok, just one more thing: state transitions. We already know about resource
 state, and how a client can change the resource state by sending a representation

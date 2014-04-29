@@ -1,5 +1,5 @@
 REST: Resources and Representations
------------------------------------
+===================================
 
 REST: Representational state transfer. The term was coined famously by `Roy Fielding`_
 in his doctoral dissertation in 2000. It's complex, and a lot of what makes
@@ -17,7 +17,7 @@ But we already build URLs that work like this on the web, so this is nothing
 new.
 
 Representations
-~~~~~~~~~~~~~~~
+---------------
 
 Now that you understand resources, I want to think about representations.
 Suppose a client makes a GET request to ``/programmers/Namespacinator`` and

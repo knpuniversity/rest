@@ -1,5 +1,5 @@
-POST, 201, Location header and Testing
-======================================
+Project Routing
+===============
 
 Ok, let's get start by `downloading`_ or `cloning`_ the CodeBattles project.
 Now, follow the `README.md`_ file to get things working. It involves `downloading Composer`_

@@ -13,6 +13,9 @@ imaginary iPhone app needs it. And second, API users tend to assume that
 you can GET most any resource. If we make this possible, our API is that
 much more predictable and friendly.
 
+Coding up our Test
+------------------
+
 Like always, let's start by updating our testing script to try the new endpoint::
 
     // testing.php
@@ -24,6 +27,9 @@ Like always, let's start by updating our testing script to try the new endpoint:
 
     echo $response;
     echo "\n\n";
+
+Creating the Route
+------------------
 
 Next, create a new route that points to a new ``listAction`` method in our
 ``ProgrammerController`` class::
@@ -37,6 +43,9 @@ Next, create a new route that points to a new ``listAction`` method in our
 
         $controllers->get('/api/programmers', array($this, 'listAction'));
     }
+
+Creating the Endpoint
+---------------------
 
 I'll copy the ``showAction`` and modify it for ``listAction``. First, remove
 the ``$nickname`` argument, since there's no ``{nickname}`` in this new URI.
@@ -133,6 +142,9 @@ Cool - let's try it!
             }
         ]
     }
+
+What JSON Structure to Use?
+---------------------------
 
 Awesome! So why did I put the data under a ``programmers`` key? Actually,
 no special reason, I just invented this standard. I could have structured

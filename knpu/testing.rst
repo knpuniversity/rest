@@ -12,13 +12,25 @@ also don't worry: we're going to use Behat, but not dive into it too deeply.
 And when you want to know more, watch our `Behat Screencast`_ and then use
 the code that comes with this project to jumpstart testing your API.
 
+Creating Scenarios
+------------------
+
 With Behat, we write human-readable statements, called scenarios, and run
 these as tests. To see what I mean, find the ``features/api/programmer.feature``
 file:
 
 .. code-block:: gherkin
 
-    TODO: Behat: Adding asserts to PHPUnit test
+    # api/features/programmer.feature
+    Feature: Programmer
+      In order to battle projects
+      As an API client
+      I need to be able to create programmers and power them up
+
+      Background:
+        # Given the user "weaverryan" exists
+
+      Scenario: Create a programmer
 
 As you'll see, each feature file will contain many scenarios. I'll fill you
 in with more details as we go. For now, let's add our first scenario: `Create a Programmer`:
@@ -47,6 +59,9 @@ describes a client that makes a POST request with a JSON body. It then checks
 to make sure the status code is 201, that we have a ``Location`` header and
 that the response has a ``nickname`` property.
 
+Running Behat
+-------------
+
 I may sound crazy, but let's execute these english sentences as a real test.
 To do that, just run the ``behat`` executable, which is in the ``vendor/bin``
 directory:
@@ -58,6 +73,9 @@ directory:
 Green colors! It says that 1 scenario passed. In the background, a real HTTP
 request was made to the server and a real response was sent back and then
 checked. In our browser, we can actually see the new ``ObjectOrienter`` programmer.
+
+Configuring Behat
+~~~~~~~~~~~~~~~~~
 
 Oh, and it knows what our hostname is because of a config file: ``behat.yml.dist``.
 We just say ``POST /api/programmers`` and it knows to make the HTTP request
@@ -76,7 +94,16 @@ Behat looks like magic, but it's actually really simple. Open up the ``ApiFeatur
 file that lives in the ``features/api`` directory. If we scroll down, you'll
 immediately see functions with regular expressions above them::
 
-    Behat: Basic POST scenario: FeatureContext::iRequest
+    // features/api/ApiFeatureContext.php
+    // ...
+
+    /**
+     * @When /^I request "(GET|PUT|POST|DELETE|PATCH) ([^"]*)"$/
+     */
+    public function iRequest($httpMethod, $resource)
+    {
+        // ...
+    }
 
 Behat reads each line under a scenario and then looks for a function here
 whose regular expression matches it. So when we say ``I request "POST /api/programmers"``,

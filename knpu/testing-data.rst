@@ -10,7 +10,16 @@ you look closely, this fails because the API tries to insert another ``ObjectOri
 and blows up. To fix this, add a new function in ``ApiFeatureContext`` with
 a special ``@BeforeScenario`` anotation above it::
 
-    Behat: Clear data between tests
+    // features/api/ApiFeatureContext.php
+    // ...
+
+    /**
+     * @BeforeScenario
+     */
+    public function clearData()
+    {
+        $this->getProjectHelper()->reloadDatabase();
+    }
 
 The body of this function is specific to my app - it calls out to some code
 that truncates all of my tables. If you can write code to empty your database
@@ -27,6 +36,9 @@ do this.
 The ``@BeforeScenario`` annotation, or comment, tells Behat to automatically
 run this before every scenario. This guarantees that we're starting with
 a very predictable, empty database before each test.
+
+Using Background to Add a User
+------------------------------
 
 Try the test again:
 

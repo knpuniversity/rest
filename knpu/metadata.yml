@@ -1,21 +1,89 @@
-title:  RESTful APIs and Hypermedia in the Real World
+title:  RESTful APIs in the Real World Episode 1
 price:  0
 length: ~
 summary: |
     Making RESTful APIs is hard, really hard. There are a lot of concepts
-    to know - hypermedia, links, rels, documentation/profiles and HTTP to
-    name a few. And putting this all to life in a sane way in PHP is no small
-    task. In this upcoming screencast, we'll learn about all of the new concepts
-    around REST like HATOEAS and the advantages and disadvantages of each.
-    And we'll of course build a real API to show it all off.
+    to know - resources, representations, HTTP methods, status codes, etc.
 
-    Release: We expect to release this chapter by chapter from late March
-    into mid April. Subscribe and we'll email with details. It's taking some
-    time, but we're really happy with it!
+    And putting this all to life in a sane way in PHP is no small task. In
+    this course, we'll learn all the most fundamental concepts around REST
+    and learn about the "rules" and the advantages and disadvantages of each.
+    And we'll of course build a real API to show it all off. Topics include:
+
+    * HTTP basics
+    * Resources and Representations
+    * Resource state, client state
+    * GET, POST, PUT, PATCH, DELETE
+    * Proper Status Codes, Location header and Content-Type
+    * Testing your API
+    * RFCs and where the "rules" come from
+    * Advanced error and validation handling
+
+    If you want to know about Hypermedia, HATEOAS, Documenting your API,
+    Content-Type negotiation, pagination and more, these are **not** covered
+    here, but will be covered in [Episode 2](knpuniversity.com/screencast/rest-ep2)!
+
 illustration: rest.png
-priority: 0
+priority: 175
 tags:
     - { name: php }
-status: upcoming
+status: unfinished
+hasVideoDownload: 0
 
-chapters: []
+chapters:
+    intro:
+        title:      Introduction
+        is_free:    true
+        length:     0:00
+    http:
+        title:      HTTP Basics
+        is_free:    true
+        length:     0:00
+    rest:
+        title:      REST: Resources and Representations
+        is_free:    true
+        length:     0:00
+    client-state:
+        title:      Transitions and Client State
+        is_free:    true
+        length:     0:00
+    project-routing:
+        title:      Project Routing
+        is_free:    true
+        length:     0:00
+    post:
+        title:      "POST: Creation, Location Header and 201"
+        is_free:    true
+        length:     0:00
+    get:
+        title:      "GET'ing Resources, and Content-Type"
+        is_free:    false
+        length:     0:00
+    location-header:
+        title:      Updating the Location Header
+        is_free:    false
+        length:     0:00
+    get-collection:
+        title:      GET /programmers: A collection of Programmers
+        is_free:    false
+        length:     0:00
+    rfcs:
+        title:      Fixing the Content-Type on POST
+        is_free:    false
+        length:     0:00
+    testing-phpunit:
+        title:      Testing your API with PHPUnit
+        is_free:    false
+        length:     0:00
+    testing:
+        title:      Behat for Testing
+        is_free:    false
+        length:     0:00
+    testing-data:
+        title:      Handling Data in Tests
+        is_free:    false
+        length:     0:00
+    put-editing:
+        title:      PUT: Editing Resources
+        is_free:    false
+        length:     0:00

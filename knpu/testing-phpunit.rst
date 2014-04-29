@@ -1,5 +1,5 @@
-Testing your API
-================
+Testing your API with PHPUnit
+=============================
 
 What, a testing chapter so early? Yep, with API's, you really can't avoid
 it, and that's a good thing. One way or another, to develop, test and debug
