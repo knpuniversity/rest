@@ -50,7 +50,7 @@ Creating the Endpoint
 I'll copy the ``showAction`` and modify it for ``listAction``. First, remove
 the ``$nickname`` argument, since there's no ``{nickname}`` in this new URI.
 Next, query for *all* programmers using another method from my ORM. The key
-is that this gives us an array of ``Programmer`` objects.
+is that this gives us an array of ``Programmer`` objects::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
@@ -80,7 +80,7 @@ to do this::
         );
     }
 
-Now, use this to build a big array of the programmers in ``listAction``
+Now, use this to build a big array of the programmers in ``listAction``::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...

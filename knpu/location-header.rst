@@ -45,8 +45,8 @@ I can GET this new resource.
 
 .. tip::
 
-    The ``generateUrl`` method is just a shortcut for doing this:
-    
+    The ``generateUrl`` method is just a shortcut for doing this::
+
         $programmerUrl = $this->container['url_generator']->generate(
             'api_programmers_show',
             ['nickname' => $programmer->nickname]

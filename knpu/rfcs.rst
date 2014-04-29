@@ -33,7 +33,7 @@ put it into the Response::
     }
 
 If the client needs that information, then we've just saved them one API
-request::
+request.
 
 And don't forget to set the ``Content-Type`` response header to ``application/json``.
 To see your handy work, print out that response temporarily and try it::

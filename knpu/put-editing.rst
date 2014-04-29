@@ -213,6 +213,8 @@ If this doesn't tell you enough, we can print out the last response in its
 entirety. To do this, add "And print last response" to our scenario, just
 *before* the failing line:
 
+.. code-block:: gherkin
+
     // features/api/programmer.feature
     // ...
 
@@ -527,3 +529,5 @@ NOTES
 
 - I think there's way too much theory at the end - should move some of this
     later to when we run into it more directly
+
+.. _`rfc2616`: http://www.w3.org/Protocols/rfc2616/rfc2616.html

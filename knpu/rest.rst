@@ -72,3 +72,5 @@ via representations.
 I know I know. We just took an easy idea and made it insane! But if you can
 understand *this* way of thinking, a lot of what you read about REST will
 start to make sense.
+
+.. _`Roy Fielding`: https://twitter.com/fielding

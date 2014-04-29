@@ -50,6 +50,8 @@ this user gets deleted too. That's expected, and I already have a sentence
 to take care of this. Uncomment the ``Background`` line above the scenario.
 This runs a function that inserts my user:
 
+.. code-block:: gherkin
+
     # features/api/programmer.feature
     Feature: Programmer
       # ...

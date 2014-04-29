@@ -18,6 +18,8 @@ PHP reads this and puts it into the ``$_POST`` array. That's ok for the web,
 but in the API world, it's ugly. Why not, have the client send us the
 representation in a beautiful boquet of curly braces known as JSON:
 
+.. code-block:: text
+
     POST /api/programmers HTTP/1.1
     Host: localhost:8000
     Content-Type: application/json
@@ -102,7 +104,7 @@ resources - ``Project`` and ``Battle``. We'll use these later.
 
 In ``newAction``, we have the JSON string, so let's decode it and use the data
 to create a new ``Programmer`` object that's ready for battle. We'll use
-each key that the client sends to populate a property on the object.
+each key that the client sends to populate a property on the object::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
@@ -119,7 +121,7 @@ each key that the client sends to populate a property on the object.
 My app also has a really simple ORM that lets us save these objects to the
 database. How you save things to your database will be different. The key
 point is that we have a ``Programmer`` class that models how we want our
-API to look, and that we can somehow save this.
+API to look, and that we can somehow save this::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...

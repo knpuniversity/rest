@@ -164,7 +164,7 @@ the file is:
 
     $ php testing.php
 
-.. code-block:: test
+.. code-block:: text
 
     HTTP/1.1 200 OK
     Host: localhost:8000
@@ -178,4 +178,9 @@ Success!
 
 .. _`downloading`: http://knpuniversity.com/screencast/download/rest
 .. _`cloning`: https://github.com/knpuniversity/rest
-.. _`README`: https://github.com/knpuniversity/rest/blob/master/README.md
+.. _`README.md`: https://github.com/knpuniversity/rest/blob/master/README.md
+.. _`downloading Composer`: https://getcomposer.org/
+.. _`The Wonderful World of Composer`: https://knpuniversity.com/screencast/composer
+.. _`Silex`: http://silex.sensiolabs.org/
+.. _`its documentation`: http://silex.sensiolabs.org/documentation
+.. _`Guzzle`: http://guzzle3.readthedocs.org/
