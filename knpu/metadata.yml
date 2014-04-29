@@ -20,6 +20,9 @@ summary: |
     * RFCs and where the "rules" come from
     * Advanced error and validation handling
 
+    **This tutorial is still being released! Chapters on the left will become
+    available as we publish them. :)**
+
     If you want to know about Hypermedia, HATEOAS, Documenting your API,
     Content-Type negotiation, pagination and more, these are **not** covered
     here, but will be covered in [Episode 2](knpuniversity.com/screencast/rest-ep2)!
@@ -84,3 +87,28 @@ chapters:
         title:      Handling Data in Tests
         is_free:    false
         length:     3:56
+    put-editing:
+        title:      PUT: For Editing
+        is_free:    false
+        is_finished: 0
+        length:     0:00
+    delete:
+        title:      DELETE: For Deleting
+        is_free:    false
+        is_finished: 0
+        length:     0:00
+    patch:
+        title:      PATCH: The Other Edit
+        is_free:    false
+        is_finished: 0
+        length:     0:00
+    errors:
+        title:      Advanced Error Handling
+        is_free:    false
+        is_finished: 0
+        length:     0:00
+    whats-next:
+        title:      What's Next?
+        is_free:    false
+        is_finished: 0
+        length:     0:00
