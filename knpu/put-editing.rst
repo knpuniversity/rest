@@ -59,10 +59,10 @@ You guys know the drill: we start by writing the test. So let's add yet
       Then the response status code should be 200
       And the "avatarNumber" property should equal "2"
 
-This looks a lot like our POST scenario, and that's good: consistency! It
-would be a bummer if our create endpoint looked a lot different than our update
-endpoint. The status code *is* different: 201 is used when an asset is created
-but the normal 200 is used when it's an update.
+This looks a lot like our POST scenario, and that's good: consistency! But
+we *do* need to add a line to put a programmer into the database and tweak
+a few other details. The status code *is* different: 201 is used when an asset
+is created but the normal 200 is used when it's an update.
 
 Just to keep us tied into the theory of things, I'll describe this using
 REST-nerd language. Ready? Ok.
