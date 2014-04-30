@@ -27,8 +27,7 @@ Immutable Properties
 In our API, the programmer's nickname is its unique, primary key. So, I don't
 really want it to be editable. In other words, even though the response representation
 of a programmer resource will contain a ``nickname`` property, a PUT request
-to update it should *not* have this field. It's a small examle of how the
-same programmer resource may be represented differently in different situations.
+to update it should *not* have this field. 
 
 Let's first add to our scenario to test that even if we send a ``nickname``
 field, the resource's nickname doesn't change:
