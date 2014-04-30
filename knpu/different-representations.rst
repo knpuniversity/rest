@@ -2,18 +2,23 @@ GET Representation != POST Representation
 =========================================
 
 So far, the representation of a programmer that we send in our PUT request
-exactly matches the representation the server sends us in a GET request.
-But it does't need to be this way. It would be perfectly legal to design
-our API so that we have an ``avatarNumber`` field when we POST or PUT a programmer,
-but then get back an ``avatarURL`` when we GET that same programmer resource.
+exactly matches the representation the server sends in the response after
+a GET request. But it does't need to be this way.
+
+When we POST or PUT to a programmer URI, we send data that contains
+an ``avatarNumber`` field. But imagine if we designed the API so that when
+we *GET* a programmer, the representation in the response contains an ``avatarUrl``
+instead of ``avatarNumber``. In this world, the representation we send in
+a request would be different than the representation that the server sends
+back in a response. And this would be perfectly ok!
 
 The point is that I don't want you to feel like the data your API receives
 needs to look exactly like the data you send back. Nope. Both are just *representations*
 of a resource.
 
-With that said, if you make the representations inconsistent for no reasons,
+With that said, if you make the representations inconsistent for no reason,
 your API users will hunt you down with pitchforks. So if you expect ``avatarNumber``
-in the POST body, don't send bck ``avatar_number`` in the GET request. That's
+in the POST body, don't send back ``avatar_number`` in the GET request. That's
 just mean.
 
 Immutable Properties
@@ -74,7 +79,7 @@ Now run the test:
     $ php vendir/bin/behat
 
 Perfect! We've decided just to ignore these "extra" properties. You could
-also decide to return an error response instead. It just depends on if your
+also decide to return an error response instead. It just depends on your
 taste. What we did here is easier to use, but our client may also not notice
 that we're ignoring some of the submitted data. We'll talk about error responses
 in a few minutes.

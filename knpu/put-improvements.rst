@@ -1,10 +1,10 @@
 PUT: Killing Duplicated Code
 ============================
 
-Our tests are passing, but we're doing a bad job, because we're now duplicating
-code between ``newAction`` and ``updateAction`` in ``ProgrammerController``!
+Our tests are passing, but we're doing a bad job: I've created duplicated
+code in ``newAction`` and ``updateAction``!
 
-We can do better than that! Create a new private function called ``handleRequest``
+Let's redeem ourselves! Create a new private function called ``handleRequest``
 and copy the code into it that reads the request body and sets the data on
 the Programmer::
 
@@ -87,4 +87,4 @@ that it's even more dynamic::
 
 There's nothing important in this change, but it'll make some future changes
 easier to understand. If you're using a form library or have a fancier ORM,
-you might be able to do something like this much easier than I am.
+you can probably do something like this with even less code than I have.

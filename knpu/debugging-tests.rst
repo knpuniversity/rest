@@ -1,8 +1,10 @@
 Debugging Tests
 ===============
 
-But what if this had failed? Let's pretend we coded something wrong by throwing
-a big ugly exception in our controller::
+But what if this *had* failed? Could we debug it?
+
+Let's pretend we coded something wrong by throwing a big ugly exception in
+our controller::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
@@ -26,8 +28,8 @@ Now run the test again:
 
     $ php vendir/bin/behat
 
-It fails because we're getting a 500 error instead of 200. But we can't really
-see what's going on because we can't see the big error page!
+Not surprisingly, we're getting a 500 error instead of 200. But we can't
+really see what's going on because we can't see the big error page!
 
 But don't worry! First, I've done my best to configure Behat so when something
 fails, part of the last response that was made to the server before the failure
