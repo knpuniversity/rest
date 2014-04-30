@@ -88,3 +88,6 @@ that it's even more dynamic::
 There's nothing important in this change, but it'll make some future changes
 easier to understand. If you're using a form library or have a fancier ORM,
 you can probably do something like this with even less code than I have.
+
+While we're here, let's throw a big exception if the client sends us invalid
+JSON.
