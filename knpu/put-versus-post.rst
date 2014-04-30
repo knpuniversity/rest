@@ -3,7 +3,7 @@ PUT Versus POST
 
 PUT versus POST: one of those conversations you try *not* to have. It leads
 to broken friendships, rainy picnics, and sad-looking kittens. People are
-passionate about REST, and this is one of this really sensitive topics.
+passionate about REST, and this is one of the really sensitive topics.
 
 First, you can read the technical descriptions in the `rfc2616`_ document
 I mentioned earlier. It's actually pretty cool stuff. But this is more than
@@ -15,10 +15,10 @@ Safe Methods
 
 Each HTTP method is said to be "safe" or "unsafe". An HTTP method is "safe"
 if using it doesn't modify anything on the server. Ok, yes, logs will be
-written and maybe analytics will store data, but "safe" methods should never
-modify any resources. GET and HEAD are "safe" methods.
+written and analytics collected, but "safe" methods should never
+modify any real data. GET and HEAD are "safe" methods.
 
-Making a request with an unsafe methods - like POST, PUT and DELETE - *does*
+Making a request with unsafe methods - like POST, PUT and DELETE - *does*
 change data. Actually, if you make a request with an unsafe method it *may not*
 change anything. For example, if I try to update a programmer's ``avatarNumber``
 to the value it already has, nothing happens.
@@ -37,7 +37,7 @@ Idempotent
 
 Within the unsafe methods, we have to talk about the famous term: "idempotency".
 A request is idempotent if the side effects of making the request 1 time
-is the same as making the request 2, 3, 4, or 1000 times. PUT and DELETE
+is the same as making the request 2, 3, 4, or 1072 times. PUT and DELETE
 are idempotent, POST is not.
 
 For example, if we make the PUT request from our test once, it updates the
@@ -50,7 +50,7 @@ the ``nickname`` doesn't have to be unique, because that detail clouds things
 here unnecessarily.
 
 If we make the request once, it would create a programmer. If we make it again,
-it would create *another* programmer. So making the request 10 times is not
+it would create *another* programmer. So making the request 12 times is not
 the same as making it just once. This is *not* idempotent.
 
 Now you can see why it *seems* right to say that POST creates resources and
@@ -82,7 +82,7 @@ resource at this URI. Because of this, PUT is usually thought of as an update,
 but it could be used to create resources. You may never choose to use PUT
 this way, but technically it's ok.
 
-Heck, we *could* even support making a PUT request to ``/programmers``.
+Heck, we *could* even support making a PUT request to ``/api/programmers``.
 But if we did - and we followed the rules of PUT - we'd expect the client to
 pass us a collection of programmers, and we'd replace the existing collection
 with this new one.
@@ -90,7 +90,7 @@ with this new one.
 POST and Non-Idempotency
 ------------------------
 
-On last thing. POST is not idempotent, so making a POST request more than
+One last thing. POST is not idempotent, so making a POST request more than
 one time *may* have additional side effects, like creating a second, third
 and fourth programmer. But the key word here is *may*. Just because an endpoint
 uses POST doesn't mean that it *must* have side effects on every request.
