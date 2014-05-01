@@ -15,10 +15,6 @@ the Programmer::
     {
         $data = json_decode($request->getContent(), true);
 
-        if ($data === null) {
-            throw new \Exception(sprintf('Invalid JSON: '.$request->getContent()));
-        }
-
         $programmer->nickname = $data['nickname'];
         $programmer->avatarNumber = $data['avatarNumber'];
         $programmer->tagLine = $data['tagLine'];
