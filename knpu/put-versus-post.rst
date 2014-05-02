@@ -99,3 +99,5 @@ It just *might* have side effects.
 When choosing between PUT and POST, don't just say "this request is idempotent,
 it must be PUT!". Instead, look at the above 2 rules for put. If it fails
 one of those, use POST: even if the endpoint is idempotent.
+
+.. _`rfc2616`: http://www.w3.org/Protocols/rfc2616/rfc2616.html
