@@ -1,6 +1,6 @@
 title:  RESTful APIs in the Real World Episode 1
 price:  12
-length: 43:23
+length: 58:53
 summary: |
     Making RESTful APIs is hard, really hard. There are a lot of concepts
     to know - resources, representations, HTTP methods, status codes, etc.
@@ -90,28 +90,23 @@ chapters:
     put-editing:
         title:      PUT: For Editing
         is_free:    false
-        is_finished: 0
-        length:     0:00
+        length:     4:13
     debugging-tests:
         title:      Debugging Tests
         is_free:    false
-        is_finished: 0
-        length:     0:00
+        length:     1:12
     put-improvements:
         title:      PUT: Killing Duplicated Code
         is_free:    false
-        is_finished: 0
-        length:     0:00
+        length:     2:12
     different-representations:
         title:      GET Representation != POST Representation
         is_free:    false
-        is_finished: 0
-        length:     0:00
+        length:     2:46
     put-versus-post:
         title:      PUT Versus POST
         is_free:    false
-        is_finished: 0
-        length:     0:00
+        length:     5:07
     delete:
         title:      DELETE: For Deleting
         is_free:    false
