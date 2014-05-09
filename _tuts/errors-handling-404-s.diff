@@ -17,7 +17,7 @@ index a52e61c..667ef35 100644
      Given the following programmers exist:
        | nickname   | avatarNumber |
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
-index fee4490..70789be 100644
+index 39560ba..26c4eea 100644
 --- a/src/KnpU/CodeBattle/Api/ApiProblem.php
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
 @@ -2,6 +2,8 @@
