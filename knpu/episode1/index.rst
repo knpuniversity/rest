@@ -25,4 +25,9 @@ Starting in Symfony2: Episode2
     delete
     patch
     errors
+    application-problem
+    error-consistency
+    error-invalid-json
+    error-api-problem-exception
+    error-404-json
     whats-next

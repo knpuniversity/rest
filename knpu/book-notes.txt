@@ -1,0 +1,56 @@
+- (12) when he lists "actions" on a resource, he tends to include relations
+    (image, images, favorites) as actions as well. Though, for simlper, singular
+    things (favorite), he'll include that as a field in update (though favorites,
+    would be another action)
+
+- (13) Instead of doing /users/X/checkins/Y he does /checkins/Y
+- (14) This was interesting... - seems to be thinking of "settings" as a
+        collection
+    • POST /me/settings - I would expect this to allow me to POST specific
+      fields one at a time, not force me to send the entire body of settings.
+    • PUT /me/settings - Send me ALL the settings.
+
+- (15) profile and settings are just sub-resources of Users, so they could
+    just be a method in the User controller
+
+- (16) I like that he's talking about why certain endpoints will live in
+    certain controllers
+
+- (18) I like that he shows the HTTP request, then shows how you'd make that
+    in Guzzle
+
+- (20) He basically says - kill $_POST for an API and how POST versus a 
+    JSON body looks
+
+- (22) Says screw XML
+
+- (24) I like how he talks about the downsides of using simple structures
+    in JSON: no room for metadata (it would look like properties)
+
+- (28) Error codes are like keys that correspond to a human-readable description.
+    This sounds like status codes, but these are app-specific, have nothing
+    to do with HTTP
+
+- (31) He really talks about augmenting the HTTP status code with a helpful
+    error code
+
+- (32) he makes a case for Behat
+
+- (33) he maps out how clearly he's going to organize his endpoints to
+    Behat tests.
+
+- (41) The fractal idea is interesting, and so does the "scopes" thing
+
+- (53) I like how he mentions that relationships in an API will be similar
+    to DB relationships if you have a nice DB, but they're not the same,
+    and you might event relationships, or only show some.
+
+- (53) I like how he outlines the options for relationships:
+    - different URL (more HTTP requests)
+    - foreign key arrays???
+    - compound documents
+    - embedded documents (nesting)
+
+- (55) - he uses a ?embed=checkins style
+
+- (62) he mentions how this embed stuff violates rules, but who cares
