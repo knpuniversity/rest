@@ -1,22 +1,24 @@
 Deleting Resources
 ==================
 
-The only thing an API client *can't* do to a programmer resource is delete
-it. So let's fix that!
+After all the POST, PUT, idemptotency talk, we deserve a break. There's only
+one thing that an API client *can't* do to a programmer resource: delete it!
+So let's fix that!
 
 Once again, we're going to leverage HTTP methods. We have GET to retrieve
 a representation, PUT to update the resource, and DELETE to, ya know, blow
 the resource up! HTTP gives us these HTTP verbs so that we don't need to
 do silly things like have a ``/api/programmers/delete`` URI. Remember, every
-URI is a resource, so that URI wouldn't really make sense.
+URI is a resource, so that URI wouldn't really make sense and people would
+make fun of your API.
 
 Writing the Test
 ----------------
 
-Where to start! Why, with the test of course! Open up our feature file and
-add yet another scenario, this time for deleting a programmer resource. We
-need to use a ``Given`` like in the other scenarios to first make sure that
-we have a programmer in the database to delete:
+Oh where to start? Why not write a test? Open up our feature file and add
+yet another scenario, this time for deleting a programmer resource. We need
+to use a ``Given`` like in the other scenarios to first make sure that we
+have a programmer in the database to delete:
 
 .. code-block:: gherkin
 
@@ -30,10 +32,10 @@ we have a programmer in the database to delete:
       When I request "DELETE /api/programmers/UnitTester"
 
 After deleting a resource, what should the endpoint return and what about
-the status code? There's not total agreement on this, but one common approach
-is to return a 204 status code, which means "No Content". It's the server's
-way of saying "I completed your request, but I really don't have anything
-to say back to you". In other words, the response will have an empty body:
+the status code? People argue about this, but one common approach is to return
+a 204 status code, which means "No Content". It's the server's way of saying
+"I completed your request ok, but I really don't have anything else to tell
+you beyond that". In other words, the response will have an empty body:
 
     # features/api/programmer.feature
     # ...
@@ -81,10 +83,10 @@ that queries for a programmer and throws a 404 error if one doesn't exist::
 
 .. note::
 
-    Some people say that you sould return a success status code, even if
-    what you're trying to delete doesn't exist (afterall, if it never existed,
-    that's the same end result as deleting it). You can do that, but I'm
-    not convinced it's clear for the client.
+    Some people say that you should return a success status code (e.g. 204
+    instead of 404), even if what you're trying to delete doesn't exist (afterall,
+    if it never existed, that's the same end result as deleting it). You
+    can do that, but I think it could confuse your client.
 
 Now, just delete the programmer. I've created a shortcut method for this
 called ``delete`` in my project. Your code will be different, but fortunately,
