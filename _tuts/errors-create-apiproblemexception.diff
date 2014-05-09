@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
-index e103403..fee4490 100644
+index c7d67e4..39560ba 100644
 --- a/src/KnpU/CodeBattle/Api/ApiProblem.php
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
 @@ -9,8 +9,11 @@ class ApiProblem
