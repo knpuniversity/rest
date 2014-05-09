@@ -24,7 +24,7 @@ index 9ab80a1..12d1bb3 100644
          $response = new JsonResponse($data, 201);
          $programmerUrl = $this->generateUrl(
 diff --git a/src/KnpU/CodeBattle/Model/Programmer.php b/src/KnpU/CodeBattle/Model/Programmer.php
-index e849254..0f0236e 100644
+index e849254..5d0e11f 100644
 --- a/src/KnpU/CodeBattle/Model/Programmer.php
 +++ b/src/KnpU/CodeBattle/Model/Programmer.php
 @@ -11,6 +11,9 @@ class Programmer
@@ -32,7 +32,7 @@ index e849254..0f0236e 100644
      public $id;
  
 +    /**
-+     * @Assert\NotBlank(message="Please enter a nickname")
++     * @Assert\NotBlank(message="Please enter a clever nickname")
 +     */
      public $nickname;
  
