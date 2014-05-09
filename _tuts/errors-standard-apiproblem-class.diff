@@ -1,6 +1,6 @@
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
 new file mode 100644
-index 0000000..9dbb5ec
+index 0000000..04e4be8
 --- /dev/null
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
 @@ -0,0 +1,46 @@
@@ -15,9 +15,9 @@ index 0000000..9dbb5ec
 +{
 +    private $type;
 +
-+    private $title;
-+
 +    private $statusCode;
++
++    private $title;
 +
 +    private $extraData = array();
 +
