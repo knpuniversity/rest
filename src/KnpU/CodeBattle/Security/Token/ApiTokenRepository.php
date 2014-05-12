@@ -2,9 +2,8 @@
 
 namespace KnpU\CodeBattle\Security\Token;
 
-use KnpU\CodeBattle\Model\ApiToken;
-use KnpU\CodeBattle\Model\User;
 use KnpU\CodeBattle\Repository\BaseRepository;
+use KnpU\CodeBattle\Model\User;
 
 class ApiTokenRepository extends BaseRepository
 {
@@ -12,28 +11,12 @@ class ApiTokenRepository extends BaseRepository
 
     protected function getClassName()
     {
-        // TODO: Implement getClassName() method.
+        return 'KnpU\CodeBattle\Security\Token\ApiToken';
     }
 
     protected function getTableName()
     {
         return self::TABLE_NAME;
-    }
-
-    /**
-     * @param User $user
-     * @return ApiToken
-     */
-    public function createKey(User $user)
-    {
-        $token = new ApiToken();
-        $token->enabled = true;
-        $token->token = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
-        $token->userId = $user->id;
-
-        $this->save($token);
-
-        return $token;
     }
 
     /**
@@ -43,5 +26,15 @@ class ApiTokenRepository extends BaseRepository
     public function findOneByToken($token)
     {
         return $this->findOneBy(array('token' => $token));
+    }
+
+    public function findAllForUser(User $user)
+    {
+        return $this->findAllBy(array('userId' => $user->id));
+    }
+
+    protected function finishHydrateObject($obj)
+    {
+        $this->normalizeDateProperty('createdAt', $obj);
     }
 } 

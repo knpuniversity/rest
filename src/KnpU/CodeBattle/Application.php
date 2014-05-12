@@ -8,6 +8,7 @@ use Doctrine\Common\Cache\PhpFileCache;
 use KnpU\CodeBattle\Battle\PowerManager;
 use KnpU\CodeBattle\Repository\BattleRepository;
 use KnpU\CodeBattle\Repository\ProjectRepository;
+use KnpU\CodeBattle\Security\Token\ApiTokenRepository;
 use KnpU\CodeBattle\Twig\BattleExtension;
 use KnpU\CodeBattle\Validator\ApiValidator;
 use Silex\Application as SilexApplication;
@@ -140,6 +141,9 @@ class Application extends SilexApplication
         });
         $this['repository.battle'] = $this->share(function() use ($app) {
             return new BattleRepository($app['db']);
+        });
+        $this['repository.api_token'] = $this->share(function() use ($app) {
+            return new ApiTokenRepository($app['db']);
         });
 
         $this['battle.battle_manager'] = $this->share(function() use ($app) {

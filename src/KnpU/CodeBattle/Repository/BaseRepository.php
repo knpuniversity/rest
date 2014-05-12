@@ -177,4 +177,15 @@ abstract class BaseRepository
             ->from($this->getTableName(), $alias)
         ;
     }
+
+    /**
+     * Can be called in finishHydrateObject to normalize a date to a DateTime object
+     *
+     * @param $propertyName
+     * @param $obj
+     */
+    protected function normalizeDateProperty($propertyName, $obj)
+    {
+        $obj->$propertyName = \DateTime::createFromFormat('Y-m-d H:i:s', $obj->$propertyName);
+    }
 }
