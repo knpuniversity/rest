@@ -25,7 +25,13 @@ Installation
    cd web
    php -S localhost:8000
 
-4) Load up the app in your browser!
+4) Make sure a few directories are writeable:
+
+   mkdir logs
+   mkdir data
+   chmod 777 logs data
+
+5) Load up the app in your browser!
 
     http://localhost:8000
 
