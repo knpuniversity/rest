@@ -4,6 +4,7 @@ namespace KnpU\CodeBattle\DataFixtures;
 
 use KnpU\CodeBattle\Model\Project;
 use KnpU\CodeBattle\Model\User;
+use KnpU\CodeBattle\Security\Token\ApiTokenRepository;
 use Silex\Application;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Table;
@@ -45,6 +46,16 @@ class FixturesManager
         $userTable->addUniqueIndex(array('username'));
         $userTable->addColumn('password', 'string', array('length' => 255));
         $schemaManager->dropAndCreateTable($userTable);
+
+        $tokenTable = new Table(ApiTokenRepository::TABLE_NAME);
+        $tokenTable->addColumn('id', 'integer', array('unsigned' => true, 'autoincrement' => true));
+        $tokenTable->setPrimaryKey(array('id'));
+        $tokenTable->addColumn('token', 'string', array('length' => 32));
+        $tokenTable->addColumn('userId', 'integer');
+        $tokenTable->addColumn('enabled', 'boolean');
+        $tokenTable->addUniqueIndex(array('token'), 'token_idx');
+        $tokenTable->addForeignKeyConstraint($userTable, array('userId'), array('id'));
+        $schemaManager->dropAndCreateTable($tokenTable);
 
         $programmerTable = new Table('programmer');
         $programmerTable->addColumn('id', 'integer', array('unsigned' => true, 'autoincrement' => true));
