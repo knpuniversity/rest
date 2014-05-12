@@ -157,6 +157,10 @@ abstract class BaseRepository
     private function createObjectFromData(array $data)
     {
         $class = $this->getClassName();
+        if (!class_exists($class)) {
+            throw new \Exception(sprintf('Repository class %s is returning a bad getClassName: "%s"', get_class($this), $this->getClassName()));
+        }
+
         $object = new $class();
         foreach ($data as $key => $val) {
             $object->$key = $val;
