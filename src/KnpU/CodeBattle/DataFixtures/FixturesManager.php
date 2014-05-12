@@ -52,7 +52,8 @@ class FixturesManager
         $tokenTable->setPrimaryKey(array('id'));
         $tokenTable->addColumn('token', 'string', array('length' => 32));
         $tokenTable->addColumn('userId', 'integer');
-        $tokenTable->addColumn('enabled', 'boolean');
+        $tokenTable->addColumn('notes', 'string', array('length' => 255));
+        $tokenTable->addColumn('createdAt', 'datetime');
         $tokenTable->addUniqueIndex(array('token'), 'token_idx');
         $tokenTable->addForeignKeyConstraint($userTable, array('userId'), array('id'));
         $schemaManager->dropAndCreateTable($tokenTable);

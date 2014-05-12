@@ -1,0 +1,18 @@
+{% extends "layout.twig" %}
+{% import '_macros.twig' as macros %}
+
+{% block content %}
+    <h1>Create a personal API token!</h1>
+
+    {{ macros.print_errors(errors) }}
+
+    <form action="{{ path('user_tokens_new') }}" method="post" class="form">
+        <fieldset>
+            {{ macros.form_field('textarea', 'notes', 'Notes', token.notes, 'Some notes about how you\'ll use this token') }}
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Tokenify-me!</button>
+                <a class="cancel-link" href="{{ path('user_tokens') }}">Cancel</a>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

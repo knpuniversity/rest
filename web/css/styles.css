@@ -10102,3 +10102,11 @@ td a {
 td a:hover {
   text-decoration: none;
 }
+
+/***********************
+Create Token Page
+***********************/
+/* line 284, ../sass/_rest.scss */
+.btn-header-margin {
+  margin-top: 24px;
+}

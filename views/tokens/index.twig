@@ -1,0 +1,40 @@
+{% extends "layout.twig" %}
+{% import '_macros.twig' as macros %}
+
+{% block content %}
+
+    <a href="{{ path('user_tokens_new') }}" class="btn btn-default btn-xs pull-right btn-header-margin">Add a token</a>
+
+    <h1>API Tokens!</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Token</th>
+                <th>Notes</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for token in tokens %}
+                <tr>
+                    <td>
+                        <div style="word-wrap: break-word; width: 130px;">
+                            {{ token.token }}
+                        </div>
+                    </td>
+                    <td>{{ token.notes }}</td>
+                    <td>
+                        <form action="{{ path('user_tokens_delete', {'token': token.token}) }}" method="POST">
+                            <button type="submit" class="btn btn-xs btn-danger">&times;</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="text-center">Looks like you're fresh out of API tokens <i class="fa fa-frown-o"></i></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

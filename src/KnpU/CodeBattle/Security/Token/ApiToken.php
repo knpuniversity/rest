@@ -1,6 +1,6 @@
 <?php
 
-namespace KnpU\CodeBattle\Model;
+namespace KnpU\CodeBattle\Security\Token;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -13,7 +13,21 @@ class ApiToken
 
     public $token;
 
+    /**
+     * @Assert\NotBlank(message="Please add some notes about this token")
+     */
+    public $notes;
+
     public $userId;
 
-    public $enabled = true;
+    /**
+     * @var \DateTime
+     */
+    public $createdAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->token = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+    }
 }

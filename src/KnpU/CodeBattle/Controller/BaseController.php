@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\HttpFoundation\Request;
 use KnpU\CodeBattle\Repository\ProgrammerRepository;
+use KnpU\CodeBattle\Security\Token\ApiTokenRepository;
 
 /**
  * Base controller class to hide Silex-related implementation details
@@ -192,5 +193,13 @@ abstract class BaseController implements ControllerProviderInterface
     protected function getProgrammerRepository()
     {
         return $this->container['repository.programmer'];
+    }
+
+    /**
+     * @return ApiTokenRepository
+     */
+    protected function getApiTokenRepository()
+    {
+        return $this->container['repository.api_token'];
     }
 }
