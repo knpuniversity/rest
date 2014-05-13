@@ -1,0 +1,25 @@
+title:  RESTful APIs in the Real World Episode 2
+price:  0
+length: ~
+summary: |
+    Making RESTful APIs is hard, really hard. There are a lot of concepts
+    to know - resources, representations, HTTP methods, status codes, etc.
+
+    In the upcoming episode 2 of this series, we'll cover the hard stuff,
+    by continuing our real tutorial:
+
+    * Hypermedia and HATOEAS
+    * Documenting your API
+    * Content-Type negotiation
+    * Pagination and filtering
+    * A lot of other pieces in between!
+
+illustration: rest2.png
+priority: 0
+tags:
+    - { name: php }
+status: upcoming
+hasVideoDownload: 0
+
+chapters: []
+
