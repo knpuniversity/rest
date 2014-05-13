@@ -11,7 +11,7 @@ index 667ef35..9178b95 100644
    Scenario: GET one programmer
      Given the following programmers exist:
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 9cca049..fab1da9 100644
+index 9cca049..01c4a59 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -26,6 +26,7 @@ use KnpU\CodeBattle\Repository\ProgrammerRepository;
@@ -22,23 +22,23 @@ index 9cca049..fab1da9 100644
  use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
  use Symfony\Component\Validator\Mapping\Loader\AnnotationLoader;
  
-@@ -235,6 +236,16 @@ class Application extends SilexApplication
+@@ -233,6 +234,16 @@ class Application extends SilexApplication
+                     null,
+                     $statusCode
                  );
++
++                /*
++                 * If it's an HttpException message (e.g. for 404, 403),
++                 * we'll say as a rule that the exception message is safe
++                 * for the client. Otherwise, it could be some sensitive
++                 * low-level exception, which should *not* be exposed
++                 */
++                if ($e instanceof HttpException) {
++                    $apiProblem->set('detail', $e->getMessage());
++                }
              }
  
-+            /*
-+             * If it's an HttpException message (e.g. for 404, 403),
-+             * we'll say as a rule that the exception message is safe
-+             * for the client. Otherwise, it could be some sensitive
-+             * low-level exception, which should *not* be exposed
-+             */
-+            if ($e instanceof HttpException) {
-+                $apiProblem->set('detail', $e->getMessage());
-+            }
-+
              $response = new JsonResponse(
-                 $apiProblem->toArray(),
-                 $statusCode
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 index 0d98f90..c08e351 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php

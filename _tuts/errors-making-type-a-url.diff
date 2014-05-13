@@ -1,9 +1,9 @@
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index fab1da9..6b8f5de 100644
+index 01c4a59..feabfe5 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -246,8 +246,11 @@ class Application extends SilexApplication
-                 $apiProblem->set('detail', $e->getMessage());
+                 }
              }
  
 +            $data = $apiProblem->toArray();
