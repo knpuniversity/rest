@@ -61,7 +61,7 @@ index 39560ba..26c4eea 100644
  
      public function toArray()
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 585abe6..9cca049 100644
+index 8b8b502..7704e01 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -5,6 +5,7 @@ namespace KnpU\CodeBattle;
@@ -72,7 +72,7 @@ index 585abe6..9cca049 100644
  use KnpU\CodeBattle\Api\ApiProblemException;
  use KnpU\CodeBattle\Battle\PowerManager;
  use KnpU\CodeBattle\Repository\BattleRepository;
-@@ -217,14 +218,25 @@ class Application extends SilexApplication
+@@ -221,14 +222,25 @@ class Application extends SilexApplication
  
      private function configureListeners()
      {
