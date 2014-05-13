@@ -202,4 +202,22 @@ abstract class BaseController implements ControllerProviderInterface
     {
         return $this->container['repository.api_token'];
     }
+
+    /**
+     * Checks to see if the given $plainPassword is the correct password
+     * for the given User object.
+     *
+     * @param User $user
+     * @param $plainPassword
+     * @return bool
+     */
+    protected function isPasswordValid(User $user, $plainPassword)
+    {
+        /** @var \Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface $encoderFactory */
+        $encoderFactory = $this->container['security.encoder_factory'];
+
+        $encoder = $encoderFactory->getEncoder($user);
+
+        return $encoder->isPasswordValid($user->getPassword(), $plainPassword, $user->getSalt());
+    }
 }
