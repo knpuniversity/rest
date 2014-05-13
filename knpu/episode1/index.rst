@@ -30,4 +30,5 @@ Starting in Symfony2: Episode2
     error-invalid-json
     error-api-problem-exception
     error-404-json
+    error-details
     whats-next
