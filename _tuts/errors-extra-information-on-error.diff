@@ -11,10 +11,10 @@ index 667ef35..9178b95 100644
    Scenario: GET one programmer
      Given the following programmers exist:
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 9cca049..01c4a59 100644
+index 7704e01..2ee65e3 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
-@@ -26,6 +26,7 @@ use KnpU\CodeBattle\Repository\ProgrammerRepository;
+@@ -27,6 +27,7 @@ use KnpU\CodeBattle\Repository\ProgrammerRepository;
  use KnpU\CodeBattle\Battle\BattleManager;
  use Silex\Provider\ValidatorServiceProvider;
  use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,7 +22,7 @@ index 9cca049..01c4a59 100644
  use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
  use Symfony\Component\Validator\Mapping\Loader\AnnotationLoader;
  
-@@ -233,6 +234,16 @@ class Application extends SilexApplication
+@@ -237,6 +238,16 @@ class Application extends SilexApplication
                      null,
                      $statusCode
                  );
