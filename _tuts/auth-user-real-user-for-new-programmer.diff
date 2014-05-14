@@ -1,0 +1,13 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 72ace8f..f19c216 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -159,7 +159,7 @@ class ProgrammerController extends BaseController
+             $programmer->$property = $val;
+         }
+ 
+-        $programmer->userId = $this->findUserByUsername('weaverryan')->id;
++        $programmer->userId = $this->getLoggedInUser()->id;
+     }
+ 
+     private function serializeProgrammer(Programmer $programmer)
