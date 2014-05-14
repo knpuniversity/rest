@@ -27,7 +27,7 @@ index 0000000..0dfae60
 +    }
 +}
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 0def49b..b15f5e0 100644
+index d4e4e5f..e46fe39 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -5,6 +5,7 @@ namespace KnpU\CodeBattle;
@@ -80,19 +80,19 @@ index 0def49b..b15f5e0 100644
  } 
 \ No newline at end of file
 diff --git a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
-index c1bc017..dccfab4 100644
+index c2dd942..2764c7f 100644
 --- a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
 +++ b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
-@@ -2,6 +2,8 @@
- 
+@@ -3,7 +3,7 @@
  namespace KnpU\CodeBattle\Security\Authentication;
  
-+use KnpU\CodeBattle\Api\ApiProblem;
+ use KnpU\CodeBattle\Api\ApiProblem;
+-use Symfony\Component\HttpFoundation\JsonResponse;
 +use KnpU\CodeBattle\Api\ApiProblemResponseFactory;
- use Symfony\Component\HttpFoundation\JsonResponse;
  use Symfony\Component\HttpFoundation\Request;
  use Symfony\Component\HttpFoundation\Response;
-@@ -19,9 +21,12 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
+ use Symfony\Component\Security\Core\Exception\AuthenticationException;
+@@ -20,9 +20,12 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
  {
      private $translator;
  
@@ -106,7 +106,7 @@ index c1bc017..dccfab4 100644
      }
  
      /**
-@@ -39,10 +44,7 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
+@@ -40,10 +43,7 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
          $problem = new ApiProblem(ApiProblem::TYPE_AUTHENTICATION_ERROR, 401);
          $problem->set('detail', $message);
  
