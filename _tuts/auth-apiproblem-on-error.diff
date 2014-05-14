@@ -16,10 +16,10 @@ index 26c4eea..fcdf12e 100644
  
      private $type;
 diff --git a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
-index 0c1b03b..5f3bb9a 100644
+index 7884a45..c1bc017 100644
 --- a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
 +++ b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
-@@ -30,7 +30,11 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
+@@ -36,7 +36,11 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
      {
          $message = $this->getMessage($authException);
  
