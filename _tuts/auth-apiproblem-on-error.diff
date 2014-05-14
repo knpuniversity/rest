@@ -16,10 +16,18 @@ index 26c4eea..fcdf12e 100644
  
      private $type;
 diff --git a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
-index 7884a45..c1bc017 100644
+index f1bedfa..c2dd942 100644
 --- a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
 +++ b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
-@@ -36,7 +36,11 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
+@@ -2,6 +2,7 @@
+ 
+ namespace KnpU\CodeBattle\Security\Authentication;
+ 
++use KnpU\CodeBattle\Api\ApiProblem;
+ use Symfony\Component\HttpFoundation\JsonResponse;
+ use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\HttpFoundation\Response;
+@@ -36,7 +37,10 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
      {
          $message = $this->getMessage($authException);
  
@@ -28,7 +36,6 @@ index 7884a45..c1bc017 100644
 +        $problem->set('detail', $message);
 +
 +        $response = new JsonResponse($problem->toArray(), 401);
-+        $response->headers->set('Content-Type', 'application/problem+json');
+         $response->headers->set('Content-Type', 'application/problem+json');
  
          return $response;
-     }
