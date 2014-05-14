@@ -264,7 +264,22 @@
             "id": "auth-basic-new-token-implementation",
             "name": "Auth: Basic new token implementation",
             "description": null
+        },
+        {
+            "id": "auth-serialize-the-token",
+            "name": "Auth: Serialize the token",
+            "description": null
+        },
+        {
+            "id": "auth-scenario-for-bad-password",
+            "name": "Auth: Scenario for bad password",
+            "description": null
+        },
+        {
+            "id": "auth-checking-for-password-validity",
+            "name": "Auth: Checking for password validity",
+            "description": null
         }
     ],
-    "sha": "ccc0772a2986f1371f918fcb7cafc454e757ea54"
+    "sha": "f574d5e77e5e6299eb9ba783b424e5528f7909ff"
 }
