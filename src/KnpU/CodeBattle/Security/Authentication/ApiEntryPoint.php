@@ -24,7 +24,13 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
      */
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        $response = new JsonResponse(array('details' => 'Authentication Required'), 401);
+        if ($authException) {
+            $message = $authException->getMessageKey();
+        } else {
+            $message = 'Authentication Required';
+        }
+
+        $response = new JsonResponse(array('details' => $message), 401);
 
         return $response;
     }
