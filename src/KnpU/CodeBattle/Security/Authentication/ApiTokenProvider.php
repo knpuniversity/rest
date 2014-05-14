@@ -48,6 +48,7 @@ class ApiTokenProvider implements AuthenticationProviderInterface
 
         $authenticatedToken = new ApiAuthToken($user->getRoles());
         $authenticatedToken->setUser($user);
+        $authenticatedToken->setAuthenticated(true);
 
         return $authenticatedToken;
     }
