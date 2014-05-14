@@ -127,7 +127,7 @@ class Application extends SilexApplication
             /** @var \Symfony\Component\Translation\Translator $translator */
             $translator->addLoader('yaml', new YamlFileLoader());
 
-            $translator->addResource('yaml', $this['root_dir'].'/translations/en.yml', 'en', 'default');
+            $translator->addResource('yaml', $this['root_dir'].'/translations/en.yml', 'en');
 
             return $translator;
         }));
