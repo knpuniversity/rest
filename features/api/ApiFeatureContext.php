@@ -666,27 +666,6 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the user "([^"]*)" exists$/
-     */
-    public function theUserExists($username)
-    {
-        $this->getProjectHelper()->createUser($username.'@foo.com', 'foo', $username);
-    }
-
-    /**
-     * @Given /^the following programmers exist:$/
-     */
-    public function theFollowingProgrammersExist(TableNode $table)
-    {
-        foreach ($table->getHash() as $row) {
-            $nickname = $row['nickname'];
-            unset($row['nickname']);
-
-            $this->getProjectHelper()->createProgrammer($nickname, null, $row);
-        }
-    }
-
-    /**
      * @Given /^print last response$/
      */
     public function printLastResponse()

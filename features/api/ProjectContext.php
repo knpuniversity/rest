@@ -3,6 +3,7 @@
 use Behat\Behat\Context\BehatContext;
 use KnpU\CodeBattle\Model\User;
 use KnpU\CodeBattle\Model\Programmer;
+use Behat\Gherkin\Node\TableNode;
 
 use KnpU\CodeBattle\Application;
 
@@ -15,6 +16,35 @@ class ProjectContext extends BehatContext
      * @var Application
      */
     private static $app;
+
+    /**
+     * @Given /^the user "([^"]*)" exists$/
+     */
+    public function theUserExists($username)
+    {
+        $this->createUser($username.'@foo.com', 'foo', $username);
+    }
+
+    /**
+     * @Given /^there is a user "([^"]*)" with password "([^"]*)"$/
+     */
+    public function thereIsAUserWithPassword($email, $password)
+    {
+        $this->createUser($email, $password, $email);
+    }
+
+    /**
+     * @Given /^the following programmers exist:$/
+     */
+    public function theFollowingProgrammersExist(TableNode $table)
+    {
+        foreach ($table->getHash() as $row) {
+            $nickname = $row['nickname'];
+            unset($row['nickname']);
+
+            $this->createProgrammer($nickname, null, $row);
+        }
+    }
 
     /**
      * Can be used with a BeforeScenario hook to clear the data between scenarios
