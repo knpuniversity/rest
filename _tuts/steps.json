@@ -231,6 +231,11 @@
             "description": null
         },
         {
+            "id": "errors-big-exceptions-for-debug",
+            "name": "Errors: Big exceptions for debug",
+            "description": null
+        },
+        {
             "id": "errors-making-type-a-url",
             "name": "Errors: Making type a URL",
             "description": null
@@ -244,7 +249,27 @@
             "id": "auth-scenario-creating-a-token",
             "name": "Auth: Scenario creating a token",
             "description": null
+        },
+        {
+            "id": "auth-basic-passing-controller",
+            "name": "Auth: Basic passing controller",
+            "description": null
+        },
+        {
+            "id": "auth-empty-token-controller-class",
+            "name": "Auth: Empty token controller class",
+            "description": null
+        },
+        {
+            "id": "auth-token-new-routing",
+            "name": "Auth: Token new routing",
+            "description": null
+        },
+        {
+            "id": "auth-basic-new-token-implementation",
+            "name": "Auth: Basic new token implementation",
+            "description": null
         }
     ],
-    "sha": "6c93874aa05e14617bd0a20bcd2e4599db647f71"
+    "sha": "ccc0772a2986f1371f918fcb7cafc454e757ea54"
 }
