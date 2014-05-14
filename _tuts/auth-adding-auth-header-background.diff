@@ -1,0 +1,13 @@
+diff --git a/features/api/programmer.feature b/features/api/programmer.feature
+index 9178b95..4596482 100644
+--- a/features/api/programmer.feature
++++ b/features/api/programmer.feature
+@@ -5,6 +5,8 @@ Feature: Programmer
+ 
+   Background:
+     Given the user "weaverryan" exists
++    And "weaverryan" has an authentication token "ABCD123"
++    And I set the "Authorization" header to be "token ABCD123"
+ 
+   Scenario: Create a programmer
+     Given I have the payload:
