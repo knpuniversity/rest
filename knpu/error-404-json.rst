@@ -182,13 +182,15 @@ have a very systematic way to create error responses, so that they stay consiste
 One last problem is that the ``type`` should be a URL, not just a string.
 One simple solution would be to prefix the ``type`` with the URL to some
 documentation page and use our code as the anchor. Let's do this inside our
-anonymous function::
+anonymous function, unless it's set to ``about:blank``::
 
     // src/KnpU/CodeBattle/Application.php
     // ...
 
     $data = $apiProblem->toArray();
-    $data['type'] = 'http://localhost:8000/docs/errors#'.$data['type'];
+    if ($data['type'] != 'about:blank') {
+        $data['type'] = 'http://localhost:8000/docs/errors#'.$data['type'];
+    }
     $response = new JsonResponse(
         $apiProblem->toArray(),
         $statusCode
@@ -196,3 +198,24 @@ anonymous function::
 
 Of course, creating that page is still up to you. But we'll talk more about
 documentation in the next episode.
+
+Run the tests to see if we broken anything:
+
+.. code-block:: bash
+
+    $ php vendor/bin/behat
+
+Ah, we did! The scenario that is checking for invalid JSON is expecting the
+header to equal ``invalid_body_format``. Update the scenario to check for
+the URL:
+
+.. code-block:: gherking
+
+    # features/api/programmer.feature
+    # ...
+
+    Scenario: Error response on invalid JSON
+      # ...
+      And the "type" property should contain "/api/docs/errors#invalid_body_format"
+
+Run the tests agian. Ok, all greeen again!
