@@ -22,15 +22,15 @@ class ProjectContext extends BehatContext
      */
     public function theUserExists($username)
     {
-        $this->createUser($username.'@foo.com', 'foo', $username);
+        $this->thereIsAUserWithPassword($username, 'foo');
     }
 
     /**
      * @Given /^there is a user "([^"]*)" with password "([^"]*)"$/
      */
-    public function thereIsAUserWithPassword($email, $password)
+    public function thereIsAUserWithPassword($username, $password)
     {
-        $this->createUser($email, $password, $email);
+        $this->createUser($username.'@foo.com', $password, $username);
     }
 
     /**
