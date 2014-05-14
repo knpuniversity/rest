@@ -241,6 +241,16 @@
             "description": null
         },
         {
+            "id": "auth-authentication-required-scenario",
+            "name": "Auth: Authentication Required Scenario",
+            "description": null
+        },
+        {
+            "id": "auth-requiring-a-valid-user-for-new-programmer",
+            "name": "Auth: Requiring a valid user for new programmer",
+            "description": null
+        },
+        {
             "id": "auth-new-feature",
             "name": "Auth: New Feature",
             "description": null
@@ -291,5 +301,5 @@
             "description": null
         }
     ],
-    "sha": "67d6bb64773780c910987dcb3c6acef1570fae3e"
+    "sha": "22d6a4cc9d3b003bf9975cd6ac2fe9df0b85bac3"
 }
