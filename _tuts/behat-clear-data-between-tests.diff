@@ -1,5 +1,5 @@
 diff --git a/features/api/ApiFeatureContext.php b/features/api/ApiFeatureContext.php
-index 4cd371a..a783d77 100644
+index a6553c5..f2703d9 100644
 --- a/features/api/ApiFeatureContext.php
 +++ b/features/api/ApiFeatureContext.php
 @@ -102,6 +102,14 @@ class ApiFeatureContext extends BehatContext
