@@ -1,0 +1,15 @@
+diff --git a/features/api/authentication.feature b/features/api/authentication.feature
+new file mode 100644
+index 0000000..2fe8d90
+--- /dev/null
++++ b/features/api/authentication.feature
+@@ -0,0 +1,9 @@
++Feature: Authentication
++  In order to access protected resource
++  As an API client
++  I need to be able to authenticate
++
++  Scenario: Create a programmer without authentication
++    When I request "POST /api/programmers"
++    Then the response status code should be 401
++    And the "detail" property should equal "Authentication Required"
