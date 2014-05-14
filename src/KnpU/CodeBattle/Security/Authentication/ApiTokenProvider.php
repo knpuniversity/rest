@@ -7,6 +7,7 @@ use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProvid
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use KnpU\CodeBattle\Repository\UserRepository;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 
 /**
  * Responsible for looking up the ApiToken in the database based off of
@@ -43,7 +44,7 @@ class ApiTokenProvider implements AuthenticationProviderInterface
         // $apiToken = // todo
 
         if (!$apiToken) {
-            throw new AuthenticationException('Invalid Token');
+            throw new BadCredentialsException('Invalid token');
         }
 
         // look up the user based on the ApiToken.userId value

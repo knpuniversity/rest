@@ -57,17 +57,10 @@ class ApiTokenListener implements ListenerInterface
         $token = new ApiAuthToken();
         $token->setAuthToken($tokenString);
 
-        try {
-            // this implicitly calls ApiTokenProvider::authenticate($token);
-            $returnValue = $this->authenticationManager->authenticate($token);
+        $returnValue = $this->authenticationManager->authenticate($token);
 
-            if ($returnValue instanceof TokenInterface) {
-                return $this->securityContext->setToken($returnValue);
-            }
-        } catch (AuthenticationException $e) {
-            $response = new Response();
-            $response->setStatusCode(Response::HTTP_FORBIDDEN);
-            $event->setResponse($response);
+        if ($returnValue instanceof TokenInterface) {
+            return $this->securityContext->setToken($returnValue);
         }
     }
 
