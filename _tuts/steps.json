@@ -251,6 +251,31 @@
             "description": null
         },
         {
+            "id": "auth-translating-the-error-message",
+            "name": "Auth: Translating the error message",
+            "description": null
+        },
+        {
+            "id": "auth-adding-auth-header-background",
+            "name": "Auth: Adding auth header background",
+            "description": null
+        },
+        {
+            "id": "auth-finish-listener-and-provider",
+            "name": "Auth: Finish listener and provider",
+            "description": null
+        },
+        {
+            "id": "auth-scenario-for-bad-token",
+            "name": "Auth: Scenario for bad token",
+            "description": null
+        },
+        {
+            "id": "auth-look-for-application-problem-json-on-auth-problems",
+            "name": "Auth: Look for application\/problem+json on auth problems",
+            "description": null
+        },
+        {
             "id": "auth-new-feature",
             "name": "Auth: New Feature",
             "description": null
@@ -301,5 +326,5 @@
             "description": null
         }
     ],
-    "sha": "22d6a4cc9d3b003bf9975cd6ac2fe9df0b85bac3"
+    "sha": "964e13697e58bea6756f33c6b116d8e78b93985d"
 }
