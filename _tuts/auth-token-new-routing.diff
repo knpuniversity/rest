@@ -1,0 +1,22 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
+index cefd8cf..a3efe28 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/TokenController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
+@@ -3,7 +3,17 @@
+ namespace KnpU\CodeBattle\Controller\Api;
+ 
+ use KnpU\CodeBattle\Controller\BaseController;
++use Silex\ControllerCollection;
+ 
+ class TokenController extends BaseController
+ {
++    protected function addRoutes(ControllerCollection $controllers)
++    {
++        $controllers->post('/api/tokens', array($this, 'newAction'));
++    }
++
++    public function newAction()
++    {
++        return 'foo';
++    }
+ }
