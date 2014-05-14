@@ -327,7 +327,7 @@
         },
         {
             "id": "auth-checking-for-password-validity",
-            "name": "Auth Token: Checking for password validity",
+            "name": "Auth Token: Using HTTP Basic auth",
             "description": null
         }
     ],
