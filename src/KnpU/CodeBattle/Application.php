@@ -3,8 +3,6 @@
 namespace KnpU\CodeBattle;
 
 use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\Common\Annotations\CachedReader;
-use Doctrine\Common\Cache\PhpFileCache;
 use KnpU\CodeBattle\Battle\PowerManager;
 use KnpU\CodeBattle\Repository\BattleRepository;
 use KnpU\CodeBattle\Repository\ProjectRepository;
