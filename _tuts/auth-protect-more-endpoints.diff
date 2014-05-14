@@ -1,0 +1,71 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 72ace8f..c1b2a69 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -36,9 +36,7 @@ class ProgrammerController extends BaseController
+ 
+     public function newAction(Request $request)
+     {
+-        if (!$this->isUserLoggedIn()) {
+-            throw new AccessDeniedException();
+-        }
++        $this->enforceUserSecurity();
+ 
+         $programmer = new Programmer();
+         $this->handleRequest($request, $programmer);
+@@ -89,12 +87,16 @@ class ProgrammerController extends BaseController
+ 
+     public function updateAction($nickname, Request $request)
+     {
++        $this->enforceUserSecurity();
++
+         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
+ 
+         if (!$programmer) {
+             $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
+         }
+ 
++        $this->enforceProgrammerOwnershipSecurity($programmer);
++
+         $this->handleRequest($request, $programmer);
+ 
+         if ($errors = $this->validate($programmer)) {
+@@ -118,6 +120,8 @@ class ProgrammerController extends BaseController
+             $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
+         }
+ 
++        $this->enforceProgrammerOwnershipSecurity($programmer);
++
+         $this->delete($programmer);
+ 
+         return new Response(null, 204);
+diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
+index 6512bad..c5e15a3 100644
+--- a/src/KnpU/CodeBattle/Controller/BaseController.php
++++ b/src/KnpU/CodeBattle/Controller/BaseController.php
+@@ -15,6 +15,7 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+ use Symfony\Component\HttpFoundation\Request;
+ use KnpU\CodeBattle\Repository\ProgrammerRepository;
+ use KnpU\CodeBattle\Security\Token\ApiTokenRepository;
++use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+ 
+ /**
+  * Base controller class to hide Silex-related implementation details
+@@ -203,4 +204,17 @@ abstract class BaseController implements ControllerProviderInterface
+         return $this->container['repository.api_token'];
+     }
+ 
++    protected function enforceUserSecurity()
++    {
++        if (!$this->isUserLoggedIn()) {
++            throw new AccessDeniedException();
++        }
++    }
++
++    protected function enforceProgrammerOwnershipSecurity(Programmer $programmer)
++    {
++        if ($this->getLoggedInUser()->id != $programmer->userId) {
++            throw new AccessDeniedException();
++        }
++    }
+ }
