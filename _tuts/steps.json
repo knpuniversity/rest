@@ -279,7 +279,17 @@
             "id": "auth-checking-for-password-validity",
             "name": "Auth: Checking for password validity",
             "description": null
+        },
+        {
+            "id": "auth-apiproblem-on-error",
+            "name": "Auth: ApiProblem on error",
+            "description": null
+        },
+        {
+            "id": "auth-unifying-apiproblem-to-response-process",
+            "name": "Auth: Unifying ApiProblem to Response process",
+            "description": null
         }
     ],
-    "sha": "345743887add7d8208c3cc0cd09f2fad97e421bc"
+    "sha": "67d6bb64773780c910987dcb3c6acef1570fae3e"
 }
