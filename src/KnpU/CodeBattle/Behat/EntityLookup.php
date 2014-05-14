@@ -19,7 +19,7 @@ class EntityLookup
         $this->field = $field;
     }
 
-    public function __get($value)
+    public function get($value)
     {
         $obj = $this->repository->findOneBy(array($this->field => $value));
         if (!$obj) {
@@ -32,5 +32,10 @@ class EntityLookup
         }
 
         return $obj;
+    }
+
+    public function __get($value)
+    {
+        return $this->get($value);
     }
 } 
