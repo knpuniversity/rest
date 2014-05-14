@@ -4,7 +4,7 @@ use Behat\Behat\Context\BehatContext;
 use KnpU\CodeBattle\Model\User;
 use KnpU\CodeBattle\Model\Programmer;
 use Behat\Gherkin\Node\TableNode;
-
+use KnpU\CodeBattle\Security\Token\ApiToken;
 use KnpU\CodeBattle\Application;
 
 /**
@@ -44,6 +44,23 @@ class ProjectContext extends BehatContext
 
             $this->createProgrammer($nickname, null, $row);
         }
+    }
+
+    /**
+     * @Given /^"([^"]*)" has an authentication token "([^"]*)"$/
+     */
+    public function hasAnAuthenticationToken($username, $tokenString)
+    {
+        $user = $this->getUserRepository()->findUserByUsername($username);
+        if (!$user) {
+            throw new \Exception(sprintf('Cannot find user '.$username));
+        }
+
+        $token = new ApiToken($user->id);
+        $token->notes = 'Behat testing!';
+        $token->token = $tokenString;
+
+        $this->getApiTokenRepository()->save($token);
     }
 
     /**
@@ -135,5 +152,13 @@ class ProjectContext extends BehatContext
     public function getUserRepository()
     {
         return self::$app['repository.user'];
+    }
+
+    /**
+     * @return \KnpU\CodeBattle\Security\Token\ApiTokenRepository
+     */
+    public function getApiTokenRepository()
+    {
+        return self::$app['repository.api_token'];
     }
 }

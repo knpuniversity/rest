@@ -56,6 +56,8 @@ class ApiFeatureContext extends BehatContext
      */
     protected $authPassword;
 
+    protected $headers = array();
+
     /**
      * The Guzzle HTTP Response.
      *
@@ -155,6 +157,10 @@ class ApiFeatureContext extends BehatContext
                 $this->lastRequest->setAuth($this->authUser, $this->authPassword);
             }
 
+            foreach ($this->headers as $key => $val) {
+                $this->lastRequest->setHeader($key, $val);
+            }
+
             $this->response = $this->lastRequest->send();
         } catch (BadResponseException $e) {
 
@@ -178,6 +184,14 @@ class ApiFeatureContext extends BehatContext
     {
         $this->authUser = $email;
         $this->authPassword = $password;
+    }
+
+    /**
+     * @Given /^I set the "([^"]*)" header to be "([^"]*)"$/
+     */
+    public function iSetTheHeaderToBe($headerName, $value)
+    {
+        $this->headers[$headerName] = $value;
     }
 
     /**
