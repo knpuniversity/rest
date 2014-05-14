@@ -27,7 +27,7 @@ index 0000000..0dfae60
 +    }
 +}
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index aa456ed..ff28c54 100644
+index 0def49b..b15f5e0 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -5,6 +5,7 @@ namespace KnpU\CodeBattle;
@@ -38,7 +38,7 @@ index aa456ed..ff28c54 100644
  use KnpU\CodeBattle\Battle\PowerManager;
  use KnpU\CodeBattle\Repository\BattleRepository;
  use KnpU\CodeBattle\Repository\ProjectRepository;
-@@ -185,6 +186,10 @@ class Application extends SilexApplication
+@@ -200,6 +201,10 @@ class Application extends SilexApplication
          $this['api.validator'] = $this->share(function() use ($app) {
              return new ApiValidator($app['validator']);
          });
@@ -49,18 +49,16 @@ index aa456ed..ff28c54 100644
      }
  
      private function configureSecurity()
-@@ -239,8 +244,8 @@ class Application extends SilexApplication
-             });
+@@ -255,7 +260,7 @@ class Application extends SilexApplication
  
              // the class that decides what should happen if no authentication credentials are passed
--            $this['security.entry_point.'.$name.'.api_token'] = $app->share(function() {
--                return new ApiEntryPoint();
-+            $this['security.entry_point.'.$name.'.api_token'] = $app->share(function() use ($app) {
-+                return new ApiEntryPoint($app['api.response_factory']);
+             $this['security.entry_point.'.$name.'.api_token'] = $app->share(function() use ($app) {
+-                return new ApiEntryPoint($app['translator']);
++                return new ApiEntryPoint($app['translator'], $app['api.response_factory']);
              });
  
              return array(
-@@ -297,16 +302,10 @@ class Application extends SilexApplication
+@@ -312,16 +317,10 @@ class Application extends SilexApplication
                  }
              }
  
@@ -82,32 +80,33 @@ index aa456ed..ff28c54 100644
  } 
 \ No newline at end of file
 diff --git a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
-index 5f3bb9a..172dcfb 100644
+index c1bc017..dccfab4 100644
 --- a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
 +++ b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
-@@ -3,6 +3,7 @@
+@@ -2,6 +2,8 @@
+ 
  namespace KnpU\CodeBattle\Security\Authentication;
  
- use KnpU\CodeBattle\Api\ApiProblem;
++use KnpU\CodeBattle\Api\ApiProblem;
 +use KnpU\CodeBattle\Api\ApiProblemResponseFactory;
  use Symfony\Component\HttpFoundation\JsonResponse;
  use Symfony\Component\HttpFoundation\Request;
  use Symfony\Component\HttpFoundation\Response;
-@@ -18,6 +19,13 @@ use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface
-  */
- class ApiEntryPoint implements AuthenticationEntryPointInterface
+@@ -19,9 +21,12 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
  {
+     private $translator;
+ 
+-    public function __construct(Translator $translator)
 +    private $responseFactory;
 +
-+    public function __construct(ApiProblemResponseFactory $responseFactory)
-+    {
++    public function __construct(Translator $translator, ApiProblemResponseFactory $responseFactory)
+     {
+         $this->translator = $translator;
 +        $this->responseFactory = $responseFactory;
-+    }
-+
+     }
+ 
      /**
-      * Starts the authentication scheme.
-      *
-@@ -33,10 +41,7 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
+@@ -39,10 +44,7 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
          $problem = new ApiProblem(ApiProblem::TYPE_AUTHENTICATION_ERROR, 401);
          $problem->set('detail', $message);
  
