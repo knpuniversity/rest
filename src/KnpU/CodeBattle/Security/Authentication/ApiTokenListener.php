@@ -2,6 +2,8 @@
 
 namespace KnpU\CodeBattle\Security\Authentication;
 
+use KnpU\CodeBattle\Security\Authentication\Exception\BadAuthHeaderFormatException;
+use KnpU\CodeBattle\Security\Authentication\Exception\BadAuthHeaderTypeException;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Firewall\ListenerInterface;
@@ -46,6 +48,11 @@ class ApiTokenListener implements ListenerInterface
         $authorizationHeader = $request->headers->get('Authorization');
         $tokenString = $this->parseAuthorizationHeader($authorizationHeader);
 
+        if (!$tokenString) {
+            // there's no authentication info for us to process
+            return;
+        }
+
         // create an object that just exists to hold onto the token string for us
         $token = new ApiAuthToken();
         $token->setAuthToken($tokenString);
@@ -72,19 +79,27 @@ class ApiTokenListener implements ListenerInterface
      * will return "ABCDEFG"
      *
      * @param $authorizationHeader
-     * @return bool
+     * @throws \Symfony\Component\Security\Core\Exception\AuthenticationException
      */
     private function parseAuthorizationHeader($authorizationHeader)
     {
         $pieces = explode(' ', $authorizationHeader);
-        // the format of the authorization header looks wrong
+
+        // if the format of the authorization header looks wrong
         if (count($pieces) != 2) {
-            throw new AuthenticationException('Malformed Authorization header format');
+            // authentication exception with a special message
+            throw new BadAuthHeaderFormatException();
         }
 
+        // allow the 'Basic' auth type still - just don't handle it here
+        if ($pieces[0] == 'Basic') {
+            return;
+        }
+
+        // if the format is not "token AUTH_TOKEN"
         if ($pieces[0] != self::AUTHORIZATION_HEADER_TOKEN_KEY) {
-            // the format is not "token AUTH_TOKEN"
-            throw new AuthenticationException(sprintf('Unknown Authorization header type = use "%s"', self::AUTHORIZATION_HEADER_TOKEN_KEY));
+            // authentication exception with a special message
+            throw new BadAuthHeaderTypeException();
         }
 
         return $pieces[1];
