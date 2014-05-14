@@ -202,7 +202,8 @@ class ApiFeatureContext extends BehatContext
         $response = $this->getResponse();
         $contentType = $response->getHeader('Content-Type');
 
-        if ($contentType == 'application/json') {
+        // looks for application/json or something like application/problem+json
+        if (preg_match('#application\/(.)*\+?json#', $contentType)) {
             $bodyOutput = $response->getBody();
         } else {
             $bodyOutput = 'Output is "'.$contentType.'", which is not JSON and is therefore scary. Run the request manually.';
