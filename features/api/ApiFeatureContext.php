@@ -43,6 +43,20 @@ class ApiFeatureContext extends BehatContext
     protected $requestPayload;
 
     /**
+     * The user to use with HTTP basic authentication
+     *
+     * @var string
+     */
+    protected $authUser;
+
+    /**
+     * The password to use with HTTP basic authentication
+     *
+     * @var string
+     */
+    protected $authPassword;
+
+    /**
      * The Guzzle HTTP Response.
      *
      * @var \Guzzle\Http\Message\Response
@@ -51,6 +65,8 @@ class ApiFeatureContext extends BehatContext
 
     /**
      * The last request that was used to make the response
+     *
+     * @var \Guzzle\Http\Message\Request
      */
     protected $lastRequest;
 
@@ -127,16 +143,19 @@ class ApiFeatureContext extends BehatContext
                         ->client
                         ->$method($resource, null, $this->requestPayload);
 
-                    $this->response = $this->lastRequest->send();
                     break;
 
                 default:
                     $this->lastRequest = $this
                         ->client
                         ->$method($resource);
-
-                    $this->response = $this->lastRequest->send();
             }
+
+            if ($this->authUser) {
+                $this->lastRequest->setAuth($this->authUser, $this->authPassword);
+            }
+
+            $this->response = $this->lastRequest->send();
         } catch (BadResponseException $e) {
 
             $response = $e->getResponse();
@@ -150,6 +169,15 @@ class ApiFeatureContext extends BehatContext
 
             $this->response = $e->getResponse();
         }
+    }
+
+    /**
+     * @Given /^I authenticate with user "([^"]*)" and password "([^"]*)"$/
+     */
+    public function iAuthenticateWithEmailAndPassword($email, $password)
+    {
+        $this->authUser = $email;
+        $this->authPassword = $password;
     }
 
     /**
