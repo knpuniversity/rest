@@ -1,5 +1,5 @@
 diff --git a/features/api/token.feature b/features/api/token.feature
-index b1c82a9..c647aa4 100644
+index b1c82a9..7c5b61a 100644
 --- a/features/api/token.feature
 +++ b/features/api/token.feature
 @@ -2,3 +2,17 @@ Feature: Token
@@ -15,7 +15,7 @@ index b1c82a9..c647aa4 100644
 +        "notes": "A testing token!"
 +      }
 +      """
-+    And I authenticate with username "ryan@knplabs.com" and password "test"
++    And I authenticate with user "ryan@knplabs.com" and password "test"
 +    When I request "POST /api/tokens"
 +    Then the response status code should be 201
 +    # And the "Location" header should exist
