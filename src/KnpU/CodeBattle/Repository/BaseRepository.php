@@ -161,12 +161,17 @@ abstract class BaseRepository
             throw new \Exception(sprintf('Repository class %s is returning a bad getClassName: "%s"', get_class($this), $this->getClassName()));
         }
 
-        $object = new $class();
+        $object = $this->createObject($class, $data);
         foreach ($data as $key => $val) {
             $object->$key = $val;
         }
 
         return $object;
+    }
+
+    protected function createObject($class, array $data)
+    {
+        return new $class();
     }
 
     protected function finishHydrateObject($obj)

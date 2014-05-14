@@ -37,4 +37,16 @@ class ApiTokenRepository extends BaseRepository
     {
         $this->normalizeDateProperty('createdAt', $obj);
     }
+
+    /**
+     * Overridden to create our ApiToken even though it has a constructor arg
+     *
+     * @param string $class
+     * @param array $data
+     * @return ApiToken
+     */
+    protected function createObject($class, array $data)
+    {
+        return new $class($data['userId']);
+    }
 } 
