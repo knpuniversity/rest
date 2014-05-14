@@ -1,14 +1,29 @@
+diff --git a/features/api/programmer.feature b/features/api/programmer.feature
+index 9178b95..4e7d28e 100644
+--- a/features/api/programmer.feature
++++ b/features/api/programmer.feature
+@@ -51,7 +51,7 @@ Feature: Programmer
+     When I request "POST /api/programmers"
+     Then the response status code should be 400
+     And the "Content-Type" header should be "application/problem+json"
+-    And the "type" property should equal "invalid_body_format"
++    And the "type" property should contain "/api/docs/errors#invalid_body_format"
+ 
+   Scenario: Proper 404 exception on no programmer
+     When I request "GET /api/programmers/fake"
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index d436224..d4e4e5f 100644
+index d436224..686fd7d 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
-@@ -312,8 +312,11 @@ class Application extends SilexApplication
+@@ -312,8 +312,13 @@ class Application extends SilexApplication
                  }
              }
  
 +            $data = $apiProblem->toArray();
 +            // making type a URL, to a temporarily fake page
-+            $data['type'] = 'http://localhost:8000/api/docs/errors#'.$data['type'];
++            if ($data['type'] != 'about:blank') {
++                $data['type'] = 'http://localhost:8000/api/docs/errors#'.$data['type'];
++            }
              $response = new JsonResponse(
 -                $apiProblem->toArray(),
 +                $data,
