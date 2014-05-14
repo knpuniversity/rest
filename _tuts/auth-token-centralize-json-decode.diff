@@ -1,0 +1,74 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 927078a..12dc5bd 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -135,17 +135,9 @@ class ProgrammerController extends BaseController
+      */
+     private function handleRequest(Request $request, Programmer $programmer)
+     {
+-        $data = json_decode($request->getContent(), true);
++        $data = $this->getJsonBody($request);
+         $isNew = !$programmer->id;
+ 
+-        if ($data === null) {
+-            $problem = new ApiProblem(
+-                ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT,
+-                400
+-            );
+-            throw new ApiProblemException($problem);
+-        }
+-
+         // determine which properties should be changeable on this request
+         $apiProperties = array('avatarNumber', 'tagLine');
+         if ($isNew) {
+diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
+index 37b091e..7fb72df 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/TokenController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
+@@ -20,7 +20,7 @@ class TokenController extends BaseController
+     {
+         $this->enforceUserSecurity();
+ 
+-        $data = json_decode($request->getContent(), true);
++        $data = $this->getJsonBody($request);
+ 
+         $token = new ApiToken($this->getLoggedInUser()->id);
+         $token->notes = $data['notes'];
+diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
+index c5e15a3..c9f2246 100644
+--- a/src/KnpU/CodeBattle/Controller/BaseController.php
++++ b/src/KnpU/CodeBattle/Controller/BaseController.php
+@@ -16,6 +16,8 @@ use Symfony\Component\HttpFoundation\Request;
+ use KnpU\CodeBattle\Repository\ProgrammerRepository;
+ use KnpU\CodeBattle\Security\Token\ApiTokenRepository;
+ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
++use KnpU\CodeBattle\Api\ApiProblem;
++use KnpU\CodeBattle\Api\ApiProblemException;
+ 
+ /**
+  * Base controller class to hide Silex-related implementation details
+@@ -217,4 +219,24 @@ abstract class BaseController implements ControllerProviderInterface
+             throw new AccessDeniedException();
+         }
+     }
++
++    protected function getJsonBody(Request $request)
++    {
++        // allow for a possibly empty body
++        if (!$request->getContent()) {
++            return array();
++        }
++
++        $data = json_decode($request->getContent(), true);
++
++        if ($data === null) {
++            $problem = new ApiProblem(
++                ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT,
++                400
++            );
++            throw new ApiProblemException($problem);
++        }
++
++        return $data;
++    }
+ }
