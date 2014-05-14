@@ -61,7 +61,7 @@ index 39560ba..26c4eea 100644
  
      public function toArray()
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 1ab892e..e4b1547 100644
+index c172712..4c94604 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -3,6 +3,7 @@
