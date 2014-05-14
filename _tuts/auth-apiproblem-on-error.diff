@@ -1,0 +1,34 @@
+diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
+index 26c4eea..fcdf12e 100644
+--- a/src/KnpU/CodeBattle/Api/ApiProblem.php
++++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
+@@ -13,9 +13,12 @@ class ApiProblem
+ 
+     const TYPE_INVALID_REQUEST_BODY_FORMAT = 'invalid_body_format';
+ 
++    const TYPE_AUTHENTICATION_ERROR = 'authentication_error';
++
+     static private $titles = array(
+         self::TYPE_VALIDATION_ERROR => 'There was a validation error',
+         self::TYPE_INVALID_REQUEST_BODY_FORMAT => 'Invalid JSON format sent',
++        self::TYPE_AUTHENTICATION_ERROR => 'Invalid or missing authentication',
+     );
+ 
+     private $type;
+diff --git a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
+index 0c1b03b..5f3bb9a 100644
+--- a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
++++ b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
+@@ -30,7 +30,11 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
+     {
+         $message = $this->getMessage($authException);
+ 
+-        $response = new JsonResponse(array('detail' => $message), 401);
++        $problem = new ApiProblem(ApiProblem::TYPE_AUTHENTICATION_ERROR, 401);
++        $problem->set('detail', $message);
++
++        $response = new JsonResponse($problem->toArray(), 401);
++        $response->headers->set('Content-Type', 'application/problem+json');
+ 
+         return $response;
+     }
