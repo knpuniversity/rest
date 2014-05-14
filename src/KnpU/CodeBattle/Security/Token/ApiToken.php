@@ -25,7 +25,7 @@ class ApiToken
      */
     public $createdAt;
 
-    public function __construct()
+    public function __construct($userId)
     {
         $this->createdAt = new \DateTime();
         $this->token = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);

@@ -32,10 +32,9 @@ class TokenController extends BaseController
 
     public function newAction(Request $request)
     {
-        $token = new ApiToken();
+        $token = new ApiToken($this->getLoggedInUser()->id);
         $errors = array();
         if ($request->isMethod('POST')) {
-            $token->userId = $this->getLoggedInUser()->id;
             $token->notes = $request->request->get('notes');
 
             $errors = $this->validate($token);
