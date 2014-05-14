@@ -9,8 +9,10 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
 
 /**
- * Determines what Response should be sent back when a request requires authentication,
- * but none was provided.
+ * Determines the Response that should be back if:
+ *
+ *  A) There is an authentication error
+ *  B) The request requires authentication, but none was provided
  */
 class ApiEntryPoint implements AuthenticationEntryPointInterface
 {
