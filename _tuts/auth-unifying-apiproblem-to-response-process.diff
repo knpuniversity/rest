@@ -1,9 +1,9 @@
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblemResponseFactory.php b/src/KnpU/CodeBattle/Api/ApiProblemResponseFactory.php
 new file mode 100644
-index 0000000..0dfae60
+index 0000000..7da02a9
 --- /dev/null
 +++ b/src/KnpU/CodeBattle/Api/ApiProblemResponseFactory.php
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,24 @@
 +<?php
 +
 +namespace KnpU\CodeBattle\Api;
@@ -16,7 +16,9 @@ index 0000000..0dfae60
 +    {
 +        $data = $apiProblem->toArray();
 +        // making type a URL, to a temporarily fake page
-+        $data['type'] = 'http://localhost:8000/api/docs/errors#'.$data['type'];
++        if ($data['type'] != 'about:blank') {
++            $data['type'] = 'http://localhost:8000/api/docs/errors#'.$data['type'];
++        }
 +        $response = new JsonResponse(
 +            $data,
 +            $apiProblem->getStatusCode()
@@ -27,7 +29,7 @@ index 0000000..0dfae60
 +    }
 +}
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index d4e4e5f..e46fe39 100644
+index 686fd7d..e46fe39 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -5,6 +5,7 @@ namespace KnpU\CodeBattle;
@@ -58,13 +60,15 @@ index d4e4e5f..e46fe39 100644
              });
  
              return array(
-@@ -312,16 +317,10 @@ class Application extends SilexApplication
+@@ -312,18 +317,10 @@ class Application extends SilexApplication
                  }
              }
  
 -            $data = $apiProblem->toArray();
 -            // making type a URL, to a temporarily fake page
--            $data['type'] = 'http://localhost:8000/api/docs/errors#'.$data['type'];
+-            if ($data['type'] != 'about:blank') {
+-                $data['type'] = 'http://localhost:8000/api/docs/errors#'.$data['type'];
+-            }
 -            $response = new JsonResponse(
 -                $data,
 -                $statusCode
