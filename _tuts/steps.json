@@ -276,6 +276,16 @@
             "description": null
         },
         {
+            "id": "auth-apiproblem-on-error",
+            "name": "Auth: ApiProblem on error",
+            "description": null
+        },
+        {
+            "id": "auth-unifying-apiproblem-to-response-process",
+            "name": "Auth: Unifying ApiProblem to Response process",
+            "description": null
+        },
+        {
             "id": "auth-new-feature",
             "name": "Auth: New Feature",
             "description": null
@@ -313,16 +323,6 @@
         {
             "id": "auth-checking-for-password-validity",
             "name": "Auth: Checking for password validity",
-            "description": null
-        },
-        {
-            "id": "auth-apiproblem-on-error",
-            "name": "Auth: ApiProblem on error",
-            "description": null
-        },
-        {
-            "id": "auth-unifying-apiproblem-to-response-process",
-            "name": "Auth: Unifying ApiProblem to Response process",
             "description": null
         }
     ],
