@@ -2,7 +2,6 @@
 
 namespace KnpU\CodeBattle\Security\Token;
 
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class ApiToken
