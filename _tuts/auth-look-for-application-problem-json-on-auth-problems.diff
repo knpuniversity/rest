@@ -1,0 +1,24 @@
+diff --git a/features/api/authentication.feature b/features/api/authentication.feature
+index 89f0b6e..84ae186 100644
+--- a/features/api/authentication.feature
++++ b/features/api/authentication.feature
+@@ -7,6 +7,7 @@ Feature: Authentication
+     When I request "POST /api/programmers"
+     Then the response status code should be 401
+     And the "detail" property should equal "Authentication Required"
++    And the "Content-Type" header should be "application/problem+json"
+ 
+   Scenario: Invalid token gives us a 401
+     Given I set the "Authorization" header to be "token ABCDFAKE"
+diff --git a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
+index 7884a45..f1bedfa 100644
+--- a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
++++ b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
+@@ -37,6 +37,7 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
+         $message = $this->getMessage($authException);
+ 
+         $response = new JsonResponse(array('detail' => $message), 401);
++        $response->headers->set('Content-Type', 'application/problem+json');
+ 
+         return $response;
+     }
