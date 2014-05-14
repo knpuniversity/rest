@@ -44,6 +44,7 @@ class ApiTokenListener implements ListenerInterface
             return;
         }
 
+        return;
         // format should be "Authorization: token ABCDEFG"
         $tokenString = 'HARDCODED';
 
