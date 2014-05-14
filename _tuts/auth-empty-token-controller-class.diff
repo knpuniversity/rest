@@ -1,0 +1,15 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
+new file mode 100644
+index 0000000..cefd8cf
+--- /dev/null
++++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
+@@ -0,0 +1,9 @@
++<?php
++
++namespace KnpU\CodeBattle\Controller\Api;
++
++use KnpU\CodeBattle\Controller\BaseController;
++
++class TokenController extends BaseController
++{
++}
