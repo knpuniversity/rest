@@ -1,11 +1,17 @@
 Authentication
 ==============
 
-1) Create an endpoint to get tokens for users
-2) Create somewhere visual to see these tokens, revoke them
-3) Implement API authentication system
-4) Add security to controllers
-5) Updating tests
+1) Show how I can create a token on the web
+2) Write a scenario against programmers for authentication
+3) require authentication in a programmer controller
+4) Finish up the entry point (with translator?)
+5) Finish up listener and provider
+
+6) Create an endpoint to create a token (scenario first)
+7) Add in HTTP Basic
+
+- update existing tests
+- use real user when creating a programmer
 
 Questions/TODOS
 ---------------
@@ -19,3 +25,6 @@ Questions/TODOS
 - since we didn't do that little extra bit that exposes the exception
     messages, are we accurately communicating clear messages if the
     user/password is blank?
+
+- I hate how we have exception messages that can be thrown from all
+    over the place, with their text hidden
