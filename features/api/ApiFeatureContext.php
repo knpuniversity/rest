@@ -345,7 +345,7 @@ class ApiFeatureContext extends BehatContext
 
         isType(
             'string',
-            $this->arrayGet($payload, $property),
+            $this->arrayGet($payload, $property, true),
             "Asserting the [$property] property in current scope [{$this->scope}] is a string: ".json_encode($payload)
         );
     }
