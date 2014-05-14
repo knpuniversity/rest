@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 797e920..1ab892e 100644
+index c14e0df..c172712 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -3,6 +3,7 @@
