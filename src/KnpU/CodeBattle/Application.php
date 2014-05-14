@@ -6,6 +6,9 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use KnpU\CodeBattle\Battle\PowerManager;
 use KnpU\CodeBattle\Repository\BattleRepository;
 use KnpU\CodeBattle\Repository\ProjectRepository;
+use KnpU\CodeBattle\Security\Authentication\ApiEntryPoint;
+use KnpU\CodeBattle\Security\Authentication\ApiTokenListener;
+use KnpU\CodeBattle\Security\Authentication\ApiTokenProvider;
 use KnpU\CodeBattle\Security\Token\ApiTokenRepository;
 use KnpU\CodeBattle\Twig\BattleExtension;
 use KnpU\CodeBattle\Validator\ApiValidator;
@@ -186,6 +189,15 @@ class Application extends SilexApplication
 
         $this->register(new SecurityServiceProvider(), array(
             'security.firewalls' => array(
+                'api' => array(
+                    'pattern' => '^/api',
+                    'users' => $this->share(function () use ($app) {
+                        return $app['repository.user'];
+                    }),
+                    'stateless' => true,
+                    'anonymous' => true,
+                    'api_token' => true,
+                ),
                 'main' => array(
                     'pattern' => '^/',
                     'form' => true,
@@ -208,6 +220,38 @@ class Application extends SilexApplication
             array('^/', 'IS_AUTHENTICATED_FULLY'),
         );
 
+        // setup our custom API token authentication
+        $app['security.authentication_listener.factory.api_token'] = $app->protect(function ($name, $options) use ($app) {
+
+            // the class that reads the token string off of the Authorization header
+            $app['security.authentication_listener.'.$name.'.api_token'] = $app->share(function () use ($app) {
+                return new ApiTokenListener($app['security'], $app['security.authentication_manager']);
+            });
+
+            // the class that looks up the ApiToken object in the database for the given token string
+            // and authenticates the user if it's found
+            $app['security.authentication_provider.'.$name.'.api_token'] = $app->share(function () use ($app) {
+                return new ApiTokenProvider($app['repository.user'], $app['repository.api_token']);
+            });
+
+            // the class that decides what should happen if no authentication credentials are passed
+            $this['security.entry_point.'.$name.'.api_token'] = $app->share(function() {
+                return new ApiEntryPoint();
+            });
+
+            return array(
+                // the authentication provider id
+                'security.authentication_provider.'.$name.'.api_token',
+                // the authentication listener id
+                'security.authentication_listener.'.$name.'.api_token',
+                // the entry point id
+                'security.entry_point.'.$name.'.api_token',
+                // the position of the listener in the stack
+                'pre_auth'
+            );
+        });
+
+        // expose a fake "user" service
         $this['user'] = $this->share(function() use ($app) {
             $user = $app['security']->getToken()->getUser();
 
