@@ -266,6 +266,11 @@
             "description": null
         },
         {
+            "id": "auth-user-real-user-for-new-programmer",
+            "name": "Auth: User real user for new Programmer",
+            "description": null
+        },
+        {
             "id": "auth-protect-more-endpoints",
             "name": "Auth: Protect more endpoints",
             "description": null
@@ -331,5 +336,5 @@
             "description": null
         }
     ],
-    "sha": "b855aaf6b4facfac2a50c40cfb212229e5f00349"
+    "sha": "9b2d2ffd30dc6594479d18824165340814220325"
 }
