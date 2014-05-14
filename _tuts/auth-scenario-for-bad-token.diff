@@ -1,0 +1,23 @@
+diff --git a/features/api/authentication.feature b/features/api/authentication.feature
+index 2fe8d90..89f0b6e 100644
+--- a/features/api/authentication.feature
++++ b/features/api/authentication.feature
+@@ -7,3 +7,9 @@ Feature: Authentication
+     When I request "POST /api/programmers"
+     Then the response status code should be 401
+     And the "detail" property should equal "Authentication Required"
++
++  Scenario: Invalid token gives us a 401
++    Given I set the "Authorization" header to be "token ABCDFAKE"
++    When I request "POST /api/programmers"
++    Then the response status code should be 401
++    And the "detail" property should equal "Invalid Credentials!"
+diff --git a/translations/en.yml b/translations/en.yml
+index 3427c07..8bbb268 100644
+--- a/translations/en.yml
++++ b/translations/en.yml
+@@ -2,3 +2,4 @@
+ # Used primarily for translating authentication exception messages
+ authentication_required: Authentication Required
+ "Not privileged to request the resource.": "Authentication Required"
++"Invalid credentials.": "Invalid Credentials!"
