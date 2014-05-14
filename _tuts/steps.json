@@ -334,7 +334,17 @@
             "id": "auth-checking-for-password-validity",
             "name": "Auth Token: Using HTTP Basic auth",
             "description": null
+        },
+        {
+            "id": "auth-token-centralize-json-decode",
+            "name": "Auth Token: Centralize json_decode",
+            "description": null
+        },
+        {
+            "id": "auth-token-token-validation",
+            "name": "Auth Token: Token validation",
+            "description": null
         }
     ],
-    "sha": "9b2d2ffd30dc6594479d18824165340814220325"
+    "sha": "f466ccd4169d9b17b290b39f42c7997585236c94"
 }
