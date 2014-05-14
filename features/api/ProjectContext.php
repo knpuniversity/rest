@@ -6,6 +6,7 @@ use KnpU\CodeBattle\Model\Programmer;
 use Behat\Gherkin\Node\TableNode;
 use KnpU\CodeBattle\Security\Token\ApiToken;
 use KnpU\CodeBattle\Application;
+use KnpU\CodeBattle\Model\Project;
 
 /**
  * Sub-context for interacting with our project
@@ -61,6 +62,18 @@ class ProjectContext extends BehatContext
         $token->token = $tokenString;
 
         $this->getApiTokenRepository()->save($token);
+    }
+
+    /**
+     * @Given /^there is a project called "([^"]*)"$/
+     */
+    public function thereIsAProjectCalled($name)
+    {
+        $project = new Project();
+        $project->name = $name;
+        $project->difficultyLevel = rand(1, 10);
+
+        $this->getProjectRepository()->save($project);
     }
 
     /**

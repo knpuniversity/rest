@@ -13,6 +13,9 @@ use Behat\Behat\Event\BaseScenarioEvent;
 use Behat\Behat\Event\StepEvent;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\ExpressionLanguage\SyntaxError;
+use KnpU\CodeBattle\Behat\EntityLookup;
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 require_once __DIR__.'/../../vendor/phpunit/phpunit/PHPUnit/Autoload.php';
 require_once __DIR__.'/../../vendor/phpunit/phpunit/PHPUnit/Framework/Assert/Functions.php';
@@ -141,9 +144,12 @@ class ApiFeatureContext extends BehatContext
                 case 'PUT':
                 case 'POST':
                 case 'PATCH':
+                    // process any %user.weaverryan.id% syntaxes
+                    $payload = $this->processReplacements($this->requestPayload);
+
                     $this->lastRequest = $this
                         ->client
-                        ->$method($resource, null, $this->requestPayload);
+                        ->$method($resource, null, $payload);
 
                     break;
 
@@ -728,5 +734,48 @@ class ApiFeatureContext extends BehatContext
         }
 
         return $this->output;
+    }
+
+    /**
+     * Evaluates expressions that are within % delimiters:
+     *
+     * Examples:
+     *     %5+3%
+     *
+     *     %users.weaverryan.id%
+     *
+     * @param $payload
+     * @throws Exception
+     */
+    private function processReplacements($payload)
+    {
+        $language = new ExpressionLanguage();
+
+        $variables = array(
+            'users' => new EntityLookup($this->getProjectHelper()->getUserRepository(), 'username'),
+            'projects' => new EntityLookup($this->getProjectHelper()->getProjectRepository(), 'name'),
+        );
+
+        while (false !== $startPos = strpos($payload, '%')) {
+            $endPos = strpos($payload, '%', $startPos+1);
+            if (!$endPos) {
+                throw new \Exception('Cannot find finishing % - expression look unbalanced!');
+            }
+            $expression = substr($payload, $startPos+1, $endPos - $startPos - 1);
+
+            // evaluate the expression
+            try {
+                $evaluated = $language->evaluate($expression, $variables);
+            } catch (SyntaxError $e) {
+                $this->printDebug('Error evaluating the following expression:');
+                $this->printDebug($expression);
+
+                throw $e;
+            }
+            // replace the expression with the final value
+            $payload = str_replace('%'.$expression.'%', $evaluated, $payload);
+        }
+
+        return $payload;
     }
 }
