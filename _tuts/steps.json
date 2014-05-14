@@ -251,11 +251,6 @@
             "description": null
         },
         {
-            "id": "auth-basic-passing-controller",
-            "name": "Auth: Basic passing controller",
-            "description": null
-        },
-        {
             "id": "auth-empty-token-controller-class",
             "name": "Auth: Empty token controller class",
             "description": null
