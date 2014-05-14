@@ -287,42 +287,42 @@
         },
         {
             "id": "auth-new-feature",
-            "name": "Auth: New Feature",
+            "name": "Auth Token: New Feature",
             "description": null
         },
         {
             "id": "auth-scenario-creating-a-token",
-            "name": "Auth: Scenario creating a token",
+            "name": "Auth Token: Scenario creating a token",
             "description": null
         },
         {
             "id": "auth-empty-token-controller-class",
-            "name": "Auth: Empty token controller class",
+            "name": "Auth Token: Empty token controller class",
             "description": null
         },
         {
             "id": "auth-token-new-routing",
-            "name": "Auth: Token new routing",
+            "name": "Auth Token: Token new routing",
             "description": null
         },
         {
             "id": "auth-basic-new-token-implementation",
-            "name": "Auth: Basic new token implementation",
+            "name": "Auth Token: Basic new token implementation",
             "description": null
         },
         {
             "id": "auth-serialize-the-token",
-            "name": "Auth: Serialize the token",
+            "name": "Auth Token: Serialize the token",
             "description": null
         },
         {
             "id": "auth-scenario-for-bad-password",
-            "name": "Auth: Scenario for bad password",
+            "name": "Auth Token: Scenario for bad password",
             "description": null
         },
         {
             "id": "auth-checking-for-password-validity",
-            "name": "Auth: Checking for password validity",
+            "name": "Auth Token: Checking for password validity",
             "description": null
         }
     ],
