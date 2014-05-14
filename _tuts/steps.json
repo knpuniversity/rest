@@ -266,6 +266,11 @@
             "description": null
         },
         {
+            "id": "auth-protect-more-endpoints",
+            "name": "Auth: Protect more endpoints",
+            "description": null
+        },
+        {
             "id": "auth-scenario-for-bad-token",
             "name": "Auth: Scenario for bad token",
             "description": null
@@ -326,5 +331,5 @@
             "description": null
         }
     ],
-    "sha": "6502248c814a004aed996488246c85427cf563e5"
+    "sha": "b855aaf6b4facfac2a50c40cfb212229e5f00349"
 }
