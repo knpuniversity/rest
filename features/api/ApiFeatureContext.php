@@ -224,8 +224,8 @@ class ApiFeatureContext extends BehatContext
         $actualValue = $this->arrayGet($payload, $property);
 
         assertEquals(
-            $actualValue,
             $expectedValue,
+            $actualValue,
             "Asserting the [$property] property in current scope equals [$expectedValue]: ".json_encode($payload)
         );
     }
