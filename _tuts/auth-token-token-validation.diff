@@ -1,0 +1,73 @@
+diff --git a/features/api/token.feature b/features/api/token.feature
+index 2ca90c4..f60670a 100644
+--- a/features/api/token.feature
++++ b/features/api/token.feature
+@@ -28,3 +28,10 @@ Feature: Token
+     And I authenticate with user "weaverryan" and password "WRONG"
+     When I request "POST /api/tokens"
+     Then the response status code should be 401
++
++  Scenario: Creating a token without a note
++    Given there is a user "weaverryan" with password "test"
++    And I authenticate with user "weaverryan" and password "test"
++    When I request "POST /api/tokens"
++    Then the response status code should be 400
++    And the "errors.notes" property should equal "Please add some notes about this token"
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 12dc5bd..bce51b3 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -167,15 +167,4 @@ class ProgrammerController extends BaseController
+             'tagLine' => $programmer->tagLine,
+         );
+     }
+-
+-    private function throwApiProblemValidationException(array $errors)
+-    {
+-        $apiProblem = new ApiProblem(
+-            ApiProblem::TYPE_VALIDATION_ERROR,
+-            400
+-        );
+-        $apiProblem->set('errors', $errors);
+-
+-        throw new ApiProblemException($apiProblem);
+-    }
+ }
+diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
+index 7fb72df..9a14d09 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/TokenController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
+@@ -23,7 +23,12 @@ class TokenController extends BaseController
+         $data = $this->getJsonBody($request);
+ 
+         $token = new ApiToken($this->getLoggedInUser()->id);
+-        $token->notes = $data['notes'];
++        $token->notes = isset($data['notes']) ? $data['notes'] : null;
++
++        $errors = $this->validate($token);
++        if ($errors) {
++            $this->throwApiProblemValidationException($errors);
++        }
+ 
+         $this->getApiTokenRepository()->save($token);
+ 
+diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
+index c9f2246..f67d737 100644
+--- a/src/KnpU/CodeBattle/Controller/BaseController.php
++++ b/src/KnpU/CodeBattle/Controller/BaseController.php
+@@ -239,4 +239,15 @@ abstract class BaseController implements ControllerProviderInterface
+ 
+         return $data;
+     }
++
++    protected function throwApiProblemValidationException(array $errors)
++    {
++        $apiProblem = new ApiProblem(
++            ApiProblem::TYPE_VALIDATION_ERROR,
++            400
++        );
++        $apiProblem->set('errors', $errors);
++
++        throw new ApiProblemException($apiProblem);
++    }
+ }
