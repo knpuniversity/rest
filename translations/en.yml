@@ -1,0 +1,3 @@
+# English translations file.
+# Used primarily for translating authentication exception messages
+authentication_required: Authentication Required

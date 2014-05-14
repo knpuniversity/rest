@@ -2,13 +2,12 @@
 
 namespace KnpU\CodeBattle\Security\Authentication;
 
-use KnpU\CodeBattle\Api\ApiProblem;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Core\Exception\InsufficientAuthenticationException;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
+use Symfony\Component\Translation\Translator;
 
 /**
  * Determines the Response that should be back if:
@@ -18,6 +17,13 @@ use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface
  */
 class ApiEntryPoint implements AuthenticationEntryPointInterface
 {
+    private $translator;
+
+    public function __construct(Translator $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      * Starts the authentication scheme.
      *
@@ -36,24 +42,15 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
     }
 
     /**
-     * If we have an AuthenticationException, use its getMessageKey().
-     *
-     * But it should really be run through a translator.
-     *
-     * Without a translator, InsufficientAuthenticationException is special
-     * because it is the exception that occurs when we're denied access,
-     * but we're not actually logged in. In this case, we want to simply
-     * say "Authentication Required", but the internal message is much
-     * uglier than this. So, if we see this exception, we replace the
-     * message. If we were using a translator, the ugly message could
-     * be replaced with the nice message in the translation dictionary.
+     * Gets the message from the specific AuthenticationException and then
+     * translates it. The translation process allows us to customize the
+     * messages we want - see the translations/en.yml file.
      */
     private function getMessage(AuthenticationException $authException = null)
     {
-        if ($authException && !$authException instanceof InsufficientAuthenticationException) {
-            return $authException->getMessageKey();
-        };
+        $key = $authException ? $authException->getMessageKey() : 'authentication_required';
+        $parameters = $authException ? $authException->getMessageData() : array();
 
-        return 'Authentication Required';
+        return $this->translator->trans($key, $parameters);
     }
 }

@@ -18,6 +18,8 @@ use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\MonologServiceProvider;
+use Silex\Provider\TranslationServiceProvider;
+use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Symfony\Component\Finder\Finder;
 use KnpU\CodeBattle\DataFixtures\FixturesManager;
 use Silex\Provider\SecurityServiceProvider;
@@ -116,6 +118,19 @@ class Application extends SilexApplication
                 new AnnotationLoader($this['annotation_reader'])
             );
         });
+
+        // Translation
+        $this->register(new TranslationServiceProvider(), array(
+            'locale_fallbacks' => array('en'),
+        ));
+        $this['translator'] = $this->share($this->extend('translator', function($translator) {
+            /** @var \Symfony\Component\Translation\Translator $translator */
+            $translator->addLoader('yaml', new YamlFileLoader());
+
+            $translator->addResource('yaml', $this['root_dir'].'/translations/en.yml', 'en', 'default');
+
+            return $translator;
+        }));
     }
 
     private function configureParameters()
@@ -235,8 +250,8 @@ class Application extends SilexApplication
             });
 
             // the class that decides what should happen if no authentication credentials are passed
-            $this['security.entry_point.'.$name.'.api_token'] = $app->share(function() {
-                return new ApiEntryPoint();
+            $this['security.entry_point.'.$name.'.api_token'] = $app->share(function() use ($app) {
+                return new ApiEntryPoint($app['translator']);
             });
 
             return array(
