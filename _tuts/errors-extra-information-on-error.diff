@@ -11,7 +11,7 @@ index 667ef35..9178b95 100644
    Scenario: GET one programmer
      Given the following programmers exist:
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index e4b1547..07b2ce3 100644
+index 4c94604..598d997 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -30,6 +30,7 @@ use KnpU\CodeBattle\Repository\ProgrammerRepository;
