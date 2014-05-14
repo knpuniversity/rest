@@ -178,6 +178,16 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
+     * @Given /^the "([^"]*)" header should exist$/
+     */
+    public function theHeaderShouldExist($headerName)
+    {
+        $response = $this->getResponse();
+
+        assertTrue($response->hasHeader($headerName));
+    }
+
+    /**
      * @Then /^the "([^"]*)" property should equal "([^"]*)"$/
      */
     public function thePropertyEquals($property, $expectedValue)
