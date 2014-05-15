@@ -399,7 +399,32 @@
             "id": "battle-linking-to-programmer-url",
             "name": "Battle: Linking to Programmer URL",
             "description": null
+        },
+        {
+            "id": "hateoas-install-library",
+            "name": "HATEOAS: Install library",
+            "description": null
+        },
+        {
+            "id": "hateoas-basic-usage",
+            "name": "HATEOAS: Basic usage",
+            "description": null
+        },
+        {
+            "id": "hateoas-first-self-link",
+            "name": "HATEOAS: First self link",
+            "description": null
+        },
+        {
+            "id": "hateoas-using-a-router",
+            "name": "HATEOAS: Using a router",
+            "description": null
+        },
+        {
+            "id": "hateoas-linking-battle-to-programmer",
+            "name": "HATEOAS: Linking Battle to Programmer",
+            "description": null
         }
     ],
-    "sha": "173932d7da111a4553b7ab7a07b5a670d293144a"
+    "sha": "669e733cef9df15dcbc5c94a26f737957fc5a4d8"
 }
