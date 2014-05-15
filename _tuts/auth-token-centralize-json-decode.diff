@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 927078a..12dc5bd 100644
+index 927078a..2165169 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -135,17 +135,9 @@ class ProgrammerController extends BaseController
@@ -21,11 +21,26 @@ index 927078a..12dc5bd 100644
          // determine which properties should be changeable on this request
          $apiProperties = array('avatarNumber', 'tagLine');
          if ($isNew) {
+@@ -155,12 +147,11 @@ class ProgrammerController extends BaseController
+         // update the properties
+         foreach ($apiProperties as $property) {
+             // if a property is missing on PATCH, that's ok - just skip it
+-            if (!isset($data[$property]) && $request->isMethod('PATCH')) {
++            if (!$data->has($property) && $request->isMethod('PATCH')) {
+                 continue;
+             }
+ 
+-            $val = isset($data[$property]) ? $data[$property] : null;
+-            $programmer->$property = $val;
++            $programmer->$property = $data->get($property);
+         }
+ 
+         $programmer->userId = $this->getLoggedInUser()->id;
 diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-index 37b091e..7fb72df 100644
+index 37b091e..18a42ef 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-@@ -20,7 +20,7 @@ class TokenController extends BaseController
+@@ -20,10 +20,10 @@ class TokenController extends BaseController
      {
          $this->enforceUserSecurity();
  
@@ -33,13 +48,25 @@ index 37b091e..7fb72df 100644
 +        $data = $this->getJsonBody($request);
  
          $token = new ApiToken($this->getLoggedInUser()->id);
-         $token->notes = $data['notes'];
+-        $token->notes = $data['notes'];
++        $token->notes = $data->get('notes');
+ 
+         $this->getApiTokenRepository()->save($token);
+ 
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index c5e15a3..c9f2246 100644
+index 153a2ab..e167a8d 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
-@@ -16,6 +16,8 @@ use Symfony\Component\HttpFoundation\Request;
- use KnpU\CodeBattle\Repository\ProgrammerRepository;
+@@ -9,6 +9,7 @@ use KnpU\CodeBattle\Application;
+ use Silex\Application as SilexApplication;
+ use Silex\ControllerCollection;
+ use Silex\ControllerProviderInterface;
++use Symfony\Component\HttpFoundation\ParameterBag;
+ use Symfony\Component\HttpFoundation\RedirectResponse;
+ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+@@ -17,6 +18,8 @@ use KnpU\CodeBattle\Repository\ProgrammerRepository;
+ use KnpU\CodeBattle\Repository\ProjectRepository;
  use KnpU\CodeBattle\Security\Token\ApiTokenRepository;
  use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 +use KnpU\CodeBattle\Api\ApiProblem;
@@ -47,7 +74,7 @@ index c5e15a3..c9f2246 100644
  
  /**
   * Base controller class to hide Silex-related implementation details
-@@ -217,4 +219,24 @@ abstract class BaseController implements ControllerProviderInterface
+@@ -242,4 +245,24 @@ abstract class BaseController implements ControllerProviderInterface
              throw new AccessDeniedException();
          }
      }
@@ -56,19 +83,19 @@ index c5e15a3..c9f2246 100644
 +    {
 +        // allow for a possibly empty body
 +        if (!$request->getContent()) {
-+            return array();
++            $data = array();
++        } else {
++            $data = json_decode($request->getContent(), true);
++
++            if ($data === null) {
++                $problem = new ApiProblem(
++                    ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT,
++                    400
++                );
++                throw new ApiProblemException($problem);
++            }
 +        }
 +
-+        $data = json_decode($request->getContent(), true);
-+
-+        if ($data === null) {
-+            $problem = new ApiProblem(
-+                ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT,
-+                400
-+            );
-+            throw new ApiProblemException($problem);
-+        }
-+
-+        return $data;
++        return new ParameterBag($data);
 +    }
  }
