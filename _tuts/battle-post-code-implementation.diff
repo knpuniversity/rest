@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/BattleController.php b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
-index f76c1b9..15e5d90 100644
+index 8a0e347..047a55a 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/BattleController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
 @@ -4,6 +4,7 @@ namespace KnpU\CodeBattle\Controller\Api;
@@ -10,14 +10,14 @@ index f76c1b9..15e5d90 100644
  
  class BattleController extends BaseController
  {
-@@ -12,8 +13,18 @@ class BattleController extends BaseController
+@@ -12,8 +13,20 @@ class BattleController extends BaseController
          $controllers->post('/api/battles', array($this, 'newAction'));
      }
  
 -    public function newAction()
 +    public function newAction(Request $request)
      {
--        echo 'foo';
+-        return 'foo';
 +        $this->enforceUserSecurity();
 +
 +        $data = $this->getJsonBody($request);
@@ -29,5 +29,7 @@ index f76c1b9..15e5d90 100644
 +
 +        $response = $this->createApiResponse($battle, 201);
 +        $response->headers->set('Location', 'TODO');
++
++        return $response;
      }
  }
