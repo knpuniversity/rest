@@ -1,8 +1,8 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 72ace8f..f19c216 100644
+index 7bdfbd8..c89bcc5 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -159,7 +159,7 @@ class ProgrammerController extends BaseController
+@@ -151,7 +151,7 @@ class ProgrammerController extends BaseController
              $programmer->$property = $val;
          }
  
@@ -10,4 +10,4 @@ index 72ace8f..f19c216 100644
 +        $programmer->userId = $this->getLoggedInUser()->id;
      }
  
-     private function serializeProgrammer(Programmer $programmer)
+     private function throwApiProblemValidationException(array $errors)
