@@ -261,6 +261,11 @@
             "description": null
         },
         {
+            "id": "serialize-whitelisting-properties",
+            "name": "Serialize: Whitelisting properties",
+            "description": null
+        },
+        {
             "id": "auth-authentication-required-scenario",
             "name": "Auth: Authentication Required Scenario",
             "description": null
@@ -374,7 +379,27 @@
             "id": "battle-post-code-implementation",
             "name": "Battle: POST code implementation",
             "description": null
+        },
+        {
+            "id": "battle-validation-and-security",
+            "name": "Battle: Validation and security",
+            "description": null
+        },
+        {
+            "id": "battle-get-scenario",
+            "name": "Battle: GET scenario",
+            "description": null
+        },
+        {
+            "id": "battle-get-collection-code",
+            "name": "Battle: GET collection code",
+            "description": null
+        },
+        {
+            "id": "battle-linking-to-programmer-url",
+            "name": "Battle: Linking to Programmer URL",
+            "description": null
         }
     ],
-    "sha": "f46549f7536b465add888dbf62fb2815cf1b00e2"
+    "sha": "173932d7da111a4553b7ab7a07b5a670d293144a"
 }
