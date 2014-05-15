@@ -1,0 +1,50 @@
+diff --git a/features/api/battle.feature b/features/api/battle.feature
+index 7b1fc15..4d0159f 100644
+--- a/features/api/battle.feature
++++ b/features/api/battle.feature
+@@ -34,4 +34,5 @@ Feature:
+     And the "battles" property should be an array
+     And the "battles" property should contain 2 items
+     And the "battles.0._links.programmer.href" property should equal "/api/programmers/Fred"
++    And the "battles.0._embedded.programmer.nickname" property should equal "Fred"
+     And the "Content-Type" header should be "application/hal+json"
+diff --git a/src/KnpU/CodeBattle/Model/Battle.php b/src/KnpU/CodeBattle/Model/Battle.php
+index fad0074..99a5d65 100644
+--- a/src/KnpU/CodeBattle/Model/Battle.php
++++ b/src/KnpU/CodeBattle/Model/Battle.php
+@@ -6,12 +6,14 @@ use JMS\Serializer\Annotation as Serializer;
+ use Hateoas\Configuration\Annotation as Hateoas;
+ 
+ /**
++ * @Serializer\ExclusionPolicy("all")
+  * @Hateoas\Relation(
+  *      "programmer",
+  *      href = @Hateoas\Route(
+  *          "api_programmers_show",
+  *          parameters = { "nickname" = "expr(object.programmer.nickname)" }
+- *      )
++ *      ),
++ *      embedded = "expr(object.programmer)"
+  * )
+  */
+ class Battle
+@@ -29,9 +31,18 @@ class Battle
+      */
+     public $project;
+ 
+-    public $didProgrammerWin;
++    /**
++     * @Serializer\Expose
++     */
++    public $didProgrammerWin = true;
+ 
++    /**
++     * @Serializer\Expose
++     */
+     public $foughtAt;
+ 
++    /**
++     * @Serializer\Expose
++     */
+     public $notes;
+ }
