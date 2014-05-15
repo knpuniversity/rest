@@ -1,19 +1,16 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/BattleController.php b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
-index f76c1b9..ad275db 100644
+index f76c1b9..15e5d90 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/BattleController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
-@@ -3,7 +3,10 @@
- namespace KnpU\CodeBattle\Controller\Api;
+@@ -4,6 +4,7 @@ namespace KnpU\CodeBattle\Controller\Api;
  
  use KnpU\CodeBattle\Controller\BaseController;
-+use KnpU\CodeBattle\Model\Battle;
  use Silex\ControllerCollection;
 +use Symfony\Component\HttpFoundation\Request;
-+use Symfony\Component\HttpFoundation\JsonResponse;
  
  class BattleController extends BaseController
  {
-@@ -12,8 +15,31 @@ class BattleController extends BaseController
+@@ -12,8 +13,18 @@ class BattleController extends BaseController
          $controllers->post('/api/battles', array($this, 'newAction'));
      }
  
@@ -30,20 +27,7 @@ index f76c1b9..ad275db 100644
 +
 +        $battle = $this->getBattleManager()->battle($programmer, $project);
 +
-+        return new JsonResponse(
-+            $this->serializeBattle($battle),
-+            201,
-+            array('Location' => 'TODO')
-+        );
-+    }
-+
-+    private function serializeBattle(Battle $battle)
-+    {
-+        return array(
-+            'id' => $battle->id,
-+            'programmerId' => $battle->programmerId,
-+            'projectId' => $battle->projectId,
-+            'didProgrammerWin' => $battle->didProgrammerWin,
-+        );
++        $response = $this->createApiResponse($battle, 201);
++        $response->headers->set('Location', 'TODO');
      }
  }
