@@ -40,18 +40,18 @@ index f19c216..927078a 100644
  
          return new Response(null, 204);
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index 6512bad..c5e15a3 100644
+index dec3f37..153a2ab 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
-@@ -15,6 +15,7 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
- use Symfony\Component\HttpFoundation\Request;
+@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
  use KnpU\CodeBattle\Repository\ProgrammerRepository;
+ use KnpU\CodeBattle\Repository\ProjectRepository;
  use KnpU\CodeBattle\Security\Token\ApiTokenRepository;
 +use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  
  /**
   * Base controller class to hide Silex-related implementation details
-@@ -203,4 +204,17 @@ abstract class BaseController implements ControllerProviderInterface
+@@ -228,4 +229,17 @@ abstract class BaseController implements ControllerProviderInterface
          return $this->container['repository.api_token'];
      }
  
