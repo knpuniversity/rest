@@ -1,23 +1,10 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-index d9ae7df..9327b4d 100644
+index d504dee..9c51223 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-@@ -29,8 +29,17 @@ class TokenController extends BaseController
-         $this->getApiTokenRepository()->save($token);
+@@ -29,4 +29,5 @@ class TokenController extends BaseController
  
-         return new JsonResponse(
--            array('status' => 'whatever, maybe I created it...'),
-+            $this->serializeToken($token),
-             201
-         );
+         return $this->createApiResponse($token, 201);
      }
-+
-+    private function serializeToken(ApiToken $token)
-+    {
-+        return array(
-+            'id' => $token->id,
-+            'token' => $token->token,
-+            'userId' => $token->userId,
-+        );
-+    }
++    
  }
