@@ -1,8 +1,8 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 927078a..2165169 100644
+index afc0f25..9a324a0 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -135,17 +135,9 @@ class ProgrammerController extends BaseController
+@@ -127,17 +127,9 @@ class ProgrammerController extends BaseController
       */
      private function handleRequest(Request $request, Programmer $programmer)
      {
@@ -21,7 +21,7 @@ index 927078a..2165169 100644
          // determine which properties should be changeable on this request
          $apiProperties = array('avatarNumber', 'tagLine');
          if ($isNew) {
-@@ -155,12 +147,11 @@ class ProgrammerController extends BaseController
+@@ -147,12 +139,11 @@ class ProgrammerController extends BaseController
          // update the properties
          foreach ($apiProperties as $property) {
              // if a property is missing on PATCH, that's ok - just skip it
@@ -37,10 +37,10 @@ index 927078a..2165169 100644
  
          $programmer->userId = $this->getLoggedInUser()->id;
 diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-index 37b091e..18a42ef 100644
+index 62347cd..95a5b71 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-@@ -20,10 +20,10 @@ class TokenController extends BaseController
+@@ -18,10 +18,10 @@ class TokenController extends BaseController
      {
          $this->enforceUserSecurity();
  
@@ -54,18 +54,18 @@ index 37b091e..18a42ef 100644
          $this->getApiTokenRepository()->save($token);
  
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index 153a2ab..e167a8d 100644
+index 4ceed95..da7a4ca 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
-@@ -9,6 +9,7 @@ use KnpU\CodeBattle\Application;
+@@ -10,6 +10,7 @@ use KnpU\CodeBattle\Application;
  use Silex\Application as SilexApplication;
  use Silex\ControllerCollection;
  use Silex\ControllerProviderInterface;
 +use Symfony\Component\HttpFoundation\ParameterBag;
  use Symfony\Component\HttpFoundation\RedirectResponse;
+ use Symfony\Component\HttpFoundation\Response;
  use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
- use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-@@ -17,6 +18,8 @@ use KnpU\CodeBattle\Repository\ProgrammerRepository;
+@@ -19,6 +20,8 @@ use KnpU\CodeBattle\Repository\ProgrammerRepository;
  use KnpU\CodeBattle\Repository\ProjectRepository;
  use KnpU\CodeBattle\Security\Token\ApiTokenRepository;
  use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -74,11 +74,10 @@ index 153a2ab..e167a8d 100644
  
  /**
   * Base controller class to hide Silex-related implementation details
-@@ -242,4 +245,24 @@ abstract class BaseController implements ControllerProviderInterface
-             throw new AccessDeniedException();
+@@ -262,4 +265,23 @@ abstract class BaseController implements ControllerProviderInterface
          }
      }
-+
+ 
 +    protected function getJsonBody(Request $request)
 +    {
 +        // allow for a possibly empty body
