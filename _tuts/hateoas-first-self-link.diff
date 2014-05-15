@@ -1,0 +1,28 @@
+diff --git a/features/api/programmer.feature b/features/api/programmer.feature
+index aee0796..8efc537 100644
+--- a/features/api/programmer.feature
++++ b/features/api/programmer.feature
+@@ -78,6 +78,7 @@ Feature: Programmer
+       """
+     And the "userId" property should not exist
+     And the "nickname" property should equal "UnitTester"
++    And the "_links.self.href" property should equal "/api/programmers/UnitTester"
+ 
+   Scenario: GET a collection of programmers
+     Given the following programmers exist:
+diff --git a/src/KnpU/CodeBattle/Model/Programmer.php b/src/KnpU/CodeBattle/Model/Programmer.php
+index df7d69f..e86e19c 100644
+--- a/src/KnpU/CodeBattle/Model/Programmer.php
++++ b/src/KnpU/CodeBattle/Model/Programmer.php
+@@ -5,9 +5,11 @@ namespace KnpU\CodeBattle\Model;
+ use Symfony\Component\Security\Core\User\UserInterface;
+ use Symfony\Component\Validator\Constraints as Assert;
+ use JMS\Serializer\Annotation as Serializer;
++use Hateoas\Configuration\Annotation as Hateoas;
+ 
+ /**
+  * @Serializer\ExclusionPolicy("all")
++ * @Hateoas\Relation("self", href = "expr('/api/programmers/' ~ object.nickname)")
+  */
+ class Programmer
+ {
