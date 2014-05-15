@@ -341,11 +341,6 @@
             "description": null
         },
         {
-            "id": "auth-serialize-the-token",
-            "name": "Auth Token: Serialize the token",
-            "description": null
-        },
-        {
             "id": "auth-scenario-for-bad-password",
             "name": "Auth Token: Scenario for bad password",
             "description": null
