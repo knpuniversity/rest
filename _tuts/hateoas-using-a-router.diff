@@ -1,0 +1,42 @@
+diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
+index 155a333..ad196da 100644
+--- a/src/KnpU/CodeBattle/Application.php
++++ b/src/KnpU/CodeBattle/Application.php
+@@ -4,6 +4,7 @@ namespace KnpU\CodeBattle;
+ 
+ use Doctrine\Common\Annotations\AnnotationReader;
+ use Hateoas\HateoasBuilder;
++use Hateoas\UrlGenerator\SymfonyUrlGenerator;
+ use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
+ use KnpU\CodeBattle\Api\ApiProblem;
+ use KnpU\CodeBattle\Api\ApiProblemException;
+@@ -222,7 +223,9 @@ class Application extends SilexApplication
+                 ->setPropertyNamingStrategy(new IdenticalPropertyNamingStrategy());
+ 
+             // create the Hateoas serializer
+-            return HateoasBuilder::create($jmsBuilder)->build();
++            return HateoasBuilder::create($jmsBuilder)
++                ->setUrlGenerator(null, new SymfonyUrlGenerator($app['url_generator']))
++                ->build();
+         });
+ 
+         $this['api.response_factory'] = $this->share(function() {
+diff --git a/src/KnpU/CodeBattle/Model/Programmer.php b/src/KnpU/CodeBattle/Model/Programmer.php
+index e86e19c..6892d5f 100644
+--- a/src/KnpU/CodeBattle/Model/Programmer.php
++++ b/src/KnpU/CodeBattle/Model/Programmer.php
+@@ -9,7 +9,13 @@ use Hateoas\Configuration\Annotation as Hateoas;
+ 
+ /**
+  * @Serializer\ExclusionPolicy("all")
+- * @Hateoas\Relation("self", href = "expr('/api/programmers/' ~ object.nickname)")
++ * @Hateoas\Relation(
++ *      "self",
++ *      href = @Hateoas\Route(
++ *          "api_programmers_show",
++ *          parameters = { "nickname" = "expr(object.nickname)" }
++ *      )
++ * )
+  */
+ class Programmer
+ {
