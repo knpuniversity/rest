@@ -29,7 +29,7 @@ index 0000000..7da02a9
 +    }
 +}
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 8c82267..7fe2b1d 100644
+index 2ce69ce..50bb9b3 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -6,6 +6,7 @@ use Doctrine\Common\Annotations\AnnotationReader;
@@ -40,7 +40,7 @@ index 8c82267..7fe2b1d 100644
  use KnpU\CodeBattle\Battle\PowerManager;
  use KnpU\CodeBattle\Repository\BattleRepository;
  use KnpU\CodeBattle\Repository\ProjectRepository;
-@@ -201,6 +202,7 @@ class Application extends SilexApplication
+@@ -211,6 +212,7 @@ class Application extends SilexApplication
          $this['api.validator'] = $this->share(function() use ($app) {
              return new ApiValidator($app['validator']);
          });
@@ -48,7 +48,7 @@ index 8c82267..7fe2b1d 100644
          $this['serializer'] = $this->share(function() use ($app) {
              return \JMS\Serializer\SerializerBuilder::create()
                  ->setCacheDir($app['root_dir'].'/cache/serializer')
-@@ -208,6 +210,10 @@ class Application extends SilexApplication
+@@ -218,6 +220,10 @@ class Application extends SilexApplication
                  ->setPropertyNamingStrategy(new IdenticalPropertyNamingStrategy())
                  ->build();
          });
@@ -59,7 +59,7 @@ index 8c82267..7fe2b1d 100644
      }
  
      private function configureSecurity()
-@@ -263,7 +269,7 @@ class Application extends SilexApplication
+@@ -273,7 +279,7 @@ class Application extends SilexApplication
  
              // the class that decides what should happen if no authentication credentials are passed
              $this['security.entry_point.'.$name.'.api_token'] = $app->share(function() use ($app) {
@@ -68,7 +68,7 @@ index 8c82267..7fe2b1d 100644
              });
  
              return array(
-@@ -320,18 +326,10 @@ class Application extends SilexApplication
+@@ -330,18 +336,10 @@ class Application extends SilexApplication
                  }
              }
  
