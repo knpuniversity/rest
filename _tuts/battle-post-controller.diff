@@ -1,0 +1,25 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/BattleController.php b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
+new file mode 100644
+index 0000000..f76c1b9
+--- /dev/null
++++ b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
+@@ -0,0 +1,19 @@
++<?php
++
++namespace KnpU\CodeBattle\Controller\Api;
++
++use KnpU\CodeBattle\Controller\BaseController;
++use Silex\ControllerCollection;
++
++class BattleController extends BaseController
++{
++    protected function addRoutes(ControllerCollection $controllers)
++    {
++        $controllers->post('/api/battles', array($this, 'newAction'));
++    }
++
++    public function newAction()
++    {
++        echo 'foo';
++    }
++}
