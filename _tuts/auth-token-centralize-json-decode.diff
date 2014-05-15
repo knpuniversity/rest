@@ -37,7 +37,7 @@ index afc0f25..9a324a0 100644
  
          $programmer->userId = $this->getLoggedInUser()->id;
 diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-index 62347cd..95a5b71 100644
+index fbcc24f..1091f5f 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 @@ -18,10 +18,10 @@ class TokenController extends BaseController
