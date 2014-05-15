@@ -1,0 +1,57 @@
+diff --git a/features/api/programmer.feature b/features/api/programmer.feature
+index 4e7d28e..3412fe4 100644
+--- a/features/api/programmer.feature
++++ b/features/api/programmer.feature
+@@ -74,6 +74,7 @@ Feature: Programmer
+       powerLevel
+       tagLine
+       """
++    And the "userId" property should not exist
+     And the "nickname" property should equal "UnitTester"
+ 
+   Scenario: GET a collection of programmers
+diff --git a/src/KnpU/CodeBattle/Model/Programmer.php b/src/KnpU/CodeBattle/Model/Programmer.php
+index 5d0e11f..df7d69f 100644
+--- a/src/KnpU/CodeBattle/Model/Programmer.php
++++ b/src/KnpU/CodeBattle/Model/Programmer.php
+@@ -4,7 +4,11 @@ namespace KnpU\CodeBattle\Model;
+ 
+ use Symfony\Component\Security\Core\User\UserInterface;
+ use Symfony\Component\Validator\Constraints as Assert;
++use JMS\Serializer\Annotation as Serializer;
+ 
++/**
++ * @Serializer\ExclusionPolicy("all")
++ */
+ class Programmer
+ {
+ 
+@@ -13,6 +17,7 @@ class Programmer
+ 
+     /**
+      * @Assert\NotBlank(message="Please enter a clever nickname")
++     * @Serializer\Expose
+      */
+     public $nickname;
+ 
+@@ -20,13 +25,20 @@ class Programmer
+      * Number of an avatar, from 1-6
+      *
+      * @var integer
++     * @Serializer\Expose
+      */
+     public $avatarNumber;
+ 
++    /**
++     * * @Serializer\Expose
++     */
+     public $tagLine;
+ 
+     public $userId;
+ 
++    /**
++     * @Serializer\Expose
++     */
+     public $powerLevel = 0;
+ 
+     public function __construct($nickname = null, $avatarNumber = null)
