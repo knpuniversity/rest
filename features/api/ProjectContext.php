@@ -85,6 +85,17 @@ class ProjectContext extends BehatContext
     }
 
     /**
+     * @Given /^there has been a battle between "([^"]*)" and "([^"]*)"$/
+     */
+    public function thereHasBeenABattleBetweenAnd($programmerName, $projectName)
+    {
+        $programmer = $this->getProgrammerRepository()->findOneByNickname($programmerName);
+        $project = $this->getProjectRepository()->findOneByName($projectName);
+
+        $this->getBattleManager()->battle($programmer, $project);
+    }
+
+    /**
      * Can be used with a BeforeScenario hook to clear the data between scenarios
      */
     public function reloadDatabase()
