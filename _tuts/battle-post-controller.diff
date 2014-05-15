@@ -1,6 +1,6 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/BattleController.php b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
 new file mode 100644
-index 0000000..f76c1b9
+index 0000000..8a0e347
 --- /dev/null
 +++ b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
 @@ -0,0 +1,19 @@
@@ -20,6 +20,6 @@ index 0000000..f76c1b9
 +
 +    public function newAction()
 +    {
-+        echo 'foo';
++        return 'foo';
 +    }
 +}
