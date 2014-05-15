@@ -1,0 +1,46 @@
+diff --git a/features/api/battle.feature b/features/api/battle.feature
+index 3c3bbb5..235ee81 100644
+--- a/features/api/battle.feature
++++ b/features/api/battle.feature
+@@ -33,4 +33,4 @@ Feature:
+     Then the response status code should be 200
+     And the "battles" property should be an array
+     And the "battles" property should contain 2 items
+-    And the "battles.0.programmerUri" property should equal "/api/programmers/Fred"
++    And the "battles.0._links.programmer.href" property should equal "/api/programmers/Fred"
+diff --git a/src/KnpU/CodeBattle/Model/Battle.php b/src/KnpU/CodeBattle/Model/Battle.php
+index 92312d7..fad0074 100644
+--- a/src/KnpU/CodeBattle/Model/Battle.php
++++ b/src/KnpU/CodeBattle/Model/Battle.php
+@@ -3,7 +3,17 @@
+ namespace KnpU\CodeBattle\Model;
+ 
+ use JMS\Serializer\Annotation as Serializer;
+-
++use Hateoas\Configuration\Annotation as Hateoas;
++
++/**
++ * @Hateoas\Relation(
++ *      "programmer",
++ *      href = @Hateoas\Route(
++ *          "api_programmers_show",
++ *          parameters = { "nickname" = "expr(object.programmer.nickname)" }
++ *      )
++ * )
++ */
+ class Battle
+ {
+     /* All public properties are persisted */
+@@ -24,12 +34,4 @@ class Battle
+     public $foughtAt;
+ 
+     public $notes;
+-
+-    /**
+-     * @Serializer\VirtualProperty()
+-     */
+-    public function getProgrammerUri()
+-    {
+-        return '/api/programmers/'.$this->programmer->nickname;
+-    }
+ }
