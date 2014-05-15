@@ -21,6 +21,9 @@ class BattleRepository extends BaseRepository
     {
         // normalize the date back to an object
         $this->normalizeDateProperty('foughtAt', $obj);
+
+        // cast into a boolean
+        $obj->didProgrammerWin = (bool) $obj->didProgrammerWin;
     }
 
 }
