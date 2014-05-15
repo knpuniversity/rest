@@ -8,7 +8,7 @@ index 29920fb..93b0f24 100644
  /.sass-cache
 +/cache
 diff --git a/composer.json b/composer.json
-index feb47b7..d88285e 100644
+index feb47b7..18d2937 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -6,7 +6,8 @@
@@ -17,12 +17,12 @@ index feb47b7..d88285e 100644
          "symfony/validator": "~2.4",
 -        "symfony/expression-language": "~2.4"
 +        "symfony/expression-language": "~2.4",
-+        "jms/serializer": "~0.16"
++        "jms/serializer": "@stable"
      },
      "require-dev": {
          "behat/mink": "~1.5",
 diff --git a/composer.lock b/composer.lock
-index cc1b690..cacae8a 100644
+index cc1b690..470c86f 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -3,7 +3,7 @@
@@ -30,7 +30,7 @@ index cc1b690..cacae8a 100644
          "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
      ],
 -    "hash": "8745563768b3443cba9a896706ba6ef6",
-+    "hash": "2125c98a86ef7ffe19a08ed624114de9",
++    "hash": "e8e92968b136a224ef615d23b2f4b02a",
      "packages": [
          {
              "name": "doctrine/annotations",
@@ -304,8 +304,21 @@ index cc1b690..cacae8a 100644
              "name": "pimple/pimple",
              "version": "v1.1.1",
              "source": {
+@@ -2951,9 +3207,9 @@
+ 
+     ],
+     "minimum-stability": "stable",
+-    "stability-flags": [
+-
+-    ],
++    "stability-flags": {
++        "jms/serializer": 0
++    },
+     "platform": [
+ 
+     ],
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 686fd7d..8c82267 100644
+index 78b9fb5..2ce69ce 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -3,6 +3,7 @@
@@ -316,7 +329,7 @@ index 686fd7d..8c82267 100644
  use KnpU\CodeBattle\Api\ApiProblem;
  use KnpU\CodeBattle\Api\ApiProblemException;
  use KnpU\CodeBattle\Battle\PowerManager;
-@@ -200,6 +201,13 @@ class Application extends SilexApplication
+@@ -210,6 +211,13 @@ class Application extends SilexApplication
          $this['api.validator'] = $this->share(function() use ($app) {
              return new ApiValidator($app['validator']);
          });
