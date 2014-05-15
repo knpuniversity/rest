@@ -1,8 +1,8 @@
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 598d997..d436224 100644
+index 423feb1..2143bf0 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
-@@ -288,6 +288,11 @@ class Application extends SilexApplication
+@@ -298,6 +298,11 @@ class Application extends SilexApplication
                  return;
              }
  
