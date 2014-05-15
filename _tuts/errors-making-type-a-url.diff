@@ -12,10 +12,10 @@ index 9178b95..4e7d28e 100644
    Scenario: Proper 404 exception on no programmer
      When I request "GET /api/programmers/fake"
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index d436224..686fd7d 100644
+index 2143bf0..78b9fb5 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
-@@ -312,8 +312,13 @@ class Application extends SilexApplication
+@@ -322,8 +322,13 @@ class Application extends SilexApplication
                  }
              }
  
