@@ -23,6 +23,7 @@ Feature: Battle
     When I press "Start Battle"
     And I wait for the dialog to appear
     And I click on a project
+    And I wait for the dialog to disappear
     And I should see "Winner"
 
   Scenario: View past battles

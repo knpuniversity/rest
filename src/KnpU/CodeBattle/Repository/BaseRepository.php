@@ -10,9 +10,12 @@ abstract class BaseRepository
 {
     protected $connection;
 
-    public function __construct(Connection $connection)
+    private $repoContainer;
+
+    public function __construct(Connection $connection, RepositoryContainer $repoContainer)
     {
         $this->connection = $connection;
+        $this->repoContainer = $repoContainer;
     }
 
     /**
@@ -33,13 +36,26 @@ abstract class BaseRepository
         $data = array();
         foreach ($persistedProperties as $prop) {
             $val = $prop->getValue($obj);
+            $columnName = $prop->name;
 
             // normalize DateTime objects to string
             if ($val instanceof \DateTime) {
                 $val = $val->format('Y-m-d H:i:s');
+            } elseif (is_object($val)) {
+                // process a relationship
+                if (!property_exists(get_class($val), 'id')) {
+                    throw new \Exception(sprintf(
+                        'Property "%s" is an object, but it doesn\'t look like a relationship',
+                        $prop->name
+                    ));
+                }
+
+                // programmer becomes programmerId in the database
+                $columnName = $columnName.'Id';
+                $val = $val->id;
             }
 
-            $data[$prop->name] = $val;
+            $data[$columnName] = $val;
         }
 
         if ($obj->id) {
@@ -163,7 +179,26 @@ abstract class BaseRepository
 
         $object = $this->createObject($class, $data);
         foreach ($data as $key => $val) {
-            $object->$key = $val;
+            $columnName = $key;
+
+            if (substr($columnName, -2) == 'Id' && !property_exists($class, $columnName)) {
+                // does it end in Id, like programmerId? (and that property doesn't exist)
+
+                // make programmerId -> programmer
+                $columnName = substr($columnName, 0, -2);
+                $obj = $this->repoContainer->get($columnName)->find($val);
+                if (!$obj) {
+                    throw new \Exception(sprintf(
+                        'Could not query for foreign key object %s with id %s',
+                        $key,
+                        $val
+                    ));
+                }
+
+                $val = $obj;
+            }
+
+            $object->$columnName = $val;
         }
 
         return $object;

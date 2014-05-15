@@ -6,6 +6,7 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use KnpU\CodeBattle\Battle\PowerManager;
 use KnpU\CodeBattle\Repository\BattleRepository;
 use KnpU\CodeBattle\Repository\ProjectRepository;
+use KnpU\CodeBattle\Repository\RepositoryContainer;
 use KnpU\CodeBattle\Security\Authentication\ApiEntryPoint;
 use KnpU\CodeBattle\Security\Authentication\ApiTokenListener;
 use KnpU\CodeBattle\Security\Authentication\ApiTokenProvider;
@@ -144,22 +145,31 @@ class Application extends SilexApplication
         $app = $this;
 
         $this['repository.user'] = $this->share(function() use ($app) {
-            $repo = new UserRepository($app['db']);
+            $repo = new UserRepository($app['db'], $app['repository_container']);
             $repo->setEncoderFactory($app['security.encoder_factory']);
 
             return $repo;
         });
         $this['repository.programmer'] = $this->share(function() use ($app) {
-            return new ProgrammerRepository($app['db']);
+            return new ProgrammerRepository($app['db'], $app['repository_container']);
         });
         $this['repository.project'] = $this->share(function() use ($app) {
-            return new ProjectRepository($app['db']);
+            return new ProjectRepository($app['db'], $app['repository_container']);
         });
         $this['repository.battle'] = $this->share(function() use ($app) {
-            return new BattleRepository($app['db']);
+            return new BattleRepository($app['db'], $app['repository_container']);
         });
         $this['repository.api_token'] = $this->share(function() use ($app) {
-            return new ApiTokenRepository($app['db']);
+            return new ApiTokenRepository($app['db'], $app['repository_container']);
+        });
+        $this['repository_container'] = $this->share(function() use ($app) {
+            return new RepositoryContainer($app, array(
+                'user' => 'repository.user',
+                'programmer' => 'repository.programmer',
+                'project' => 'repository.project',
+                'battle' => 'repository.battle',
+                'api_token' => 'repository.api_token',
+            ));
         });
 
         $this['battle.battle_manager'] = $this->share(function() use ($app) {

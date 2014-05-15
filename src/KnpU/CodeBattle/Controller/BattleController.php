@@ -41,13 +41,11 @@ class BattleController extends BaseController
     {
         /** @var Battle $battle */
         $battle = $this->getBattleRepository()->find($id);
-        $programmer = $this->getProgrammerRepository()->find($battle->programmerId);
-        $project = $this->getProjectRepository()->find($battle->projectId);
 
         return $this->render('battle/show.twig', array(
             'battle' => $battle,
-            'programmer' => $programmer,
-            'project' => $project
+            'programmer' => $battle->programmer,
+            'project' => $battle->project,
         ));
     }
 

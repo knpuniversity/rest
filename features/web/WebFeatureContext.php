@@ -62,14 +62,6 @@ class WebFeatureContext extends MinkContext
     }
 
     /**
-     * @Given /^there is a user "([^"]*)" with password "([^"]*)"$/
-     */
-    public function thereIsAUserWithPassword($email, $plainPassword)
-    {
-        $this->getProjectHelper()->createUser($email, $plainPassword);
-    }
-
-    /**
      * @Given /^I select an avatar$/
      *
      * Used on the create programmer page
@@ -214,6 +206,17 @@ class WebFeatureContext extends MinkContext
         $this->getSession()->wait(
             5000,
             "jQuery('.modal').is(':visible');"
+        );
+    }
+
+    /**
+     * @Given /^I wait for the dialog to disappear$/
+     */
+    public function iWaitForTheDialogToDisappear()
+    {
+        $this->getSession()->wait(
+            5000,
+            "!jQuery('.modal').is(':visible');"
         );
     }
 

@@ -17,12 +17,12 @@
             {% for battle in battles %}
                 <tr>
                     <td>
-                        <a href="{{ path('programmer_show', {'nickname': battle|programmer('nickname')}) }}">
-                            {{ battle|programmer('nickname') }}
+                        <a href="{{ path('programmer_show', {'nickname': battle.programmer.nickname}) }}">
+                            {{ battle.programmer.nickname }}
                         </a>
                     </td>
                     <td>
-                        {{ battle|project('name') }}
+                        {{ battle.project.name }}
                     </td>
                     <td>
                         <a

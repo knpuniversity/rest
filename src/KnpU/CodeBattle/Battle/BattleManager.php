@@ -30,8 +30,8 @@ class BattleManager
     public function battle(Programmer $programmer, Project $project)
     {
         $battle = new Battle();
-        $battle->programmerId = $programmer->id;
-        $battle->projectId = $project->id;
+        $battle->programmer = $programmer;
+        $battle->project = $project;
         $battle->foughtAt = new \DateTime();
 
         if ($programmer->powerLevel < $project->difficultyLevel) {

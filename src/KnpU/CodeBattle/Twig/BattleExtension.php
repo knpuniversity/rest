@@ -35,25 +35,9 @@ class BattleExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('programmer', array($this, 'getProgrammer')),
-            new \Twig_SimpleFilter('project', array($this, 'getProject')),
             new \Twig_SimpleFilter('powerLevelClass', array($this, 'getPowerLevelClass')),
             new \Twig_SimpleFilter('avatar_path', array($this, 'getAvatarPath')),
         );
-    }
-
-    public function getProject(Battle $battle, $property = null)
-    {
-        $project = $this->projectRepository->find($battle->projectId);
-
-        return $property ? $project->$property : $project;
-    }
-
-    public function getProgrammer(Battle $battle, $property = null)
-    {
-        $programmer = $this->programmerRepository->find($battle->programmerId);
-
-        return $property ? $programmer->$property : $programmer;
     }
 
     public function getAssetPath($path)

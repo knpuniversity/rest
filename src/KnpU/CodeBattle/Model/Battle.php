@@ -7,9 +7,15 @@ class Battle
     /* All public properties are persisted */
     public $id;
 
-    public $programmerId;
+    /**
+     * @var Programmer
+     */
+    public $programmer;
 
-    public $projectId;
+    /**
+     * @var Project
+     */
+    public $project;
 
     public $didProgrammerWin;
 
