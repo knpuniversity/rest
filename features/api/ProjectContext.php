@@ -48,6 +48,14 @@ class ProjectContext extends BehatContext
     }
 
     /**
+     * @Given /^there is a programmer called "([^"]*)"$/
+     */
+    public function thereIsAProgrammerCalled($name)
+    {
+        $this->createProgrammer($name);
+    }
+
+    /**
      * @Given /^"([^"]*)" has an authentication token "([^"]*)"$/
      */
     public function hasAnAuthenticationToken($username, $tokenString)

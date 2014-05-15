@@ -754,6 +754,7 @@ class ApiFeatureContext extends BehatContext
         $variables = array(
             'users' => new EntityLookup($this->getProjectHelper()->getUserRepository(), 'username'),
             'projects' => new EntityLookup($this->getProjectHelper()->getProjectRepository(), 'name'),
+            'programmers' => new EntityLookup($this->getProjectHelper()->getProgrammerRepository(), 'nickname'),
         );
 
         while (false !== $startPos = strpos($payload, '%')) {
