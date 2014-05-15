@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index f19c216..927078a 100644
+index c89bcc5..afc0f25 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -36,9 +36,7 @@ class ProgrammerController extends BaseController
@@ -13,7 +13,7 @@ index f19c216..927078a 100644
  
          $programmer = new Programmer();
          $this->handleRequest($request, $programmer);
-@@ -89,12 +87,16 @@ class ProgrammerController extends BaseController
+@@ -83,12 +81,16 @@ class ProgrammerController extends BaseController
  
      public function updateAction($nickname, Request $request)
      {
@@ -30,7 +30,7 @@ index f19c216..927078a 100644
          $this->handleRequest($request, $programmer);
  
          if ($errors = $this->validate($programmer)) {
-@@ -118,6 +120,8 @@ class ProgrammerController extends BaseController
+@@ -110,6 +112,8 @@ class ProgrammerController extends BaseController
              $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
          }
  
@@ -40,10 +40,10 @@ index f19c216..927078a 100644
  
          return new Response(null, 204);
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index dec3f37..153a2ab 100644
+index 7476285..4ceed95 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
-@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
+@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
  use KnpU\CodeBattle\Repository\ProgrammerRepository;
  use KnpU\CodeBattle\Repository\ProjectRepository;
  use KnpU\CodeBattle\Security\Token\ApiTokenRepository;
@@ -51,10 +51,11 @@ index dec3f37..153a2ab 100644
  
  /**
   * Base controller class to hide Silex-related implementation details
-@@ -228,4 +229,17 @@ abstract class BaseController implements ControllerProviderInterface
-         return $this->container['repository.api_token'];
-     }
+@@ -246,4 +247,19 @@ abstract class BaseController implements ControllerProviderInterface
  
+         return $this->container['serializer']->serialize($data, 'json', $context);
+     }
++
 +    protected function enforceUserSecurity()
 +    {
 +        if (!$this->isUserLoggedIn()) {
@@ -68,4 +69,5 @@ index dec3f37..153a2ab 100644
 +            throw new AccessDeniedException();
 +        }
 +    }
++
  }
