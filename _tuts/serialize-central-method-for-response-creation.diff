@@ -1,0 +1,89 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index 19d39f7..747608a 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -43,8 +43,7 @@ class ProgrammerController extends BaseController
+         }
+ 
+         $this->save($programmer);
+-        $json = $this->serialize($programmer);
+-        $response = new Response($json, 201);
++        $response = $this->createApiResponse($programmer, 201);
+         $programmerUrl = $this->generateUrl(
+             'api_programmers_show',
+             ['nickname' => $programmer->nickname]
+@@ -62,9 +61,7 @@ class ProgrammerController extends BaseController
+             $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
+         }
+ 
+-        $json = $this->serialize($programmer);
+-
+-        $response = new Response($json, 200);
++        $response = $this->createApiResponse($programmer, 200);
+ 
+         return $response;
+     }
+@@ -73,9 +70,8 @@ class ProgrammerController extends BaseController
+     {
+         $programmers = $this->getProgrammerRepository()->findAll();
+         $data = array('programmers' => $programmers);
+-        $json = $this->serialize($data);
+ 
+-        $response = new Response($json, 200);
++        $response = $this->createApiResponse($data, 200, 'json');
+ 
+         return $response;
+     }
+@@ -96,9 +92,7 @@ class ProgrammerController extends BaseController
+ 
+         $this->save($programmer);
+ 
+-        $json = $this->serialize($programmer);
+-
+-        $response = new Response($json, 200);
++        $response = $this->createApiResponse($programmer, 200);
+ 
+         return $response;
+     }
+@@ -155,11 +149,6 @@ class ProgrammerController extends BaseController
+         $programmer->userId = $this->findUserByUsername('weaverryan')->id;
+     }
+ 
+-    protected function serialize($data)
+-    {
+-        return $this->container['serializer']->serialize($data, 'json');
+-    }
+-
+     private function throwApiProblemValidationException(array $errors)
+     {
+         $apiProblem = new ApiProblem(
+diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
+index dec3f37..b14cc38 100644
+--- a/src/KnpU/CodeBattle/Controller/BaseController.php
++++ b/src/KnpU/CodeBattle/Controller/BaseController.php
+@@ -10,6 +10,7 @@ use Silex\Application as SilexApplication;
+ use Silex\ControllerCollection;
+ use Silex\ControllerProviderInterface;
+ use Symfony\Component\HttpFoundation\RedirectResponse;
++use Symfony\Component\HttpFoundation\Response;
+ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+ use Symfony\Component\HttpFoundation\Request;
+@@ -228,4 +229,17 @@ abstract class BaseController implements ControllerProviderInterface
+         return $this->container['repository.api_token'];
+     }
+ 
++    protected function createApiResponse($data, $statusCode = 200)
++    {
++        $json = $this->serialize($data);
++
++        return new Response($json, $statusCode, array(
++            'Content-Type' => 'application/json'
++        ));
++    }
++
++    protected function serialize($data)
++    {
++        return $this->container['serializer']->serialize($data, 'json');
++    }
+ }
