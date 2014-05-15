@@ -14,10 +14,10 @@ index 2ca90c4..f60670a 100644
 +    Then the response status code should be 400
 +    And the "errors.notes" property should equal "Please add some notes about this token"
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 12dc5bd..bce51b3 100644
+index 2165169..6734e25 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -167,15 +167,4 @@ class ProgrammerController extends BaseController
+@@ -166,15 +166,4 @@ class ProgrammerController extends BaseController
              'tagLine' => $programmer->tagLine,
          );
      }
@@ -34,30 +34,28 @@ index 12dc5bd..bce51b3 100644
 -    }
  }
 diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-index 7fb72df..9a14d09 100644
+index 18a42ef..6a1e444 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-@@ -23,7 +23,12 @@ class TokenController extends BaseController
-         $data = $this->getJsonBody($request);
- 
+@@ -25,6 +25,11 @@ class TokenController extends BaseController
          $token = new ApiToken($this->getLoggedInUser()->id);
--        $token->notes = $data['notes'];
-+        $token->notes = isset($data['notes']) ? $data['notes'] : null;
-+
+         $token->notes = $data->get('notes');
+ 
 +        $errors = $this->validate($token);
 +        if ($errors) {
 +            $this->throwApiProblemValidationException($errors);
 +        }
- 
++
          $this->getApiTokenRepository()->save($token);
  
+         return new JsonResponse(
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index c9f2246..f67d737 100644
+index e167a8d..3e6c1ac 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
-@@ -239,4 +239,15 @@ abstract class BaseController implements ControllerProviderInterface
+@@ -265,4 +265,15 @@ abstract class BaseController implements ControllerProviderInterface
  
-         return $data;
+         return new ParameterBag($data);
      }
 +
 +    protected function throwApiProblemValidationException(array $errors)
