@@ -34,7 +34,7 @@ index 9a324a0..b0e42c8 100644
 -    }
  }
 diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-index 95a5b71..ae3c6ee 100644
+index 1091f5f..b7995a3 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 @@ -23,6 +23,11 @@ class TokenController extends BaseController
