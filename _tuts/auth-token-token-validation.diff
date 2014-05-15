@@ -14,12 +14,12 @@ index 2ca90c4..f60670a 100644
 +    Then the response status code should be 400
 +    And the "errors.notes" property should equal "Please add some notes about this token"
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 2165169..6734e25 100644
+index 9a324a0..b0e42c8 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -166,15 +166,4 @@ class ProgrammerController extends BaseController
-             'tagLine' => $programmer->tagLine,
-         );
+@@ -148,15 +148,4 @@ class ProgrammerController extends BaseController
+ 
+         $programmer->userId = $this->getLoggedInUser()->id;
      }
 -
 -    private function throwApiProblemValidationException(array $errors)
@@ -34,10 +34,10 @@ index 2165169..6734e25 100644
 -    }
  }
 diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-index 18a42ef..6a1e444 100644
+index 95a5b71..ae3c6ee 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-@@ -25,6 +25,11 @@ class TokenController extends BaseController
+@@ -23,6 +23,11 @@ class TokenController extends BaseController
          $token = new ApiToken($this->getLoggedInUser()->id);
          $token->notes = $data->get('notes');
  
@@ -48,12 +48,12 @@ index 18a42ef..6a1e444 100644
 +
          $this->getApiTokenRepository()->save($token);
  
-         return new JsonResponse(
+         return $this->createApiResponse($token, 201);
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index e167a8d..3e6c1ac 100644
+index da7a4ca..d606474 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
-@@ -265,4 +265,15 @@ abstract class BaseController implements ControllerProviderInterface
+@@ -284,4 +284,15 @@ abstract class BaseController implements ControllerProviderInterface
  
          return new ParameterBag($data);
      }
