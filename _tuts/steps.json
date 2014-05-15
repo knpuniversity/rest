@@ -241,6 +241,26 @@
             "description": null
         },
         {
+            "id": "serialize-installing-serializer",
+            "name": "Serialize: Installing serializer",
+            "description": null
+        },
+        {
+            "id": "serialize-using-serializer-service",
+            "name": "Serialize: Using serializer service",
+            "description": null
+        },
+        {
+            "id": "serialize-central-method-for-response-creation",
+            "name": "Serialize: Central method for response creation",
+            "description": null
+        },
+        {
+            "id": "serialize-fixing-null-values",
+            "name": "Serialize: Fixing null values",
+            "description": null
+        },
+        {
             "id": "auth-authentication-required-scenario",
             "name": "Auth: Authentication Required Scenario",
             "description": null
@@ -361,5 +381,5 @@
             "description": null
         }
     ],
-    "sha": "1c6b646768d881e825d296003480b72d02ba15f8"
+    "sha": "a873e008f07db2e801a08d7fa433b45f7a08f335"
 }
