@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\HttpFoundation\Request;
 use KnpU\CodeBattle\Repository\ProgrammerRepository;
+use KnpU\CodeBattle\Repository\ProjectRepository;
 use KnpU\CodeBattle\Security\Token\ApiTokenRepository;
 
 /**
@@ -193,6 +194,30 @@ abstract class BaseController implements ControllerProviderInterface
     protected function getProgrammerRepository()
     {
         return $this->container['repository.programmer'];
+    }
+
+    /**
+     * @return ProjectRepository
+     */
+    protected function getProjectRepository()
+    {
+        return $this->container['repository.project'];
+    }
+
+    /**
+     * @return \KnpU\CodeBattle\Repository\BattleRepository
+     */
+    protected function getBattleRepository()
+    {
+        return $this->container['repository.battle'];
+    }
+
+    /**
+     * @return \KnpU\CodeBattle\Battle\BattleManager
+     */
+    protected function getBattleManager()
+    {
+        return $this->container['battle.battle_manager'];
     }
 
     /**

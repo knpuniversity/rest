@@ -59,28 +59,4 @@ class BattleController extends BaseController
             'battles' => $battles,
         ));
     }
-
-    /**
-     * @return \KnpU\CodeBattle\Repository\BattleRepository
-     */
-    private function getBattleRepository()
-    {
-        return $this->container['repository.battle'];
-    }
-
-    /**
-     * @return \KnpU\CodeBattle\Repository\ProjectRepository
-     */
-    private function getProjectRepository()
-    {
-        return $this->container['repository.project'];
-    }
-
-    /**
-     * @return \KnpU\CodeBattle\Battle\BattleManager
-     */
-    private function getBattleManager()
-    {
-        return $this->container['battle.battle_manager'];
-    }
 }

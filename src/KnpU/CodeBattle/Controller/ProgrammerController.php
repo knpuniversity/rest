@@ -127,12 +127,4 @@ class ProgrammerController extends BaseController
             'tagLine' => $tagLine,
         );
     }
-
-    /**
-     * @return \KnpU\CodeBattle\Repository\ProjectRepository
-     */
-    private function getProjectRepository()
-    {
-        return $this->container['repository.project'];
-    }
 }
