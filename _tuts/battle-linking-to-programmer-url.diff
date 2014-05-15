@@ -8,7 +8,7 @@ index a1a9288..3c3bbb5 100644
      And the "battles" property should contain 2 items
 +    And the "battles.0.programmerUri" property should equal "/api/programmers/Fred"
 diff --git a/src/KnpU/CodeBattle/Model/Battle.php b/src/KnpU/CodeBattle/Model/Battle.php
-index 081415a..5c25bb5 100644
+index 081415a..92312d7 100644
 --- a/src/KnpU/CodeBattle/Model/Battle.php
 +++ b/src/KnpU/CodeBattle/Model/Battle.php
 @@ -2,6 +2,8 @@
@@ -20,7 +20,7 @@ index 081415a..5c25bb5 100644
  class Battle
  {
      /* All public properties are persisted */
-@@ -22,4 +24,13 @@ class Battle
+@@ -22,4 +24,12 @@ class Battle
      public $foughtAt;
  
      public $notes;
@@ -30,7 +30,6 @@ index 081415a..5c25bb5 100644
 +     */
 +    public function getProgrammerUri()
 +    {
-+        // todo - just faking this
-+        return '/api/programmers/Fred';
++        return '/api/programmers/'.$this->programmer->nickname;
 +    }
  }
