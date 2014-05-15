@@ -1,9 +1,9 @@
 diff --git a/features/api/battle.feature b/features/api/battle.feature
 new file mode 100644
-index 0000000..85a6633
+index 0000000..478e6c9
 --- /dev/null
 +++ b/features/api/battle.feature
-@@ -0,0 +1,23 @@
+@@ -0,0 +1,24 @@
 +Feature:
 +  In order to prove my programmers' worth against projects
 +  As an API client
@@ -16,11 +16,12 @@ index 0000000..85a6633
 +
 +  Scenario: Create a programmer
 +    Given there is a project called "my_project"
++    And there is a programmer called "Fred"
 +    And I have the payload:
 +      """
 +      {
-+        "user_id": "%users.weaverryan.id%",
-+        "project_id": "%projects.my_project.id%"
++        "programmerId": "%programmers.Fred.id%",
++        "projectId": "%projects.my_project.id%"
 +      }
 +      """
 +    When I request "POST /api/battles"
