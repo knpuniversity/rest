@@ -349,7 +349,17 @@
             "id": "battle-create-feature-and-post-scenario",
             "name": "Battle: Create feature and POST scenario",
             "description": null
+        },
+        {
+            "id": "battle-post-controller",
+            "name": "Battle: POST controller",
+            "description": null
+        },
+        {
+            "id": "battle-post-code-implementation",
+            "name": "Battle: POST code implementation",
+            "description": null
         }
     ],
-    "sha": "f014484e02c4a4b8a3d65f401df449eca098904a"
+    "sha": "1c6b646768d881e825d296003480b72d02ba15f8"
 }
