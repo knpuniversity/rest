@@ -29,20 +29,28 @@ index 0000000..7da02a9
 +    }
 +}
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 686fd7d..e46fe39 100644
+index 8c82267..7fe2b1d 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
-@@ -5,6 +5,7 @@ namespace KnpU\CodeBattle;
- use Doctrine\Common\Annotations\AnnotationReader;
+@@ -6,6 +6,7 @@ use Doctrine\Common\Annotations\AnnotationReader;
+ use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
  use KnpU\CodeBattle\Api\ApiProblem;
  use KnpU\CodeBattle\Api\ApiProblemException;
 +use KnpU\CodeBattle\Api\ApiProblemResponseFactory;
  use KnpU\CodeBattle\Battle\PowerManager;
  use KnpU\CodeBattle\Repository\BattleRepository;
  use KnpU\CodeBattle\Repository\ProjectRepository;
-@@ -200,6 +201,10 @@ class Application extends SilexApplication
+@@ -201,6 +202,7 @@ class Application extends SilexApplication
          $this['api.validator'] = $this->share(function() use ($app) {
              return new ApiValidator($app['validator']);
+         });
++
+         $this['serializer'] = $this->share(function() use ($app) {
+             return \JMS\Serializer\SerializerBuilder::create()
+                 ->setCacheDir($app['root_dir'].'/cache/serializer')
+@@ -208,6 +210,10 @@ class Application extends SilexApplication
+                 ->setPropertyNamingStrategy(new IdenticalPropertyNamingStrategy())
+                 ->build();
          });
 +
 +        $this['api.response_factory'] = $this->share(function() {
@@ -51,7 +59,7 @@ index 686fd7d..e46fe39 100644
      }
  
      private function configureSecurity()
-@@ -255,7 +260,7 @@ class Application extends SilexApplication
+@@ -263,7 +269,7 @@ class Application extends SilexApplication
  
              // the class that decides what should happen if no authentication credentials are passed
              $this['security.entry_point.'.$name.'.api_token'] = $app->share(function() use ($app) {
@@ -60,7 +68,7 @@ index 686fd7d..e46fe39 100644
              });
  
              return array(
-@@ -312,18 +317,10 @@ class Application extends SilexApplication
+@@ -320,18 +326,10 @@ class Application extends SilexApplication
                  }
              }
  
