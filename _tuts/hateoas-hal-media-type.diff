@@ -1,0 +1,22 @@
+diff --git a/features/api/battle.feature b/features/api/battle.feature
+index 235ee81..7b1fc15 100644
+--- a/features/api/battle.feature
++++ b/features/api/battle.feature
+@@ -34,3 +34,4 @@ Feature:
+     And the "battles" property should be an array
+     And the "battles" property should contain 2 items
+     And the "battles.0._links.programmer.href" property should equal "/api/programmers/Fred"
++    And the "Content-Type" header should be "application/hal+json"
+diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
+index d606474..47f9675 100644
+--- a/src/KnpU/CodeBattle/Controller/BaseController.php
++++ b/src/KnpU/CodeBattle/Controller/BaseController.php
+@@ -239,7 +239,7 @@ abstract class BaseController implements ControllerProviderInterface
+         $json = $this->serialize($data);
+ 
+         return new Response($json, $statusCode, array(
+-            'Content-Type' => 'application/json'
++            'Content-Type' => 'application/hal+json'
+         ));
+     }
+ 
