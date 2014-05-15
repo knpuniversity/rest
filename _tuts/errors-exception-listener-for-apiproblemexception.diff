@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index c14e0df..c172712 100644
+index 396e237..3834b3c 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -3,6 +3,7 @@
@@ -10,7 +10,7 @@ index c14e0df..c172712 100644
  use KnpU\CodeBattle\Battle\PowerManager;
  use KnpU\CodeBattle\Repository\BattleRepository;
  use KnpU\CodeBattle\Repository\ProjectRepository;
-@@ -27,6 +28,7 @@ use KnpU\CodeBattle\Repository\UserRepository;
+@@ -28,6 +29,7 @@ use KnpU\CodeBattle\Repository\UserRepository;
  use KnpU\CodeBattle\Repository\ProgrammerRepository;
  use KnpU\CodeBattle\Battle\BattleManager;
  use Silex\Provider\ValidatorServiceProvider;
@@ -18,7 +18,7 @@ index c14e0df..c172712 100644
  use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
  use Symfony\Component\Validator\Mapping\Loader\AnnotationLoader;
  
-@@ -276,6 +278,19 @@ class Application extends SilexApplication
+@@ -286,6 +288,19 @@ class Application extends SilexApplication
  
      private function configureListeners()
      {
