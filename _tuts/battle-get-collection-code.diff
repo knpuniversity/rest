@@ -1,0 +1,27 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/BattleController.php b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
+index 0344e26..5a2e266 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/BattleController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
+@@ -11,6 +11,7 @@ class BattleController extends BaseController
+     protected function addRoutes(ControllerCollection $controllers)
+     {
+         $controllers->post('/api/battles', array($this, 'newAction'));
++        $controllers->get('/api/battles', array($this, 'listAction'));
+     }
+ 
+     public function newAction(Request $request)
+@@ -36,4 +37,14 @@ class BattleController extends BaseController
+         $response = $this->createApiResponse($battle, 201);
+         $response->headers->set('Location', 'TODO');
+     }
++
++    public function listAction()
++    {
++        $battles = $this->getBattleRepository()->findAll();
++        $data = array('battles' => $battles);
++
++        $response = $this->createApiResponse($data, 200, 'json');
++
++        return $response;
++    }
+ }
