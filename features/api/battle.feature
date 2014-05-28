@@ -34,3 +34,4 @@ Feature:
     And the "battles" property should be an array
     And the "battles" property should contain 2 items
     And the "battles.0._links.programmer.href" property should equal "/api/programmers/Fred"
+    And the "Content-Type" header should be "application/hal+json"
