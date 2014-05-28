@@ -3,6 +3,7 @@
 namespace KnpU\CodeBattle;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use KnpU\CodeBattle\Api\ApiProblemException;
 use KnpU\CodeBattle\Battle\PowerManager;
 use KnpU\CodeBattle\Repository\BattleRepository;
 use KnpU\CodeBattle\Repository\ProjectRepository;
@@ -28,6 +29,7 @@ use KnpU\CodeBattle\Repository\UserRepository;
 use KnpU\CodeBattle\Repository\ProgrammerRepository;
 use KnpU\CodeBattle\Battle\BattleManager;
 use Silex\Provider\ValidatorServiceProvider;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
 use Symfony\Component\Validator\Mapping\Loader\AnnotationLoader;
 
@@ -286,6 +288,19 @@ class Application extends SilexApplication
 
     private function configureListeners()
     {
-        // todo
+        $this->error(function(\Exception $e, $statusCode) {
+            // only do something special if we have an ApiProblemException!
+            if (!$e instanceof ApiProblemException) {
+                return;
+            }
+
+            $response = new JsonResponse(
+                $e->getApiProblem()->toArray(),
+                $statusCode
+            );
+            $response->headers->set('Content-Type', 'application/problem+json');
+
+            return $response;
+        });
     }
 } 
