@@ -6,12 +6,14 @@ use JMS\Serializer\Annotation as Serializer;
 use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
+ * @Serializer\ExclusionPolicy("all")
  * @Hateoas\Relation(
  *      "programmer",
  *      href = @Hateoas\Route(
  *          "api_programmers_show",
  *          parameters = { "nickname" = "expr(object.programmer.nickname)" }
- *      )
+ *      ),
+ *      embedded = "expr(object.programmer)"
  * )
  */
 class Battle
@@ -29,9 +31,18 @@ class Battle
      */
     public $project;
 
-    public $didProgrammerWin;
+    /**
+     * @Serializer\Expose
+     */
+    public $didProgrammerWin = true;
 
+    /**
+     * @Serializer\Expose
+     */
     public $foughtAt;
 
+    /**
+     * @Serializer\Expose
+     */
     public $notes;
 }
