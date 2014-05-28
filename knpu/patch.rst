@@ -114,6 +114,8 @@ field is missing from the JSON. If both are ``true``, let's do nothing::
     private function handleRequest(Request $request, Programmer $programmer)
     {
         // ...
+        $apiProperties = array('avatarNumber', 'tagLine');
+        // ...
 
         foreach ($apiProperties as $property) {
             // if a property is missing on PATCH, that's ok - just skip it
