@@ -82,11 +82,11 @@ First, make sure it's working by running the test:
 
 .. tip::
 
-    Silex/Symfony has an exception class for each of the most common 400 and
-    500 level responses. For example, :symfonyclass:`Symfony\\Component\\HttpKernel\\Exception\\BadRequestHttpException`
+    Silex/Symfony has a `collection of exception classes`_, one for each of
+    the most common 400 and 500-level responses. For example, :symfonyclass:`Symfony\\Component\\HttpKernel\\Exception\\BadRequestHttpException`
     is a sub-class of ``HttpException`` that sets the status code to 400.
     The result is the same: throwing these "named" exception classes is just
-    a bonus.
+    a bonus to give you code more consistency and clarity.
 
 Awesome! So why am I throwing an exception instead of just returning a normal
 400 response? The problem is that we're inside ``handleRequest``, so if I
@@ -171,3 +171,5 @@ but we'll put the ``ApiProblem`` inside of it. Second, we'll hook into the
 magic layer that handles exceptions and extend it so that it transforms the
 exception into a ``Response`` with a 400 status code. Again, this is a little
 more complicated, so if it doesn't make sense yet, watch our implementation.
+
+.. _`collection of exception classes`: https://github.com/symfony/symfony/tree/master/src/Symfony/Component/HttpKernel/Exception
