@@ -51,7 +51,7 @@ index 0000000..04e4be8
 +    }
 +}
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index fc6492c..b76f218 100644
+index 09af1f2..2fbb197 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -2,6 +2,7 @@
@@ -62,7 +62,7 @@ index fc6492c..b76f218 100644
  use KnpU\CodeBattle\Controller\BaseController;
  use KnpU\CodeBattle\Model\Programmer;
  use Silex\Application;
-@@ -162,13 +163,14 @@ class ProgrammerController extends BaseController
+@@ -160,13 +161,14 @@ class ProgrammerController extends BaseController
  
      private function handleValidationResponse(array $errors)
      {
