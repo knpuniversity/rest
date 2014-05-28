@@ -2,6 +2,7 @@
 
 namespace KnpU\CodeBattle\Controller\Api;
 
+use KnpU\CodeBattle\Api\ApiProblem;
 use KnpU\CodeBattle\Controller\BaseController;
 use KnpU\CodeBattle\Model\Programmer;
 use Silex\Application;
@@ -160,13 +161,14 @@ class ProgrammerController extends BaseController
 
     private function handleValidationResponse(array $errors)
     {
-        $data = array(
-            'type' => 'validation_error',
-            'title' => 'There was a validation error',
-            'errors' => $errors
+        $apiProblem = new ApiProblem(
+            400,
+            'validation_error',
+            'There was a validation error'
         );
+        $apiProblem->set('errors', $errors);
 
-        $response = new JsonResponse($data, 400);
+        $response = new JsonResponse($apiProblem->toArray(), $apiProblem->getStatusCode());
         $response->headers->set('Content-Type', 'application/problem+json');
 
         return $response;
