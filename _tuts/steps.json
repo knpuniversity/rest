@@ -201,6 +201,11 @@
             "description": null
         },
         {
+            "id": "errors-named-badrequesthttpexception",
+            "name": "Errors: Named BadRequestHttpException",
+            "description": null
+        },
+        {
             "id": "errors-print-bad-response-in-test",
             "name": "Errors: Print bad response in test",
             "description": null
@@ -436,5 +441,5 @@
             "description": null
         }
     ],
-    "sha": "ef8000d09d986d45d4cbf90f8e8b1af974e6d952"
+    "sha": "93d0954201ce7ad668b0023ebc2223cf951ca91c"
 }
