@@ -298,6 +298,11 @@ class Application extends SilexApplication
                 return;
             }
 
+            // allow 500 errors in debug to be thrown
+            if ($app['debug'] && $statusCode == 500) {
+                return;
+            }
+
             if ($e instanceof ApiProblemException) {
                 $apiProblem = $e->getApiProblem();
             } else {
