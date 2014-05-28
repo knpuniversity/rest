@@ -95,13 +95,17 @@ class ProgrammerController extends BaseController
     private function handleRequest(Request $request, Programmer $programmer)
     {
         $data = json_decode($request->getContent(), true);
+        $isNew = !$programmer->id;
 
         if ($data === null) {
             throw new \Exception(sprintf('Invalid JSON: '.$request->getContent()));
         }
 
         // determine which properties should be changeable on this request
-        $apiProperties = array('nickname', 'avatarNumber', 'tagLine');
+        $apiProperties = array('avatarNumber', 'tagLine');
+        if ($isNew) {
+            $apiProperties[] = 'nickname';
+        }
 
         // update the properties
         foreach ($apiProperties as $property) {
