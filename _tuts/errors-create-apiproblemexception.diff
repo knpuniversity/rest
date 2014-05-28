@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
-index c7d67e4..39560ba 100644
+index dab1563..69231ec 100644
 --- a/src/KnpU/CodeBattle/Api/ApiProblem.php
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
 @@ -9,8 +9,11 @@ class ApiProblem
@@ -14,7 +14,7 @@ index c7d67e4..39560ba 100644
 +        self::TYPE_INVALID_REQUEST_BODY_FORMAT => 'Invalid JSON format sent',
      );
  
-     private $type;
+     private $statusCode;
 @@ -54,4 +57,12 @@ class ApiProblem
      {
          return $this->statusCode;
@@ -57,7 +57,7 @@ index 0000000..b329d66
 +    }
 +}
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 2791182..d313662 100644
+index e2c4f24..a1918f7 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -3,6 +3,7 @@
@@ -74,8 +74,8 @@ index 2791182..d313662 100644
          if ($data === null) {
 -            throw new HttpException(400, sprintf('Invalid JSON: '.$request->getContent()));
 +            $problem = new ApiProblem(
-+                ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT,
-+                400
++                400,
++                ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT
 +            );
 +            throw new ApiProblemException($problem);
          }
