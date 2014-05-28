@@ -22,3 +22,14 @@ Feature:
     Then the response status code should be 201
     And the "Location" header should exist
     And the "didProgrammerWin" property should exist
+
+  Scenario: GET all battles
+    Given there is a project called "projectA"
+    And there is a programmer called "Fred"
+    And there is a programmer called "Barney"
+    And there has been a battle between "Fred" and "projectA"
+    And there has been a battle between "Barney" and "projectA"
+    When I request "GET /api/battles"
+    Then the response status code should be 200
+    And the "battles" property should be an array
+    And the "battles" property should contain 2 items
