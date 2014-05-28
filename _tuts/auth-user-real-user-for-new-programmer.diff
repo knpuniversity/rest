@@ -1,8 +1,8 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 7bdfbd8..c89bcc5 100644
+index 4c899f7..e19e965 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -151,7 +151,7 @@ class ProgrammerController extends BaseController
+@@ -149,7 +149,7 @@ class ProgrammerController extends BaseController
              $programmer->$property = $val;
          }
  
