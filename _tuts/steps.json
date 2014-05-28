@@ -424,7 +424,17 @@
             "id": "hateoas-linking-battle-to-programmer",
             "name": "HATEOAS: Linking Battle to Programmer",
             "description": null
+        },
+        {
+            "id": "hateoas-hal-media-type",
+            "name": "HATEOAS: HAL media type",
+            "description": null
+        },
+        {
+            "id": "hateoas-embedded-links",
+            "name": "HATEOAS: Embedded links",
+            "description": null
         }
     ],
-    "sha": "669e733cef9df15dcbc5c94a26f737957fc5a4d8"
+    "sha": "ef8000d09d986d45d4cbf90f8e8b1af974e6d952"
 }
