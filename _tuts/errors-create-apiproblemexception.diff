@@ -57,7 +57,7 @@ index 0000000..b329d66
 +    }
 +}
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index f370893..9cbfa01 100644
+index 2791182..d313662 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -3,6 +3,7 @@
@@ -68,7 +68,7 @@ index f370893..9cbfa01 100644
  use KnpU\CodeBattle\Controller\BaseController;
  use KnpU\CodeBattle\Model\Programmer;
  use Silex\Application;
-@@ -129,7 +130,11 @@ class ProgrammerController extends BaseController
+@@ -127,7 +128,11 @@ class ProgrammerController extends BaseController
          $isNew = !$programmer->id;
  
          if ($data === null) {
