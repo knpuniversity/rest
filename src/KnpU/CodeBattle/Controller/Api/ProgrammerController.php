@@ -59,7 +59,7 @@ class ProgrammerController extends BaseController
         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
 
         if (!$programmer) {
-            $this->throw404();
+            $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
         }
 
         $data = $this->serializeProgrammer($programmer);
@@ -87,7 +87,7 @@ class ProgrammerController extends BaseController
         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
 
         if (!$programmer) {
-            $this->throw404();
+            $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
         }
 
         $this->handleRequest($request, $programmer);
