@@ -9,8 +9,8 @@ Once again, we're going to leverage HTTP methods. We have GET to retrieve
 a representation, PUT to update the resource, and DELETE to, ya know, blow
 the resource up! HTTP gives us these HTTP verbs so that we don't need to
 do silly things like have a ``/api/programmers/delete`` URI. Remember, every
-URI is a resource, so that URI wouldn't really make sense and people would
-make fun of your API.
+URI is a resource, and that one wouldn't really make sense you would probably
+get teased in the cafeteria for it.
 
 Writing the Test
 ----------------
@@ -65,7 +65,7 @@ programmer, because we want to take the DELETE action on that resource:
     }
 
 Next, create the ``deleteAction`` method. We can copy a little bit of code
-that queries for a programmer and throws a 404 error if one doesn't exist::
+that queries for a programmer::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
