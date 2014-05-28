@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index c89bcc5..afc0f25 100644
+index 7ea9de0..a249d52 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -36,9 +36,7 @@ class ProgrammerController extends BaseController
@@ -30,15 +30,15 @@ index c89bcc5..afc0f25 100644
          $this->handleRequest($request, $programmer);
  
          if ($errors = $this->validate($programmer)) {
-@@ -110,6 +112,8 @@ class ProgrammerController extends BaseController
-             $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
-         }
+@@ -106,6 +108,8 @@ class ProgrammerController extends BaseController
+     {
+         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
  
 +        $this->enforceProgrammerOwnershipSecurity($programmer);
 +
-         $this->delete($programmer);
- 
-         return new Response(null, 204);
+         if ($programmer) {
+             $this->delete($programmer);
+         }
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
 index 7476285..4ceed95 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
