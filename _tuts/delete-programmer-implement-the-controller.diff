@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index f1e90fe..1fd6218 100644
+index f1e90fe..6bc2527 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -21,6 +21,7 @@ class ProgrammerController extends BaseController
@@ -10,7 +10,7 @@ index f1e90fe..1fd6218 100644
      }
  
      public function newAction(Request $request)
-@@ -86,6 +87,19 @@ class ProgrammerController extends BaseController
+@@ -86,6 +87,17 @@ class ProgrammerController extends BaseController
          return $response;
      }
  
@@ -18,11 +18,9 @@ index f1e90fe..1fd6218 100644
 +    {
 +        $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
 +
-+        if (!$programmer) {
-+            $this->throw404();
++        if ($programmer) {
++            $this->delete($programmer);
 +        }
-+
-+        $this->delete($programmer);
 +
 +        return new Response(null, 204);
 +    }
