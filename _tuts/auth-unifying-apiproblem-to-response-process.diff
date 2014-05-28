@@ -29,7 +29,7 @@ index 0000000..7da02a9
 +    }
 +}
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 2ce69ce..50bb9b3 100644
+index 518cc11..33dd97f 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -6,6 +6,7 @@ use Doctrine\Common\Annotations\AnnotationReader;
@@ -68,7 +68,7 @@ index 2ce69ce..50bb9b3 100644
              });
  
              return array(
-@@ -330,18 +336,10 @@ class Application extends SilexApplication
+@@ -329,18 +335,10 @@ class Application extends SilexApplication
                  }
              }
  
@@ -92,7 +92,7 @@ index 2ce69ce..50bb9b3 100644
  } 
 \ No newline at end of file
 diff --git a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
-index c2dd942..2764c7f 100644
+index fc9c42d..0a60df7 100644
 --- a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
 +++ b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
 @@ -3,7 +3,7 @@
@@ -119,7 +119,7 @@ index c2dd942..2764c7f 100644
  
      /**
 @@ -40,10 +43,7 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
-         $problem = new ApiProblem(ApiProblem::TYPE_AUTHENTICATION_ERROR, 401);
+         $problem = new ApiProblem(401, ApiProblem::TYPE_AUTHENTICATION_ERROR);
          $problem->set('detail', $message);
  
 -        $response = new JsonResponse($problem->toArray(), 401);

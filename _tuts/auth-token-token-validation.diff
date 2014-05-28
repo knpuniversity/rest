@@ -14,10 +14,10 @@ index 2ca90c4..f60670a 100644
 +    Then the response status code should be 400
 +    And the "errors.notes" property should equal "Please add some notes about this token"
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 9a324a0..b0e42c8 100644
+index 3934c79..f365921 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -148,15 +148,4 @@ class ProgrammerController extends BaseController
+@@ -146,15 +146,4 @@ class ProgrammerController extends BaseController
  
          $programmer->userId = $this->getLoggedInUser()->id;
      }
@@ -25,8 +25,8 @@ index 9a324a0..b0e42c8 100644
 -    private function throwApiProblemValidationException(array $errors)
 -    {
 -        $apiProblem = new ApiProblem(
--            ApiProblem::TYPE_VALIDATION_ERROR,
--            400
+-            400,
+-            ApiProblem::TYPE_VALIDATION_ERROR
 -        );
 -        $apiProblem->set('errors', $errors);
 -
@@ -50,7 +50,7 @@ index 1091f5f..b7995a3 100644
  
          return $this->createApiResponse($token, 201);
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index da7a4ca..d606474 100644
+index 3d90ed9..804365d 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
 @@ -284,4 +284,15 @@ abstract class BaseController implements ControllerProviderInterface
@@ -61,8 +61,8 @@ index da7a4ca..d606474 100644
 +    protected function throwApiProblemValidationException(array $errors)
 +    {
 +        $apiProblem = new ApiProblem(
-+            ApiProblem::TYPE_VALIDATION_ERROR,
-+            400
++            400,
++            ApiProblem::TYPE_VALIDATION_ERROR
 +        );
 +        $apiProblem->set('errors', $errors);
 +
