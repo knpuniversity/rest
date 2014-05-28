@@ -91,8 +91,8 @@ Back in the controller, throw a new ``ApiProblemException`` and pass the
 
         if ($data === null) {
             $problem = new ApiProblem(
-                ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT,
-                400
+                400,
+                ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT
             );
 
             throw new ApiProblemException($problem);
@@ -217,7 +217,7 @@ function to ``throwApiProblemValidationException``::
         );
         $apiProblem->set('errors', $errors);
 
-        throw new ApiProblemException(400, $apiProblem);
+        throw new ApiProblemException($apiProblem);
     }
 
 Now, update ``newAction`` and ``updateAction`` to use the new function name.

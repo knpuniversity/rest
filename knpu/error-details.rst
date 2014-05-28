@@ -38,10 +38,7 @@ see it.
 
     // ...
     } else {
-        $apiProblem = new ApiProblem(
-            null,
-            $statusCode
-        );
+        $apiProblem = new ApiProblem($statusCode);
     }
 
 Before we fix this, let's update the 404 scenario. We can use the standard
@@ -68,10 +65,7 @@ of ``HttpException``::
     if ($e instanceof ApiProblemException) {
         $apiProblem = $e->getApiProblem();
     } else {
-        $apiProblem = new ApiProblem(
-            null,
-            $statusCode
-        );
+        $apiProblem = new ApiProblem($statusCode);
 
         if ($e instanceof HttpException) {
             $apiProblem->set('detail', $e->getMessage());

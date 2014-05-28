@@ -95,10 +95,7 @@ that's easy! If not, we need to do our best to create one::
         if ($e instanceof ApiProblemException) {
             $apiProblem = $e->getApiProblem();
         } else {
-            $apiProblem = new ApiProblem(
-                null,
-                $statusCode
-            );
+            $apiProblem = new ApiProblem($statusCode);
         }
         
         // ...
@@ -111,10 +108,10 @@ that here, let's add a bit of logic into ``ApiProblem``::
     // src/KnpU/CodeBattle/Api/ApiProblem.php
     // ...
 
-    public function __construct($type = null, $statusCode)
+    public function __construct($statusCode, $type = null)
     {
-        $this->type = $type;
         $this->statusCode = $statusCode;
+        $this->type = $type;
 
         if (!$type) {
             // no type? The default is about:blank and the title should
@@ -135,11 +132,6 @@ that here, let's add a bit of logic into ``ApiProblem``::
 First, make ``$type`` optional. Then, if nothing is passed, set it to ``about:blank``.
 Next, Silex's ``Response`` class has a nice map of status codes and their
 short description. We can use to get a consistent title.
-
-.. tip::
-
-    It's a bit ugly to make ``$type`` (the first argument) optional, but
-    ``$statusCode`` required. You may want to re-order these arguments.
 
 Back in ``configureListeners``, the rest is exactly like before: use ``ApiProblem``
 to create a ``JsonResponse`` and set the ``application/problem+json`` ``Content-Type``

@@ -31,16 +31,16 @@ create a ``getStatusCode`` function, which we'll use in a moment::
 
     class ApiProblem
     {
-        private $type;
-
         private $statusCode;
+
+        private $type;
 
         private $title;
 
-        public function __construct($type, $statusCode, $title)
+        public function __construct($statusCode, $type, $title)
         {
-            $this->type = $type;
             $this->statusCode = $statusCode;
+            $this->type = $type;
             $this->title = $title;
         }
 
@@ -82,8 +82,8 @@ structure and avoid typos::
     private function handleValidationResponse(array $errors)
     {
         $apiProblem = new ApiProblem(
-            'validation_error',
             400,
+            'validation_error',
             'There was a validation error'
         );
         $apiProblem->set('errors', $errors);
@@ -108,9 +108,9 @@ function to ``ApiProblem``. We need to include the ``type``, ``title`` and
             return array_merge(
                 $this->extraData,
                 [
+                    'status' => $this->statusCode,
                     'type' => $this->type,
                     'title' => $this->title,
-                    'status' => $this->statusCode
                 ]
             );
         }
@@ -177,8 +177,8 @@ Now, just reference the constant when instantiating ``ApiProblem``::
     private function handleValidationResponse(array $errors)
     {
         $apiProblem = new ApiProblem(
-            ApiProblem::TYPE_VALIDATION_ERROR,
             400,
+            ApiProblem::TYPE_VALIDATION_ERROR,
             'There was a validation error'
         );
 
@@ -228,10 +228,10 @@ a title::
     {
         // ...
 
-        public function __construct($type, $statusCode)
+        public function __construct($statusCode, $type)
         {
-            $this->type = $type;
             $this->statusCode = $statusCode;
+            $this->type = $type;
 
             if (!isset(self::$titles[$type])) {
                 throw new \InvalidArgumentException('No title for type '.$type);
@@ -250,8 +250,8 @@ constructing the ``ApiProblem`` object::
     private function handleValidationResponse(array $errors)
     {
         $apiProblem = new ApiProblem(
-            ApiProblem::TYPE_VALIDATION_ERROR,
-            400
+            400,
+            ApiProblem::TYPE_VALIDATION_ERROR
         );
 
         // ...

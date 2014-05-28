@@ -152,8 +152,8 @@ Next, instantiate the new ``ApiProblem`` in the controller::
 
         if ($data === null) {
             $problem = new ApiProblem(
-                ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT,
-                400
+                400,
+                ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT
             );
 
             // ...
