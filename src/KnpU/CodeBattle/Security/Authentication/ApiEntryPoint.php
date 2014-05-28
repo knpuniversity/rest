@@ -37,6 +37,7 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
         $message = $this->getMessage($authException);
 
         $response = new JsonResponse(array('detail' => $message), 401);
+        $response->headers->set('Content-Type', 'application/problem+json');
 
         return $response;
     }
