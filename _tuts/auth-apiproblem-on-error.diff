@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
-index 26c4eea..fcdf12e 100644
+index d06b722..7eeba09 100644
 --- a/src/KnpU/CodeBattle/Api/ApiProblem.php
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
 @@ -13,9 +13,12 @@ class ApiProblem
@@ -14,9 +14,9 @@ index 26c4eea..fcdf12e 100644
 +        self::TYPE_AUTHENTICATION_ERROR => 'Invalid or missing authentication',
      );
  
-     private $type;
+     private $statusCode;
 diff --git a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
-index f1bedfa..c2dd942 100644
+index f1bedfa..fc9c42d 100644
 --- a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
 +++ b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
 @@ -2,6 +2,7 @@
@@ -32,7 +32,7 @@ index f1bedfa..c2dd942 100644
          $message = $this->getMessage($authException);
  
 -        $response = new JsonResponse(array('detail' => $message), 401);
-+        $problem = new ApiProblem(ApiProblem::TYPE_AUTHENTICATION_ERROR, 401);
++        $problem = new ApiProblem(401, ApiProblem::TYPE_AUTHENTICATION_ERROR);
 +        $problem->set('detail', $message);
 +
 +        $response = new JsonResponse($problem->toArray(), 401);

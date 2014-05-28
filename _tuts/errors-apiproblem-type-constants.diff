@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
-index 04e4be8..c7d67e4 100644
+index 3048473..dab1563 100644
 --- a/src/KnpU/CodeBattle/Api/ApiProblem.php
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
 @@ -7,6 +7,12 @@ namespace KnpU\CodeBattle\Api;
@@ -12,18 +12,18 @@ index 04e4be8..c7d67e4 100644
 +        self::TYPE_VALIDATION_ERROR => 'There was a validation error'
 +    );
 +
-     private $type;
- 
      private $statusCode;
+ 
+     private $type;
 @@ -15,11 +21,16 @@ class ApiProblem
  
      private $extraData = array();
  
--    public function __construct($type, $statusCode, $title)
-+    public function __construct($type, $statusCode)
+-    public function __construct($statusCode, $type, $title)
++    public function __construct($statusCode, $type)
      {
-         $this->type = $type;
          $this->statusCode = $statusCode;
+         $this->type = $type;
 -        $this->title = $title;
 +
 +        if (!isset(self::$titles[$type])) {
@@ -35,18 +35,16 @@ index 04e4be8..c7d67e4 100644
  
      public function toArray()
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index b76f218..1b75f6b 100644
+index ba17c62..7bd3e2d 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -164,9 +164,8 @@ class ProgrammerController extends BaseController
-     private function handleValidationResponse(array $errors)
+@@ -163,8 +163,7 @@ class ProgrammerController extends BaseController
      {
          $apiProblem = new ApiProblem(
+             400,
 -            'validation_error',
--            400,
 -            'There was a validation error'
-+            ApiProblem::TYPE_VALIDATION_ERROR,
-+            400
++            ApiProblem::TYPE_VALIDATION_ERROR
          );
          $apiProblem->set('errors', $errors);
  
