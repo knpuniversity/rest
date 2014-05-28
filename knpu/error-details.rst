@@ -89,6 +89,12 @@ In your application, you'll still want to be careful with this. We want to
 be helpful to the client, but we absolutely don't want to expose any of our
 internals. Make sure whatever logic you use here is very solid.
 
+Even *our* logic is a bit loose. For example, if we go to a URL that just
+doesn't exist, the client sees "No route found" in the details, which is
+a bit more than I want to show the user. To fix this, you could show messages
+from an even smaller set of exception classes. The `FOSRestBundle`_ for Symfony
+has a feature like this.
+
 Big Errors When Developing
 --------------------------
 
@@ -148,3 +154,5 @@ is no fun.
 
 Ok, be sure to remove our Exception message from ``showAction`` so our app
 works again.
+
+.. _`FOSRestBundle`: https://github.com/FriendsOfSymfony/FOSRestBundle/blob/master/Resources/doc/4-exception-controller-support.md#step-4-exceptioncontroller-support
