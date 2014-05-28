@@ -33,3 +33,4 @@ Feature:
     Then the response status code should be 200
     And the "battles" property should be an array
     And the "battles" property should contain 2 items
+    And the "battles.0.programmerUri" property should equal "/api/programmers/Fred"
