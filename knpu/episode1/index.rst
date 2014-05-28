@@ -22,3 +22,13 @@ Starting in Symfony2: Episode2
     put-improvements
     different-representations
     put-versus-post
+    delete
+    patch
+    errors
+    application-problem
+    error-consistency
+    error-invalid-json
+    error-api-problem-exception
+    error-404-json
+    error-details
+    whats-next
