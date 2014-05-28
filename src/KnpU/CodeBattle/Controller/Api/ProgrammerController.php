@@ -39,6 +39,10 @@ class ProgrammerController extends BaseController
     {
         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
 
+        if (!$programmer) {
+            $this->throw404();
+        }
+
         $data = array(
             'nickname' => $programmer->nickname,
             'avatarNumber' => $programmer->avatarNumber,
