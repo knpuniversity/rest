@@ -43,8 +43,7 @@ class ProgrammerController extends BaseController
         }
 
         $this->save($programmer);
-        $json = $this->serialize($programmer);
-        $response = new Response($json, 201);
+        $response = $this->createApiResponse($programmer, 201);
         $programmerUrl = $this->generateUrl(
             'api_programmers_show',
             ['nickname' => $programmer->nickname]
@@ -62,9 +61,7 @@ class ProgrammerController extends BaseController
             $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
         }
 
-        $json = $this->serialize($programmer);
-
-        $response = new Response($json, 200);
+        $response = $this->createApiResponse($programmer, 200);
 
         return $response;
     }
@@ -73,9 +70,8 @@ class ProgrammerController extends BaseController
     {
         $programmers = $this->getProgrammerRepository()->findAll();
         $data = array('programmers' => $programmers);
-        $json = $this->serialize($data);
 
-        $response = new Response($json, 200);
+        $response = $this->createApiResponse($data, 200, 'json');
 
         return $response;
     }
@@ -96,9 +92,7 @@ class ProgrammerController extends BaseController
 
         $this->save($programmer);
 
-        $json = $this->serialize($programmer);
-
-        $response = new Response($json, 200);
+        $response = $this->createApiResponse($programmer, 200);
 
         return $response;
     }
@@ -151,11 +145,6 @@ class ProgrammerController extends BaseController
         }
 
         $programmer->userId = $this->findUserByUsername('weaverryan')->id;
-    }
-
-    protected function serialize($data)
-    {
-        return $this->container['serializer']->serialize($data, 'json');
     }
 
     private function throwApiProblemValidationException(array $errors)
