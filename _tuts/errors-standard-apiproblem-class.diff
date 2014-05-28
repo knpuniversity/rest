@@ -1,6 +1,6 @@
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
 new file mode 100644
-index 0000000..04e4be8
+index 0000000..3048473
 --- /dev/null
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
 @@ -0,0 +1,46 @@
@@ -13,18 +13,18 @@ index 0000000..04e4be8
 + */
 +class ApiProblem
 +{
-+    private $type;
-+
 +    private $statusCode;
++
++    private $type;
 +
 +    private $title;
 +
 +    private $extraData = array();
 +
-+    public function __construct($type, $statusCode, $title)
++    public function __construct($statusCode, $type, $title)
 +    {
-+        $this->type = $type;
 +        $this->statusCode = $statusCode;
++        $this->type = $type;
 +        $this->title = $title;
 +    }
 +
@@ -33,9 +33,9 @@ index 0000000..04e4be8
 +        return array_merge(
 +            $this->extraData,
 +            [
++                'status' => $this->statusCode,
 +                'type' => $this->type,
 +                'title' => $this->title,
-+                'status' => $this->statusCode
 +            ]
 +        );
 +    }
@@ -51,7 +51,7 @@ index 0000000..04e4be8
 +    }
 +}
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 09af1f2..2fbb197 100644
+index 09af1f2..ba17c62 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -2,6 +2,7 @@
@@ -71,8 +71,8 @@ index 09af1f2..2fbb197 100644
 -            'title' => 'There was a validation error',
 -            'errors' => $errors
 +        $apiProblem = new ApiProblem(
-+            'validation_error',
 +            400,
++            'validation_error',
 +            'There was a validation error'
          );
 +        $apiProblem->set('errors', $errors);
