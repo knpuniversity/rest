@@ -35,10 +35,10 @@ index 04e4be8..c7d67e4 100644
  
      public function toArray()
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index b76f218..1b75f6b 100644
+index 2fbb197..a44e36f 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -164,9 +164,8 @@ class ProgrammerController extends BaseController
+@@ -162,9 +162,8 @@ class ProgrammerController extends BaseController
      private function handleValidationResponse(array $errors)
      {
          $apiProblem = new ApiProblem(
