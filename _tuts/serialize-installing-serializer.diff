@@ -318,7 +318,7 @@ index cc1b690..470c86f 100644
  
      ],
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 78b9fb5..2ce69ce 100644
+index 41c73be..518cc11 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -3,6 +3,7 @@
