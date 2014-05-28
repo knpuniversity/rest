@@ -80,6 +80,14 @@ First, make sure it's working by running the test:
 
     $ php bin/vendor/behat
 
+.. tip::
+
+    Silex/Symfony has an exception class for each of the most common 400 and
+    500 level responses. For example, :symfonyclass:`Symfony\\Component\\HttpKernel\\Exception\\BadRequestHttpException`
+    is a sub-class of ``HttpException`` that sets the status code to 400.
+    The result is the same: throwing these "named" exception classes is just
+    a bonus.
+
 Awesome! So why am I throwing an exception instead of just returning a normal
 400 response? The problem is that we're inside ``handleRequest``, so if I
 return a ``Response`` object here, it won't actually be sent back to the
