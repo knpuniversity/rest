@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 19d39f7..747608a 100644
+index 9d09a56..1e6e146 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -43,8 +43,7 @@ class ProgrammerController extends BaseController
@@ -45,7 +45,7 @@ index 19d39f7..747608a 100644
  
          return $response;
      }
-@@ -155,11 +149,6 @@ class ProgrammerController extends BaseController
+@@ -153,11 +147,6 @@ class ProgrammerController extends BaseController
          $programmer->userId = $this->findUserByUsername('weaverryan')->id;
      }
  
