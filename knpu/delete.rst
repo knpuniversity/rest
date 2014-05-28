@@ -74,21 +74,10 @@ that queries for a programmer and throws a 404 error if one doesn't exist::
     {
         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
 
-        if (!$programmer) {
-            $this->throw404();
-        }
-
         // ...
     }
 
-.. note::
-
-    Some people say that you should return a success status code (e.g. 204
-    instead of 404), even if what you're trying to delete doesn't exist (afterall,
-    if it never existed, that's the same end result as deleting it). You
-    can do that, but I think it could confuse your client.
-
-Now, just delete the programmer. I've created a shortcut method for this
+If the programmer exists, let's eliminate him! I've created a shortcut method
 called ``delete`` in my project. Your code will be different, but fortunately,
 deleting things is pretty easy::
 
@@ -98,7 +87,10 @@ deleting things is pretty easy::
     public function deleteAction($nickname)
     {
         // ...
-        $this->delete($programmer);
+
+        if ($programmer) {
+            $this->delete($programmer);
+        }
 
         // ...
     }
@@ -112,7 +104,10 @@ part is the 204 status code and the blank content, which is what 204 means::
     public function deleteAction($nickname)
     {
         // ...
-        $this->delete($programmer);
+
+        if ($programmer) {
+            $this->delete($programmer);
+        }
 
         return new Response(null, 204);
     }
