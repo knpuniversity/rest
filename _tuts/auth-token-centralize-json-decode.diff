@@ -1,8 +1,8 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index afc0f25..9a324a0 100644
+index a249d52..3934c79 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -127,17 +127,9 @@ class ProgrammerController extends BaseController
+@@ -125,17 +125,9 @@ class ProgrammerController extends BaseController
       */
      private function handleRequest(Request $request, Programmer $programmer)
      {
@@ -12,8 +12,8 @@ index afc0f25..9a324a0 100644
  
 -        if ($data === null) {
 -            $problem = new ApiProblem(
--                ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT,
--                400
+-                400,
+-                ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT
 -            );
 -            throw new ApiProblemException($problem);
 -        }
@@ -21,7 +21,7 @@ index afc0f25..9a324a0 100644
          // determine which properties should be changeable on this request
          $apiProperties = array('avatarNumber', 'tagLine');
          if ($isNew) {
-@@ -147,12 +139,11 @@ class ProgrammerController extends BaseController
+@@ -145,12 +137,11 @@ class ProgrammerController extends BaseController
          // update the properties
          foreach ($apiProperties as $property) {
              // if a property is missing on PATCH, that's ok - just skip it
@@ -54,7 +54,7 @@ index fbcc24f..1091f5f 100644
          $this->getApiTokenRepository()->save($token);
  
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index 4ceed95..da7a4ca 100644
+index 4ceed95..3d90ed9 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
 @@ -10,6 +10,7 @@ use KnpU\CodeBattle\Application;
@@ -88,8 +88,8 @@ index 4ceed95..da7a4ca 100644
 +
 +            if ($data === null) {
 +                $problem = new ApiProblem(
-+                    ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT,
-+                    400
++                    400,
++                    ApiProblem::TYPE_INVALID_REQUEST_BODY_FORMAT
 +                );
 +                throw new ApiProblemException($problem);
 +            }
