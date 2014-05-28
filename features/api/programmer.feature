@@ -20,6 +20,25 @@ Feature: Programmer
     And the "Location" header should be "/api/programmers/ObjectOrienter"
     And the "nickname" property should equal "ObjectOrienter"
 
+  Scenario: Validation errors
+    Given I have the payload:
+      """
+      {
+        "avatarNumber" : "2",
+        "tagLine": "I'm from a test!"
+      }
+      """
+    When I request "POST /api/programmers"
+    Then the response status code should be 400
+    And the following properties should exist:
+      """
+      type
+      title
+      errors
+      """
+    And the "errors.nickname" property should exist
+    But the "errors.avatarNumber" property should not exist
+
   Scenario: GET one programmer
     Given the following programmers exist:
       | nickname   | avatarNumber |
