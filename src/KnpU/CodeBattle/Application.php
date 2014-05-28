@@ -321,8 +321,13 @@ class Application extends SilexApplication
                 }
             }
 
+            $data = $apiProblem->toArray();
+            // making type a URL, to a temporarily fake page
+            if ($data['type'] != 'about:blank') {
+                $data['type'] = 'http://localhost:8000/api/docs/errors#'.$data['type'];
+            }
             $response = new JsonResponse(
-                $apiProblem->toArray(),
+                $data,
                 $statusCode
             );
             $response->headers->set('Content-Type', 'application/problem+json');
