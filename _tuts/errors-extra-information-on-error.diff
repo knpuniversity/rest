@@ -11,7 +11,7 @@ index 667ef35..9178b95 100644
    Scenario: GET one programmer
      Given the following programmers exist:
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 6d9ae43..423feb1 100644
+index b780f5c..ea3262b 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -31,6 +31,7 @@ use KnpU\CodeBattle\Repository\ProgrammerRepository;
@@ -22,8 +22,8 @@ index 6d9ae43..423feb1 100644
  use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
  use Symfony\Component\Validator\Mapping\Loader\AnnotationLoader;
  
-@@ -304,6 +305,16 @@ class Application extends SilexApplication
-                     null,
+@@ -303,6 +304,16 @@ class Application extends SilexApplication
+                 $apiProblem = new ApiProblem(
                      $statusCode
                  );
 +
@@ -40,7 +40,7 @@ index 6d9ae43..423feb1 100644
  
              $response = new JsonResponse(
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index d1785b4..7486a94 100644
+index af28eef..6d17348 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -59,7 +59,7 @@ class ProgrammerController extends BaseController
