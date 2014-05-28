@@ -17,7 +17,7 @@ index a52e61c..667ef35 100644
      Given the following programmers exist:
        | nickname   | avatarNumber |
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
-index 39560ba..26c4eea 100644
+index 69231ec..d06b722 100644
 --- a/src/KnpU/CodeBattle/Api/ApiProblem.php
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
 @@ -2,6 +2,8 @@
@@ -33,11 +33,11 @@ index 39560ba..26c4eea 100644
  
      private $extraData = array();
  
--    public function __construct($type, $statusCode)
-+    public function __construct($type = null, $statusCode)
+-    public function __construct($statusCode, $type)
++    public function __construct($statusCode, $type = null)
      {
-         $this->type = $type;
          $this->statusCode = $statusCode;
+         $this->type = $type;
  
 -        if (!isset(self::$titles[$type])) {
 -            throw new \InvalidArgumentException('No title for type '.$type);
@@ -61,7 +61,7 @@ index 39560ba..26c4eea 100644
  
      public function toArray()
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 3834b3c..6d9ae43 100644
+index 3834b3c..b780f5c 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -3,6 +3,7 @@
@@ -72,7 +72,7 @@ index 3834b3c..6d9ae43 100644
  use KnpU\CodeBattle\Api\ApiProblemException;
  use KnpU\CodeBattle\Battle\PowerManager;
  use KnpU\CodeBattle\Repository\BattleRepository;
-@@ -288,14 +289,25 @@ class Application extends SilexApplication
+@@ -288,14 +289,24 @@ class Application extends SilexApplication
  
      private function configureListeners()
      {
@@ -91,7 +91,6 @@ index 3834b3c..6d9ae43 100644
 +                $apiProblem = $e->getApiProblem();
 +            } else {
 +                $apiProblem = new ApiProblem(
-+                    null,
 +                    $statusCode
 +                );
 +            }
