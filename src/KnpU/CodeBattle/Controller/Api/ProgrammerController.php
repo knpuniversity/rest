@@ -35,15 +35,8 @@ class ProgrammerController extends BaseController
         $programmer = new Programmer();
         $this->handleRequest($request, $programmer);
 
-        $errors = $this->validate($programmer);
-        if (!empty($errors)) {
-            $data = array(
-                'type' => 'validation_error',
-                'title' => 'There was a validation error',
-                'errors' => $errors
-            );
-
-            return new JsonResponse($data, 400);
+        if ($errors = $this->validate($programmer)) {
+            return $this->handleValidationResponse($errors);
         }
 
         $this->save($programmer);
@@ -95,6 +88,11 @@ class ProgrammerController extends BaseController
         }
 
         $this->handleRequest($request, $programmer);
+
+        if ($errors = $this->validate($programmer)) {
+            return $this->handleValidationResponse($errors);
+        }
+
         $this->save($programmer);
 
         $data = $this->serializeProgrammer($programmer);
@@ -158,5 +156,16 @@ class ProgrammerController extends BaseController
             'powerLevel' => $programmer->powerLevel,
             'tagLine' => $programmer->tagLine,
         );
+    }
+
+    private function handleValidationResponse(array $errors)
+    {
+        $data = array(
+            'type' => 'validation_error',
+            'title' => 'There was a validation error',
+            'errors' => $errors
+        );
+
+        return new JsonResponse($data, 400);
     }
 }
