@@ -6,7 +6,8 @@
         "doctrine/dbal": "~2.4.0",
         "monolog/monolog": "~1.7.0",
         "symfony/validator": "~2.4",
-        "symfony/expression-language": "~2.4"
+        "symfony/expression-language": "~2.4",
+        "jms/serializer": "@stable"
     },
     "require-dev": {
         "behat/mink": "~1.5",
