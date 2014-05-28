@@ -218,4 +218,4 @@ the URL:
       # ...
       And the "type" property should contain "/api/docs/errors#invalid_body_format"
 
-Run the tests agian. Ok, all greeen again!
+Run the tests again. Ok, all greeen!
