@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 9cbfa01..0d98f90 100644
+index a1918f7..af28eef 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -39,7 +39,7 @@ class ProgrammerController extends BaseController
@@ -20,7 +20,7 @@ index 9cbfa01..0d98f90 100644
          }
  
          $this->save($programmer);
-@@ -167,7 +167,7 @@ class ProgrammerController extends BaseController
+@@ -165,7 +165,7 @@ class ProgrammerController extends BaseController
          );
      }
  
@@ -28,8 +28,8 @@ index 9cbfa01..0d98f90 100644
 +    private function throwApiProblemValidationException(array $errors)
      {
          $apiProblem = new ApiProblem(
-             ApiProblem::TYPE_VALIDATION_ERROR,
-@@ -175,9 +175,6 @@ class ProgrammerController extends BaseController
+             400,
+@@ -173,9 +173,6 @@ class ProgrammerController extends BaseController
          );
          $apiProblem->set('errors', $errors);
  
