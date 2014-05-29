@@ -47,11 +47,11 @@ should contain the standard status code's description. 404 means "Not Found".
 Using the Exception Listener on all /api URLs
 ---------------------------------------------
 
-Now let's get to work! To make this work, we'll go back to the exception
-listener function. Now, we want to handle *any* exception, as long as the
-URL starts with ``/api``. We can pass a handle to this object into my anonymous
-function in order to  get Silex's ``Request``. With it, the ``getPathInfo``
-function gives us a clean version of the URL that we can check::
+Now let's roll up our sleeves and get to work! We'll go back to the exception listener 
+function. We want to handle *any* exception, as long as the URL starts with ``/api``. 
+We can pass a handle to this object into my anonymous function in order to get Silex's 
+``Request``. With it, the ``getPathInfo``function gives us a clean version of the URL 
+that we can check::
 
     // src/KnpU/CodeBattle/Application.php
     // ...
@@ -131,7 +131,7 @@ that here, let's add a bit of logic into ``ApiProblem``::
 
 First, make ``$type`` optional. Then, if nothing is passed, set it to ``about:blank``.
 Next, Silex's ``Response`` class has a nice map of status codes and their
-short description. We can use to get a consistent title.
+short description. We can use it to get a consistent title.
 
 Back in ``configureListeners``, the rest is exactly like before: use ``ApiProblem``
 to create a ``JsonResponse`` and set the ``application/problem+json`` ``Content-Type``
@@ -166,7 +166,7 @@ proper API problem response.
 The type key should be a URL
 ----------------------------
 
-We're now returning an API problem response in every problem scenario in
+We're now returning an API problem response whenever something goes wrong in
 our app. We can create these manually, like we did for validation errors.
 Or we can let them happen naturally, like when a 404 page occurs. We also
 have a very systematic way to create error responses, so that they stay consistent.
