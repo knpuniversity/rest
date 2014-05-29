@@ -60,8 +60,8 @@ is unchanged:
 
     Scenario: PATCH to update a programmer
       Given the following programmers exist:
-        | nickname    | avatarNumber | tagLine | powerLevel |
-        | CowboyCoder | 5            | foo     | 4          |
+        | nickname    | avatarNumber | tagLine |
+        | CowboyCoder | 5            | foo     |
       And I have the payload:
         """
         {
