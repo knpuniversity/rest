@@ -172,6 +172,39 @@ Just like with any other API response, we can create a ``JsonResponse`` class
 and pass it our data. The only difference with this endpoint is that it has
 a status code of 400.
 
+While we're here, let's move the saving of the programmer out of ``handleRequest``
+and into ``newAction`` and ``updateAction``::
+
+    public function newAction(Request $request)
+    {
+        $programmer = new Programmer();
+
+        $this->handleRequest($request, $programmer);
+
+        $errors = $this->validate($programmer);
+        if (!empty($errors)) {
+            // ...
+        }
+        
+        $this->save($programmer);
+
+        // ...
+    }
+    
+    public function updateAction(Request $request, $nickname)
+    {
+        // ... make the same change here, add $this->save($programmer);
+    }
+
+    private function handleRequest(Request $request, Programmer $programmer)
+    {
+        // ...
+
+        $programmer->userId = $this->findUserByUsername('weaverryan')->id;
+    }
+
+This way, we can save the programmer *only* if there are *no* validation errors.
+
 Let's try it!
 
 .. code-block::: bash
