@@ -5,7 +5,7 @@ We'll be returning a lot of ``application/problem+json`` responses, like
 for validation errors, 404 pages and really any error response.
 
 And of course, I want us to *always* be consistent. To make this really easy,
-why not create a new ``ApiProblem`` class holds all the fields we need?
+why not create a new ``ApiProblem`` class that holds all the fields we need?
 
 Start by creating a new ``Api`` directory and class called ``ApiProblem``::
 
