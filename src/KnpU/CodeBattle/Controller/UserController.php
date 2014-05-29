@@ -67,7 +67,7 @@ class UserController extends BaseController
 
         // errors? Show them!
         if (count($errors) > 0) {
-            return $this->render('user\register.twig', ['errors' => $errors, 'user' => $user]);
+            return $this->render('user\register.twig', array('errors' => $errors, 'user' => $user));
         }
 
         $userRepository->save($user);
