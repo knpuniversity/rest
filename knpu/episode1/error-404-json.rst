@@ -191,7 +191,7 @@ anonymous function, unless it's set to ``about:blank``::
 Of course, creating that page is still up to you. But we'll talk more about
 documentation in the next episode.
 
-Run the tests to see if we broken anything:
+Run the tests to see if we broke anything:
 
 .. code-block:: bash
 
