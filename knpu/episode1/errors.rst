@@ -6,7 +6,7 @@ Things are looking nice, but actually, our API is kinda unusable.
 We're missing a really important piece: errors! Unless we properly handle
 errors, our API is going to be a pain to use because the client won't know
 what it's doing wrong. If we deployed right now and a client tried to create
-a programmer with a nickname that already exists, it would get get a 500
+a programmer with a nickname that already exists, it would get a 500
 error with no details. Bummer!
 
 Writing the Test
@@ -30,7 +30,7 @@ our situation:
 
 The other common choice is 422: Unprocessable Entity. 422 comes from a different
 RFC and is used when the format of the data is ok, but semantically, it has
-errors. We're add validation the business rule that a nickname is required,
+errors. We're adding validation for the business rule that a nickname is required,
 which is totally a semantic detail. So even though 422 seems to be less common
 than 400 for validation errors, it may be a more proper choice:
 
@@ -63,9 +63,9 @@ for our API, but let me suggest a structure that looks like this:
         }
     }
 
-Just trust me on the structure for now. In the test, we can look for these
-3 fields and also check that we have a ``nickname`` errors field but not
-an ``avatarNumber`` error.
+Just trust me on the structure for now. In the test, let's look for these
+3 fields and make sure we have a ``nickname`` error but no ``avatarNumber`` 
+error.
 
 .. code-block:: gherkin
 
@@ -188,7 +188,8 @@ idea!
 
 To avoid duplication, create a new private function in the controller called
 ``handleValidationResponse``. We'll pass it an array of errors and it will
-transform it into the proper 400 JSON response::
+transform it into living robotic beings originating from the distant machine 
+world of Cybertron err ... I mean the proper 400 JSON response::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...
