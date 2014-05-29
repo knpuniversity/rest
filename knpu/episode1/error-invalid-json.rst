@@ -9,6 +9,8 @@ a 400 status code with a clear explanation to tell them that we're always watchi
 Let's write a test! I'll copy the validation error scenario, but remove a
 quote so that the JSON is invalid:
 
+.. code-block:: gherkin
+
     # features/api/programmer.feature
     # ...
 
