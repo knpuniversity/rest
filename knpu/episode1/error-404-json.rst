@@ -7,7 +7,7 @@ we're throwing a special type of exception class to trigger a 404 response.
 But in reality, the 404 response isn't JSON: it's a big HTML page. You can
 see this by browsing to a made-up programmer:
 
-    http://localhost:8000/api/programmers/fake
+    http://localhost:8000/api/programmers/bumblebee
 
 And actually, if we go to a completely made-up URL, we also see this same
 HTML page:
@@ -16,15 +16,14 @@ HTML page:
 
 Internally, Silex throws that same exception to cause this 404 page.
 
-Somehow, we need to be able to return JSON for *all* exceptions, not just
-our fancy ``ApiProblemException``. In fact, since we want to be consistent,
-we *really* want to return a response with a ``application/problem+json``
-``Content-Type``.
+Somehow, we need to be able to return JSON for *all* exceptions and
+while we are at it we should use the API problem detail format.
 
 Writing the Test
 ----------------
 
-First, let's write a test!
+First, what should we do?... anyone? Bueller?
+You know, write a test!
 
 .. code-block:: gherkin
 
