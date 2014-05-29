@@ -23,7 +23,8 @@ Writing the Test
 ----------------
 
 First, what should we do?... anyone? Bueller?
-You know, write a test!
+You know, write a test! Copy the GET scenario, but use a
+fake programmer name.
 
 .. code-block:: gherkin
 
