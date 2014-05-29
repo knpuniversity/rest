@@ -23,7 +23,8 @@ send a field, a REST API is supposed to set that field to null.
 Right now, our API follows this rule. If a client sends a PUT request to
 ``/api/programmers/ObjectOrienter`` to update the ``avatarNumber`` field
 but forgets to include the ``tagLine``, the ``tagLine`` will be set to null.
-So PUT is really more of a *replace* than an *update*.
+Woops! There goes some perfectly good data. So PUT is really more of a 
+*replace* than an *update*. 
 
 This is how PUT is *supposed* to work. But not all API's follow this rule,
 because it's a bit harsh and might cause data to be set to blank without
@@ -37,13 +38,12 @@ Introducing PATCH: The (Friendly) Update Method
 -----------------------------------------------
 
 With PATCH of course! The main HTTP methods like GET, POST, DELETE and PUT
-were introduced in that famous RFC 2616 document. But because PUT has this
-limitation, PATCH was born in `RFC 5789`_.
+were introduced in the famous RFC 2616 document. Maybe you've heard of it? 
+But because PUT has this limitation, PATCH was born in `RFC 5789`_.
 
-Typically, PATCH is used exactly like PUT, except that it allows for missing
-fields. It's used as the true update: when we forget to include the ``tagLine``
-field with a PATCH request, it understands what we're trying to do and leaves
-the existing ``tagLine`` untouched. PATCH, it's the friendly update.
+Typically, PATCH is used exactly like PUT, except if we don't send a ``tagline``
+field then it keeps its current value instead of obliterating it to null. PATCH, 
+it's the friendly update.
 
 Writing the Test
 ----------------
@@ -65,13 +65,13 @@ is unchanged:
       And I have the payload:
         """
         {
-          "tagLine": "bar"
+          "tagLine": "giddyup"
         }
         """
       When I request "PATCH /api/programmers/CowboyCoder"
       Then the response status code should be 200
       And the "avatarNumber" property should equal "5"
-      And the "tagLine" property should equal "bar"
+      And the "tagLine" property should equal "giddyup"
 
 Coding the Endpoint
 -------------------
@@ -79,7 +79,7 @@ Coding the Endpoint
 Let's head into our controller and add another routing line that matches
 the same ``/api/programmers/{nickname}`` URI, but only on PATCH requests.
 This looks a little bit different only because Silex doesn't natively support
-configuring PATCH request. But the result is the same as the other routing
+configuring PATCH requests. But the result is the same as the other routing
 lines::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
@@ -140,17 +140,17 @@ Should I Support PUT and PATCH?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 All of this wouldn't be RESTful if it weren't a bit controversial. Because
-PUT's correct behavior is harsh, many APIs just support PUT, but make it
+PUT's correct behavior is harsh, many APIs support PUT, but make it
 act like PATCH. Do what's best for your API clients, be consistent, and then
-make sure it's perfectly clear how things work. But remember, the more you
+make sure it's perfectly clear how things work. Remember, the more you
 bend the rules, the weirder your API will look when people are learning it.
 
 The Truth Behind PATCH
 ----------------------
 
 And about PATCH, I've been lying to you. We're *technically* using PATCH
-incorrectly. Let's go back to `RFC 5789`_ where it describes PATCH with a
-little more detail:
+incorrectly. womp womp... Let's go back to `RFC 5789`_ where it describes 
+PATCH with a little more detail:
 
     In a PUT request, the enclosed entity is considered to be a modified
     version of the resource stored on the origin server, and the client is
@@ -171,7 +171,7 @@ with details on what to update:
 
 In fact, even this little structure here comes from another proposed standard,
 `RFC 6902`_. If you want to know more about this, read the blog post
-`Please. Don't Patch Like An Idiot`_ from this tutorial's co-author William.
+`Please. Don't Patch Like An Idiot`_ from this tutorial's co-author Mr. William Durand.
 
 So what should you do in your API? It's tough, because we live in a world
 where the most popular API's still bend the rules. Try to follow the rules
