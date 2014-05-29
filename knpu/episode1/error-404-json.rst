@@ -198,8 +198,8 @@ Run the tests to see if we broke anything:
     $ php vendor/bin/behat
 
 Ah, we did! The scenario that is checking for invalid JSON is expecting the
-header to equal ``invalid_body_format``. Update the scenario to check for
-the URL:
+header to equal ``invalid_body_format``. Tweak the scenario so the URL doesn't
+break things:
 
 .. code-block:: gherking
 
