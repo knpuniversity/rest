@@ -257,4 +257,4 @@ To make sure we didn't break anything, we can run our tests:
     $ php bin/vendor/behat
 
 We could have also added another scenario to test the validation when updating.
-How detailed you get with your tests is up to you.
+But I'm not made of scenarios people! How detailed you get with your tests is up to you.
