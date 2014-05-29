@@ -216,12 +216,12 @@ Awesome, all green!
 Validation on Update
 --------------------
 
-What's that? You want to check our validation rules when updating too? Good
+What's that? You want to check our validation rules when updating too? Great
 idea!
 
 To avoid duplication, create a new private function in the controller called
 ``handleValidationResponse``. We'll pass it an array of errors and it will
-transform it into living robotic beings originating from the distant machine 
+transform into living robotic beings originating from the distant machine 
 world of Cybertron err ... I mean the proper 400 JSON response::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
