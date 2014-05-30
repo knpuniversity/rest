@@ -53,11 +53,11 @@ class ApiProblem
     {
         return array_merge(
             $this->extraData,
-            [
+            array(
                 'status' => $this->statusCode,
                 'type' => $this->type,
                 'title' => $this->title,
-            ]
+            )
         );
     }
 
