@@ -95,6 +95,7 @@ class ProgrammerController extends BaseController
         }
 
         $this->handleRequest($request, $programmer);
+        $this->save($programmer);
 
         $data = $this->serializeProgrammer($programmer);
 
@@ -147,8 +148,6 @@ class ProgrammerController extends BaseController
         }
 
         $programmer->userId = $this->findUserByUsername('weaverryan')->id;
-
-        $this->save($programmer);
     }
 
     private function serializeProgrammer(Programmer $programmer)
