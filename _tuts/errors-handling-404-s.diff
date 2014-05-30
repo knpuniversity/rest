@@ -17,7 +17,7 @@ index a52e61c..667ef35 100644
      Given the following programmers exist:
        | nickname   | avatarNumber |
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
-index 69231ec..d06b722 100644
+index fb03028..895a284 100644
 --- a/src/KnpU/CodeBattle/Api/ApiProblem.php
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
 @@ -2,6 +2,8 @@
@@ -29,7 +29,7 @@ index 69231ec..d06b722 100644
  /**
   * A wrapper for holding data to be used for a application/problem+json response
   */
-@@ -24,16 +26,25 @@ class ApiProblem
+@@ -23,16 +25,28 @@ class ApiProblem
  
      private $extraData = array();
  
@@ -42,16 +42,19 @@ index 69231ec..d06b722 100644
 -        if (!isset(self::$titles[$type])) {
 -            throw new \InvalidArgumentException('No title for type '.$type);
 -        }
-+        if (!$type) {
++        if ($type === null) {
 +            // no type? The default is about:blank and the title should
 +            // be the standard status code message
 +            $this->type = 'about:blank';
 +            $this->title = isset(Response::$statusTexts[$statusCode])
 +                ? Response::$statusTexts[$statusCode]
-+                : 'Unknown HTTP status code :(';
++                : 'Unknown status code :(';
 +        } else {
 +            if (!isset(self::$titles[$type])) {
-+                throw new \InvalidArgumentException('No title for type '.$type);
++                throw new \Exception(sprintf(
++                    'No title for type "%s". Did you make it up?',
++                    $type
++                ));
 +            }
  
 -        $this->title = self::$titles[$type];
@@ -61,7 +64,7 @@ index 69231ec..d06b722 100644
  
      public function toArray()
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 3834b3c..b780f5c 100644
+index e4f186c..9809328 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -3,6 +3,7 @@
@@ -72,7 +75,7 @@ index 3834b3c..b780f5c 100644
  use KnpU\CodeBattle\Api\ApiProblemException;
  use KnpU\CodeBattle\Battle\PowerManager;
  use KnpU\CodeBattle\Repository\BattleRepository;
-@@ -288,14 +289,24 @@ class Application extends SilexApplication
+@@ -288,15 +289,25 @@ class Application extends SilexApplication
  
      private function configureListeners()
      {
@@ -97,7 +100,9 @@ index 3834b3c..b780f5c 100644
 +
              $response = new JsonResponse(
 -                $e->getApiProblem()->toArray(),
+-                $e->getApiProblem()->getStatusCode()
 +                $apiProblem->toArray(),
-                 $statusCode
++                $apiProblem->getStatusCode()
              );
              $response->headers->set('Content-Type', 'application/problem+json');
+ 
