@@ -4,12 +4,12 @@ namespace KnpU\CodeBattle\Controller\Api;
 
 use KnpU\CodeBattle\Api\ApiProblem;
 use KnpU\CodeBattle\Controller\BaseController;
-use KnpU\CodeBattle\Model\Programmer;
 use Silex\Application;
 use Silex\ControllerCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use KnpU\CodeBattle\Model\Programmer;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ProgrammerController extends BaseController
@@ -58,7 +58,7 @@ class ProgrammerController extends BaseController
         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
 
         if (!$programmer) {
-            $this->throw404();
+            $this->throw404('Oh no! This programmer has deserted! We\'ll send a search party!');
         }
 
         $data = $this->serializeProgrammer($programmer);
@@ -86,7 +86,7 @@ class ProgrammerController extends BaseController
         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
 
         if (!$programmer) {
-            $this->throw404();
+            $this->throw404('Oh no! This programmer has deserted! We\'ll send a search party!');
         }
 
         $this->handleRequest($request, $programmer);
