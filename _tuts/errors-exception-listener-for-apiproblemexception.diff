@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 396e237..3834b3c 100644
+index 396e237..e4f186c 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -3,6 +3,7 @@
@@ -31,7 +31,7 @@ index 396e237..3834b3c 100644
 +
 +            $response = new JsonResponse(
 +                $e->getApiProblem()->toArray(),
-+                $statusCode
++                $e->getApiProblem()->getStatusCode()
 +            );
 +            $response->headers->set('Content-Type', 'application/problem+json');
 +
