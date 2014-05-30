@@ -1,21 +1,21 @@
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
-index dab1563..69231ec 100644
+index 16ec1f2..fb03028 100644
 --- a/src/KnpU/CodeBattle/Api/ApiProblem.php
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
-@@ -9,8 +9,11 @@ class ApiProblem
+@@ -8,9 +8,11 @@ namespace KnpU\CodeBattle\Api;
+ class ApiProblem
  {
      const TYPE_VALIDATION_ERROR = 'validation_error';
- 
 +    const TYPE_INVALID_REQUEST_BODY_FORMAT = 'invalid_body_format';
-+
-     static private $titles = array(
+ 
+     private static $titles = array(
 -        self::TYPE_VALIDATION_ERROR => 'There was a validation error'
 +        self::TYPE_VALIDATION_ERROR => 'There was a validation error',
 +        self::TYPE_INVALID_REQUEST_BODY_FORMAT => 'Invalid JSON format sent',
      );
  
      private $statusCode;
-@@ -54,4 +57,12 @@ class ApiProblem
+@@ -54,4 +56,12 @@ class ApiProblem
      {
          return $this->statusCode;
      }
@@ -30,10 +30,10 @@ index dab1563..69231ec 100644
  }
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblemException.php b/src/KnpU/CodeBattle/Api/ApiProblemException.php
 new file mode 100644
-index 0000000..b329d66
+index 0000000..5d60d4d
 --- /dev/null
 +++ b/src/KnpU/CodeBattle/Api/ApiProblemException.php
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,24 @@
 +<?php
 +
 +namespace KnpU\CodeBattle\Api;
@@ -47,8 +47,10 @@ index 0000000..b329d66
 +    public function __construct(ApiProblem $apiProblem, \Exception $previous = null, array $headers = array(), $code = 0)
 +    {
 +        $this->apiProblem = $apiProblem;
++        $statusCode = $apiProblem->getStatusCode();
++        $message = $apiProblem->getTitle();
 +
-+        parent::__construct($apiProblem->getStatusCode(), $apiProblem->getTitle(), $previous, $headers, $code);
++        parent::__construct($statusCode, $message, $previous, $headers, $code);
 +    }
 +
 +    public function getApiProblem()
