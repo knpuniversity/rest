@@ -1,6 +1,6 @@
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblemResponseFactory.php b/src/KnpU/CodeBattle/Api/ApiProblemResponseFactory.php
 new file mode 100644
-index 0000000..7da02a9
+index 0000000..f8b9247
 --- /dev/null
 +++ b/src/KnpU/CodeBattle/Api/ApiProblemResponseFactory.php
 @@ -0,0 +1,24 @@
@@ -17,7 +17,7 @@ index 0000000..7da02a9
 +        $data = $apiProblem->toArray();
 +        // making type a URL, to a temporarily fake page
 +        if ($data['type'] != 'about:blank') {
-+            $data['type'] = 'http://localhost:8000/api/docs/errors#'.$data['type'];
++            $data['type'] = 'http://localhost:8000/docs/errors#'.$data['type'];
 +        }
 +        $response = new JsonResponse(
 +            $data,
@@ -29,7 +29,7 @@ index 0000000..7da02a9
 +    }
 +}
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 518cc11..33dd97f 100644
+index 18a4e73..33dd97f 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -6,6 +6,7 @@ use Doctrine\Common\Annotations\AnnotationReader;
@@ -75,11 +75,11 @@ index 518cc11..33dd97f 100644
 -            $data = $apiProblem->toArray();
 -            // making type a URL, to a temporarily fake page
 -            if ($data['type'] != 'about:blank') {
--                $data['type'] = 'http://localhost:8000/api/docs/errors#'.$data['type'];
+-                $data['type'] = 'http://localhost:8000/docs/errors#'.$data['type'];
 -            }
 -            $response = new JsonResponse(
 -                $data,
--                $statusCode
+-                $apiProblem->getStatusCode()
 -            );
 -            $response->headers->set('Content-Type', 'application/problem+json');
 +            /** @var \KnpU\CodeBattle\Api\ApiProblemResponseFactory $factory */
