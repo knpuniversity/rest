@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 9d09a56..1e6e146 100644
+index 741222e..9961134 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -43,8 +43,7 @@ class ProgrammerController extends BaseController
@@ -13,7 +13,7 @@ index 9d09a56..1e6e146 100644
              'api_programmers_show',
              ['nickname' => $programmer->nickname]
 @@ -62,9 +61,7 @@ class ProgrammerController extends BaseController
-             $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
+             $this->throw404('Oh no! This programmer has deserted! We\'ll send a search party!');
          }
  
 -        $json = $this->serialize($programmer);
