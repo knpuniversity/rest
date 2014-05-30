@@ -57,7 +57,7 @@ index 0000000..b329d66
 +    }
 +}
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index e2c4f24..a1918f7 100644
+index 14378c5..0c56c51 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -3,6 +3,7 @@
@@ -66,8 +66,8 @@ index e2c4f24..a1918f7 100644
  use KnpU\CodeBattle\Api\ApiProblem;
 +use KnpU\CodeBattle\Api\ApiProblemException;
  use KnpU\CodeBattle\Controller\BaseController;
- use KnpU\CodeBattle\Model\Programmer;
  use Silex\Application;
+ use Silex\ControllerCollection;
 @@ -127,7 +128,11 @@ class ProgrammerController extends BaseController
          $isNew = !$programmer->id;
  

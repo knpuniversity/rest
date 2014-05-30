@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 6bc2527..12dc74b 100644
+index df70743..8175a9a 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -20,7 +20,13 @@ class ProgrammerController extends BaseController
@@ -16,7 +16,7 @@ index 6bc2527..12dc74b 100644
          $controllers->delete('/api/programmers/{nickname}', array($this, 'deleteAction'));
      }
  
-@@ -121,6 +127,11 @@ class ProgrammerController extends BaseController
+@@ -119,6 +125,11 @@ class ProgrammerController extends BaseController
  
          // update the properties
          foreach ($apiProperties as $property) {
