@@ -39,25 +39,3 @@ index b780f5c..ea3262b 100644
              }
  
              $response = new JsonResponse(
-diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index af28eef..6d17348 100644
---- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-+++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -59,7 +59,7 @@ class ProgrammerController extends BaseController
-         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
- 
-         if (!$programmer) {
--            $this->throw404();
-+            $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
-         }
- 
-         $data = $this->serializeProgrammer($programmer);
-@@ -87,7 +87,7 @@ class ProgrammerController extends BaseController
-         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
- 
-         if (!$programmer) {
--            $this->throw404();
-+            $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
-         }
- 
-         $this->handleRequest($request, $programmer);
