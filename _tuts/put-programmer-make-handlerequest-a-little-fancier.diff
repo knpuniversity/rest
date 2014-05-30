@@ -1,8 +1,8 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index a46235f..e4b1349 100644
+index fe1ec77..1f34f08 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -100,9 +100,15 @@ class ProgrammerController extends BaseController
+@@ -98,9 +98,15 @@ class ProgrammerController extends BaseController
              throw new \Exception(sprintf('Invalid JSON: '.$request->getContent()));
          }
  
@@ -19,5 +19,5 @@ index a46235f..e4b1349 100644
 +        }
 +
          $programmer->userId = $this->findUserByUsername('weaverryan')->id;
-     }
  
+         $this->save($programmer);
