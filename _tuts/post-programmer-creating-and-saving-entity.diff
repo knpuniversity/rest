@@ -1,15 +1,15 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 628d636..dee4de0 100644
+index 628d636..5cd4172 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -3,6 +3,7 @@
- namespace KnpU\CodeBattle\Controller\Api;
- 
- use KnpU\CodeBattle\Controller\BaseController;
-+use KnpU\CodeBattle\Model\Programmer;
- use Silex\Application;
- use Silex\ControllerCollection;
+@@ -8,6 +8,7 @@ use Silex\ControllerCollection;
  use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\HttpFoundation\Response;
+ use Symfony\Component\HttpFoundation\JsonResponse;
++use KnpU\CodeBattle\Model\Programmer;
+ 
+ class ProgrammerController extends BaseController
+ {
 @@ -18,7 +19,14 @@ class ProgrammerController extends BaseController
  
      public function newAction(Request $request)
