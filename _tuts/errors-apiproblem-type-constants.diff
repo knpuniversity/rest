@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
-index 3048473..dab1563 100644
+index c0725d6..16ec1f2 100644
 --- a/src/KnpU/CodeBattle/Api/ApiProblem.php
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
 @@ -7,6 +7,12 @@ namespace KnpU\CodeBattle\Api;
@@ -8,7 +8,7 @@ index 3048473..dab1563 100644
  {
 +    const TYPE_VALIDATION_ERROR = 'validation_error';
 +
-+    static private $titles = array(
++    private static $titles = array(
 +        self::TYPE_VALIDATION_ERROR => 'There was a validation error'
 +    );
 +
