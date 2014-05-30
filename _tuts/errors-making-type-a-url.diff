@@ -12,7 +12,7 @@ index 9178b95..4e7d28e 100644
    Scenario: Proper 404 exception on no programmer
      When I request "GET /api/programmers/fake"
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 5ea57bc..41c73be 100644
+index 1769d4f..833102b 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -321,8 +321,13 @@ class Application extends SilexApplication
@@ -22,11 +22,11 @@ index 5ea57bc..41c73be 100644
 +            $data = $apiProblem->toArray();
 +            // making type a URL, to a temporarily fake page
 +            if ($data['type'] != 'about:blank') {
-+                $data['type'] = 'http://localhost:8000/api/docs/errors#'.$data['type'];
++                $data['type'] = 'http://localhost:8000/docs/errors#'.$data['type'];
 +            }
              $response = new JsonResponse(
 -                $apiProblem->toArray(),
 +                $data,
-                 $statusCode
+                 $apiProblem->getStatusCode()
              );
              $response->headers->set('Content-Type', 'application/problem+json');
