@@ -14,7 +14,7 @@ index 2ca90c4..f60670a 100644
 +    Then the response status code should be 400
 +    And the "errors.notes" property should equal "Please add some notes about this token"
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 3934c79..f365921 100644
+index fc09795..4be8400 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -146,15 +146,4 @@ class ProgrammerController extends BaseController
