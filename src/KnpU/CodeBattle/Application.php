@@ -296,7 +296,7 @@ class Application extends SilexApplication
 
             $response = new JsonResponse(
                 $e->getApiProblem()->toArray(),
-                $statusCode
+                $e->getApiProblem()->getStatusCode()
             );
             $response->headers->set('Content-Type', 'application/problem+json');
 
