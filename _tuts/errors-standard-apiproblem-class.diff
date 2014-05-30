@@ -1,6 +1,6 @@
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
 new file mode 100644
-index 0000000..3048473
+index 0000000..c0725d6
 --- /dev/null
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
 @@ -0,0 +1,46 @@
@@ -32,11 +32,11 @@ index 0000000..3048473
 +    {
 +        return array_merge(
 +            $this->extraData,
-+            [
++            array(
 +                'status' => $this->statusCode,
 +                'type' => $this->type,
 +                'title' => $this->title,
-+            ]
++            )
 +        );
 +    }
 +
