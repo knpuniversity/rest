@@ -9,7 +9,7 @@ class ApiProblem
 {
     const TYPE_VALIDATION_ERROR = 'validation_error';
 
-    static private $titles = array(
+    private static $titles = array(
         self::TYPE_VALIDATION_ERROR => 'There was a validation error'
     );
 
