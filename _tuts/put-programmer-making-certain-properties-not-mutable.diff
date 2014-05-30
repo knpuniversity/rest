@@ -17,10 +17,10 @@ index 5980364..0c889cd 100644
      And the "avatarNumber" property should equal "2"
 +    But the "nickname" property should equal "CowboyCoder"
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index e4b1349..f1e90fe 100644
+index 1f34f08..b2e7ec9 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -95,13 +95,17 @@ class ProgrammerController extends BaseController
+@@ -93,13 +93,17 @@ class ProgrammerController extends BaseController
      private function handleRequest(Request $request, Programmer $programmer)
      {
          $data = json_decode($request->getContent(), true);
