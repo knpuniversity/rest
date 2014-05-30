@@ -77,7 +77,7 @@ class ProgrammerController extends BaseController
         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
 
         if (!$programmer) {
-            $this->throw404();
+            $this->throw404('Oh no! This programmer has deserted! We\'ll send a search party!');
         }
 
         $data = json_decode($request->getContent(), true);
