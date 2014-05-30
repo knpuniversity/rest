@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 7ea9de0..a249d52 100644
+index fb3cdf3..85849ff 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -36,9 +36,7 @@ class ProgrammerController extends BaseController
@@ -22,7 +22,7 @@ index 7ea9de0..a249d52 100644
          $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
  
          if (!$programmer) {
-             $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
+             $this->throw404('Oh no! This programmer has deserted! We\'ll send a search party!');
          }
  
 +        $this->enforceProgrammerOwnershipSecurity($programmer);
