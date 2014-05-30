@@ -27,7 +27,6 @@ class ProgrammerController extends BaseController
     {
         $programmer = new Programmer();
         $this->handleRequest($request, $programmer);
-        $this->save($programmer);
 
         $data = $this->serializeProgrammer($programmer);
         $response = new JsonResponse($data, 201);
@@ -77,7 +76,6 @@ class ProgrammerController extends BaseController
         }
 
         $this->handleRequest($request, $programmer);
-        $this->save($programmer);
 
         $data = $this->serializeProgrammer($programmer);
 
@@ -104,6 +102,8 @@ class ProgrammerController extends BaseController
         $programmer->avatarNumber = $data['avatarNumber'];
         $programmer->tagLine = $data['tagLine'];
         $programmer->userId = $this->findUserByUsername('weaverryan')->id;
+
+        $this->save($programmer);
     }
 
     private function serializeProgrammer(Programmer $programmer)
