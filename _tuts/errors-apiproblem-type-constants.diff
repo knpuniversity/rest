@@ -35,7 +35,7 @@ index 3048473..dab1563 100644
  
      public function toArray()
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index ba17c62..7bd3e2d 100644
+index 931604e..567790f 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -163,8 +163,7 @@ class ProgrammerController extends BaseController
