@@ -328,7 +328,7 @@ class Application extends SilexApplication
             }
             $response = new JsonResponse(
                 $data,
-                $statusCode
+                $apiProblem->getStatusCode()
             );
             $response->headers->set('Content-Type', 'application/problem+json');
 
