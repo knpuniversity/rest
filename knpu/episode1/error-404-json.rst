@@ -201,7 +201,7 @@ Ah, we did! The scenario that is checking for invalid JSON is expecting the
 header to equal ``invalid_body_format``. Tweak the scenario so the URL doesn't
 break things:
 
-.. code-block:: gherking
+.. code-block:: gherkin
 
     # features/api/programmer.feature
     # ...
