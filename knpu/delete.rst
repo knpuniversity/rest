@@ -37,6 +37,8 @@ a 204 status code, which means "No Content". It's the server's way of saying
 "I completed your request ok, but I really don't have anything else to tell
 you beyond that". In other words, the response will have an empty body:
 
+.. code-block:: gherkin
+
     # features/api/programmer.feature
     # ...
 
@@ -52,7 +54,7 @@ Coding the Endpoint
 
 To make this work, we'll need to create a route that responds to the HTTP
 ``DELETE`` method. Make sure the URL is the same as what we use to GET one
-programmer, because we want to take the DELETE action on that resource:
+programmer, because we want to take the DELETE action on that resource::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
     // ...

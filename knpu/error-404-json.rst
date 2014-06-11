@@ -47,10 +47,10 @@ should contain the standard status code's description. 404 means "Not Found".
 Using the Exception Listener on all /api URLs
 ---------------------------------------------
 
-Now let's roll up our sleeves and get to work! We'll go back to the exception listener 
-function. We want to handle *any* exception, as long as the URL starts with ``/api``. 
-We can pass a handle to this object into my anonymous function in order to get Silex's 
-``Request``. With it, the ``getPathInfo``function gives us a clean version of the URL 
+Now let's roll up our sleeves and get to work! We'll go back to the exception listener
+function. We want to handle *any* exception, as long as the URL starts with ``/api``.
+We can pass a handle to this object into my anonymous function in order to get Silex's
+``Request``. With it, the ``getPathInfo`` function gives us a clean version of the URL
 that we can check::
 
     // src/KnpU/CodeBattle/Application.php
@@ -138,6 +138,8 @@ to create a ``JsonResponse`` and set the ``application/problem+json`` ``Content-
 header on it. Now, if an exception is thrown from *anywhere* in the system
 for a URL beginning with ``/api``, the client will get back an API problem
 response. It took a little bit of work, but this is huge!
+
+.. code-block:: php
 
     // src/KnpU/CodeBattle/Application.php
     // ...
