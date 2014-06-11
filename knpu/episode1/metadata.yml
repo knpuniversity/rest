@@ -19,9 +19,6 @@ summary: |
     * RFCs and where the "rules" come from
     * Advanced error and validation handling
 
-    **This tutorial is still being released! Chapters on the left will become
-    available as we publish them. :)**
-
     If you want to know about Hypermedia, HATEOAS, Documenting your API,
     Content-Type negotiation, pagination and more, these are **not** covered
     here, but will be covered in [Episode 2](/screencast/rest-ep2)!
@@ -123,60 +120,50 @@ chapters:
     delete:
         title:      DELETE: For Deleting
         is_free:    false
-        is_finished: 0
         length:     2:29
         video_key:  j38t4tq3ks
     patch:
         title:      PATCH: The Other Edit
         is_free:    false
-        is_finished: 0
         length:     4:53
         video_key:  wkprl3fv53
     errors:
         title:      Advanced Error Handling
         is_free:    false
-        is_finished: 0
         length:     5:41
         video_key:  dn31njb4g2
     application-problem:
         title:      Application Problem
         is_free:    false
-        is_finished: 0
         length:     4:26
         video_key:  g6jbblr0u5
     error-consistency:
         title:      Error Consistency
         is_free:    false
-        is_finished: 0
         length:     5:13
         video_key:  a86bnkzmdy
     error-invalid-json:
         title:      Error Invalid Json
         is_free:    false
-        is_finished: 0
         length:     4:28
         video_key:  83yopv4idn
     error-api-problem-exception:
         title:      "Error: API Problem Exception"
         is_free:    false
-        is_finished: 0
         length:     5:38
         video_key:  zvizcuof9n
     error-404-json:
         title:      "Error 404 Json"
         is_free:    false
-        is_finished: 0
         length:     6:17
         video_key:  7qp3sxxwd8
     error-details:
         title:      Error Details
         is_free:    false
-        is_finished: 0
         length:     4:56
         video_key:  gfrkn4f0ec
     whats-next:
         title:      What's Next?
         is_free:    false
-        is_finished: 0
         length:     1:02
         video_key:  40b1lzdp5a
