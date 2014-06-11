@@ -5,7 +5,7 @@ We'll be returning a lot of ``application/problem+json`` responses, like
 for validation errors, 404 pages and really any error response.
 
 And of course, I want us to *always* be consistent. To make this really easy,
-why not create a new ``ApiProblem`` class holds all the fields we need?
+why not create a new ``ApiProblem`` class that holds all the fields we need?
 
 Start by creating a new ``Api`` directory and class called ``ApiProblem``::
 
@@ -147,7 +147,7 @@ To try it out, just re-run the tests:
     $ php bin/vendor/behat
 
 Now, just like each resource, our error responses have a PHP class that helps
-to model them. Nice!
+to model them. Very nice!
 
 Constants: More Consistency
 ---------------------------
@@ -185,7 +185,7 @@ Now, just reference the constant when instantiating ``ApiProblem``::
         // ...
     }
 
-That's one less spot where I can mess something up on accident.
+Awesomely enough that's one less spot for me to screw up.
 
 Mapping title to type
 ~~~~~~~~~~~~~~~~~~~~~
@@ -194,7 +194,7 @@ But we can go further. According to the spec, the ``title`` field is the
 description of a given ``type``. In other words, we should have the exact
 same ``title`` everywhere that we use the ``validation_error`` ``type``.
 
-To force this consistency, let's create an array map on ``ApiProblem`` from
+To force this consistency, create an array map on ``ApiProblem`` from
 ``type`` to its human-description::
 
     // src/KnpU/CodeBattle/Api/ApiProblem.php
@@ -216,7 +216,7 @@ To force this consistency, let's create an array map on ``ApiProblem`` from
     You can also choose to translate the ``title``. If you need this, you'll
     need to run the key through your translator before returning it.
 
-And instead of passing the ``$title`` as the second argument to the constructor,
+And instead of passing the ``$title`` as the third argument to the constructor,
 we can just look it up by the ``$type``. And like the good programmers we
 are, we'll throw a huge, ugly and descriptive exception if we don't find
 a title::

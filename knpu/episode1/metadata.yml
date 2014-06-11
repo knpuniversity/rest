@@ -1,6 +1,6 @@
 title:  RESTful APIs in the Real World Episode 1
 price:  12
-length: 58:53
+length: 1:45:05
 summary: |
     Making RESTful APIs is hard, really hard. There are a lot of concepts
     to know - resources, representations, HTTP methods, status codes, etc.
@@ -111,19 +111,49 @@ chapters:
         title:      DELETE: For Deleting
         is_free:    false
         is_finished: 0
-        length:     0:00
+        length:     2:29
     patch:
         title:      PATCH: The Other Edit
         is_free:    false
         is_finished: 0
-        length:     0:00
+        length:     4:53
     errors:
         title:      Advanced Error Handling
         is_free:    false
         is_finished: 0
-        length:     0:00
+        length:     5:41
+    application-problem:
+        title:      Application Problem
+        is_free:    false
+        is_finished: 0
+        length:     4:26
+    error-consistency:
+        title:      Error Consistency
+        is_free:    false
+        is_finished: 0
+        length:     5:13
+    error-invalid-json:
+        title:      Error Invalid Json
+        is_free:    false
+        is_finished: 0
+        length:     4:28
+    error-api-problem-exception:
+        title:      "Error: API Problem Exception"
+        is_free:    false
+        is_finished: 0
+        length:     5:38
+    error-404-json:
+        title:      "Error 404 Json"
+        is_free:    false
+        is_finished: 0
+        length:     6:17
+    error-details:
+        title:      Error Details
+        is_free:    false
+        is_finished: 0
+        length:     4:56
     whats-next:
         title:      What's Next?
         is_free:    false
         is_finished: 0
-        length:     0:00
+        length:     1:02

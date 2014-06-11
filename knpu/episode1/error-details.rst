@@ -8,26 +8,11 @@ response with a 404 status code. That magic is part of Silex. But without
 this, we could have built in our own logic in the exception listener to map
 certain exception classes to specific status codes.
 
-All PHP exception have an optional message, which we can populate by passing
-an argument to ``throw404``. Let's do that and include some details that
-might help explain the 404 to the client::
+All exceptions have an optional message, which we can populate by passing
+an argument to ``throw404``. We're already including some details that might
+help the API client.
 
-    // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-    // ...
-
-    public function showAction($nickname)
-    {
-        $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
-
-        if (!$programmer) {
-            $this->throw404(sprintf('The programmer %s does not exist!', $nickname));
-        }
-        // ...
-    }
-
-    // ... repeat for other throw404 lines
-
-If you go to ``/api/programmers/FooBar`` in the browser, we get a 404 JSON
+If you go to ``/api/programmers/bumblebee`` in the browser, we get a 404 JSON
 response, but we don't see that message. Look back at our exception-handling
 function. The ``NotFoundHttpException`` is not an instance of ``ApiProblemException``,
 so we fall into the situation where we create the ``ApiProblem`` by hand.
@@ -54,7 +39,7 @@ To get this working, we're going to set the ``details`` property to be the
 exception object's message. But wait! We need to be very very careful. We
 don't *always* want to expose the message. What if some deep exception is
 thrown from the database? We might be exposing our database structure. That
-would be terrible.
+would be awkward.
 
 Instead, let's *only* expose the message if the exception is an instance
 of ``HttpException``::
@@ -81,7 +66,7 @@ Run the test to try it out. Awesome! That's a much more helpful error response.
 
 In your application, you'll still want to be careful with this. We want to
 be helpful to the client, but we absolutely don't want to expose any of our
-internals. Make sure whatever logic you use here is very solid.
+internals. Make sure whatever logic you use here is very solid. #security
 
 Even *our* logic is a bit loose. For example, if we go to a URL that just
 doesn't exist, the client sees "No route found" in the details, which is
@@ -104,9 +89,9 @@ and see how the tests look::
         // ...
     }
 
-Let's run *just* one of the scenarios that use ``showAction``. To do this,
+Let's run *just* one of the scenarios that uses ``showAction``. To do this,
 we can point Behat directly at the ``.feature`` file and include the line
-number where the word ``Scenario:`` appears, line 64 in my case:
+number where the word ``Scenario:`` appears:
 
 .. code-block:: bash
 

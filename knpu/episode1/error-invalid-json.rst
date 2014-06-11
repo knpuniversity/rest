@@ -1,13 +1,15 @@
 Error in Invalid JSON
 =====================
 
-Beyond validation errors, what else could go wrong? What if the client makes
-a mistake and sends us invalid JSON? Right now, that would probably result
-in a cryptic 500 error message. But this should just be another 400 status
-code with a clear explanation.
+Beyond validation errors, what else could go wrong? Well what if a tricky client
+tries to mess with us by sending invalid JSON? Right now, that would result
+in a cryptic 500 error message. We can't let them catch us off guard, so we need
+a 400 status code with a clear explanation to tell them that we're always watching.
 
 Let's write a test! I'll copy the validation error scenario, but remove a
 quote so that the JSON is invalid:
+
+.. code-block:: gherkin
 
     # features/api/programmer.feature
     # ...
@@ -23,8 +25,8 @@ quote so that the JSON is invalid:
       When I request "POST /api/programmers"
       Then the response status code should be 400
 
-For now, let's just continue to check that the status code is 400. If we
-run the test immediately, it fails with a 500 error instead.
+For now, let's just continue to check that the status code is 400. take that 
+shifty client! If we run the test immediately, it fails with a 500 error instead.
 
 Handling Invalid JSON
 ---------------------
@@ -92,25 +94,25 @@ Awesome! So why am I throwing an exception instead of just returning a normal
 400 response? The problem is that we're inside ``handleRequest``, so if I
 return a ``Response`` object here, it won't actually be sent back to the
 user unless we also return that value from ``newAction`` and ``updateAction``.
-That just gets tricky and a bit ugly.
+That just gets confusing and a bit ugly.
 
 Instead, if we throw an exception, the normal execution will stop immediately
 and the user will *definitely* get the 400 response. So being able to throw
-an exception like this makes my code easier to write and understand.
+an exception like this makes my code easier to write and understand. Double threat!
 
 The disadvantage is complexity. When I throw an exception, I need to have
-some other magic layer that is able to convert that exception into a proper
-response. In Silex, that magic layer is smart enough to see my ``HttpException``
+some other magic layer that is able to convert it into a proper response. 
+In Silex, that magic layer is smart enough to see my ``HttpException``
 and create a response with a 400 status code instead of 500.
 
-If this doesn't make sense yet, keep following along with me.
+If this doesn't make sense yet, keep following along.
 
 ApiProblem for Invalid JSON
 ---------------------------
 
 Since invalid JSON is a "problem", we should really send back an ``application/problem+json``
 response. Let's first update the test to look for this ``Content-Type`` header
-and a ``type`` field that's equal to a new type called ``invalid_body_format``:
+and then look for a ``type`` field that's equal to ``invalid_body_format``:
 
     # features/api/programmer.feature
     # ...
@@ -163,7 +165,7 @@ Next, instantiate the new ``ApiProblem`` in the controller::
     }
 
 But now what? When we had validation errors, we just created a new ``JsonResponse``,
-passed ``$problem->toArray()`` to it as data, and returned it. But here, we
+passed ``$problem->toArray()`` as data, and returned it. But here, we
 want to throw an exception instead so that the normal flow stops.
 
 We're going to fix this in two steps. First, we *will* throw an Exception,

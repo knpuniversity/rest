@@ -5,20 +5,19 @@ Sometimes, there are clear rules in the API world. When we create a new resource
 returning a 201 status code is the *right* thing to do.
 
 But other times, there aren't clear rules. What we're working on right now
-is a good example: there's no standard for *how* an API response should be
-structured that has error information.
+is a good example: there's no standard for *how* API error responses should look.
 
 Our response has ``type``, ``title``, and ``errors`` fields. And I didn't invent
 this: it's part of a young, potential standard called `API Problem`_, or Problem
 Details. When we google for it, we find an RFC document of course! Actually,
 this is technically an "Internet Draft": a work-in-progress document that
-*may* eventually be a standard. If you use this standard, then you should
+*may* eventually be a standard. If you use this, then you should
 understand that it may change in the future or be discarded entirely for
 something different.
 
-But in the API world, sometimes we can choose to follow a draft standard
-like this, or invent our own. In othe words, we can choose to make our API
-consistent with at least *some* other API's, or consistent with noone else.
+But in the API world, sometimes we can choose to follow a draft like this, 
+or nothing at all. In other words, we can choose to make our API consistent 
+with at least *some* other API's, or consistent with noone else.
 
 Oh, and when you're reading one of these documents, make sure you're on the
 latest version - they're updated all the time.
@@ -39,16 +38,16 @@ plain string, but we'll fix that later.
 The spec also allows you to add any extra fields you want. Since we need
 to tell the user what errors there are, we've added an ``errors`` field.
 
-This means that our error response is *already* following this specification.
-Yay! And since someone has already defined the meaning of some of our fields,
-we can link to this document as part ouf or API's documentation.
+This means that our error response is *already* following this spec. Yay! 
+And since someone has already defined the meaning of some of our fields,
+we can link to this document as part ouf or API's docs FTW! 
 
 Media Types and Structure Versus Semantics
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Of course right now, there's no way an API client would know that we're leveraging
 this draft spec, unless they happen to recognize the structure. It would
-be much better of the response somehow screamed "I'm using the Problem Details
+be much better if the response somehow screamed "I'm using the Problem Details
 spec!".
 
 And this is totally possible by sending back a ``Content-Type`` header of
@@ -69,7 +68,7 @@ spent a lot of timing thinking about.
 
 Right now, I just want you to be aware that this exists, and that a lot of
 people invest a lot of time into answering questions like: "If 2 machines
-are sending calendar data, how should it be structure?".
+are sending calendar data, how should it be structured?".
 
 Our ``application/problem+json`` actually isn't in this list, because it's
 just a draft.

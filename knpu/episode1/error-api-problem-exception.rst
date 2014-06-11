@@ -2,8 +2,8 @@ ApiProblemException and Exception Handling
 ==========================================
 
 In order to be able to throw an exception that results in a JSON response,
-we need to first create a new class called ``ApiProblemException``. Make it
-extend that special ``HttpException`` class::
+we need to hit the gym and first create a new class called ``ApiProblemException``. 
+Make it extend that special ``HttpException`` class::
 
     // src/KnpU/CodeBattle/Api/ApiProblemException.php
     namespace KnpU\CodeBattle\Api;
@@ -17,7 +17,7 @@ extend that special ``HttpException`` class::
 The purpose of this class is to act like a normal exception, but also to
 hold the ``ApiProblem`` inside of it. To do this, add an ``$apiProblem`` property
 and override the ``__construct`` method so that an ``ApiProblem`` object
-is the first argumnet::
+is the first argument::
 
     // src/KnpU/CodeBattle/Api/ApiProblemException.php
     namespace KnpU\CodeBattle\Api;
@@ -42,9 +42,9 @@ is the first argumnet::
         }
     }
 
-The object still needs a title and I'm calling ``getTitle()`` on the ``ApiProblem``
+The exception still needs a message and I'm calling ``getTitle()`` on the ``ApiProblem``
 object to get it. Open up the ``ApiProblem`` class and add this ``getTitle()``
-function so we can access the title::
+function so we can access it::
 
     // src/KnpU/CodeBattle/Api/ApiProblem.php
     // ...
@@ -60,7 +60,7 @@ function so we can access the title::
     }
 
 Finally, go back to ``ApiProblemException`` and add a ``getApiProblem`` getter
-function. We'll use this in a few minutes::
+function. Hang tight, we'll use this in a few minutes::
 
     // src/KnpU/CodeBattle/Api/ApiProblemException.php
     namespace KnpU\CodeBattle\Api;
@@ -233,4 +233,4 @@ anymore::
     }
 
 And when we run the tests, all green! Piece by piece, we're making our *code*
-more consistent so that we guarantee that our *API* is consistent.
+more consistent so that we can guarantee that our *API* is consistent.

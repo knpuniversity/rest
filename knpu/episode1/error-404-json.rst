@@ -7,7 +7,7 @@ we're throwing a special type of exception class to trigger a 404 response.
 But in reality, the 404 response isn't JSON: it's a big HTML page. You can
 see this by browsing to a made-up programmer:
 
-    http://localhost:8000/api/programmers/fake
+    http://localhost:8000/api/programmers/bumblebee
 
 And actually, if we go to a completely made-up URL, we also see this same
 HTML page:
@@ -16,15 +16,15 @@ HTML page:
 
 Internally, Silex throws that same exception to cause this 404 page.
 
-Somehow, we need to be able to return JSON for *all* exceptions, not just
-our fancy ``ApiProblemException``. In fact, since we want to be consistent,
-we *really* want to return a response with a ``application/problem+json``
-``Content-Type``.
+Somehow, we need to be able to return JSON for *all* exceptions and
+while we are at it we should use the API problem detail format.
 
 Writing the Test
 ----------------
 
-First, let's write a test!
+First, what should we do?... anyone? Bueller?
+You know, write a test! Copy the GET scenario, but use a
+fake programmer name.
 
 .. code-block:: gherkin
 
@@ -47,11 +47,11 @@ should contain the standard status code's description. 404 means "Not Found".
 Using the Exception Listener on all /api URLs
 ---------------------------------------------
 
-Now let's get to work! To make this work, we'll go back to the exception
-listener function. Now, we want to handle *any* exception, as long as the
-URL starts with ``/api``. We can pass a handle to this object into my anonymous
-function in order to  get Silex's ``Request``. With it, the ``getPathInfo``
-function gives us a clean version of the URL that we can check::
+Now let's roll up our sleeves and get to work! We'll go back to the exception listener 
+function. We want to handle *any* exception, as long as the URL starts with ``/api``. 
+We can pass a handle to this object into my anonymous function in order to get Silex's 
+``Request``. With it, the ``getPathInfo``function gives us a clean version of the URL 
+that we can check::
 
     // src/KnpU/CodeBattle/Application.php
     // ...
@@ -131,7 +131,7 @@ that here, let's add a bit of logic into ``ApiProblem``::
 
 First, make ``$type`` optional. Then, if nothing is passed, set it to ``about:blank``.
 Next, Silex's ``Response`` class has a nice map of status codes and their
-short description. We can use to get a consistent title.
+short description. We can use it to get a consistent title.
 
 Back in ``configureListeners``, the rest is exactly like before: use ``ApiProblem``
 to create a ``JsonResponse`` and set the ``application/problem+json`` ``Content-Type``
@@ -166,7 +166,7 @@ proper API problem response.
 The type key should be a URL
 ----------------------------
 
-We're now returning an API problem response in every problem scenario in
+We're now returning an API problem response whenever something goes wrong in
 our app. We can create these manually, like we did for validation errors.
 Or we can let them happen naturally, like when a 404 page occurs. We also
 have a very systematic way to create error responses, so that they stay consistent.
@@ -191,15 +191,15 @@ anonymous function, unless it's set to ``about:blank``::
 Of course, creating that page is still up to you. But we'll talk more about
 documentation in the next episode.
 
-Run the tests to see if we broken anything:
+Run the tests to see if we broke anything:
 
 .. code-block:: bash
 
     $ php vendor/bin/behat
 
 Ah, we did! The scenario that is checking for invalid JSON is expecting the
-header to equal ``invalid_body_format``. Update the scenario to check for
-the URL:
+header to equal ``invalid_body_format``. Tweak the scenario so the URL doesn't
+break things:
 
 .. code-block:: gherking
 
