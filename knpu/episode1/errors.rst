@@ -258,3 +258,5 @@ To make sure we didn't break anything, we can run our tests:
 
 We could have also added another scenario to test the validation when updating.
 But I'm not made of scenarios people! How detailed you get with your tests is up to you.
+
+.. `RFC 2616`: http://www.w3.org/Protocols/rfc2616/rfc2616.html
