@@ -17,7 +17,7 @@ response, but we don't see that message. Look back at our exception-handling
 function. The ``NotFoundHttpException`` is not an instance of ``ApiProblemException``,
 so we fall into the situation where we create the ``ApiProblem`` by hand.
 We're not using the exception's message anywhere, so it makes sense we don't
-see it.
+see it::
 
     // src/KnpU/CodeBattle/Application.php
 
