@@ -164,6 +164,8 @@ But with PATCH, we send a set of *instructions* on what to edit, not a represent
 So instead of a JSON programmer, we might instead create some JSON structure
 with details on what to update:
 
+.. code-block:: json
+
     [
         { "op": "replace", "path": "avatarNumber", "value": "5" },
         { "op": "remove", "path": "tagLine" }
