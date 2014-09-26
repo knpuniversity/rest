@@ -113,8 +113,8 @@ class ApiFeatureContext extends BehatContext
     {
         $this->useContext('project', new ProjectContext());
 
-        $config = isset($parameters['guzzle']) && is_array($parameters['guzzle']) ? $parameters['guzzle'] : [];
-        $config['request.options'] = isset($config['request.options']) ? $config['request.options'] : [];
+        $config = isset($parameters['guzzle']) && is_array($parameters['guzzle']) ? $parameters['guzzle'] : array();
+        $config['request.options'] = isset($config['request.options']) ? $config['request.options'] : array();
 
         // $config['request.options']['Accept'] = 'application/vnd.com.example.api-v1+json';
         // $config['request.options']['Authorization'] = "Bearer {$parameters['access_token']}";
@@ -339,7 +339,7 @@ class ApiFeatureContext extends BehatContext
         $scopePayload = $this->arrayGet($payload, $property);
 
         assertTrue(
-            is_array($scopePayload) and $scopePayload === [],
+            is_array($scopePayload) and $scopePayload === array(),
             "Asserting the [$property] property in current scope [{$this->scope}] is an empty array: ".json_encode($payload)
         );
     }
@@ -425,7 +425,7 @@ class ApiFeatureContext extends BehatContext
         $payload = $this->getScopePayload();
         $actualValue = $this->arrayGet($payload, $property);
 
-        if (! in_array($expectedValue, ['true', 'false'])) {
+        if (! in_array($expectedValue, array('true', 'false'))) {
             throw new \InvalidArgumentException("Testing for booleans must be represented by [true] or [false].");
         }
 
