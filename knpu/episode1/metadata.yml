@@ -1,5 +1,4 @@
 title:  RESTful APIs in the Real World Episode 1
-price:  12
 length: 1:45:05
 summary: |
     Making RESTful APIs is hard, really hard. There are a lot of concepts
@@ -28,11 +27,7 @@ summary: |
     here, but will be covered in [Episode 2](/screencast/rest-ep2)!
 
 illustration: rest.png
-priority: 175
-tags:
-    - { name: php }
-status: unfinished
-hasVideoDownload: 0
+hasVideoDownload: 1
 
 chapters:
     intro:
