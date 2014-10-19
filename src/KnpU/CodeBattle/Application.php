@@ -239,6 +239,7 @@ class Application extends SilexApplication
                     }),
                     'stateless' => true,
                     'anonymous' => true,
+                    'http' => true,
                     'api_token' => true,
                 ),
                 'main' => array(
