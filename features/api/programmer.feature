@@ -74,6 +74,7 @@ Feature: Programmer
       powerLevel
       tagLine
       """
+    And the "userId" property should not exist
     And the "nickname" property should equal "UnitTester"
 
   Scenario: GET a collection of programmers
