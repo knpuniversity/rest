@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use KnpU\CodeBattle\Repository\ProgrammerRepository;
 use KnpU\CodeBattle\Repository\ProjectRepository;
 use KnpU\CodeBattle\Security\Token\ApiTokenRepository;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Base controller class to hide Silex-related implementation details
@@ -246,4 +247,19 @@ abstract class BaseController implements ControllerProviderInterface
 
         return $this->container['serializer']->serialize($data, 'json', $context);
     }
+
+    protected function enforceUserSecurity()
+    {
+        if (!$this->isUserLoggedIn()) {
+            throw new AccessDeniedException();
+        }
+    }
+
+    protected function enforceProgrammerOwnershipSecurity(Programmer $programmer)
+    {
+        if ($this->getLoggedInUser()->id != $programmer->userId) {
+            throw new AccessDeniedException();
+        }
+    }
+
 }
