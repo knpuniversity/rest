@@ -98,9 +98,15 @@ class ProgrammerController extends BaseController
             throw new \Exception(sprintf('Invalid JSON: '.$request->getContent()));
         }
 
-        $programmer->nickname = $data['nickname'];
-        $programmer->avatarNumber = $data['avatarNumber'];
-        $programmer->tagLine = $data['tagLine'];
+        // determine which properties should be changeable on this request
+        $apiProperties = array('nickname', 'avatarNumber', 'tagLine');
+
+        // update the properties
+        foreach ($apiProperties as $property) {
+            $val = isset($data[$property]) ? $data[$property] : null;
+            $programmer->$property = $val;
+        }
+
         $programmer->userId = $this->findUserByUsername('weaverryan')->id;
 
         $this->save($programmer);
