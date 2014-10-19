@@ -146,15 +146,4 @@ class ProgrammerController extends BaseController
 
         $programmer->userId = $this->getLoggedInUser()->id;
     }
-
-    private function throwApiProblemValidationException(array $errors)
-    {
-        $apiProblem = new ApiProblem(
-            400,
-            ApiProblem::TYPE_VALIDATION_ERROR
-        );
-        $apiProblem->set('errors', $errors);
-
-        throw new ApiProblemException($apiProblem);
-    }
 }

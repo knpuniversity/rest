@@ -28,3 +28,10 @@ Feature: Token
     And I authenticate with user "weaverryan" and password "WRONG"
     When I request "POST /api/tokens"
     Then the response status code should be 401
+
+  Scenario: Creating a token without a note
+    Given there is a user "weaverryan" with password "test"
+    And I authenticate with user "weaverryan" and password "test"
+    When I request "POST /api/tokens"
+    Then the response status code should be 400
+    And the "errors.notes" property should equal "Please add some notes about this token"
