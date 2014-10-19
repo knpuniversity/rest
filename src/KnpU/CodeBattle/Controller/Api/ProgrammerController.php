@@ -25,13 +25,8 @@ class ProgrammerController extends BaseController
 
     public function newAction(Request $request)
     {
-        $data = json_decode($request->getContent(), true);
-
-        $programmer = new Programmer($data['nickname'], $data['avatarNumber']);
-        $programmer->tagLine = $data['tagLine'];
-        $programmer->userId = $this->findUserByUsername('weaverryan')->id;
-
-        $this->save($programmer);
+        $programmer = new Programmer();
+        $this->handleRequest($request, $programmer);
 
         $data = $this->serializeProgrammer($programmer);
         $response = new JsonResponse($data, 201);
@@ -80,9 +75,28 @@ class ProgrammerController extends BaseController
             $this->throw404('Oh no! This programmer has deserted! We\'ll send a search party!');
         }
 
-        throw new \Exception('This is scary!');
+        $this->handleRequest($request, $programmer);
 
+        $data = $this->serializeProgrammer($programmer);
+
+        $response = new JsonResponse($data, 200);
+
+        return $response;
+    }
+
+    /**
+     * Reads data from the Request, updates the Programmer and saves it.
+     *
+     * @param Request $request
+     * @param Programmer $programmer
+     */
+    private function handleRequest(Request $request, Programmer $programmer)
+    {
         $data = json_decode($request->getContent(), true);
+
+        if ($data === null) {
+            throw new \Exception(sprintf('Invalid JSON: '.$request->getContent()));
+        }
 
         $programmer->nickname = $data['nickname'];
         $programmer->avatarNumber = $data['avatarNumber'];
@@ -90,12 +104,6 @@ class ProgrammerController extends BaseController
         $programmer->userId = $this->findUserByUsername('weaverryan')->id;
 
         $this->save($programmer);
-
-        $data = $this->serializeProgrammer($programmer);
-
-        $response = new JsonResponse($data, 200);
-
-        return $response;
     }
 
     private function serializeProgrammer(Programmer $programmer)
