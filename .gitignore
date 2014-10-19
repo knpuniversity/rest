@@ -4,3 +4,4 @@
 /behat.yml
 /logs/*
 /.sass-cache
+/cache
