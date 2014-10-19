@@ -1,35 +1,31 @@
 diff --git a/composer.json b/composer.json
-index 18d2937..82fa746 100644
+index d88285e..5dc2e65 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -7,7 +7,8 @@
          "monolog/monolog": "~1.7.0",
          "symfony/validator": "~2.4",
          "symfony/expression-language": "~2.4",
--        "jms/serializer": "@stable"
-+        "jms/serializer": "@stable",
+-        "jms/serializer": "~0.16"
++        "jms/serializer": "~0.16",
 +        "willdurand/hateoas": "~2.3.0"
      },
      "require-dev": {
          "behat/mink": "~1.5",
 diff --git a/composer.lock b/composer.lock
-index 470c86f..d5ece3f 100644
+index 899f6e9..74a907a 100644
 --- a/composer.lock
 +++ b/composer.lock
-@@ -1,9 +1,10 @@
- {
-     "_readme": [
-         "This file locks the dependencies of your project to a known state",
--        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
-+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
-+        "This file is @generated automatically"
+@@ -4,7 +4,7 @@
+         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "This file is @generated automatically"
      ],
--    "hash": "e8e92968b136a224ef615d23b2f4b02a",
-+    "hash": "c56a62a084f49dd206cf990dc37bf791",
+-    "hash": "2125c98a86ef7ffe19a08ed624114de9",
++    "hash": "f02ebbf53c3e79207ca58194dff785bc",
      "packages": [
          {
              "name": "doctrine/annotations",
-@@ -1703,6 +1704,71 @@
+@@ -1704,6 +1704,71 @@
                  "templating"
              ],
              "time": "2014-02-13 10:19:29"
@@ -101,11 +97,3 @@ index 470c86f..d5ece3f 100644
          }
      ],
      "packages-dev": [
-@@ -3210,6 +3276,7 @@
-     "stability-flags": {
-         "jms/serializer": 0
-     },
-+    "prefer-stable": false,
-     "platform": [
- 
-     ],
