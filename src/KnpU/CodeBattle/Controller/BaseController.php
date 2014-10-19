@@ -2,6 +2,7 @@
 
 namespace KnpU\CodeBattle\Controller;
 
+use JMS\Serializer\SerializationContext;
 use KnpU\CodeBattle\Model\Programmer;
 use KnpU\CodeBattle\Model\User;
 use KnpU\CodeBattle\Repository\UserRepository;
@@ -240,6 +241,9 @@ abstract class BaseController implements ControllerProviderInterface
 
     protected function serialize($data)
     {
-        return $this->container['serializer']->serialize($data, 'json');
+        $context = new SerializationContext();
+        $context->setSerializeNull(true);
+
+        return $this->container['serializer']->serialize($data, 'json', $context);
     }
 }
