@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index 18d2937..a5f3c93 100644
+index 18d2937..82fa746 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -7,7 +7,8 @@
@@ -8,40 +8,44 @@ index 18d2937..a5f3c93 100644
          "symfony/expression-language": "~2.4",
 -        "jms/serializer": "@stable"
 +        "jms/serializer": "@stable",
-+        "willdurand/hateoas": "@stable"
++        "willdurand/hateoas": "~2.3.0"
      },
      "require-dev": {
          "behat/mink": "~1.5",
 diff --git a/composer.lock b/composer.lock
-index 470c86f..ab125e1 100644
+index 470c86f..d5ece3f 100644
 --- a/composer.lock
 +++ b/composer.lock
-@@ -3,7 +3,7 @@
+@@ -1,9 +1,10 @@
+ {
+     "_readme": [
          "This file locks the dependencies of your project to a known state",
-         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
++        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
++        "This file is @generated automatically"
      ],
 -    "hash": "e8e92968b136a224ef615d23b2f4b02a",
-+    "hash": "1093395900884dd45a92c9abd2cc8985",
++    "hash": "c56a62a084f49dd206cf990dc37bf791",
      "packages": [
          {
              "name": "doctrine/annotations",
-@@ -1703,6 +1703,71 @@
+@@ -1703,6 +1704,71 @@
                  "templating"
              ],
              "time": "2014-02-13 10:19:29"
 +        },
 +        {
 +            "name": "willdurand/hateoas",
-+            "version": "v2.2.0",
++            "version": "v2.3.0",
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/willdurand/Hateoas.git",
-+                "reference": "558028fe0a840d79a9e4d53c384f33758d0c5086"
++                "reference": "af959579e410bb9f7179a98bf5ee5863259109cb"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/willdurand/Hateoas/zipball/558028fe0a840d79a9e4d53c384f33758d0c5086",
-+                "reference": "558028fe0a840d79a9e4d53c384f33758d0c5086",
++                "url": "https://api.github.com/repos/willdurand/Hateoas/zipball/af959579e410bb9f7179a98bf5ee5863259109cb",
++                "reference": "af959579e410bb9f7179a98bf5ee5863259109cb",
 +                "shasum": ""
 +            },
 +            "require": {
@@ -52,7 +56,7 @@ index 470c86f..ab125e1 100644
 +                "symfony/expression-language": "~2.4"
 +            },
 +            "require-dev": {
-+                "atoum/atoum": "dev-master",
++                "atoum/atoum": "*@dev",
 +                "hautelook/frankenstein": "~0.1",
 +                "pagerfanta/pagerfanta": "~1.0",
 +                "phpunit/phpunit": "~3.7",
@@ -93,17 +97,15 @@ index 470c86f..ab125e1 100644
 +                }
 +            ],
 +            "description": "A PHP library to support implementing representations for HATEOAS REST web services",
-+            "time": "2014-03-26 21:16:30"
++            "time": "2014-06-03 07:59:14"
          }
      ],
      "packages-dev": [
-@@ -3208,7 +3273,8 @@
-     ],
-     "minimum-stability": "stable",
+@@ -3210,6 +3276,7 @@
      "stability-flags": {
--        "jms/serializer": 0
-+        "jms/serializer": 0,
-+        "willdurand/hateoas": 0
+         "jms/serializer": 0
      },
++    "prefer-stable": false,
      "platform": [
  
+     ],

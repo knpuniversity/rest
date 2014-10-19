@@ -1,10 +1,10 @@
 diff --git a/features/api/token.feature b/features/api/token.feature
 new file mode 100644
-index 0000000..b1c82a9
+index 0000000..4bb57ed
 --- /dev/null
 +++ b/features/api/token.feature
 @@ -0,0 +1,4 @@
 +Feature: Token
 +  In order to access restricted information
 +  As an API client
-+  I can exchange create tokens and use them to access information
++  I can create tokens and use them to access information

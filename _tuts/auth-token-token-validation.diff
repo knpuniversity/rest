@@ -1,5 +1,5 @@
 diff --git a/features/api/token.feature b/features/api/token.feature
-index 2ca90c4..f60670a 100644
+index 2253b2f..8402ed2 100644
 --- a/features/api/token.feature
 +++ b/features/api/token.feature
 @@ -28,3 +28,10 @@ Feature: Token

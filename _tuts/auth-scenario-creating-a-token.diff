@@ -1,11 +1,11 @@
 diff --git a/features/api/token.feature b/features/api/token.feature
-index b1c82a9..a1b0173 100644
+index 4bb57ed..3c2edca 100644
 --- a/features/api/token.feature
 +++ b/features/api/token.feature
 @@ -2,3 +2,17 @@ Feature: Token
    In order to access restricted information
    As an API client
-   I can exchange create tokens and use them to access information
+   I can create tokens and use them to access information
 +
 +  Scenario: Creating a token
 +    Given there is a user "weaverryan" with password "test"
