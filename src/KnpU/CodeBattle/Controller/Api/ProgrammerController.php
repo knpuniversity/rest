@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use KnpU\CodeBattle\Model\Programmer;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ProgrammerController extends BaseController
 {
@@ -126,7 +127,7 @@ class ProgrammerController extends BaseController
         $isNew = !$programmer->id;
 
         if ($data === null) {
-            throw new \Exception(sprintf('Invalid JSON: '.$request->getContent()));
+            throw new HttpException(400, sprintf('Invalid JSON: '.$request->getContent()));
         }
 
         // determine which properties should be changeable on this request
