@@ -58,7 +58,7 @@ index 741222e..9961134 100644
      {
          $apiProblem = new ApiProblem(
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index dec3f37..b14cc38 100644
+index dec3f37..584893e 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
 @@ -10,6 +10,7 @@ use Silex\Application as SilexApplication;
@@ -82,8 +82,8 @@ index dec3f37..b14cc38 100644
 +        ));
 +    }
 +
-+    protected function serialize($data)
++    protected function serialize($data, $format = 'json')
 +    {
-+        return $this->container['serializer']->serialize($data, 'json');
++        return $this->container['serializer']->serialize($data, $format);
 +    }
  }
