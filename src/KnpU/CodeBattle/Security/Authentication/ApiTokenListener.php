@@ -73,6 +73,7 @@ class ApiTokenListener implements ListenerInterface
      *
      * @param $authorizationHeader
      * @throws \Symfony\Component\Security\Core\Exception\AuthenticationException
+     * @return string
      */
     private function parseAuthorizationHeader($authorizationHeader)
     {
