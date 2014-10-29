@@ -14,7 +14,7 @@ index 2253b2f..8402ed2 100644
 +    Then the response status code should be 400
 +    And the "errors.notes" property should equal "Please add some notes about this token"
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index fc09795..4be8400 100644
+index f652dc5..9f22be6 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -146,15 +146,4 @@ class ProgrammerController extends BaseController
@@ -34,7 +34,7 @@ index fc09795..4be8400 100644
 -    }
  }
 diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-index 1091f5f..b7995a3 100644
+index 3569b9c..51d7298 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 @@ -23,6 +23,11 @@ class TokenController extends BaseController
@@ -50,7 +50,7 @@ index 1091f5f..b7995a3 100644
  
          return $this->createApiResponse($token, 201);
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index 3d90ed9..804365d 100644
+index 75d1841..5e9a12b 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
 @@ -284,4 +284,15 @@ abstract class BaseController implements ControllerProviderInterface

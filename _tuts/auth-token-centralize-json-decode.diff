@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 85849ff..fc09795 100644
+index 85849ff..f652dc5 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -125,17 +125,9 @@ class ProgrammerController extends BaseController
@@ -7,7 +7,7 @@ index 85849ff..fc09795 100644
      private function handleRequest(Request $request, Programmer $programmer)
      {
 -        $data = json_decode($request->getContent(), true);
-+        $data = $this->getJsonBody($request);
++        $data = $this->decodeRequestBodyIntoParameters($request);
          $isNew = !$programmer->id;
  
 -        if ($data === null) {
@@ -37,7 +37,7 @@ index 85849ff..fc09795 100644
  
          $programmer->userId = $this->getLoggedInUser()->id;
 diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-index fbcc24f..1091f5f 100644
+index fbcc24f..3569b9c 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 @@ -18,10 +18,10 @@ class TokenController extends BaseController
@@ -45,7 +45,7 @@ index fbcc24f..1091f5f 100644
          $this->enforceUserSecurity();
  
 -        $data = json_decode($request->getContent(), true);
-+        $data = $this->getJsonBody($request);
++        $data = $this->decodeRequestBodyIntoParameters($request);
  
          $token = new ApiToken($this->getLoggedInUser()->id);
 -        $token->notes = $data['notes'];
@@ -54,7 +54,7 @@ index fbcc24f..1091f5f 100644
          $this->getApiTokenRepository()->save($token);
  
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index 4ceed95..3d90ed9 100644
+index 4ceed95..75d1841 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
 @@ -10,6 +10,7 @@ use KnpU\CodeBattle\Application;
@@ -78,7 +78,7 @@ index 4ceed95..3d90ed9 100644
          }
      }
  
-+    protected function getJsonBody(Request $request)
++    protected function decodeRequestBodyIntoParameters(Request $request)
 +    {
 +        // allow for a possibly empty body
 +        if (!$request->getContent()) {

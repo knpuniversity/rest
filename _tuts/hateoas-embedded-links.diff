@@ -9,7 +9,7 @@ index 7b1fc15..4d0159f 100644
 +    And the "battles.0._embedded.programmer.nickname" property should equal "Fred"
      And the "Content-Type" header should be "application/hal+json"
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index 2f1ae36..6671b82 100644
+index 9597c14..7e9fc48 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
 @@ -243,12 +243,12 @@ abstract class BaseController implements ControllerProviderInterface
