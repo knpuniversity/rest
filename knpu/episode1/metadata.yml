@@ -25,145 +25,119 @@ summary: |
 
 illustration: rest.png
 hasVideoDownload: 1
+tuts_hero:
+    finish_step: "Errors: Making type a URL"
 
 chapters:
     intro:
         title:      Introduction
         is_free:    true
-        length:     3:07
         video_key:  gmiw0djypn
     http:
         title:      HTTP Basics
         is_free:    true
-        length:     2:10
         video_key:  o5aucxcvx9
     rest:
         title:      REST: Resources and Representations
         is_free:    true
-        length:     3:12
         video_key:  422xgtgm2i
     client-state:
         title:      Transitions and Client State
         is_free:    true
-        length:     2:11
         video_key:  xtnvfsjcvz
     project-routing:
         title:      Project Routing
         is_free:    true
-        length:     5:22
         video_key:  y2qr40bpgr
     post:
         title:      "POST: Creation, Location Header and 201"
         is_free:    true
-        length:     4:53
         video_key:  1psw19tu64
     get:
         title:      "GET'ing Resources, and Content-Type"
         is_free:    false
-        length:     4:36
         video_key:  wfvkzl7hol
     location-header:
         title:      Updating the Location Header
         is_free:    false
-        length:     1:47
         video_key:  ks36azyqgg
     get-collection:
         title:      GET /programmers: A collection of Programmers
         is_free:    false
-        length:     3:32
         video_key:  svprvvm9hp
     rfcs:
         title:      Fixing the Content-Type on POST
         is_free:    false
-        length:     2:37
         video_key:  tt0km0kck2
     testing-phpunit:
         title:      Testing your API with PHPUnit
         is_free:    false
-        length:     2:34
         video_key:  ecwcq36ha6
     testing:
         title:      Behat for Testing
         is_free:    false
-        length:     4:34
         video_key:  gekp2dqbtv
     testing-data:
         title:      Handling Data in Tests
         is_free:    false
-        length:     3:56
         video_key:  2gkcks33v5
     put-editing:
         title:      PUT: For Editing
         is_free:    false
-        length:     4:13
         video_key:  7crb8ebc8d
     debugging-tests:
         title:      Debugging Tests
         is_free:    false
-        length:     1:12
         video_key:  9dt5541shm
     put-improvements:
         title:      PUT: Killing Duplicated Code
         is_free:    false
-        length:     2:12
         video_key:  dvoy1sj1ic
     different-representations:
         title:      GET Representation != POST Representation
         is_free:    false
-        length:     2:46
         video_key:  s7yw2imvmq
     put-versus-post:
         title:      PUT Versus POST
         is_free:    false
-        length:     5:07
         video_key:  rdbzvkykoq
     delete:
         title:      DELETE: For Deleting
         is_free:    false
-        length:     2:29
         video_key:  j38t4tq3ks
     patch:
         title:      PATCH: The Other Edit
         is_free:    false
-        length:     4:53
         video_key:  wkprl3fv53
     errors:
         title:      Advanced Error Handling
         is_free:    false
-        length:     5:41
         video_key:  dn31njb4g2
     application-problem:
         title:      Application Problem
         is_free:    false
-        length:     4:26
         video_key:  g6jbblr0u5
     error-consistency:
         title:      Error Consistency
         is_free:    false
-        length:     5:13
         video_key:  a86bnkzmdy
     error-invalid-json:
         title:      Error Invalid Json
         is_free:    false
-        length:     4:28
         video_key:  83yopv4idn
     error-api-problem-exception:
         title:      "Error: API Problem Exception"
         is_free:    false
-        length:     5:38
         video_key:  zvizcuof9n
     error-404-json:
         title:      "Error 404 Json"
         is_free:    false
-        length:     6:17
         video_key:  7qp3sxxwd8
     error-details:
         title:      Error Details
         is_free:    false
-        length:     4:56
         video_key:  gfrkn4f0ec
     whats-next:
         title:      What's Next?
         is_free:    false
-        length:     1:02
         video_key:  40b1lzdp5a
