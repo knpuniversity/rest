@@ -32,12 +32,17 @@ class ProgrammerController extends BaseController
 
         $this->save($programmer);
 
-        $response = new Response('It worked. Believe me - I\'m an API', 201);
+        $data = $this->serializeProgrammer($programmer);
+        $response = new Response(
+            json_encode($data),
+            201
+        );
         $programmerUrl = $this->generateUrl(
             'api_programmers_show',
             ['nickname' => $programmer->nickname]
         );
         $response->headers->set('Location', $programmerUrl);
+        $response->headers->set('Content-Type', 'application/json');
 
         return $response;
     }
