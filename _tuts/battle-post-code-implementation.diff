@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/BattleController.php b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
-index 8a0e347..047a55a 100644
+index 8a0e347..a148480 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/BattleController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
 @@ -4,6 +4,7 @@ namespace KnpU\CodeBattle\Controller\Api;
@@ -20,7 +20,7 @@ index 8a0e347..047a55a 100644
 -        return 'foo';
 +        $this->enforceUserSecurity();
 +
-+        $data = $this->getJsonBody($request);
++        $data = $this->decodeRequestBodyIntoParameters($request);
 +
 +        $programmer = $this->getProgrammerRepository()->find($data->get('programmerId'));
 +        $project = $this->getProjectRepository()->find($data->get('projectId'));
