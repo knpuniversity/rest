@@ -18,6 +18,8 @@ class ProgrammerController extends BaseController
 
         $controllers->get('/api/programmers/{nickname}', array($this, 'showAction'))
             ->bind('api_programmers_show');
+
+        $controllers->get('/api/programmers', array($this, 'listAction'));
     }
 
     public function newAction(Request $request)
@@ -48,16 +50,35 @@ class ProgrammerController extends BaseController
             $this->throw404('Oh no! This programmer has deserted! We\'ll send a search party!');
         }
 
-        $data = array(
-            'nickname' => $programmer->nickname,
-            'avatarNumber' => $programmer->avatarNumber,
-            'powerLevel' => $programmer->powerLevel,
-            'tagLine' => $programmer->tagLine,
-        );
+        $data = $this->serializeProgrammer($programmer);
 
         $response = new Response(json_encode($data), 200);
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
+    }
+
+    public function listAction()
+    {
+        $programmers = $this->getProgrammerRepository()->findAll();
+        $data = array('programmers' => array());
+        foreach ($programmers as $programmer) {
+            $data['programmers'][] = $this->serializeProgrammer($programmer);
+        }
+
+        $response = new Response(json_encode($data), 200);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    private function serializeProgrammer(Programmer $programmer)
+    {
+        return array(
+            'nickname' => $programmer->nickname,
+            'avatarNumber' => $programmer->avatarNumber,
+            'powerLevel' => $programmer->powerLevel,
+            'tagLine' => $programmer->tagLine,
+        );
     }
 }
