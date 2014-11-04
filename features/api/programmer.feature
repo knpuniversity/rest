@@ -58,5 +58,6 @@ Feature: Programmer
       }
       """
     When I request "PUT /api/programmers/CowboyCoder"
+    And print last response
     Then the response status code should be 200
     And the "avatarNumber" property should equal "2"

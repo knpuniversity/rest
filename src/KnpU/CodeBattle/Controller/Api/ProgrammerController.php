@@ -80,6 +80,8 @@ class ProgrammerController extends BaseController
             $this->throw404('Oh no! This programmer has deserted! We\'ll send a search party!');
         }
 
+        throw new \Exception('This is scary!');
+
         $data = json_decode($request->getContent(), true);
 
         $programmer->nickname = $data['nickname'];
