@@ -1,13 +1,13 @@
 diff --git a/features/api/battle.feature b/features/api/battle.feature
-index 0dab8db..205b0f0 100644
+index b737a19..9982895 100644
 --- a/features/api/battle.feature
 +++ b/features/api/battle.feature
-@@ -33,4 +33,4 @@ Feature:
+@@ -31,4 +31,4 @@ Feature:
      Then the response status code should be 200
-     And the "battles" property should be an array
-     And the "battles" property should contain 2 items
--    And the "battles.0.programmerUri" property should equal "/api/programmers/Fred"
-+    And the "battles.0._links.programmer.href" property should equal "/api/programmers/Fred"
+     And the "notes" property should exist
+     And the "didProgrammerWin" property should exist
+-    And the "programmerUri" property should equal "/api/programmers/Fred"
++    And the "_links.programmer.href" property should equal "/api/programmers/Fred"
 diff --git a/src/KnpU/CodeBattle/Model/Battle.php b/src/KnpU/CodeBattle/Model/Battle.php
 index 92312d7..fad0074 100644
 --- a/src/KnpU/CodeBattle/Model/Battle.php
