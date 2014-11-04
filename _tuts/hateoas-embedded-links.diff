@@ -1,5 +1,5 @@
 diff --git a/features/api/battle.feature b/features/api/battle.feature
-index 7b1fc15..4d0159f 100644
+index 189e338..6b23149 100644
 --- a/features/api/battle.feature
 +++ b/features/api/battle.feature
 @@ -34,4 +34,5 @@ Feature:
@@ -8,25 +8,6 @@ index 7b1fc15..4d0159f 100644
      And the "battles.0._links.programmer.href" property should equal "/api/programmers/Fred"
 +    And the "battles.0._embedded.programmer.nickname" property should equal "Fred"
      And the "Content-Type" header should be "application/hal+json"
-diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index 9597c14..7e9fc48 100644
---- a/src/KnpU/CodeBattle/Controller/BaseController.php
-+++ b/src/KnpU/CodeBattle/Controller/BaseController.php
-@@ -243,12 +243,12 @@ abstract class BaseController implements ControllerProviderInterface
-         ));
-     }
- 
--    protected function serialize($data)
-+    protected function serialize($data, $format = 'json')
-     {
-         $context = new SerializationContext();
-         $context->setSerializeNull(true);
- 
--        return $this->container['serializer']->serialize($data, 'json', $context);
-+        return $this->container['serializer']->serialize($data, $format, $context);
-     }
- 
-     protected function enforceUserSecurity()
 diff --git a/src/KnpU/CodeBattle/Model/Battle.php b/src/KnpU/CodeBattle/Model/Battle.php
 index fad0074..99a5d65 100644
 --- a/src/KnpU/CodeBattle/Model/Battle.php

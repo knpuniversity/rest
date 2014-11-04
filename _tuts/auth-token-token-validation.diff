@@ -50,7 +50,7 @@ index 3569b9c..51d7298 100644
  
          return $this->createApiResponse($token, 201);
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index 75d1841..5e9a12b 100644
+index 55e2c51..f3cbd0c 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
 @@ -284,4 +284,15 @@ abstract class BaseController implements ControllerProviderInterface

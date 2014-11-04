@@ -1,6 +1,6 @@
 diff --git a/features/api/battle.feature b/features/api/battle.feature
 new file mode 100644
-index 0000000..478e6c9
+index 0000000..82c251b
 --- /dev/null
 +++ b/features/api/battle.feature
 @@ -0,0 +1,24 @@
@@ -14,7 +14,7 @@ index 0000000..478e6c9
 +    And "weaverryan" has an authentication token "ABCD123"
 +    And I set the "Authorization" header to be "token ABCD123"
 +
-+  Scenario: Create a programmer
++  Scenario: Create a battle
 +    Given there is a project called "my_project"
 +    And there is a programmer called "Fred"
 +    And I have the payload:

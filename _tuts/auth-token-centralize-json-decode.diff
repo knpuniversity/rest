@@ -54,7 +54,7 @@ index fbcc24f..3569b9c 100644
          $this->getApiTokenRepository()->save($token);
  
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index 4ceed95..75d1841 100644
+index 22de620..55e2c51 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
 @@ -10,6 +10,7 @@ use KnpU\CodeBattle\Application;
