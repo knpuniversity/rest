@@ -32,4 +32,5 @@ Feature:
     And the "notes" property should exist
     And the "didProgrammerWin" property should exist
     And the "_links.programmer.href" property should equal "/api/programmers/Fred"
+    And the "_embedded.programmer.nickname" property should equal "Fred"
     And the "Content-Type" header should be "application/hal+json"
