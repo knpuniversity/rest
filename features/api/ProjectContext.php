@@ -18,6 +18,8 @@ class ProjectContext extends BehatContext
      */
     private static $app;
 
+    private $lastBattle;
+
     /**
      * @Given /^the user "([^"]*)" exists$/
      */
@@ -92,7 +94,7 @@ class ProjectContext extends BehatContext
         $programmer = $this->getProgrammerRepository()->findOneByNickname($programmerName);
         $project = $this->getProjectRepository()->findOneByName($projectName);
 
-        $this->getBattleManager()->battle($programmer, $project);
+        $this->lastBattle = $this->getBattleManager()->battle($programmer, $project);
     }
 
     /**

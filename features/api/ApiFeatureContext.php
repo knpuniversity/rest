@@ -135,6 +135,9 @@ class ApiFeatureContext extends BehatContext
      */
     public function iRequest($httpMethod, $resource)
     {
+        // process any %battles.last.id% syntaxes
+        $resource = $this->processReplacements($resource);
+
         $this->resource = $resource;
 
         $method = strtolower($httpMethod);
@@ -755,6 +758,7 @@ class ApiFeatureContext extends BehatContext
             'users' => new EntityLookup($this->getProjectHelper()->getUserRepository(), 'username'),
             'projects' => new EntityLookup($this->getProjectHelper()->getProjectRepository(), 'name'),
             'programmers' => new EntityLookup($this->getProjectHelper()->getProgrammerRepository(), 'nickname'),
+            'battles' => new EntityLookup($this->getProjectHelper()->getProgrammerRepository(), 'id'),
         );
 
         while (false !== $startPos = strpos($payload, '%')) {

@@ -98,6 +98,19 @@ abstract class BaseRepository
         return $this->fetchToObject($stmt);
     }
 
+    /**
+     * @return object
+     */
+    public function findLast()
+    {
+        $stmt = $this->createQueryBuilder('u')
+            ->orderBy('u.id', 'DESC')
+            ->setMaxResults(1)
+            ->execute();
+
+        return $this->fetchToObject($stmt);
+    }
+
     public function find($id)
     {
         return $this->findOneBy(array('id' => $id));
