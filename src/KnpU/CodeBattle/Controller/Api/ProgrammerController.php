@@ -35,6 +35,18 @@ class ProgrammerController extends BaseController
         $programmer = new Programmer();
         $this->handleRequest($request, $programmer);
 
+        $errors = $this->validate($programmer);
+        if (!empty($errors)) {
+            $data = array(
+                'type' => 'validation_error',
+                'title' => 'There was a validation error',
+                'errors' => $errors
+            );
+
+            return new JsonResponse($data, 400);
+        }
+
+        $this->save($programmer);
         $data = $this->serializeProgrammer($programmer);
         $response = new JsonResponse($data, 201);
         $programmerUrl = $this->generateUrl(
@@ -83,6 +95,7 @@ class ProgrammerController extends BaseController
         }
 
         $this->handleRequest($request, $programmer);
+        $this->save($programmer);
 
         $data = $this->serializeProgrammer($programmer);
 
@@ -135,8 +148,6 @@ class ProgrammerController extends BaseController
         }
 
         $programmer->userId = $this->findUserByUsername('weaverryan')->id;
-
-        $this->save($programmer);
     }
 
     private function serializeProgrammer(Programmer $programmer)
