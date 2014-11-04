@@ -10,4 +10,3 @@ $client = new Client('http://localhost:8000', array(
         'exceptions' => false,
     )
 ));
-
