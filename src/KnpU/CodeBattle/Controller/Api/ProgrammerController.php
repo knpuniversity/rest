@@ -36,9 +36,7 @@ class ProgrammerController extends BaseController
 
     public function newAction(Request $request)
     {
-        if (!$this->isUserLoggedIn()) {
-            throw new AccessDeniedException();
-        }
+        $this->enforceUserSecurity();
 
         $programmer = new Programmer();
         $this->handleRequest($request, $programmer);
@@ -83,11 +81,15 @@ class ProgrammerController extends BaseController
 
     public function updateAction($nickname, Request $request)
     {
+        $this->enforceUserSecurity();
+
         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
 
         if (!$programmer) {
             $this->throw404('Oh no! This programmer has deserted! We\'ll send a search party!');
         }
+
+        $this->enforceProgrammerOwnershipSecurity($programmer);
 
         $this->handleRequest($request, $programmer);
 
@@ -105,6 +107,8 @@ class ProgrammerController extends BaseController
     public function deleteAction($nickname)
     {
         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
+
+        $this->enforceProgrammerOwnershipSecurity($programmer);
 
         if ($programmer) {
             $this->delete($programmer);
