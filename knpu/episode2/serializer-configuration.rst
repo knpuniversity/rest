@@ -1,3 +1,6 @@
+Serializer Configuration (SerializationContext)
+===============================================
+
 Time to tackle that test failure! You can see that there is one strange 
 problem. The "GET one programmer" scenario says it's expecting a ``tagLine`` 
 property, but you can see that the JSON response has a lot of other fields, 
@@ -11,7 +14,7 @@ the ``Response`` in every controller, and so every controller method is responsi
 for remembering to set the ``Content-Type`` header. That's pretty error-prone,
 which means I am guaranteed to mess it up.
 
-Instead, let's go to =BaseController the parent class of ``ProgrammerController``.
+Instead, let's go to BaseController the parent class of ``ProgrammerController``.
 Let's create a couple of new functions. First, back in ``ProgrammerController``,
 cut the ``serialize`` function, move it into the ``BaseController`` and change it
 to be ``protected``. Now, when we have multiple controllers in the future,
