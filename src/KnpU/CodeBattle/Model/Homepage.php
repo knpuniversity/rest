@@ -17,4 +17,5 @@ use Hateoas\Configuration\Annotation as Hateoas;
  */
 class Homepage
 {
+    private $message = 'Welcome to the CodeBattles API! Look around at the _links to browse the API. And have a crazy-cool day.';
 }
