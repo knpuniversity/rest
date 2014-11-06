@@ -1,0 +1,32 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/BattleController.php b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
+index 5405e99..e02bddc 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/BattleController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
+@@ -11,7 +11,8 @@ class BattleController extends BaseController
+     protected function addRoutes(ControllerCollection $controllers)
+     {
+         $controllers->post('/api/battles', array($this, 'newAction'));
+-        $controllers->get('/api/battles/{id}', array($this, 'showAction'));
++        $controllers->get('/api/battles/{id}', array($this, 'showAction'))
++            ->bind('api_battles_show');
+     }
+ 
+     public function newAction(Request $request)
+diff --git a/src/KnpU/CodeBattle/Model/Battle.php b/src/KnpU/CodeBattle/Model/Battle.php
+index 99a5d65..4571492 100644
+--- a/src/KnpU/CodeBattle/Model/Battle.php
++++ b/src/KnpU/CodeBattle/Model/Battle.php
+@@ -8,6 +8,13 @@ use Hateoas\Configuration\Annotation as Hateoas;
+ /**
+  * @Serializer\ExclusionPolicy("all")
+  * @Hateoas\Relation(
++ *      "self",
++ *      href = @Hateoas\Route(
++ *          "api_battles_show",
++ *          parameters = { "id" = "expr(object.id)" }
++ *      )
++ * )
++ * @Hateoas\Relation(
+  *      "programmer",
+  *      href = @Hateoas\Route(
+  *          "api_programmers_show",

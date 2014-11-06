@@ -1,0 +1,58 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index abe3213..fdb1db1 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -6,6 +6,7 @@ use Hateoas\Representation\CollectionRepresentation;
+ use KnpU\CodeBattle\Api\ApiProblem;
+ use KnpU\CodeBattle\Api\ApiProblemException;
+ use KnpU\CodeBattle\Controller\BaseController;
++use KnpU\CodeBattle\Model\Homepage;
+ use Silex\Application;
+ use Silex\ControllerCollection;
+ use Symfony\Component\HttpFoundation\Request;
+@@ -20,7 +21,8 @@ class ProgrammerController extends BaseController
+     protected function addRoutes(ControllerCollection $controllers)
+     {
+         // the homepage - put in this controller for simplicity
+-        $controllers->get('/api', array($this, 'homepageAction'));
++        $controllers->get('/api', array($this, 'homepageAction'))
++            ->bind('api_homepage');
+ 
+         $controllers->post('/api/programmers', array($this, 'newAction'));
+ 
+@@ -43,7 +45,9 @@ class ProgrammerController extends BaseController
+ 
+     public function homepageAction()
+     {
+-        return $this->createApiResponse(array());
++        $homepage = new Homepage();
++
++        return $this->createApiResponse($homepage);
+     }
+ 
+     public function newAction(Request $request)
+diff --git a/src/KnpU/CodeBattle/Model/Homepage.php b/src/KnpU/CodeBattle/Model/Homepage.php
+new file mode 100644
+index 0000000..161dacc
+--- /dev/null
++++ b/src/KnpU/CodeBattle/Model/Homepage.php
+@@ -0,0 +1,19 @@
++<?php
++
++namespace KnpU\CodeBattle\Model;
++
++use Hateoas\Configuration\Annotation as Hateoas;
++
++/**
++ * A model to represent the homepage resource
++ *
++ * @Hateoas\Relation(
++ *      "self",
++ *      href = @Hateoas\Route(
++ *          "api_homepage"
++ *      )
++ * )
++ */
++class Homepage
++{
++}

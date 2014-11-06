@@ -1,0 +1,14 @@
+diff --git a/src/KnpU/CodeBattle/Model/Homepage.php b/src/KnpU/CodeBattle/Model/Homepage.php
+index 161dacc..5c330be 100644
+--- a/src/KnpU/CodeBattle/Model/Homepage.php
++++ b/src/KnpU/CodeBattle/Model/Homepage.php
+@@ -11,7 +11,8 @@ use Hateoas\Configuration\Annotation as Hateoas;
+  *      "self",
+  *      href = @Hateoas\Route(
+  *          "api_homepage"
+- *      )
++ *      ),
++ *      attributes = {"title": "Your API starting point" }
+  * )
+  */
+ class Homepage

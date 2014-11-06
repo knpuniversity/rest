@@ -439,7 +439,72 @@
             "id": "hateoas-embedded-links",
             "name": "HATEOAS: Embedded links",
             "description": null
+        },
+        {
+            "id": "hal-browser-add-it",
+            "name": "Hal Browser: Add it",
+            "description": null
+        },
+        {
+            "id": "hal-browser-updating-test-for-proper-programmers-collection",
+            "name": "Hal Browser: Updating test for proper programmers collection",
+            "description": null
+        },
+        {
+            "id": "hal-browser-use-collectionrepresentation",
+            "name": "Hal Browser: Use CollectionRepresentation",
+            "description": null
+        },
+        {
+            "id": "programmer-battles-creating-scenario",
+            "name": "Programmer Battles: Creating scenario",
+            "description": null
+        },
+        {
+            "id": "programmer-battles-implementing-endpoint",
+            "name": "Programmer Battles: Implementing endpoint",
+            "description": null
+        },
+        {
+            "id": "programmer-battles-adding-link-to-battles",
+            "name": "Programmer Battles: Adding link to battles",
+            "description": null
+        },
+        {
+            "id": "programmer-battles-adding-self-link-to-battle",
+            "name": "Programmer Battles: Adding self link to Battle",
+            "description": null
+        },
+        {
+            "id": "homepage-basic-response",
+            "name": "Homepage: Basic response",
+            "description": null
+        },
+        {
+            "id": "homepage-create-model-with-self",
+            "name": "Homepage: Create model with self",
+            "description": null
+        },
+        {
+            "id": "homepage-adding-title-attribute",
+            "name": "Homepage: Adding title attribute",
+            "description": null
+        },
+        {
+            "id": "homepage-add-a-nice-message",
+            "name": "Homepage: Add a nice message",
+            "description": null
+        },
+        {
+            "id": "homepage-add-link-to-programmers",
+            "name": "Homepage: Add link to programmers",
+            "description": null
+        },
+        {
+            "id": "pagination-adding-pagination-scenario",
+            "name": "Pagination: Adding pagination scenario",
+            "description": null
         }
     ],
-    "sha": "1c90c491a86b40f50e9c7283c09c57b17f6b6369"
+    "sha": "894d89266c53e1a44cd211ec93bc2b32c6c65104"
 }

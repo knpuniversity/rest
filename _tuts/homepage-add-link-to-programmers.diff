@@ -1,0 +1,32 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+index fdb1db1..6280b6e 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
+@@ -29,7 +29,8 @@ class ProgrammerController extends BaseController
+         $controllers->get('/api/programmers/{nickname}', array($this, 'showAction'))
+             ->bind('api_programmers_show');
+ 
+-        $controllers->get('/api/programmers', array($this, 'listAction'));
++        $controllers->get('/api/programmers', array($this, 'listAction'))
++            ->bind('api_programmers_list');
+ 
+         // point PUT and PATCH at the same controller
+         $controllers->put('/api/programmers/{nickname}', array($this, 'updateAction'));
+diff --git a/src/KnpU/CodeBattle/Model/Homepage.php b/src/KnpU/CodeBattle/Model/Homepage.php
+index 1e7f9c5..be8c498 100644
+--- a/src/KnpU/CodeBattle/Model/Homepage.php
++++ b/src/KnpU/CodeBattle/Model/Homepage.php
+@@ -13,6 +13,13 @@ use Hateoas\Configuration\Annotation as Hateoas;
+  *          "api_homepage"
+  *      ),
+  *      attributes = {"title": "Your API starting point" }
++ * ),
++ * @Hateoas\Relation(
++ *      "programmers",
++ *      href = @Hateoas\Route(
++ *          "api_programmers_list"
++ *      ),
++ *      attributes = {"title": "The list of all programmers" }
+  * )
+  */
+ class Homepage
