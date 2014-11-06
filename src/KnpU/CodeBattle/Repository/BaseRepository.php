@@ -121,11 +121,16 @@ abstract class BaseRepository
         return $this->findAllBy(array());
     }
 
-    public function findAllBy(array $criteria, $limit = null)
+    public function findAllLike(array $criteria, $limit = null)
+    {
+        return $this->findAllBy($criteria, $limit, 'LIKE');
+    }
+
+    public function findAllBy(array $criteria, $limit = null, $operator = '=')
     {
         $qb = $this->createQueryBuilder('u');
         foreach ($criteria as $key => $val) {
-            $qb->andWhere('u.'.$key.' = :'.$key)
+            $qb->andWhere('u.'.$key.' '.$operator.' :'.$key)
                 ->setParameter($key, $val)
             ;
         }
