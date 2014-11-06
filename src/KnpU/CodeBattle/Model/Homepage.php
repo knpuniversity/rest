@@ -11,7 +11,8 @@ use Hateoas\Configuration\Annotation as Hateoas;
  *      "self",
  *      href = @Hateoas\Route(
  *          "api_homepage"
- *      )
+ *      ),
+ *      attributes = {"title": "Your API starting point" }
  * )
  */
 class Homepage
