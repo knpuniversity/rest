@@ -13,6 +13,13 @@ use Hateoas\Configuration\Annotation as Hateoas;
  *          "api_homepage"
  *      ),
  *      attributes = {"title": "Your API starting point" }
+ * ),
+ * @Hateoas\Relation(
+ *      "programmers",
+ *      href = @Hateoas\Route(
+ *          "api_programmers_list"
+ *      ),
+ *      attributes = {"title": "The list of all programmers" }
  * )
  */
 class Homepage
