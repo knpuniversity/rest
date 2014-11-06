@@ -91,6 +91,18 @@ Feature: Programmer
     And the "_embedded.programmers" property should contain 2 items
     And the "_embedded.programmers.0.nickname" property should equal "UnitTester"
 
+  Scenario: GET a collection of battles for a programmer
+    Given there is a project called "projectA"
+    Given there is a project called "projectB"
+    And there is a programmer called "Fred"
+    And there has been a battle between "Fred" and "projectA"
+    And there has been a battle between "Fred" and "projectB"
+    When I request "GET /api/programmers/Fred/battles"
+    Then the response status code should be 200
+    And the "_embedded.battles" property should be an array
+    And the "_embedded.battles" property should contain 2 items
+    And the "_embedded.battles.0.didProgrammerWin" property should exist
+
   Scenario: PUT to update a programmer
     Given the following programmers exist:
       | nickname    | avatarNumber | tagLine |
