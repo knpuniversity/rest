@@ -38,6 +38,7 @@ Feature: Programmer
       """
     And the "errors.nickname" property should exist
     But the "errors.avatarNumber" property should not exist
+    And the "Content-Type" header should be "application/problem+json"
 
   Scenario: GET one programmer
     Given the following programmers exist:
