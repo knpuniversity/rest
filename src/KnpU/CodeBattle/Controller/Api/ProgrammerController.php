@@ -27,6 +27,6 @@ class ProgrammerController extends BaseController
 
         $this->save($programmer);
 
-        return 'It worked. Believe me - I\'m an API';
+        return new Response('It worked. Believe me - I\'m an API', 201);
     }
 }
