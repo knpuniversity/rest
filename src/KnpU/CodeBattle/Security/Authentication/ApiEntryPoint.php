@@ -2,6 +2,7 @@
 
 namespace KnpU\CodeBattle\Security\Authentication;
 
+use KnpU\CodeBattle\Api\ApiProblem;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,7 +37,10 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface
     {
         $message = $this->getMessage($authException);
 
-        $response = new JsonResponse(array('detail' => $message), 401);
+        $problem = new ApiProblem(401, ApiProblem::TYPE_AUTHENTICATION_ERROR);
+        $problem->set('detail', $message);
+
+        $response = new JsonResponse($problem->toArray(), 401);
         $response->headers->set('Content-Type', 'application/problem+json');
 
         return $response;
