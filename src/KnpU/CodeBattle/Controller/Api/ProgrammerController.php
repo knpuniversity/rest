@@ -89,7 +89,13 @@ class ProgrammerController extends BaseController
 
     public function listAction(Request $request)
     {
-        $programmers = $this->getProgrammerRepository()->findAll();
+        $nicknameFilter = $request->query->get('nickname');
+        if ($nicknameFilter) {
+            $programmers = $this->getProgrammerRepository()
+                ->findAllLike(array('nickname' => '%'.$nicknameFilter.'%'));
+        } else {
+            $programmers = $this->getProgrammerRepository()->findAll();
+        }
 
         $limit = $request->query->get('limit', 5);
         $page = $request->query->get('page', 1);
