@@ -19,6 +19,9 @@ class ProgrammerController extends BaseController
 {
     protected function addRoutes(ControllerCollection $controllers)
     {
+        // the homepage - put in this controller for simplicity
+        $controllers->get('/api', array($this, 'homepageAction'));
+
         $controllers->post('/api/programmers', array($this, 'newAction'));
 
         $controllers->get('/api/programmers/{nickname}', array($this, 'showAction'))
@@ -36,6 +39,11 @@ class ProgrammerController extends BaseController
 
         $controllers->get('/api/programmers/{nickname}/battles', array($this, 'listBattlesAction'))
             ->bind('api_programmers_battles_list');
+    }
+
+    public function homepageAction()
+    {
+        return $this->createApiResponse(array());
     }
 
     public function newAction(Request $request)
