@@ -40,6 +40,17 @@ Feature: Programmer
     But the "errors.avatarNumber" property should not exist
     And the "Content-Type" header should be "application/problem+json"
 
+  Scenario: Error response on invalid JSON
+    Given I have the payload:
+      """
+      {
+        "avatarNumber" : "2
+        "tagLine": "I'm from a test!"
+      }
+      """
+    When I request "POST /api/programmers"
+    Then the response status code should be 400
+
   Scenario: GET one programmer
     Given the following programmers exist:
       | nickname   | avatarNumber |
