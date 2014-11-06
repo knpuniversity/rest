@@ -11,7 +11,8 @@ class BattleController extends BaseController
     protected function addRoutes(ControllerCollection $controllers)
     {
         $controllers->post('/api/battles', array($this, 'newAction'));
-        $controllers->get('/api/battles/{id}', array($this, 'showAction'));
+        $controllers->get('/api/battles/{id}', array($this, 'showAction'))
+            ->bind('api_battles_show');
     }
 
     public function newAction(Request $request)
