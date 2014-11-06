@@ -504,7 +504,22 @@
             "id": "pagination-adding-pagination-scenario",
             "name": "Pagination: Adding pagination scenario",
             "description": null
+        },
+        {
+            "id": "pagination-adding-faked-pagination",
+            "name": "Pagination: Adding faked pagination",
+            "description": null
+        },
+        {
+            "id": "pagination-adding-real-simple-implementation",
+            "name": "Pagination: Adding real (simple) implementation",
+            "description": null
+        },
+        {
+            "id": "filtering-adding-a-simple-filter",
+            "name": "Filtering: Adding a simple filter",
+            "description": null
         }
     ],
-    "sha": "db7a997a734c4f8ef8ce1034ad8d6f23ca9ea8cb"
+    "sha": "552ab6ce979c598b2c9c6a7a48909d2a4cb521a0"
 }
