@@ -537,7 +537,7 @@ class ApiFeatureContext extends BehatContext
                 $this->printDebug('<error>Failure!</error> when making the following request:');
                 $this->printDebug(sprintf('<comment>%s</comment>: <info>%s</info>', $this->lastRequest->getMethod(), $this->lastRequest->getUrl())."\n");
 
-                if ($this->response->isContentType('application/json')) {
+                if ($this->response->isContentType('application/json') || $this->response->isContentType('+json')) {
                     $data = json_decode($body);
                     if ($data === null) {
                         // invalid JSON!
