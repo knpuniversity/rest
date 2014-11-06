@@ -6,6 +6,7 @@ use Hateoas\Representation\CollectionRepresentation;
 use KnpU\CodeBattle\Api\ApiProblem;
 use KnpU\CodeBattle\Api\ApiProblemException;
 use KnpU\CodeBattle\Controller\BaseController;
+use KnpU\CodeBattle\Model\Homepage;
 use Silex\Application;
 use Silex\ControllerCollection;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +21,8 @@ class ProgrammerController extends BaseController
     protected function addRoutes(ControllerCollection $controllers)
     {
         // the homepage - put in this controller for simplicity
-        $controllers->get('/api', array($this, 'homepageAction'));
+        $controllers->get('/api', array($this, 'homepageAction'))
+            ->bind('api_homepage');
 
         $controllers->post('/api/programmers', array($this, 'newAction'));
 
@@ -43,7 +45,9 @@ class ProgrammerController extends BaseController
 
     public function homepageAction()
     {
-        return $this->createApiResponse(array());
+        $homepage = new Homepage();
+
+        return $this->createApiResponse($homepage);
     }
 
     public function newAction(Request $request)
