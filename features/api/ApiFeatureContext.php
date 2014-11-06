@@ -255,13 +255,15 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the "([^"]*)" property should contain "([^"]*)"$/
+     * @Then /^the "([^"]*)" property should contain "([^"]*)"$/
      */
     public function thePropertyShouldContain($property, $expectedValue)
     {
         $payload = $this->getScopePayload();
         $actualValue = $this->arrayGet($payload, $property);
 
+        // if the property is actually an array, use JSON so we look in it deep
+        $actualValue = is_array($actualValue) ? json_encode($actualValue, JSON_PRETTY_PRINT) : $actualValue;
         assertContains(
             $expectedValue,
             $actualValue,
@@ -277,6 +279,8 @@ class ApiFeatureContext extends BehatContext
         $payload = $this->getScopePayload();
         $actualValue = $this->arrayGet($payload, $property);
 
+        // if the property is actually an array, use JSON so we look in it deep
+        $actualValue = is_array($actualValue) ? json_encode($actualValue, JSON_PRETTY_PRINT) : $actualValue;
         assertNotContains(
             $expectedValue,
             $actualValue,
