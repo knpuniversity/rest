@@ -62,6 +62,21 @@ Feature: Programmer
     And the "avatarNumber" property should equal "2"
     But the "nickname" property should equal "CowboyCoder"
 
+  Scenario: PATCH to update a programmer
+    Given the following programmers exist:
+      | nickname    | avatarNumber | tagLine | powerLevel |
+      | CowboyCoder | 5            | foo     | 4          |
+    And I have the payload:
+      """
+      {
+        "tagLine": "bar"
+      }
+      """
+    When I request "PATCH /api/programmers/CowboyCoder"
+    Then the response status code should be 200
+    And the "avatarNumber" property should equal "5"
+    And the "tagLine" property should equal "bar"
+
   Scenario: DELETE a programmer
     Given the following programmers exist:
       | nickname   | avatarNumber |
