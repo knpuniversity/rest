@@ -3,6 +3,7 @@
 namespace KnpU\CodeBattle\Controller\Api;
 
 use Hateoas\Representation\CollectionRepresentation;
+use Hateoas\Representation\PaginatedRepresentation;
 use KnpU\CodeBattle\Api\ApiProblem;
 use KnpU\CodeBattle\Api\ApiProblemException;
 use KnpU\CodeBattle\Controller\BaseController;
@@ -90,13 +91,25 @@ class ProgrammerController extends BaseController
     {
         $programmers = $this->getProgrammerRepository()->findAll();
 
+        $limit = 5;
+        $page = 1;
+        $numberOfPages = (int) ceil(count($programmers) / $limit);
+
         $collection = new CollectionRepresentation(
             $programmers,
             'programmers',
             'programmers'
         );
+        $paginated = new PaginatedRepresentation(
+            $collection,
+            'api_programmers_list',
+            array(),
+            $page,
+            $limit,
+            $numberOfPages
+        );
 
-        $response = $this->createApiResponse($collection, 200, 'json');
+        $response = $this->createApiResponse($paginated, 200, 'json');
 
         return $response;
     }
