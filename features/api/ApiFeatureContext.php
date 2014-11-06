@@ -615,7 +615,7 @@ class ApiFeatureContext extends BehatContext
     protected function getResponsePayload()
     {
         if (! $this->responsePayload) {
-            $json = json_decode($this->getResponse()->getBody(true));
+            $json = json_decode($this->getResponse()->getBody(true), true);
 
             if (json_last_error() !== JSON_ERROR_NONE) {
                 $message = 'Failed to decode JSON body ';
