@@ -87,8 +87,9 @@ Feature: Programmer
       | CowboyCoder | 5            |
     When I request "GET /api/programmers"
     Then the response status code should be 200
-    And the "programmers" property should be an array
-    And the "programmers" property should contain 2 items
+    And the "_embedded.programmers" property should be an array
+    And the "_embedded.programmers" property should contain 2 items
+    And the "_embedded.programmers.0.nickname" property should equal "UnitTester"
 
   Scenario: PUT to update a programmer
     Given the following programmers exist:
