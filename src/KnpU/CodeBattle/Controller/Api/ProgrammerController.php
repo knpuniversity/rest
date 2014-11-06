@@ -87,16 +87,19 @@ class ProgrammerController extends BaseController
         return $response;
     }
 
-    public function listAction()
+    public function listAction(Request $request)
     {
         $programmers = $this->getProgrammerRepository()->findAll();
 
-        $limit = 5;
-        $page = 1;
+        $limit = $request->query->get('limit', 5);
+        $page = $request->query->get('page', 1);
+        // my manual, silly pagination logic. Use a real library
+        $offset = ($page - 1) * $limit;
         $numberOfPages = (int) ceil(count($programmers) / $limit);
 
         $collection = new CollectionRepresentation(
-            $programmers,
+            // my manual, silly pagination logic. Use a real library
+            array_slice($programmers, $offset, $limit),
             'programmers',
             'programmers'
         );
