@@ -265,7 +265,22 @@ class ApiFeatureContext extends BehatContext
         assertContains(
             $expectedValue,
             $actualValue,
-            "Asserting the [$property] property in current scope equals [$expectedValue]: ".json_encode($payload)
+            "Asserting the [$property] property in current scope contains [$expectedValue]: ".json_encode($payload)
+        );
+    }
+
+    /**
+     * @Given /^the  "([^"]*)" property should not contain "([^"]*)"$/
+     */
+    public function thePropertyShouldNotContain($property, $expectedValue)
+    {
+        $payload = $this->getScopePayload();
+        $actualValue = $this->arrayGet($payload, $property);
+
+        assertNotContains(
+            $expectedValue,
+            $actualValue,
+            "Asserting the [$property] property in current scope does not contain [$expectedValue]: ".json_encode($payload)
         );
     }
 
@@ -502,6 +517,18 @@ class ApiFeatureContext extends BehatContext
         foreach (explode("\n", (string) $propertiesString) as $property) {
             $this->thePropertyExists($property);
         }
+    }
+
+    /**
+     * @Given /^I follow the "([^"]*)" link$/
+     */
+    public function iFollowTheLink($linkName)
+    {
+        $payload = $this->getScopePayload();
+        $href = $this->arrayGet($payload, sprintf('_links.%s.href', $linkName), true);
+
+        // follow the link
+        $this->iRequest('GET', $href);
     }
 
     /**
