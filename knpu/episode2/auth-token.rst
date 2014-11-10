@@ -47,7 +47,7 @@ is open this ``ApiTokenListener``. I've written some fake code in here as
 you can see. The job of the listener is to look at the request object and
 find the token information off of it. And hey, since we're sending the token
 on the ``Authorization`` header, we are going to look for it there. So let's
-get rid of this hard coded text and instead go get that ``Authentication`` header. 
+get rid of this hard coded text and instead go get that ``Authorization`` header. 
 You can say ``$request->headers->get('Authorization')``. That's going to get you 
 the actual raw ``token ABCD123`` type of thing. 
 
