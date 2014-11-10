@@ -17,26 +17,26 @@ called ``createResponse`` and it will take in an ``ApiProblem`` object and
 create the response for that. And most of this we can just copy from our
 error handler code.
 
-I'll make sure that I add a couple of ``use`` statements here. Perfect, so
-it takes in the ``ApiProblem``, it transforms that into json, and it makes
+I'll make sure that I add a couple of ``use`` statements here. Perfect,
+it takes in the ``ApiProblem``, transforms that into json, and makes
 sure that the ``Content-Type`` header is set. So if we can use this instead
-of repeating that logic elsewhere, it is going to save us some trouble. Like
+of repeating that logic elsewhere, it's going to save us some trouble. Like
 we saw before, inside of Silex there is a way to create global objects called
-services. We did this for the ``erializer`` which meant that let us use it
-in multiple places. So I'm going to do the same thing with the ``api.response_factory``.
+services. We did this for the ``serializer`` which let us use it in multiple 
+places. So I'm going to do the same thing with the ``api.response_factory``.
 And we'll just ``return new ApiProblemResponseFactory``. Of course, like
 anything else don't forget to add the ``use`` statement for that. Yes, this
 class is getting a little crazy. And that's it!
 
-Down inside this class we'll use that key to access the objecta and make use
+Down inside this class we'll use that key to access the object and make use
 of it. I have that same app variable, so I can get rid of all this stuff
-here. Pass it the  ``ApiProblem`` object to ``createResponse`` and that's
-it!
+here. Pass the  ``ApiProblem`` object to ``createResponse`` and there we
+go!
 
 We can do the same thing inside the ``ApiEntryPoint``. I need to practice
 a little bit of dependency injection, and if this is a new idea to you
 or going over your head, we have a free tutorial about `dependency injection`_.
-I highly recommend you check it out, it is going to change the way you code. 
+I highly recommend you check it out, it's going to change the way you code. 
 
 So in ``Application``, I'm going to find the entry point and I'm actually going
 to go past that new factory object right to it as the second argument to
