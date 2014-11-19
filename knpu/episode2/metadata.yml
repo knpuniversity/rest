@@ -1,24 +1,25 @@
 title:  RESTful APIs in the Real World Episode 2
-price:  0
+price:  12
 length: ~
 summary: |
     Making RESTful APIs is hard, really hard. There are a lot of concepts
     to know - resources, representations, HTTP methods, status codes, etc.
+    
+    Episode 1 got us really comfortable with all the terminology. So in episode 2,
+    we're attacking the *hard* stuff:
 
-    In the upcoming episode 2 of this series, we'll cover the hard stuff,
-    by continuing our real tutorial:
-
+    * Using a serializer
+    * Token Authentication System
     * Hypermedia and HATOEAS
     * Documenting your API
     * Content-Type negotiation
     * Pagination and filtering
     * A lot of other pieces in between!
+    
+    This stuff is not easy. But if you make it through, you'll be armed to
+    attack whatever API need you have.
 
 illustration: rest2.png
-priority: 0
-tags:
-    - { name: php }
-status: upcoming
 hasVideoDownload: 0
 
 chapters:
@@ -28,22 +29,31 @@ chapters:
         video_key: xxx
     serializer-annotations:
         video_key: xxx
-    # authentication
     requiring-authentication:
         video_key: xxx
-    # auth-token
     authentication-via-token:
         video_key: xxx
-    # authorization
     securing-more-endpoints:
         video_key: xxx
-    # auth-advanced
     authentication-error-format:
-        video_key: xxx
-    # error-response-factory
+        is_finished: false
     centralizing-error-response-creation:
-        video_key: xxx
-    # token
+        is_finished: false
     creating-tokens-in-the-api:
-        video_key: xxx
-
+        is_finished: false
+    battle-resource-endpoints:
+        is_finished: false
+    hateoas-installation:
+        is_finished: false
+    hateoas-linking-embedding:
+        is_finished: false
+    hal-browser:
+        is_finished: false
+    link-all-the-resources:
+        is_finished: false
+    api-homepage:
+        is_finished: false
+    pagination:
+        is_finished: false
+    filtering:
+        is_finished: false

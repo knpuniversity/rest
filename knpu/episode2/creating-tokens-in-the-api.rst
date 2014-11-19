@@ -5,7 +5,7 @@ Our API clients can send a token with their request to become authenticated.
 But now they need a way to actually create and manage these tokens!
 
 Actually, this is already possible via the web interface. First, let me delete
-our SQLite database, because the tests use that same databse and it deletes
+our SQLite database, because the tests use that same database and it deletes
 my test user. Now, we can login as ryan@knplabs.com password ``foo``. If
 you go to the url ``/tokens``, you see I have a little interface here. I can
 add a token, put a message, click `tokenify-me` and there we go, I've got
@@ -235,7 +235,7 @@ object, we'll just call the same function, pass it the token instead of the
 programmer and throw that same error. Perfect, so this actually should all
 be setup. Of course what I forgot to do was write the scenario first, so shame
 on me~ Let's write the  scenario to make sure this is working. I'll copy most
-of the working version. Hhere, we won't actually pass any request body. Fortunately
+of the working version. Here, we won't actually pass any request body. Fortunately
 we've made our decode function able to handle that. We know the status code
 is going to be 400. We can check to see that the ``errors.notes`` property
 will equal the message that is actually on the ``ApiToken`` class. It will
