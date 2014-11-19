@@ -8,7 +8,7 @@ index 9982895..8d65447 100644
      And the "_links.programmer.href" property should equal "/api/programmers/Fred"
 +    And the "Content-Type" header should be "application/hal+json"
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index f3cbd0c..7e9fc48 100644
+index a9ebfe9..5e465a4 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
 @@ -239,7 +239,7 @@ abstract class BaseController implements ControllerProviderInterface

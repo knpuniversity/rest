@@ -14,10 +14,10 @@ index 2253b2f..8402ed2 100644
 +    Then the response status code should be 400
 +    And the "errors.notes" property should equal "Please add some notes about this token"
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index f652dc5..9f22be6 100644
+index e849006..61bad86 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-@@ -146,15 +146,4 @@ class ProgrammerController extends BaseController
+@@ -144,15 +144,4 @@ class ProgrammerController extends BaseController
  
          $programmer->userId = $this->getLoggedInUser()->id;
      }
@@ -50,10 +50,10 @@ index 3569b9c..51d7298 100644
  
          return $this->createApiResponse($token, 201);
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index 55e2c51..f3cbd0c 100644
+index bbead86..a9ebfe9 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
-@@ -284,4 +284,15 @@ abstract class BaseController implements ControllerProviderInterface
+@@ -286,4 +286,15 @@ abstract class BaseController implements ControllerProviderInterface
  
          return new ParameterBag($data);
      }

@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index fb3cdf3..85849ff 100644
+index fb3cdf3..4f4600c 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -36,9 +36,7 @@ class ProgrammerController extends BaseController
@@ -13,15 +13,7 @@ index fb3cdf3..85849ff 100644
  
          $programmer = new Programmer();
          $this->handleRequest($request, $programmer);
-@@ -83,12 +81,16 @@ class ProgrammerController extends BaseController
- 
-     public function updateAction($nickname, Request $request)
-     {
-+        $this->enforceUserSecurity();
-+
-         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
- 
-         if (!$programmer) {
+@@ -89,6 +87,8 @@ class ProgrammerController extends BaseController
              $this->throw404('Oh no! This programmer has deserted! We\'ll send a search party!');
          }
  
@@ -30,7 +22,7 @@ index fb3cdf3..85849ff 100644
          $this->handleRequest($request, $programmer);
  
          if ($errors = $this->validate($programmer)) {
-@@ -106,6 +108,8 @@ class ProgrammerController extends BaseController
+@@ -106,6 +106,8 @@ class ProgrammerController extends BaseController
      {
          $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
  
@@ -40,7 +32,7 @@ index fb3cdf3..85849ff 100644
              $this->delete($programmer);
          }
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index 9d6cc57..22de620 100644
+index 9d6cc57..7a0bbd0 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
 @@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
@@ -51,7 +43,7 @@ index 9d6cc57..22de620 100644
  
  /**
   * Base controller class to hide Silex-related implementation details
-@@ -246,4 +247,19 @@ abstract class BaseController implements ControllerProviderInterface
+@@ -246,4 +247,21 @@ abstract class BaseController implements ControllerProviderInterface
  
          return $this->container['serializer']->serialize($data, $format, $context);
      }
@@ -65,6 +57,8 @@ index 9d6cc57..22de620 100644
 +
 +    protected function enforceProgrammerOwnershipSecurity(Programmer $programmer)
 +    {
++        $this->enforceUserSecurity();
++
 +        if ($this->getLoggedInUser()->id != $programmer->userId) {
 +            throw new AccessDeniedException();
 +        }

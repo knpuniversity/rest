@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 75d784a..ba25e19 100644
+index 7a9bedc..d40305e 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -33,6 +33,9 @@ class ProgrammerController extends BaseController
@@ -40,4 +40,4 @@ index 75d784a..ba25e19 100644
 +
      public function updateAction($nickname, Request $request)
      {
-         $this->enforceUserSecurity();
+         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
