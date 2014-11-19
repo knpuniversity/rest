@@ -51,3 +51,5 @@ Sahweet! They're passing too!
 
 So there's no chance of duplication because everything is going through that
 same class.
+
+.. _`dependency injection`: https://knpuniversity.com/screencast/dependency-injection
