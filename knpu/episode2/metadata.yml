@@ -21,5 +21,29 @@ tags:
 status: upcoming
 hasVideoDownload: 0
 
-chapters: []
+chapters:
+    serializer:
+        video_key: xxx
+    serializer-configuration:
+        video_key: xxx
+    serializer-annotations:
+        video_key: xxx
+    # authentication
+    requiring-authentication:
+        video_key: xxx
+    # auth-token
+    authentication-via-token:
+        video_key: xxx
+    # authorization
+    securing-more-endpoints:
+        video_key: xxx
+    # auth-advanced
+    authentication-error-format:
+        video_key: xxx
+    # error-response-factory
+    centralizing-error-response-creation:
+        video_key: xxx
+    # token
+    creating-tokens-in-the-api:
+        video_key: xxx
 

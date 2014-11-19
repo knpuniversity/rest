@@ -1,5 +1,5 @@
-Authorization Token
-===================
+Authorization via a Token
+=========================
 
 So we can deny access and turn that into a nice response. Cool. Now we need
 to create something that'll look for a token on the request and authenticate

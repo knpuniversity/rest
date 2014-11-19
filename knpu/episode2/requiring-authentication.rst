@@ -1,4 +1,4 @@
-API Token Authentication
+Requiring Authentication
 ========================
 
 Let's talk about API Authentication. The web part of our site *does* have

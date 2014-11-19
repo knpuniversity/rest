@@ -1,5 +1,5 @@
-Auth Advanced
-=============
+Authentication Error Format
+===========================
 
 It's finally time to create a scenario to check and see what happens if we 
 send an *invalid* token. So let's do that right now.
@@ -35,7 +35,7 @@ say "invalid credentials!" and a capital letter. Perfect!
 
 Next, we need all of our errors to *always* return that same API problem
 response format. And when we return this format, we should always send back
-its special ``Content-Type``so let's make sure it's correct.
+its special ``Content-Type`` so let's make sure it's correct.
 
 Ahh! It's not coming back with that. We are getting an application/problem-like
 format, but without the right ``Content-Type`` header. It's coming back as

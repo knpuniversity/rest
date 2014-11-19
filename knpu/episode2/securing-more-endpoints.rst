@@ -1,3 +1,6 @@
+Securing More Endpoints
+=======================
+
 Hey! We have this great system where users are actually being authenticated!
 Now we can start checking for security everywhere we need it. In ``newAction``
 we're requiring that you are logged in. Awesome! In ``showAction`` and ``listAction``

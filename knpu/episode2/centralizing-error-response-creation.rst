@@ -1,5 +1,5 @@
-Error Response Factory
-======================
+Centralizing Error Response Creation
+====================================
 
 Let's go further! Even the creation of the response is error prone. So right
 now, in both the ``Application`` class where we have our error handler *and*
