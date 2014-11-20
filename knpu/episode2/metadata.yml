@@ -27,10 +27,13 @@ tuts_hero:
 chapters:
     serializer:
         video_key: fm0btcnzhb
+        is_free:   true
     serializer-configuration:
         video_key: bp2odxm0bq
+        is_free:   true
     serializer-annotations:
         video_key: dje40nkyfj
+        is_free:   true
     requiring-authentication:
         video_key: ikji1yf0e4
     authentication-via-token:
