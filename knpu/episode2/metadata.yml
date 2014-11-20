@@ -8,7 +8,7 @@ summary: |
 
     * Using a serializer
     * Token Authentication System
-    * Hypermedia and HATOEAS
+    * Hypermedia and HATEOAS
     * Documenting your API
     * Content-Type negotiation
     * Pagination and filtering
