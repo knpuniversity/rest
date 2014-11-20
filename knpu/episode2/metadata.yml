@@ -21,6 +21,9 @@ summary: |
 illustration: rest2.png
 hasVideoDownload: 0
 
+tuts_hero:
+    start_step: errors-making-type-a-url
+
 chapters:
     serializer:
         video_key: xxx
