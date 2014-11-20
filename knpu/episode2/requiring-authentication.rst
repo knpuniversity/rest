@@ -235,3 +235,5 @@ Ok, rerun the tests!
     php vendor/bin/behat features/api/authentication.feature
 
 Fantastic!
+
+.. _`API problem`: https://apigility.org/documentation/api-primer/error-reporting
