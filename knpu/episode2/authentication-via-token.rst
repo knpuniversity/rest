@@ -183,7 +183,7 @@ in my database? Let me show you some of the behind-the-scenes magic::
     // this is an internal class that creates our database tables
     
     $tokenTable = new Table('api_token');
-    $tokenTable->addColumn('id', 'integer', array('unsigned' => true, 'autoincrement' => true));
+    $tokenTable->addColumn('id', 'integer'();
     $tokenTable->addColumn('token', 'string', array('length' => 32));
     $tokenTable->addColumn('userId', 'integer');
     $tokenTable->addColumn('notes', 'string', array('length' => 255));
