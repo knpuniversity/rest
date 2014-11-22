@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/BattleController.php b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
-index 5405e99..e02bddc 100644
+index de046e3..d8573d5 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/BattleController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
 @@ -11,7 +11,8 @@ class BattleController extends BaseController
@@ -13,10 +13,10 @@ index 5405e99..e02bddc 100644
  
      public function newAction(Request $request)
 diff --git a/src/KnpU/CodeBattle/Model/Battle.php b/src/KnpU/CodeBattle/Model/Battle.php
-index 99a5d65..4571492 100644
+index 59ae5fb..3fd0ac1 100644
 --- a/src/KnpU/CodeBattle/Model/Battle.php
 +++ b/src/KnpU/CodeBattle/Model/Battle.php
-@@ -8,6 +8,13 @@ use Hateoas\Configuration\Annotation as Hateoas;
+@@ -9,6 +9,13 @@ use Hateoas\Configuration\Annotation as Hateoas;
  /**
   * @Serializer\ExclusionPolicy("all")
   * @Hateoas\Relation(
