@@ -401,6 +401,11 @@
             "description": null
         },
         {
+            "id": "battle-exclusionpolicy",
+            "name": "Battle: ExclusionPolicy",
+            "description": null
+        },
+        {
             "id": "battle-linking-to-programmer-url",
             "name": "Battle: Linking to Programmer URL",
             "description": null
@@ -521,5 +526,5 @@
             "description": null
         }
     ],
-    "sha": "e0b37db6694307d8eaf7820a1df49f7ca6f6e199"
+    "sha": "a7b49337a9338d172ca8c3725bb499839f208af1"
 }

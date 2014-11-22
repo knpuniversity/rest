@@ -1,15 +1,20 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/BattleController.php b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
-index a148480..6cbf0ff 100644
+index a148480..d155a31 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/BattleController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
-@@ -22,6 +22,15 @@ class BattleController extends BaseController
+@@ -22,6 +22,20 @@ class BattleController extends BaseController
          $programmer = $this->getProgrammerRepository()->find($data->get('programmerId'));
          $project = $this->getProjectRepository()->find($data->get('projectId'));
  
-+        if (!$programmer || !$project) {
-+            $this->throwApiProblemValidationException(array(
-+                'Invalid programmerId or projectId',
-+            ));
++        $errors = array();
++        if (!$project) {
++            $errors['projectId'] = 'Invalid or missing projectId';
++        }
++        if (!$programmer) {
++            $errors['programmerId'] = 'Invalid or missing programmerId';
++        }
++        if ($errors) {
++            $this->throwApiProblemValidationException($errors);
 +        }
 +
 +        // make sure I own this programmer

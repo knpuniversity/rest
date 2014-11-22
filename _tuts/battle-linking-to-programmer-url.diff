@@ -8,21 +8,12 @@ index 51e1989..b737a19 100644
      And the "didProgrammerWin" property should exist
 +    And the "programmerUri" property should equal "/api/programmers/Fred"
 diff --git a/src/KnpU/CodeBattle/Model/Battle.php b/src/KnpU/CodeBattle/Model/Battle.php
-index 081415a..92312d7 100644
+index 6ca1ba1..eaf2686 100644
 --- a/src/KnpU/CodeBattle/Model/Battle.php
 +++ b/src/KnpU/CodeBattle/Model/Battle.php
-@@ -2,6 +2,8 @@
- 
- namespace KnpU\CodeBattle\Model;
- 
-+use JMS\Serializer\Annotation as Serializer;
-+
- class Battle
- {
-     /* All public properties are persisted */
-@@ -22,4 +24,12 @@ class Battle
-     public $foughtAt;
- 
+@@ -38,4 +38,12 @@ class Battle
+      * @Serializer\Expose()
+      */
      public $notes;
 +
 +    /**

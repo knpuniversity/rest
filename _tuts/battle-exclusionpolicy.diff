@@ -1,0 +1,41 @@
+diff --git a/src/KnpU/CodeBattle/Model/Battle.php b/src/KnpU/CodeBattle/Model/Battle.php
+index 081415a..6ca1ba1 100644
+--- a/src/KnpU/CodeBattle/Model/Battle.php
++++ b/src/KnpU/CodeBattle/Model/Battle.php
+@@ -2,9 +2,16 @@
+ 
+ namespace KnpU\CodeBattle\Model;
+ 
++use JMS\Serializer\Annotation as Serializer;
++
++/**
++ * @Serializer\ExclusionPolicy("all")
++ */
+ class Battle
+ {
+-    /* All public properties are persisted */
++    /**
++     * @Serializer\Expose()
++     */
+     public $id;
+ 
+     /**
+@@ -17,9 +24,18 @@ class Battle
+      */
+     public $project;
+ 
++    /**
++     * @Serializer\Expose()
++     */
+     public $didProgrammerWin;
+ 
++    /**
++     * @Serializer\Expose()
++     */
+     public $foughtAt;
+ 
++    /**
++     * @Serializer\Expose()
++     */
+     public $notes;
+ }
