@@ -9,16 +9,10 @@ index e674da4..f7288fa 100644
 +    And the "_embedded.programmer.nickname" property should equal "Fred"
      And the "Content-Type" header should be "application/hal+json"
 diff --git a/src/KnpU/CodeBattle/Model/Battle.php b/src/KnpU/CodeBattle/Model/Battle.php
-index 8f6c790..59ae5fb 100644
+index 8f6c790..08bef5b 100644
 --- a/src/KnpU/CodeBattle/Model/Battle.php
 +++ b/src/KnpU/CodeBattle/Model/Battle.php
-@@ -7,12 +7,14 @@ use JMS\Serializer\Annotation as Serializer;
- use Hateoas\Configuration\Annotation as Hateoas;
- 
- /**
-+ * @Serializer\ExclusionPolicy("all")
-  * @Hateoas\Relation(
-  *      "programmer",
+@@ -12,7 +12,8 @@ use Hateoas\Configuration\Annotation as Hateoas;
   *      href = @Hateoas\Route(
   *          "api_programmers_show",
   *          parameters = { "nickname" = "expr(object.programmer.nickname)" }

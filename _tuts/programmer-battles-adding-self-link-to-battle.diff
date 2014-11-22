@@ -13,12 +13,12 @@ index de046e3..d8573d5 100644
  
      public function newAction(Request $request)
 diff --git a/src/KnpU/CodeBattle/Model/Battle.php b/src/KnpU/CodeBattle/Model/Battle.php
-index 59ae5fb..3fd0ac1 100644
+index 08bef5b..20a5ab5 100644
 --- a/src/KnpU/CodeBattle/Model/Battle.php
 +++ b/src/KnpU/CodeBattle/Model/Battle.php
-@@ -9,6 +9,13 @@ use Hateoas\Configuration\Annotation as Hateoas;
+@@ -8,6 +8,13 @@ use Hateoas\Configuration\Annotation as Hateoas;
+ 
  /**
-  * @Serializer\ExclusionPolicy("all")
   * @Hateoas\Relation(
 + *      "self",
 + *      href = @Hateoas\Route(
