@@ -830,4 +830,15 @@ class ApiFeatureContext extends BehatContext
             $url
         );
     }
+
+    /**
+     * @Given /^the embedded "([^"]*)" should have a "([^"]*)" property equal to "([^"]*)"$/
+     */
+    public function theEmbeddedShouldHaveAPropertyEqualTo($embeddedName, $property, $value)
+    {
+        $this->thePropertyEquals(
+            sprintf('_embedded.%s.%s', $embeddedName, $property),
+            $value
+        );
+    }
 }
