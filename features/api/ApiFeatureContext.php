@@ -814,4 +814,20 @@ class ApiFeatureContext extends BehatContext
 
         return $payload;
     }
+
+    /**
+     * Asserts the the href of the given link name equals this value
+     *
+     * Since we're using HAL, this would look for something like:
+     *      "_links.programmer.href": "/api/programmers/Fred"
+     *
+     * @Given /^the link "([^"]*)" should exist and its value should be "([^"]*)"$/
+     */
+    public function theLinkShouldExistAndItsValueShouldBe($linkName, $url)
+    {
+        $this->thePropertyEquals(
+            sprintf('_links.%s.href', $linkName),
+            $url
+        );
+    }
 }
