@@ -1,5 +1,5 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index 3d6c836..abe186f 100644
+index 3d6c836..7f9eb14 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
 @@ -91,6 +91,28 @@ Feature: Programmer
@@ -25,8 +25,8 @@ index 3d6c836..abe186f 100644
 +    When I request "GET /api/programmers"
 +    And I follow the "next" link
 +    Then the "_embedded.programmers" property should contain "Programmer7"
-+    But the  "_embedded.programmers" property should not contain "Programmer2"
-+    But the  "_embedded.programmers" property should not contain "Programmer11"
++    But the "_embedded.programmers" property should not contain "Programmer2"
++    But the "_embedded.programmers" property should not contain "Programmer11"
 +
    Scenario: GET a collection of battles for a programmer
      Given there is a project called "projectA"
