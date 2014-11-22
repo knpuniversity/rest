@@ -741,7 +741,15 @@ class ApiFeatureContext extends BehatContext
     public function printLastResponse()
     {
         if ($this->response) {
-            $this->printDebug((string) $this->response);
+            $response = clone ($this->response);
+            $body = $response->getBody(true);
+            $data = json_decode($body, true);
+
+            if ($data) {
+                $response->setBody(json_encode($data, JSON_PRETTY_PRINT));
+            }
+
+            $this->printDebug((string) $response);
         }
     }
 
