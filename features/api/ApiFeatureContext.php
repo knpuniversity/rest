@@ -272,7 +272,7 @@ class ApiFeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^the  "([^"]*)" property should not contain "([^"]*)"$/
+     * @Given /^the "([^"]*)" property should not contain "([^"]*)"$/
      */
     public function thePropertyShouldNotContain($property, $expectedValue)
     {
