@@ -1,11 +1,11 @@
 diff --git a/features/api/battle.feature b/features/api/battle.feature
-index 8d65447..c3318d9 100644
+index e674da4..f7288fa 100644
 --- a/features/api/battle.feature
 +++ b/features/api/battle.feature
 @@ -32,4 +32,5 @@ Feature:
      And the "notes" property should exist
      And the "didProgrammerWin" property should exist
-     And the "_links.programmer.href" property should equal "/api/programmers/Fred"
+     And the link "programmer" should exist and its value should be "/api/programmers/Fred"
 +    And the "_embedded.programmer.nickname" property should equal "Fred"
      And the "Content-Type" header should be "application/hal+json"
 diff --git a/src/KnpU/CodeBattle/Model/Battle.php b/src/KnpU/CodeBattle/Model/Battle.php

@@ -1,0 +1,23 @@
+diff --git a/features/api/battle.feature b/features/api/battle.feature
+index 9982895..5111da1 100644
+--- a/features/api/battle.feature
++++ b/features/api/battle.feature
+@@ -31,4 +31,4 @@ Feature:
+     Then the response status code should be 200
+     And the "notes" property should exist
+     And the "didProgrammerWin" property should exist
+-    And the "_links.programmer.href" property should equal "/api/programmers/Fred"
++    And the link "programmer" should exist and its value should be "/api/programmers/Fred"
+diff --git a/features/api/programmer.feature b/features/api/programmer.feature
+index c81d2cb..4a4baaf 100644
+--- a/features/api/programmer.feature
++++ b/features/api/programmer.feature
+@@ -78,7 +78,7 @@ Feature: Programmer
+       """
+     And the "userId" property should not exist
+     And the "nickname" property should equal "UnitTester"
+-    And the "_links.self.href" property should equal "/api/programmers/UnitTester"
++    And the link "self" should exist and its value should be "/api/programmers/UnitTester"
+ 
+   Scenario: GET a collection of programmers
+     Given the following programmers exist:
