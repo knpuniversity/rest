@@ -139,6 +139,8 @@ class ApiFeatureContext extends BehatContext
         $resource = $this->processReplacements($resource);
 
         $this->resource = $resource;
+        // reset the response payload
+        $this->responsePayload = null;
 
         $method = strtolower($httpMethod);
 
