@@ -49,7 +49,9 @@ chapters:
         is_finished: false
     token-validation:
         is_finished: false
-    battle-resource-endpoints:
+    battle-resource-feature:
+        is_finished: false
+    battle-resource-new:
         is_finished: false
     hateoas-installation:
         is_finished: false
