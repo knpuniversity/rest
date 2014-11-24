@@ -1,5 +1,5 @@
-HATEOAS Linking and Embedding
-=============================
+HATEOAS Linking 
+===============
 
 Let's add more links! Back in ``battle.feature``, we're returning a ``programmerUri``,
 which was our way of creating a link before we knew there was a good standard
