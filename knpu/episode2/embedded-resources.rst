@@ -4,8 +4,7 @@ Embedded Resources
 When we made our Battle endpoint, we decided it might be convenient to have
 a link to Programmer. It's just a nice thing to help our API clients. But
 to get that programmer's information, they're going to need to make a second
-request out to that URI. Sometimes, you may choose instead to *embed*
-one resource into another. If it's *really* common to need the programmer
+request out to that URI. If it's *really* common to need the programmer
 information when you GET a battle, you may *choose* to put the Programmer's
 data, right inside the Battle's response.
 
@@ -32,7 +31,7 @@ object you want to embed. And actually, if you include both ``href`` and
 ``embedded``, it'll create a link *and* embed it. 
 
 Before we run the test, add a "And print last response", because I like to
-see how my endpoints look. Let's run our test, and awesome it passes. If
+see how my endpoints look. Let's run it,awesome it passes. If
 you look - HATEOAS is doing all the work for us. We still have ``_links``,
 but we also have ``_embedded``. What's cool is that it goes out to the ``Programmer``
 resource and serializes it. You end up with all the same properties as normal,
