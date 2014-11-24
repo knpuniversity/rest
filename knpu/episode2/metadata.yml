@@ -45,6 +45,10 @@ chapters:
         is_finished: false
     creating-tokens-in-the-api:
         is_finished: false
+    reuse-consistency:
+        is_finished: false
+    token-validation:
+        is_finished: false
     battle-resource-endpoints:
         is_finished: false
     hateoas-installation:
