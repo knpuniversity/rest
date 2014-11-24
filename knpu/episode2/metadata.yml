@@ -69,6 +69,8 @@ chapters:
         is_finished: false
     hal-browser:
         is_finished: false
+    hal-collection:
+        is_finished: false
     link-all-the-resources:
         is_finished: false
     api-homepage:
