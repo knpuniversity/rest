@@ -106,3 +106,33 @@ database. We're missing the ``Location`` header and we *should* have it, but
 for now I'm just going to comment that line out. I don't want to take the time
 to build the endpoint to view a single token. I'll let you handle that. Let's the 
 test, perfect it passes!
+
+Since we're not checking to see if the password is valid, let's add another
+scenario for that. We can copy most of the working scenario but we'll change
+a couple of things.
+
+Instead of the right password we'll send something different. And instead 
+of 201 this time it's going to be a 401.Remember whenever we have an error 
+response we are always returning that API Problem format. Great! So let's 
+run just this one scenario which starts on line 21. And again, we're
+expecting it to fail, but I like to see my failures before I actually do
+the code. Yes, failing!
+
+In our controller we need to check to see if the password is correct
+for the user. But hey, let's not do that, Silex can help us with some of this
+straightforward logic. In my main ``Application`` class, where I configure my security,
+I've already setup things to allow http basic to happen. By adding this
+little key here, when the http basic username and password come into the
+request, the Silex security system will automatically look up the user object
+and deny access if they have the wrong password. It's kind of like our API
+token system, but instead of sending a token it's going to be reading it off
+of the http basic username and password headers. That's pretty handy.
+
+That means that in the controller, if we need the actual user object we don't
+need to query for it - the security system already did that for us.
+We can just say ``$this->getLoggedInUser()``. We don't really know if the
+user logged in via HTTP basic or passed a token, and frankly we don't
+care. And since we need our user to be logged in for this endpoint, we can use our nice 
+``$this->enforceUserSecurity()`` function. Perfect, let's try that out.
+
+And it passes with almost no effort!
