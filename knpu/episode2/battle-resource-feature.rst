@@ -45,7 +45,7 @@ to ``/api/battles`` and the status code of 201 looks perfect.
 
 In order to create a Battle - we'll need to send a programmer and a project.
 And probably the way we'll want the client to do that is by sending the programmer
-the project's ids. So let's send programmerId and projectId - but we don't
+and the project's ids. So let's send programmerId and projectId - but we don't
 know yet what these should be set to.
 
 Next, in order for us to start a battle, there needs to already be a programmer
