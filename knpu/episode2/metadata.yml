@@ -61,9 +61,11 @@ chapters:
         is_finished: false
     hateoas-router:
         is_finished: false
-    hateoas-linking-embedding:
+    hateoas-linking:
         is_finished: false
     hypermedia-media:
+        is_finished: false
+    embedded-resources
         is_finished: false
     hal-browser:
         is_finished: false
