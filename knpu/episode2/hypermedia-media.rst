@@ -24,7 +24,7 @@ the rest of your data.
 JSON is **not** hypermedia. That may seem confusing, because you might
 be thinking "but didn't we just add links to our JSON - isn't that hypermedia?"
 And that answer is no, because if you read the official JSON specification,
-all it will talk about is where you curly braces, quotes, colons and commas
+all it will talk about is where your curly braces, quotes, colons and commas
 should go. JSON is about the structure of the data - it says nothing about
 what's actually inside of the data. So by itself, JSON is just a media type,
 because there's nothing in there that says where your links should live.
