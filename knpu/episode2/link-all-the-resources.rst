@@ -19,7 +19,7 @@ Cool - so that's all the setup work.
 
 This will return a collection resource, so we can steal a lot of the scenario
 from above, since all collection resources pretty much look the same. For
-the URLI, one of the things you'll hear is that URIs don't matter. In theory,
+the URI, one of the things you'll hear is that URIs don't matter. In theory,
 you can make whatever URIs you want. So if you're stressing out about how
 a URI should look, just choose something, because it ultimately doesn't matter.
 
@@ -91,6 +91,6 @@ of the battle. So on the relation, we can simply say ``object.id``. Awesome!
 If we re-GET this request, we see a huge error! This is no bueno! But hey, let's 
 run our test for this to see if it helps us. And you can see that we're missing some 
 "id" parameter when generating the URL. I made a mistake in the Relation. You probably 
-saw me do it, but I'm still passing a ``nickname`` instead of passing the ``id``. So now, t
-hings work. Thank God for our tests, because that was really easy to debug. And every battle
+saw me do it, but I'm still passing a ``nickname`` instead of passing the ``id``. So now, 
+things work. Thank God for our tests, because that was really easy to debug. And every battle
 *now* has that ``self`` link.
