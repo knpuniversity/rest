@@ -55,6 +55,8 @@ chapters:
         is_finished: false
     get-one-battle:
         is_finished: false
+    link-battle-programmer:
+        is_finished: false
     hateoas-installation:
         is_finished: false
     hateoas-linking-embedding:
