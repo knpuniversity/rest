@@ -6,7 +6,7 @@ response looks like - so I'll say "And print last response". Now, run Behat.
 
 At the bottom, you can see that response has Programmer and Project information
 right inside of it. That's because the Battle class has two properties that
-hold these object. The serializer sees these objects, and serializes them recursively.
+hold these objects. The serializer sees these objects, and serializes them recursively.
 
 In a couple of chapters, we're going to talk about embedding resources where
 we do this on purpose. But for now, I want to avoid it: if I'm getting a Battle,
