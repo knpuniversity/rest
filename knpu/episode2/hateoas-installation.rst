@@ -38,7 +38,7 @@ and helps us add links. It's called HATEOAS, which is a REST term that we'll
 talk about later.
 
 Before we look at how this library works, let's get it installed. Copy the
-name, then run ``compose require`` and the library name. Composer will figure
+name, then run ``composer require`` and the library name. Composer will figure
 out the best version to bring into the project.
 
 Just like the serializer, this library works via annotations. It basically
