@@ -59,6 +59,8 @@ chapters:
         is_finished: false
     hateoas-installation:
         is_finished: false
+    hateoas-router:
+        is_finished: false
     hateoas-linking-embedding:
         is_finished: false
     hal-browser:
