@@ -39,7 +39,7 @@ Back in BattleController, I already have a shortcut method setup to give
 us the BattleManager object. Then we'll use the battle() function we just
 saw and pass it the Programmer and Project. And that's it - the Battle is
 created and saved for us. Now all we need to do is pass the Battle to the
-``createApiResponse`` method. And that will take care of the rest
+``createApiResponse`` method. And that will take care of the rest.
 
 The createApiResponse method uses the serializer object to turn the Battle 
 object into JSON. We haven't done any configuration on this class for the 
@@ -47,9 +47,8 @@ Serializer, which means that it's serializing all of the fields. And for now,
 I'm happy with that - we're getting free functionality. 
 
 This looks good to me - so let's try it! Oh! It *almost* passes. It gets
-the 201 status status code, but it's missing the ``Location`` header. In
-the response, we can see the created Battle, with notes on why our programmer
-lost.
+the 201 status code, but it's missing the ``Location`` header. In the response, 
+we can see the created Battle, with notes on why our programmer lost.
 
 Back in ``newAction``, we can just set createApiResponse to a variable and
 then call ``$response->headers->set()`` and pass it ``Location`` add a temporary
