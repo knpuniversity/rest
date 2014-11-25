@@ -17,19 +17,25 @@ Installation
 
 2) Download the vendor files by running:
 
-    php composer.phar install
+```
+php composer.phar install
+```
 
 3) Point your web server at this directory, or use the built-in PHP web
    server, which is nice and friendly (but requires PHP 5.4+)
 
-   cd web
-   php -S localhost:8000
+```
+cd web
+php -S localhost:8000
+````
 
 4) Make sure a few directories are writeable:
 
-   mkdir logs
-   mkdir data
-   chmod 777 logs data
+```
+mkdir logs
+mkdir data
+chmod 777 logs data
+```
 
 5) Load up the app in your browser!
 
