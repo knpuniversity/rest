@@ -40,9 +40,9 @@ chapters:
     securing-more-endpoints:
         video_key: wfk8k6q9we
     authentication-error-format:
-        is_finished: false
+        video_key: 41yu1vyc58
     centralizing-error-response-creation:
-        is_finished: false
+        video_key: 1cwekczw2e
     creating-tokens-in-the-api:
         is_finished: false
     reuse-consistency:
