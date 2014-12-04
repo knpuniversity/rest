@@ -224,3 +224,5 @@ will be more consistent too. If I need to create an api problem response,
 I won't do it by hand. The ``ApiProblem`` class does some special things
 for us, attaching the title and making sure we have a few defined types. If we
 try this, we should get the same result as before and we do. Perfect. 
+
+.. _`spec document`: https://tools.ietf.org/html/draft-nottingham-http-problem-07

@@ -1,5 +1,5 @@
 Reuse and Consistency
-====================
+=====================
 
 Now I want to do a couple of other cleanup things. First: whenever we need to
 read information off of the request that the client is sending us, we're going 
