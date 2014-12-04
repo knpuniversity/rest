@@ -40,18 +40,36 @@ chapters:
     securing-more-endpoints:
         video_key: wfk8k6q9we
     authentication-error-format:
-        is_finished: false
+        video_key: 41yu1vyc58
     centralizing-error-response-creation:
-        is_finished: false
+        video_key: 1cwekczw2e
     creating-tokens-in-the-api:
         is_finished: false
-    battle-resource-endpoints:
+    reuse-consistency:
+        is_finished: false
+    token-validation:
+        is_finished: false
+    battle-resource-feature:
+        is_finished: false
+    battle-resource-new:
+        is_finished: false
+    get-one-battle:
+        is_finished: false
+    link-battle-programmer:
         is_finished: false
     hateoas-installation:
         is_finished: false
-    hateoas-linking-embedding:
+    hateoas-router:
+        is_finished: false
+    hateoas-linking:
+        is_finished: false
+    hypermedia-media:
+        is_finished: false
+    embedded-resources:
         is_finished: false
     hal-browser:
+        is_finished: false
+    hal-collection:
         is_finished: false
     link-all-the-resources:
         is_finished: false
