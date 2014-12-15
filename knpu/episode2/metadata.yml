@@ -48,19 +48,19 @@ chapters:
     creating-tokens-in-the-api:
         video_key: ce5dve1xwv
     reuse-consistency:
-        is_finished: false
+        video_key: jfarxnfdud
     token-validation:
-        is_finished: false
+        video_key: s1lx735hfe
     battle-resource-feature:
-        is_finished: false
+        video_key: f9dgqyy8oo
     battle-resource-new:
-        is_finished: false
+        video_key: oxhim3sqx7
     get-one-battle:
-        is_finished: false
+        video_key: dyhdpk134u
     link-battle-programmer:
-        is_finished: false
+        video_key: ce5tp4f45s
     hateoas-installation:
-        is_finished: false
+        video_key: bruahrmci7
     hateoas-router:
         is_finished: false
     hateoas-linking:
