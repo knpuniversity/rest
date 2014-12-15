@@ -2,15 +2,25 @@
 
 Now I want to do a couple of other cleanup things. First: whenever we need to
 read information off of the request that the client is sending us, we're going 
-to use this same `json_decode` for the content. In fact, we use this in
-`ProgrammerController` inside of the `handleRequest` method. So we have
-the same logic duplicated there. Let's centralize this by putting it into
-our `BaseController`. Open this up and create a new protected function
-at the bottom called `decodeRequestBodyIntoParameters`. I know, really
-short name. And we'll take in a `Request` object as an argument. And at first
-this is going to be really simple. We can go to the `TokenController`,
-grab this `json_decode` line, go back to `BaseController` and return
-it. So now in the `TokenController`,  `$data = $this->decodeRequestBodyIntoParameters($request)`
+to use this same `json_decode` for the content:
+
+[[[ code('b4f7a37cdd') ]]]
+
+In fact, we use this in `ProgrammerController` inside of the `handleRequest`
+method.:
+
+[[[ code('fee84cdec2') ]]]
+
+So we have the same logic duplicated there. Let's centralize this by putting
+it into our `BaseController`. Open this up and create a new protected function
+at the bottom called `decodeRequestBodyIntoParameters`.I know, really short
+name. And we'll take in a `Request` object as an argument. And at first this
+is going to be really simple. We can go to the `TokenController`, grab this
+`json_decode` line, go back to `BaseController` and return it::
+
+[[[ code('6e4ffb041e') ]]]
+
+So now in the `TokenController`,  `$data = $this->decodeRequestBodyIntoParameters($request)`
 and we've got it. 
 
 So just to be sure, let's go back and run our entire feature. Everything still 
