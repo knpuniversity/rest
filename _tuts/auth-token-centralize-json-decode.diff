@@ -37,15 +37,11 @@ index 4f4600c..e849006 100644
  
          $programmer->userId = $this->getLoggedInUser()->id;
 diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-index fbcc24f..3569b9c 100644
+index d582a6e..3569b9c 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-@@ -18,10 +18,10 @@ class TokenController extends BaseController
-     {
-         $this->enforceUserSecurity();
- 
--        $data = json_decode($request->getContent(), true);
-+        $data = $this->decodeRequestBodyIntoParameters($request);
+@@ -21,7 +21,7 @@ class TokenController extends BaseController
+         $data = $this->decodeRequestBodyIntoParameters($request);
  
          $token = new ApiToken($this->getLoggedInUser()->id);
 -        $token->notes = $data['notes'];
@@ -54,7 +50,7 @@ index fbcc24f..3569b9c 100644
          $this->getApiTokenRepository()->save($token);
  
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index 7a0bbd0..bbead86 100644
+index 08f29cb..bbead86 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
 @@ -10,6 +10,7 @@ use KnpU\CodeBattle\Application;
@@ -74,12 +70,11 @@ index 7a0bbd0..bbead86 100644
  
  /**
   * Base controller class to hide Silex-related implementation details
-@@ -264,4 +267,23 @@ abstract class BaseController implements ControllerProviderInterface
-         }
-     }
+@@ -266,6 +269,21 @@ abstract class BaseController implements ControllerProviderInterface
  
-+    protected function decodeRequestBodyIntoParameters(Request $request)
-+    {
+     protected function decodeRequestBodyIntoParameters(Request $request)
+     {
+-        return json_decode($request->getContent(), true);
 +        // allow for a possibly empty body
 +        if (!$request->getContent()) {
 +            $data = array();
@@ -96,5 +91,5 @@ index 7a0bbd0..bbead86 100644
 +        }
 +
 +        return new ParameterBag($data);
-+    }
+     }
  }

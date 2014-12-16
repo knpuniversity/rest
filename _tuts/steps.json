@@ -361,6 +361,11 @@
             "description": null
         },
         {
+            "id": "auth-show-simple-decoderequestbodyintoparameters",
+            "name": "Auth: Show simple decodeRequestBodyIntoParameters",
+            "description": null
+        },
+        {
             "id": "auth-token-centralize-json-decode",
             "name": "Auth Token: Centralize json_decode",
             "description": null
@@ -536,5 +541,5 @@
             "description": null
         }
     ],
-    "sha": "586c479d11bf6bd85474e7df4f3377f07a8e88bc"
+    "sha": "f4f3cf6eceb3a181b8b37fec5855295348ce2e06"
 }

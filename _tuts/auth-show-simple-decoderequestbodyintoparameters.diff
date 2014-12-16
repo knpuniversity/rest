@@ -1,0 +1,26 @@
+diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
+index fbcc24f..d582a6e 100644
+--- a/src/KnpU/CodeBattle/Controller/Api/TokenController.php
++++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
+@@ -18,7 +18,7 @@ class TokenController extends BaseController
+     {
+         $this->enforceUserSecurity();
+ 
+-        $data = json_decode($request->getContent(), true);
++        $data = $this->decodeRequestBodyIntoParameters($request);
+ 
+         $token = new ApiToken($this->getLoggedInUser()->id);
+         $token->notes = $data['notes'];
+diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
+index 7a0bbd0..08f29cb 100644
+--- a/src/KnpU/CodeBattle/Controller/BaseController.php
++++ b/src/KnpU/CodeBattle/Controller/BaseController.php
+@@ -264,4 +264,8 @@ abstract class BaseController implements ControllerProviderInterface
+         }
+     }
+ 
++    protected function decodeRequestBodyIntoParameters(Request $request)
++    {
++        return json_decode($request->getContent(), true);
++    }
+ }
