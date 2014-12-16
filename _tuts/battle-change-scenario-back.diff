@@ -1,0 +1,13 @@
+diff --git a/features/api/battle.feature b/features/api/battle.feature
+index 2b4d3c9..51e1989 100644
+--- a/features/api/battle.feature
++++ b/features/api/battle.feature
+@@ -14,7 +14,7 @@ Feature:
+     And I have the payload:
+       """
+       {
+-        "programmerId": "foobar",
++        "programmerId": "%programmers.Fred.id%",
+         "projectId": "%projects.my_project.id%"
+       }
+       """

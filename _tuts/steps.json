@@ -396,8 +396,18 @@
             "description": null
         },
         {
+            "id": "battle-scenario-temp-tweak-for-validation",
+            "name": "Battle: Scenario temp tweak for validation",
+            "description": null
+        },
+        {
             "id": "battle-get-scenario",
             "name": "Battle: GET scenario",
+            "description": null
+        },
+        {
+            "id": "battle-change-scenario-back",
+            "name": "Battle: Change scenario back",
             "description": null
         },
         {
@@ -541,5 +551,5 @@
             "description": null
         }
     ],
-    "sha": "cfd7003c5135df638d3f0e6bf7ed9421dea4f84e"
+    "sha": "73c3c0d1d1439fea29ec6c91829e23d93532f66f"
 }
