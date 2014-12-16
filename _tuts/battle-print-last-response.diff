@@ -1,0 +1,9 @@
+diff --git a/features/api/battle.feature b/features/api/battle.feature
+index 51e1989..8874887 100644
+--- a/features/api/battle.feature
++++ b/features/api/battle.feature
+@@ -31,3 +31,4 @@ Feature:
+     Then the response status code should be 200
+     And the "notes" property should exist
+     And the "didProgrammerWin" property should exist
++    And print last response

@@ -421,6 +421,11 @@
             "description": null
         },
         {
+            "id": "battle-print-last-response",
+            "name": "Battle: Print last response",
+            "description": null
+        },
+        {
             "id": "battle-exclusionpolicy",
             "name": "Battle: ExclusionPolicy",
             "description": null
@@ -556,5 +561,5 @@
             "description": null
         }
     ],
-    "sha": "2e8e8f409834f23c5f2224660fb5bad5af17ade1"
+    "sha": "6b55efb3bd1fa4b20aa89386a475630c4f6727ab"
 }
