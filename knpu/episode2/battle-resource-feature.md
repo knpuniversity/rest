@@ -1,11 +1,10 @@
-Battle Resource Endpoints
-=========================
+# New Battle Resource (the Scenario)
 
 Let's login to the site. Don't forget, our tests like to mess with our database,
 so I'm going to delete the SQLite database file and it'll regenerate with
 some nice test data.
 
-We'll login as ``ryan@knplabs.com`` password ``foo``.
+We'll login as `ryan@knplabs.com` password `foo`.
 
 We already know that I'm able to create a programmer. And we even have some
 really nice API endpoints for this. The other part of the site is all about
@@ -18,16 +17,16 @@ A battle is another type of resource, but it can't be created yet in the
 API. Let's fix that!
 
 Like my other resources, I already have a class that models this. You can
-see there's a programmer, a project, the outcome ``didProgrammerWin`` and
+see there's a programmer, a project, the outcome `didProgrammerWin` and
 it even stores the date it was fought and some extra notes.
 
 Let's make the endpoint to create new battles. We're going to start like always
-by creating a new feature - ``battle.feature``. The API clients are going to want 
+by creating a new feature - `battle.feature`. The API clients are going to want 
 to create battles to see if their programmers can take on and defeat these projects. 
 After the business value, the next line is the person that's benefiting from the new 
 feature and finally we have a little description.
 
-Let's add the first Scenario: Creating a new Battle. If we go back to ``programmer.feature``, 
+Let's add the first Scenario: Creating a new Battle. If we go back to `programmer.feature`, 
 we can copy a lot of this. First, in order to create a battle, we're probably going to need
 to be authenticated. So, I'll copy this background. I'm going to go back and copy the entire
 scenario for creating a programmer. After all, this is an API, so creating a resource should 
@@ -38,10 +37,10 @@ to look. We know there's going to be a Location header, because there's always
 a Location header after creating a resource. But we don't know what URL that's
 going to be yet, because we don't have an endpoint yet for viewing a single
 battle. So we'll just say that the Location header should exist. And if you
-look at the Battle class, you'll see there's a ``didProgrammerWin`` property.
+look at the Battle class, you'll see there's a `didProgrammerWin` property.
 Let's just make sure that exists as well - we don't know if it's going
 to be true or false, because there's some randomness. Let's update the URL
-to ``/api/battles`` and the status code of 201 looks perfect.
+to `/api/battles` and the status code of 201 looks perfect.
 
 In order to create a Battle - we'll need to send a programmer and a project.
 And probably the way we'll want the client to do that is by sending the programmer
@@ -70,5 +69,5 @@ and lets us do some of that magic. This will be really handy, and we'll use it a
 
 We'll do the same thing for projects. This looks great! You know I like
 watching my tests fail first, so let's try it out. We'll just run this
-new ``battle.feature`` file. Instead of 201, we get the 404 because the
+new `battle.feature` file. Instead of 201, we get the 404 because the
 endpoint doesn't exist. That's awesome. Now let's make this work!
