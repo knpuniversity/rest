@@ -416,6 +416,11 @@
             "description": null
         },
         {
+            "id": "battle-fix-location-header",
+            "name": "Battle: Fix Location Header",
+            "description": null
+        },
+        {
             "id": "battle-exclusionpolicy",
             "name": "Battle: ExclusionPolicy",
             "description": null
@@ -551,5 +556,5 @@
             "description": null
         }
     ],
-    "sha": "73c3c0d1d1439fea29ec6c91829e23d93532f66f"
+    "sha": "2e8e8f409834f23c5f2224660fb5bad5af17ade1"
 }

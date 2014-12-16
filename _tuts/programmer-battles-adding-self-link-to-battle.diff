@@ -1,17 +1,3 @@
-diff --git a/src/KnpU/CodeBattle/Controller/Api/BattleController.php b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
-index 9a105b7..a15a005 100644
---- a/src/KnpU/CodeBattle/Controller/Api/BattleController.php
-+++ b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
-@@ -11,7 +11,8 @@ class BattleController extends BaseController
-     protected function addRoutes(ControllerCollection $controllers)
-     {
-         $controllers->post('/api/battles', array($this, 'newAction'));
--        $controllers->get('/api/battles/{id}', array($this, 'showAction'));
-+        $controllers->get('/api/battles/{id}', array($this, 'showAction'))
-+            ->bind('api_battles_show');
-     }
- 
-     public function newAction(Request $request)
 diff --git a/src/KnpU/CodeBattle/Model/Battle.php b/src/KnpU/CodeBattle/Model/Battle.php
 index 08bef5b..20a5ab5 100644
 --- a/src/KnpU/CodeBattle/Model/Battle.php
