@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/BattleController.php b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
-index de046e3..d8573d5 100644
+index 9a105b7..a15a005 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/BattleController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
 @@ -11,7 +11,8 @@ class BattleController extends BaseController

@@ -1,10 +1,10 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/BattleController.php b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
-index a148480..d155a31 100644
+index 72fbc4e..1e05fb6 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/BattleController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
-@@ -22,6 +22,20 @@ class BattleController extends BaseController
-         $programmer = $this->getProgrammerRepository()->find($data->get('programmerId'));
-         $project = $this->getProjectRepository()->find($data->get('projectId'));
+@@ -25,6 +25,20 @@ class BattleController extends BaseController
+         $programmer = $this->getProgrammerRepository()->find($programmerId);
+         $project = $this->getProjectRepository()->find($projectId);
  
 +        $errors = array();
 +        if (!$project) {
