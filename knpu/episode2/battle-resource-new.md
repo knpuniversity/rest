@@ -85,8 +85,7 @@ Oh! It *almost* passes. It gets the 201 status code, but it's missing the
 `Location` header. In the response, we can see the created `Battle`, with
 `notes` on why our programmer lost.
 
-Adding the Location Header
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Adding the Location Header
 
 Back in `newAction`, we can just set createApiResponse to a variable and
 then call `$response->headers->set()` and pass it `Location` add a temporary
