@@ -1,39 +1,38 @@
-HATEOAS Linking 
-===============
+# Adding Real Links with HATEOAS
 
-Let's add more links! Back in ``battle.feature``, we're returning a ``programmerUri``,
+Let's add more links! Back in `battle.feature`, we're returning a `programmerUri`,
 which was our way of creating a link before we knew there was a good standard
 to follow. So now we can say: And the "_links.programmer.href" property should
-equal "/api/programmers/Fred". This time, instead of using ``self``, we're
-using ``programmer``. There are some special names like self that mean something,
+equal "/api/programmers/Fred". This time, instead of using `self`, we're
+using `programmer`. There are some special names like self that mean something,
 but when you're linking from a battle to a programmer, we'll just invent
 something new. We'll want to use this consistently in our API: whenever we're
-linking to a programmer, we'll use that same string ``programmer`` so that
+linking to a programmer, we'll use that same string `programmer` so that
 our API clients learn that whenever they see this link link they know what
 type of resource to expect on the other side.
 
 First, let's run our test - line 26 - and make sure that it fails. Let's go
 in and add that relation. Open up Battle and also open up Programmer so we
 can steal the Relation from there as promised. And don't forget, every time
-you use an annotation for the first time in a class, you need a ``use`` statement
+you use an annotation for the first time in a class, you need a `use` statement
 for it.
 
-And also, since we have this relationship now, I'm going to remove our ``VirtualProperty``
+And also, since we have this relationship now, I'm going to remove our `VirtualProperty`
 down below. So this is really good - we're linking to a Programmer like before.
 So the route name is good and the nickname is good. The only thing that needs
 to change is that in order to get the nickname of the programmer for this
-Battle, we need to say ``object.programmer.nickname`` so that it uses the
-``programmer`` field below. Let's try our test. Ah, and it fails! I got caught
-by copying and pasting - we *do* have a link, but its name is ``self``. Change
-that to be ``programmer``. And now, we'll get that to pass. Awesome.
+Battle, we need to say `object.programmer.nickname` so that it uses the
+`programmer` field below. Let's try our test. Ah, and it fails! I got caught
+by copying and pasting - we *do* have a link, but its name is `self`. Change
+that to be `programmer`. And now, we'll get that to pass. Awesome.
 
-Because we're *always* putting links under a ``_links`` key, I have a new
+Because we're *always* putting links under a `_links` key, I have a new
 piece of language that we can use in Behat to check for links: And the link
 "programmer" should exist and its value should be "/api/programmers/Fred".
 Why would I do this? It's just proving how consistent we are. This new sentence
-will look for the ``_links`` property, so there's no reason to repeat it
+will look for the `_links` property, so there's no reason to repeat it
 in all of our scenarios. So let's try the test again - perfect.
 
-We can repeat this same thing over in ``programmer.feature`` when we're checking
-the ``self`` link. I'll comment out the old line for reference. If we run
+We can repeat this same thing over in `programmer.feature` when we're checking
+the `self` link. I'll comment out the old line for reference. If we run
 our entire test suite, things keep passing. I love to see all of that green.
