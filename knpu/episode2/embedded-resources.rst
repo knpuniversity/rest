@@ -20,7 +20,7 @@ we know this should be equal to Fred.
 
 Let's make sure that fails first - and it does.
 
-To make this work, we'll add more annotations to ``Programmer``. When you
+To make this work, we'll add more annotations to ``Battle``. When you
 think of one resource relating to another - like how our Battle relates to
 the Programmer resource - there are 2 ways to express that relation. You
 can either link to it *or* you can embed it. Those are both just valid ways
