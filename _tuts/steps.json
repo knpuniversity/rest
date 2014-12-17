@@ -456,6 +456,11 @@
             "description": null
         },
         {
+            "id": "hateoas-fixing-syntax-errors",
+            "name": "HATEOAS: Fixing syntax errors",
+            "description": null
+        },
+        {
             "id": "hateoas-linking-battle-to-programmer",
             "name": "HATEOAS: Linking Battle to Programmer",
             "description": null
@@ -561,5 +566,5 @@
             "description": null
         }
     ],
-    "sha": "6b55efb3bd1fa4b20aa89386a475630c4f6727ab"
+    "sha": "e770a1248565a15a30ccead2353f3453696b0252"
 }

@@ -22,7 +22,7 @@ index 2b0725d..dc874f5 100644
  
          $this['api.response_factory'] = $this->share(function() {
 diff --git a/src/KnpU/CodeBattle/Model/Programmer.php b/src/KnpU/CodeBattle/Model/Programmer.php
-index e86e19c..6892d5f 100644
+index e86e19c..b3bd60e 100644
 --- a/src/KnpU/CodeBattle/Model/Programmer.php
 +++ b/src/KnpU/CodeBattle/Model/Programmer.php
 @@ -9,7 +9,13 @@ use Hateoas\Configuration\Annotation as Hateoas;
@@ -33,8 +33,8 @@ index e86e19c..6892d5f 100644
 + * @Hateoas\Relation(
 + *      "self",
 + *      href = @Hateoas\Route(
-+ *          "api_programmers_show",
-+ *          parameters = { "nickname" = "expr(object.nickname)" }
++ *          "api_programmers_show"
++ *          parameters = { "nickname" = expr("object.nickname") }
 + *      )
 + * )
   */
