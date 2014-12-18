@@ -521,6 +521,11 @@
             "description": null
         },
         {
+            "id": "programmer-battles-fixing-the-bad-route-param",
+            "name": "Programmer Battles: Fixing the bad route param",
+            "description": null
+        },
+        {
             "id": "homepage-basic-response",
             "name": "Homepage: Basic response",
             "description": null
@@ -566,5 +571,5 @@
             "description": null
         }
     ],
-    "sha": "d64a82733b83092ea48e83c296ada306ac603f2c"
+    "sha": "5f38dc6d102f73e3bbc2e384a49d324fc5db0501"
 }
