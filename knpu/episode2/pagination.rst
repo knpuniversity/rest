@@ -57,11 +57,11 @@ This takes a number of different arguments. The first is the actual ``Collection
 The second is the route name to the list endpoint, which for us is ``api_programmers_list``.
 And it'll use this to generate the links like next, first and last. The third
 argument is any array of parameters that need to be passed to the route.
-So if the route needed a nickname or id, but there aren't any wildcards
-in this route, so we'll pass an empty array. The next three arguments are
-the page we're on, the number of records we're showing per page, and the
-total number of pages. I'm going to invent a few variables and set them above
-in a moment.
+So if the route had a nickname or id wildcard, you'd pass that here. But
+there aren't any wildcards in this route, so we'll pass an empty array. The
+next three arguments are the page we're on, the number of records we're showing
+per page, and the total number of pages. I'm going to invent a few variables
+and set them above in a moment.
 
 Above, let's fill this in. Initially, I just want to get the next and last
 ``_links`` to show up, so I'm going to take some shortcuts and not worry
