@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/BattleController.php b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
-index 9a105b7..a4e6f96 100644
+index 9a105b7..10fc9fa 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/BattleController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/BattleController.php
 @@ -11,7 +11,8 @@ class BattleController extends BaseController
@@ -8,7 +8,7 @@ index 9a105b7..a4e6f96 100644
          $controllers->post('/api/battles', array($this, 'newAction'));
 -        $controllers->get('/api/battles/{id}', array($this, 'showAction'));
 +        $controllers->get('/api/battles/{id}', array($this, 'showAction'))
-+            ->bind('api_battles_show');
++            ->bind('api_battle_show');
      }
  
      public function newAction(Request $request)
@@ -17,7 +17,7 @@ index 9a105b7..a4e6f96 100644
  
          $response = $this->createApiResponse($battle, 201);
 -        $response->headers->set('Location', 'TODO');
-+        $url = $this->generateUrl('api_battles_show', array('id' => $battle->id));
++        $url = $this->generateUrl('api_battle_show', array('id' => $battle->id));
 +        $response->headers->set('Location', $url);
  
          return $response;
