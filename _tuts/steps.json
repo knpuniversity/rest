@@ -531,8 +531,8 @@
             "description": null
         },
         {
-            "id": "new",
-            "name": "new",
+            "id": "homepage-fix-api-url",
+            "name": "Homepage: Fix API URL",
             "description": null
         },
         {
