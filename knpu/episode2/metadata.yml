@@ -64,7 +64,7 @@ chapters:
     hateoas-router:
         is_finished: false
     hateoas-linking:
-        is_finished: false
+        video_key: x34tc404yv
     hypermedia-media:
         is_finished: false
     embedded-resources:
