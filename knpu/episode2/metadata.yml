@@ -70,9 +70,9 @@ chapters:
     embedded-resources:
         is_finished: false
     hal-browser:
-        is_finished: false
+        video_key: gxrhcz27tx
     hal-collection:
-        is_finished: false
+        video_key: dmiadkorom
     link-all-the-resources:
         is_finished: false
     api-homepage:
