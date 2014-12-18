@@ -1,5 +1,4 @@
-Link all the Resources!
-=======================
+# Link to a Subordinate Resource!
 
 I'm playing with my API and looking at the collection of programmers. And
 of course, I can follow the self link to GET just that one resource. But
