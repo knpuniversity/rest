@@ -118,30 +118,3 @@ And to enjoy it a little bit more, we can go back to the Hal Browser, hit
 Go, and since we're on page 2, we see Programmers 6-10. We can follow links
 to the first page, then over to the last page to see only those 2 programmers.
 Now pagination isn't hard, and it'll be really consistent across your API.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
