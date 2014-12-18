@@ -6,16 +6,24 @@ Why 2? Well, my programmer nicknames aren't very interesting, but if I use
 2, I'll want it to return Programmer2 and Programmer12. Of course right now,
 this doesn't have any affect yet.
 
+## Filtering: Use Query Parameters
+
 Filtering is actually really easy. But the reason I wanted to cover it is
 that sometimes people wonder if they should get clever with their URLs when
 they're filtering and maybe come up with URLs like `/api/programmers/filter/nickname2`.
 Don't do that. If you're filtering, use a query parameter, end of story.
 
+## Coding up a Simple Filter
+
 So how do we get this to work? It couldn't be simpler. At the top of `listAction`,
 I'll look for the `nickname` query parameter. And if it's present, we'll
 query in a special way. And if it's not, we'll do the normal `findAll`.
 I have a shortcut setup to query using MySQL LIKE. I'll pass it the value
-surrounded by the percent signs. And that should be it!
+surrounded by the percent signs:
+
+[[[ code('9f2344ef45') ]]]
+
+And that should be it!
 
 If we go back to the Hal Browser and hit go, we get nothing back! But we're
 actually on page 3, so click to go back to page 1. Hmm, now we have too many results!
@@ -29,6 +37,8 @@ Programmer2 and Programmer12, and it knows that there's only going to be
 one page of them. So that's it for filtering: use query parameters, do whatever
 logic you need for filtering, and pass the filter to `PaginatedRepresentation`,
 even though I didn't do it here. It's that easy.
+
+## Hypermedia as the Engine of Application State (HATEOAS)
 
 One quick thing to notice is that even though we now support this `nickname`
 filter, there isn't any way for the API client to know this just by looking
