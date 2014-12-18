@@ -1,5 +1,5 @@
-Filtering!
-==========
+Filtering and HATEOAS (The Buzzword)
+====================================
 
 Similar to pagination is filtering. Let's say that I want to be able to search
 in the programmers collection by nickname. So I'll add a ``&nickname=2``.
@@ -19,7 +19,7 @@ I have a shortcut setup to query using MySQL LIKE. I'll pass it the value
 surrounded by the percent signs. And that should be it!
 
 If we go back to the Hal Browser and hit go, we get nothing back! But we're
-actually on page 3, so click to go back to page 1. Hmm, not results yet either!
+actually on page 3, so click to go back to page 1. Hmm, now we have too many results!
 That's because we lost the &nickname query parameter. That's because I was
 lazy - if I have extra filters I *should* pass those to the 3rd argument
 of ``PaginatedRepresentation``. If i do that, it'll show up in our pagination
@@ -63,4 +63,3 @@ everything it needs.
 
 So think of links as a nice *addition* to your API, but not something that'll
 replace really nice human documentation.
-
