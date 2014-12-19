@@ -24,6 +24,7 @@ hasVideoDownload: 0
 
 tuts_hero:
     start_step: errors-making-type-a-url
+    finish_step: filtering-adding-a-simple-filter
 
 chapters:
     serializer:
