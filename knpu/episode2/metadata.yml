@@ -3,19 +3,20 @@ summary: |
     Making RESTful APIs is hard, really hard. There are a lot of concepts
     to know - resources, representations, HTTP methods, status codes, etc.
     
-    Episode 1 got us really comfortable with all the terminology. So in episode 2,
-    we're attacking the *hard* stuff:
+    [Episode 1](http://knpuniversity.com/screencast/rest) got us really comfortable
+    with all the terminology. So in episode 2, we're attacking the *hard*
+    stuff:
 
     * Using a serializer
     * Token Authentication System
     * Hypermedia and HATEOAS
-    * Documenting your API
     * Content-Type negotiation
     * Pagination and filtering
     * A lot of other pieces in between!
     
     This stuff is not easy. But if you make it through, you'll be armed to
-    attack whatever API need you have.
+    attack whatever API need you have. And for documenting your API, see
+    [Episode 3](http://knpuniversity.com/screencast/rest-ep3)
 
     All chapters through "Filtering" will be published by **Dec 19th**. Yay!
 

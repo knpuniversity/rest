@@ -21,7 +21,8 @@ summary: |
 
     If you want to know about Hypermedia, HATEOAS, Documenting your API,
     Content-Type negotiation, pagination and more, these are **not** covered
-    here, but will be covered in [Episode 2](/screencast/rest-ep2)!
+    here, but will be covered in [Episode 2](/screencast/rest-ep2) and
+    [Episode 3](http://knpuniversity.com/screencast/rest-ep3).
 
 illustration: rest.png
 hasVideoDownload: 1
