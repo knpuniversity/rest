@@ -8,9 +8,13 @@ summary: |
     stuff:
 
     * Using a serializer
-    * Token Authentication System
-    * Hypermedia and HATEOAS
-    * Content-Type negotiation
+    * Token Authentication System (Silex's security system)
+    * Hypermedia versus media
+    * The HAL hypermedia type
+    * The HATEOAS PHP library
+    * The HAL Browser
+    * Embedding resources (versus adding links)
+    * Tricks with Behat for testing API's
     * Pagination and filtering
     * A lot of other pieces in between!
     
