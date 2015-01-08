@@ -28,6 +28,8 @@ tuts_hero:
     start_step: errors-making-type-a-url
     finish_step: filtering-adding-a-simple-filter
 
+videoDownloadExtension: mov
+
 chapters:
     serializer:
         video_key: fm0btcnzhb
