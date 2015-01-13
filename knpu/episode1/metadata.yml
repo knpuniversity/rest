@@ -28,6 +28,7 @@ illustration: rest.png
 hasVideoDownload: 1
 tuts_hero:
     finish_step: "Errors: Making type a URL"
+videoDownloadExtension: mov
 
 chapters:
     intro:
