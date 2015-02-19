@@ -21,7 +21,7 @@ require_once __DIR__.'/../../vendor/phpunit/phpunit/PHPUnit/Autoload.php';
 require_once __DIR__.'/../../vendor/phpunit/phpunit/PHPUnit/Framework/Assert/Functions.php';
 
 /**
- * Class Adapted from: https://github.com/philsturgeon/build-apis-you-wont-hate/blob/master/behat/FeatureContext.php
+ * Class Adapted from: https://github.com/philsturgeon/build-apis-you-wont-hate/blob/master/chapter12/app/tests/behat/features/bootstrap/FeatureContext.php
  *
  * Original credits to Phil Sturgeon (https://twitter.com/philsturgeon)
  * and Ben Corlett (https://twitter.com/ben_corlett).
