@@ -27,6 +27,9 @@ class ProgrammerController extends BaseController
 
         $this->save($programmer);
 
-        return new Response('It worked. Believe me - I\'m an API', 201);
+        $response = new Response('It worked. Believe me - I\'m an API', 201);
+        $response->headers->set('Location', '/some/programmer/url');
+
+        return $response;
     }
 }
