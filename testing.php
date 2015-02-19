@@ -10,3 +10,9 @@ $client = new Client('http://localhost:8000', array(
         'exceptions' => false,
     )
 ));
+
+$request = $client->post('/api/programmers');
+$response = $request->send();
+
+echo $response;
+echo "\n\n";
