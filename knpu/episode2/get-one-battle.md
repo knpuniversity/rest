@@ -15,7 +15,7 @@ version, which has integration with Behat. I highly recommend it.
 Great, so this makes sure there's something in the database. Next, we'll make
 the GET request to `/api/battles/something`. Here's the problem: the only
 way we can really identify our Battles are by their id. They're not like
-``Programmer``, where each has a unique nickname that we can use.
+`Programmer`, where each has a unique nickname that we can use.
 
 ## The Special %battles.last.id% Syntax
 
@@ -26,7 +26,7 @@ to be. Fortunately, we can use that same magic % syntax. This time we can say
 
 [[[ code('c51d7819d7') ]]]
 
-Before, we used this syntax to query for a ``Programmer`` by its nickname.
+Before, we used this syntax to query for a `Programmer` by its nickname.
 But it also has a special "last" keyword, which queries for the last record
 in the table. Again, this is *me* adding special things to *my* Behat project.
 Which is really handy for testing the API.
