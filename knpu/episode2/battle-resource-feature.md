@@ -58,7 +58,7 @@ property. Let's just make sure that exists as well - we don't know if it's
 going to be true or false, because there's some randomness. Let's update
 the URL to `/api/battles` and the status code of 201 looks perfect:
 
-[[[[ code('d0def4fb13') ]]]]
+[[[ code('d0def4fb13') ]]]
 
 ## Creating a Programmer and Project First
 
