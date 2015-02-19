@@ -15,6 +15,8 @@ class ProgrammerController extends BaseController
     protected function addRoutes(ControllerCollection $controllers)
     {
         $controllers->post('/api/programmers', array($this, 'newAction'));
+
+        $controllers->get('/api/programmers/{nickname}', array($this, 'showAction'));
     }
 
     public function newAction(Request $request)
@@ -31,5 +33,10 @@ class ProgrammerController extends BaseController
         $response->headers->set('Location', '/some/programmer/url');
 
         return $response;
+    }
+
+    public function showAction($nickname)
+    {
+        return new Response('Hello '.$nickname);
     }
 }
