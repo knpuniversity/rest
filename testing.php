@@ -28,5 +28,9 @@ $programmerUrl = $response->getHeader('Location');
 $request = $client->get($programmerUrl);
 $response = $request->send();
 
+// 3) GET a list of all programmers
+$request = $client->get('/api/programmers');
+$response = $request->send();
+
 echo $response;
 echo "\n\n";
