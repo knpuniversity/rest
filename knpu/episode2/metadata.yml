@@ -3,27 +3,32 @@ summary: |
     Making RESTful APIs is hard, really hard. There are a lot of concepts
     to know - resources, representations, HTTP methods, status codes, etc.
     
-    Episode 1 got us really comfortable with all the terminology. So in episode 2,
-    we're attacking the *hard* stuff:
+    [Episode 1](http://knpuniversity.com/screencast/rest) got us really comfortable
+    with all the terminology. So in episode 2, we're attacking the *hard*
+    stuff:
 
     * Using a serializer
-    * Token Authentication System
-    * Hypermedia and HATEOAS
-    * Documenting your API
-    * Content-Type negotiation
+    * Token Authentication System (Silex's security system)
+    * Hypermedia versus media
+    * The HAL hypermedia type
+    * The HATEOAS PHP library
+    * The HAL Browser
+    * Embedding resources (versus adding links)
+    * Tricks with Behat for testing API's
     * Pagination and filtering
     * A lot of other pieces in between!
     
     This stuff is not easy. But if you make it through, you'll be armed to
-    attack whatever API need you have.
-
-    All chapters through "Filtering" will be published by **Dec 19th**. Yay!
+    attack whatever API need you have. And for documenting your API, see
+    [Episode 3](http://knpuniversity.com/screencast/rest-ep3)
 
 illustration: rest2.png
-hasVideoDownload: 0
 
 tuts_hero:
     start_step: errors-making-type-a-url
+    finish_step: filtering-adding-a-simple-filter
+
+videoDownloadExtension: mov
 
 chapters:
     serializer:
@@ -62,22 +67,22 @@ chapters:
     hateoas-installation:
         video_key: bruahrmci7
     hateoas-router:
-        is_finished: false
+        video_key: 1cqwn0pmbo
     hateoas-linking:
-        is_finished: false
+        video_key: x34tc404yv
     hypermedia-media:
-        is_finished: false
+        video_key: cq6tm0pc1c
     embedded-resources:
-        is_finished: false
+        video_key: z5rjuzv20t
     hal-browser:
-        is_finished: false
+        video_key: gxrhcz27tx
     hal-collection:
-        is_finished: false
+        video_key: dmiadkorom
     link-all-the-resources:
-        is_finished: false
+        video_key: g3abisvr05
     api-homepage:
-        is_finished: false
+        video_key: 7xeldtrjs9
     pagination:
-        is_finished: false
+        video_key: cvn2zlbh5b
     filtering:
-        is_finished: false
+        video_key: xy2jq0pt8t
