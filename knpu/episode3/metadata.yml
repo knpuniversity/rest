@@ -1,0 +1,28 @@
+title:  RESTful APIs Episode 3: Documentation
+summary: |
+    In [Episode 1](http://knpuniversity.com/screencast/rest), we learned
+    the fundamentals. In  [Episode 2](http://knpuniversity.com/screencast/rest-ep2)
+    we took it a step further with linking, HATEOAS and pagination.
+
+    In our last installment, we're talking about API documentation. Huh?
+    Yep, unlike a traditional website, if your API docs have missing or
+    out-of-date details, your API is just plain un-usable.
+
+    In this tutorial, we'll experiment with an approach to creating a great
+    API doc that's actually *reads* information from your code and updates
+    dynamically. This is an area of growth: there are a lot of products and
+    libraries to help. But there are also a lot of pieces missing - like
+    how could I *actually* read my route information dynamically and use
+    that in my API docs?
+
+    Scheduled for **Jan 2015**
+
+illustration: rest3.png
+hasVideoDownload: 0
+
+tuts_hero:
+    start_step: filtering-adding-a-simple-filter
+
+chapters:
+    tbd:
+        is_finished: false

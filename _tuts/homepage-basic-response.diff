@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index d40305e..77291b2 100644
+index d40305e..cc87d0d 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -19,6 +19,9 @@ class ProgrammerController extends BaseController
@@ -7,7 +7,7 @@ index d40305e..77291b2 100644
      protected function addRoutes(ControllerCollection $controllers)
      {
 +        // the homepage - put in this controller for simplicity
-+        $controllers->get('/api', array($this, 'homepageAction'));
++        $controllers->get('api', array($this, 'homepageAction'));
 +
          $controllers->post('/api/programmers', array($this, 'newAction'));
  
