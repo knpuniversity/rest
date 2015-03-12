@@ -1,5 +1,11 @@
 title:  RESTful APIs Episode 3: Documentation
 summary: |
+    **This episode is still being planned**. Writing documentation for
+    your API is hard, and I'm still playing with ways that can read from
+    our code but also give us enough flexibility. So far, I'm not happy.
+    But if you're using Symfony2, check out the NelmioApiDocBundle. And
+    stay tuned for updates :).
+
     In [Episode 1](http://knpuniversity.com/screencast/rest), we learned
     the fundamentals. In  [Episode 2](http://knpuniversity.com/screencast/rest-ep2)
     we took it a step further with linking, HATEOAS and pagination.
@@ -15,7 +21,7 @@ summary: |
     how could I *actually* read my route information dynamically and use
     that in my API docs?
 
-    Scheduled for **Jan 2015**
+    Release is not yet scheduled - if you're eager to see this, let us know!
 
 illustration: rest3.png
 hasVideoDownload: 0
