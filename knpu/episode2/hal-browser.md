@@ -37,7 +37,7 @@ URL:
 
     Put this into the Hal Browser:
 
-    http://localhost:8000/api/battle/1
+    http://localhost:8000/api/battles/1
 
 We're actually getting a 404 right now, because apparently there's no battle
 with id 1. I'll re-run a test that puts battles into the database so we have
