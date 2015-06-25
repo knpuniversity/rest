@@ -25,7 +25,7 @@ quote so that the JSON is invalid:
       When I request "POST /api/programmers"
       Then the response status code should be 400
 
-For now, let's just continue to check that the status code is 400. take that 
+For now, let's just continue to check that the status code is 400. Take that 
 shifty client! If we run the test immediately, it fails with a 500 error instead.
 
 Handling Invalid JSON
