@@ -52,7 +52,7 @@ add an exclamation point to this:
 
 We'll see the difference this makes. We're expecting "Invalid Credentials!"
 and we are getting it with a period. So let's go find our translation file
-and and change this to our version:
+and change this to our version:
 
 .. code-block:: yaml
 
