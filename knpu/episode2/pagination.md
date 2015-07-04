@@ -202,7 +202,7 @@ Normally when you do pagination, you might do a LIMIT, OFFSET query to the
 database or pass which subset of records you want to some search engine,
 like Elastic Search. In both cases, we end up with *just* the 5 records we
 want, instead of all 10,000. Here, I'm going to be lazy and *not* do that.
-I'm just going to query fro *all* of my programmers, then just use a little
+I'm just going to query for *all* of my programmers, then just use a little
 PHP array magic to only give us the ones we want. I'm just trying to keep
 things simple.
 
