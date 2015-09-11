@@ -41,7 +41,7 @@ With PATCH of course! The main HTTP methods like GET, POST, DELETE and PUT
 were introduced in the famous RFC 2616 document. Maybe you've heard of it? 
 But because PUT has this limitation, PATCH was born in `RFC 5789`_.
 
-Typically, PATCH is used exactly like PUT, except if we don't send a ``tagline``
+Typically, PATCH is used exactly like PUT, except if we don't send a ``tagLine``
 field then it keeps its current value instead of obliterating it to null. PATCH, 
 it's the friendly update.
 

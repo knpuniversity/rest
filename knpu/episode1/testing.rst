@@ -68,7 +68,7 @@ directory:
 
 .. code-block:: bash
 
-    $ php bin/vendor/behat
+    $ php vendor/bin/behat
 
 Green colors! It says that 1 scenario passed. In the background, a real HTTP
 request was made to the server and a real response was sent back and then
