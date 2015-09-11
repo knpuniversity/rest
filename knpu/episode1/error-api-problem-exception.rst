@@ -213,6 +213,7 @@ function to ``throwApiProblemValidationException``::
     private function throwApiProblemValidationException(array $errors)
     {
         $apiProblem = new ApiProblem(
+            400,
             ApiProblem::TYPE_VALIDATION_ERROR
         );
         $apiProblem->set('errors', $errors);
