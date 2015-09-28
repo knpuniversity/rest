@@ -138,7 +138,7 @@ the root of the project that I've already prep'ed for us::
     ));
 
 This is a plain PHP file that creates a `Guzzle`_ Client object. Guzzle is
-a simple library for making HTTP requests and receving responses.
+a simple library for making HTTP requests and receiving responses.
 
 Let's make a POST request to ``/api/programmers`` and print out the response::
 

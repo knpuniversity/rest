@@ -16,7 +16,7 @@ HTML forms do this by sending data in a format called ``application/x-www-form-u
 
 PHP reads this and puts it into the ``$_POST`` array. That's ok for the web,
 but in the API world, it's ugly. Why not, have the client send us the
-representation in a beautiful boquet of curly braces known as JSON:
+representation in a beautiful bouquet of curly braces known as JSON:
 
 .. code-block:: text
 
