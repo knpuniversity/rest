@@ -94,52 +94,52 @@ chapters:
     put-improvements:
         title:      PUT: Killing Duplicated Code
         is_free:    false
-        video_key:  dvoy1sj1ic
+        video_key:  140182131
     different-representations:
         title:      GET Representation != POST Representation
         is_free:    false
-        video_key:  s7yw2imvmq
+        video_key:  140182134
     put-versus-post:
         title:      PUT Versus POST
         is_free:    false
-        video_key:  rdbzvkykoq
+        video_key:  140182135
     delete:
         title:      DELETE: For Deleting
         is_free:    false
-        video_key:  j38t4tq3ks
+        video_key:  140182139
     patch:
         title:      PATCH: The Other Edit
         is_free:    false
-        video_key:  wkprl3fv53
+        video_key:  140182137
     errors:
         title:      Advanced Error Handling
         is_free:    false
-        video_key:  dn31njb4g2
+        video_key:  140182140
     application-problem:
         title:      Application Problem
         is_free:    false
-        video_key:  g6jbblr0u5
+        video_key:  140182138
     error-consistency:
         title:      Error Consistency
         is_free:    false
-        video_key:  a86bnkzmdy
+        video_key:  140182142
     error-invalid-json:
         title:      Error Invalid Json
         is_free:    false
-        video_key:  83yopv4idn
+        video_key:  140182143
     error-api-problem-exception:
         title:      "Error: API Problem Exception"
         is_free:    false
-        video_key:  zvizcuof9n
+        video_key:  140182144
     error-404-json:
         title:      "Error 404 Json"
         is_free:    false
-        video_key:  7qp3sxxwd8
+        video_key:  140182145
     error-details:
         title:      Error Details
         is_free:    false
-        video_key:  gfrkn4f0ec
+        video_key:  140182146
     whats-next:
         title:      What's Next?
         is_free:    false
-        video_key:  40b1lzdp5a
+        video_key:  140182148
