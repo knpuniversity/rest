@@ -54,7 +54,7 @@ chapters:
     post:
         title:      "POST: Creation, Location Header and 201"
         is_free:    true
-        video_key:  140181417
+        video_key:  140181412
     get:
         title:      "GET'ing Resources, and Content-Type"
         is_free:    false
