@@ -28,61 +28,59 @@ tuts_hero:
     start_step: errors-making-type-a-url
     finish_step: filtering-adding-a-simple-filter
 
-videoDownloadExtension: mov
-
 chapters:
     serializer:
-        video_key: fm0btcnzhb
+        video_key: 140085840
         is_free:   true
     serializer-configuration:
-        video_key: bp2odxm0bq
+        video_key: 140085835
         is_free:   true
     serializer-annotations:
-        video_key: dje40nkyfj
+        video_key: 140085836
         is_free:   true
     requiring-authentication:
-        video_key: ikji1yf0e4
+        video_key: 140085839
     authentication-via-token:
-        video_key: 16ps98c21j
+        video_key: 140085837
     securing-more-endpoints:
-        video_key: wfk8k6q9we
+        video_key: 140085838
     authentication-error-format:
-        video_key: 41yu1vyc58
+        video_key: 140085846
     centralizing-error-response-creation:
-        video_key: 1cwekczw2e
+        video_key: 140085845
     creating-tokens-in-the-api:
-        video_key: ce5dve1xwv
+        video_key: 140085848
     reuse-consistency:
-        video_key: jfarxnfdud
+        video_key: 140085847
     token-validation:
-        video_key: s1lx735hfe
+        video_key: 140085844
     battle-resource-feature:
-        video_key: f9dgqyy8oo
+        video_key: 140085842
     battle-resource-new:
-        video_key: oxhim3sqx7
+        video_key: 140085851
     get-one-battle:
-        video_key: dyhdpk134u
+        video_key: 140085850
     link-battle-programmer:
-        video_key: ce5tp4f45s
+        video_key: 140085854
     hateoas-installation:
-        video_key: bruahrmci7
+        video_key: 140085853
     hateoas-router:
-        video_key: 1cqwn0pmbo
+        video_key: 140085852
     hateoas-linking:
-        video_key: x34tc404yv
+        video_key: 140085855
     hypermedia-media:
-        video_key: cq6tm0pc1c
+        video_key: 140085856
     embedded-resources:
-        video_key: z5rjuzv20t
+        video_key: 140085857
     hal-browser:
-        video_key: gxrhcz27tx
+        video_key: 140085858
     hal-collection:
-        video_key: dmiadkorom
+        video_key: 140085860
     link-all-the-resources:
-        video_key: g3abisvr05
+        video_key: 140085859
     api-homepage:
-        video_key: 7xeldtrjs9
+        video_key: 140085861
     pagination:
-        video_key: cvn2zlbh5b
+        video_key: 140085862
     filtering:
-        video_key: xy2jq0pt8t
+        video_key: 140085863

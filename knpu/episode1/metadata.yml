@@ -34,112 +34,112 @@ chapters:
     intro:
         title:      Introduction
         is_free:    true
-        video_key:  gmiw0djypn
+        video_key:  140181413
     http:
         title:      HTTP Basics
         is_free:    true
-        video_key:  o5aucxcvx9
+        video_key:  140181410
     rest:
         title:      REST: Resources and Representations
         is_free:    true
-        video_key:  422xgtgm2i
+        video_key:  140181415
     client-state:
         title:      Transitions and Client State
         is_free:    true
-        video_key:  xtnvfsjcvz
+        video_key:  140181414
     project-routing:
         title:      Project Routing
         is_free:    true
-        video_key:  y2qr40bpgr
+        video_key:  140181411
     post:
         title:      "POST: Creation, Location Header and 201"
         is_free:    true
-        video_key:  1psw19tu64
+        video_key:  140181417
     get:
         title:      "GET'ing Resources, and Content-Type"
         is_free:    false
-        video_key:  wfvkzl7hol
+        video_key:  140181418
     location-header:
         title:      Updating the Location Header
         is_free:    false
-        video_key:  ks36azyqgg
+        video_key:  140181417
     get-collection:
         title:      GET /programmers: A collection of Programmers
         is_free:    false
-        video_key:  svprvvm9hp
+        video_key:  140181416
     rfcs:
         title:      Fixing the Content-Type on POST
         is_free:    false
-        video_key:  tt0km0kck2
+        video_key:  140181419
     testing-phpunit:
         title:      Testing your API with PHPUnit
         is_free:    false
-        video_key:  ecwcq36ha6
+        video_key:  140182129
     testing:
         title:      Behat for Testing
         is_free:    false
-        video_key:  gekp2dqbtv
+        video_key:  140182128
     testing-data:
         title:      Handling Data in Tests
         is_free:    false
-        video_key:  2gkcks33v5
+        video_key:  140182133
     put-editing:
         title:      PUT: For Editing
         is_free:    false
-        video_key:  7crb8ebc8d
+        video_key:  140182130
     debugging-tests:
         title:      Debugging Tests
         is_free:    false
-        video_key:  9dt5541shm
+        video_key:  140182132
     put-improvements:
         title:      PUT: Killing Duplicated Code
         is_free:    false
-        video_key:  dvoy1sj1ic
+        video_key:  140182131
     different-representations:
         title:      GET Representation != POST Representation
         is_free:    false
-        video_key:  s7yw2imvmq
+        video_key:  140182134
     put-versus-post:
         title:      PUT Versus POST
         is_free:    false
-        video_key:  rdbzvkykoq
+        video_key:  140182135
     delete:
         title:      DELETE: For Deleting
         is_free:    false
-        video_key:  j38t4tq3ks
+        video_key:  140182139
     patch:
         title:      PATCH: The Other Edit
         is_free:    false
-        video_key:  wkprl3fv53
+        video_key:  140182137
     errors:
         title:      Advanced Error Handling
         is_free:    false
-        video_key:  dn31njb4g2
+        video_key:  140182140
     application-problem:
         title:      Application Problem
         is_free:    false
-        video_key:  g6jbblr0u5
+        video_key:  140182138
     error-consistency:
         title:      Error Consistency
         is_free:    false
-        video_key:  a86bnkzmdy
+        video_key:  140182142
     error-invalid-json:
         title:      Error Invalid Json
         is_free:    false
-        video_key:  83yopv4idn
+        video_key:  140182143
     error-api-problem-exception:
         title:      "Error: API Problem Exception"
         is_free:    false
-        video_key:  zvizcuof9n
+        video_key:  140182144
     error-404-json:
         title:      "Error 404 Json"
         is_free:    false
-        video_key:  7qp3sxxwd8
+        video_key:  140182145
     error-details:
         title:      Error Details
         is_free:    false
-        video_key:  gfrkn4f0ec
+        video_key:  140182146
     whats-next:
         title:      What's Next?
         is_free:    false
-        video_key:  40b1lzdp5a
+        video_key:  140182148
