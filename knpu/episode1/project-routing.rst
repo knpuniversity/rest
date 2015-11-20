@@ -1,9 +1,10 @@
 Project Routing
 ===============
 
-Ok, let's get start by `downloading`_ or `cloning`_ the CodeBattles project.
-Now, follow the `README.md`_ file to get things working. It involves `downloading Composer`_
-and installing the vendor libraries:
+Ok, let's get start by downloading (see the Download button for subscribers)
+or `cloning`_ the CodeBattles project. Now, follow the `README.md`_ file to get
+things working. It involves `downloading Composer`_ and installing the
+vendor libraries:
 
 .. code-block:: bash
 
@@ -176,7 +177,6 @@ the file is:
 
 Success!
 
-.. _`downloading`: http://knpuniversity.com/screencast/download/rest
 .. _`cloning`: https://github.com/knpuniversity/rest
 .. _`README.md`: https://github.com/knpuniversity/rest/blob/master/README.md
 .. _`downloading Composer`: https://getcomposer.org/
