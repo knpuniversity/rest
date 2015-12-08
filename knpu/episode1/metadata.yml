@@ -1,5 +1,4 @@
 title:  RESTful APIs in the Real World Episode 1
-length: 1:45:05
 summary: |
     Making RESTful APIs is hard, really hard. There are a lot of concepts
     to know - resources, representations, HTTP methods, status codes, etc.
@@ -25,121 +24,91 @@ summary: |
     [Episode 3](http://knpuniversity.com/screencast/rest-ep3).
 
 illustration: rest.png
-hasVideoDownload: 1
 tuts_hero:
     finish_step: "Errors: Making type a URL"
-videoDownloadExtension: mov
 
 chapters:
     intro:
-        title:      Introduction
         is_free:    true
         video_key:  140181413
     http:
-        title:      HTTP Basics
         is_free:    true
         video_key:  140181410
     rest:
-        title:      REST: Resources and Representations
         is_free:    true
         video_key:  140181415
     client-state:
-        title:      Transitions and Client State
         is_free:    true
         video_key:  140181414
     project-routing:
-        title:      Project Routing
         is_free:    true
         video_key:  140181411
     post:
-        title:      "POST: Creation, Location Header and 201"
         is_free:    true
         video_key:  140181412
     get:
-        title:      "GET'ing Resources, and Content-Type"
         is_free:    false
         video_key:  140181418
     location-header:
-        title:      Updating the Location Header
         is_free:    false
         video_key:  140181417
     get-collection:
-        title:      GET /programmers: A collection of Programmers
         is_free:    false
         video_key:  140181416
     rfcs:
-        title:      Fixing the Content-Type on POST
         is_free:    false
         video_key:  140181419
     testing-phpunit:
-        title:      Testing your API with PHPUnit
         is_free:    false
         video_key:  140182129
     testing:
-        title:      Behat for Testing
         is_free:    false
         video_key:  140182128
     testing-data:
-        title:      Handling Data in Tests
         is_free:    false
         video_key:  140182133
     put-editing:
-        title:      PUT: For Editing
         is_free:    false
         video_key:  140182130
     debugging-tests:
-        title:      Debugging Tests
         is_free:    false
         video_key:  140182132
     put-improvements:
-        title:      PUT: Killing Duplicated Code
         is_free:    false
         video_key:  140182131
     different-representations:
-        title:      GET Representation != POST Representation
         is_free:    false
         video_key:  140182134
     put-versus-post:
-        title:      PUT Versus POST
         is_free:    false
         video_key:  140182135
     delete:
-        title:      DELETE: For Deleting
         is_free:    false
         video_key:  140182139
     patch:
-        title:      PATCH: The Other Edit
         is_free:    false
         video_key:  140182137
     errors:
-        title:      Advanced Error Handling
         is_free:    false
         video_key:  140182140
     application-problem:
-        title:      Application Problem
         is_free:    false
         video_key:  140182138
     error-consistency:
-        title:      Error Consistency
         is_free:    false
         video_key:  140182142
     error-invalid-json:
-        title:      Error Invalid Json
         is_free:    false
         video_key:  140182143
     error-api-problem-exception:
-        title:      "Error: API Problem Exception"
         is_free:    false
         video_key:  140182144
     error-404-json:
-        title:      "Error 404 Json"
         is_free:    false
         video_key:  140182145
     error-details:
-        title:      Error Details
         is_free:    false
         video_key:  140182146
     whats-next:
-        title:      What's Next?
         is_free:    false
         video_key:  140182148
