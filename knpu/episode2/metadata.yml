@@ -1,9 +1,9 @@
-title:  RESTful APIs in the Real World Episode 2
+title:  RESTful APIs in the Real World Course 2
 summary: |
     Making RESTful APIs is hard, really hard. There are a lot of concepts
     to know - resources, representations, HTTP methods, status codes, etc.
     
-    [Episode 1](http://knpuniversity.com/screencast/rest) got us really comfortable
+    [Course 1](http://knpuniversity.com/screencast/rest) got us really comfortable
     with all the terminology. So in episode 2, we're attacking the *hard*
     stuff:
 
@@ -20,7 +20,7 @@ summary: |
     
     This stuff is not easy. But if you make it through, you'll be armed to
     attack whatever API need you have. And for documenting your API, see
-    [Episode 3](http://knpuniversity.com/screencast/rest-ep3)
+    [Course 3](http://knpuniversity.com/screencast/rest-ep3)
 
 illustration: rest2.png
 
