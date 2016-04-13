@@ -29,6 +29,4 @@ hasVideoDownload: 0
 tuts_hero:
     start_step: filtering-adding-a-simple-filter
 
-chapters:
-    tbd:
-        is_finished: false
+chapters: []
