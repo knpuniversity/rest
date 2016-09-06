@@ -14,7 +14,7 @@ class UserController extends BaseController
         $controllers->get('/register', array($this, 'registerAction'))->bind('user_register');
         $controllers->post('/register', array($this, 'registerHandleAction'))->bind('user_register_handle');
         $controllers->get('/login', array($this, 'loginAction'))->bind('user_login');
-        $controllers->post('/login_check', array($this, 'longCheckAction'))->bind('user_login_check');
+        $controllers->post('/login_check', array($this, 'loginCheckAction'))->bind('user_login_check');
         $controllers->get('/logout', array($this, 'logoutAction'))->bind('user_logout');
     }
 
