@@ -25,6 +25,7 @@ summary: |
 
 illustration: rest.png
 tuts_hero:
+    start_step: start
     finish_step: "Errors: Making type a URL"
 
 chapters:
