@@ -118,6 +118,11 @@ each key that the client sends to populate a property on the object::
         // ...
     }
 
+.. note::
+
+    Do not forget to add ``use KnpU\CodeBattle\Model\Programmer;`` namespace
+    for the ``Programmer`` class at the beginning of the ``ProgrammerController.php``.
+
 My app also has a really simple ORM that lets us save these objects to the
 database. How you save things to your database will be different. The key
 point is that we have a ``Programmer`` class that models how we want our
