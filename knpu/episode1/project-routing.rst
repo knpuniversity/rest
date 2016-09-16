@@ -100,7 +100,7 @@ Next, create a ``newAction`` inside of this class and return ``let's battle!``::
 
     public function newAction()
     {
-        return 'let's battle!';
+        return 'let\'s battle!';
     }
 
 And just like that, we're making threats and we have a new endpoint with 
