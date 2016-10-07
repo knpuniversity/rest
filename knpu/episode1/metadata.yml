@@ -23,6 +23,11 @@ summary: |
     here, but will be covered in [Episode 2](/screencast/rest-ep2) and
     [Episode 3](http://knpuniversity.com/screencast/rest-ep3).
 
+    This tutorial uses [Silex](http://silex.sensiolabs.org/) and we avoid talking
+    about it as much as possible and instead focus on the core concepts of REST. Once
+    you understand these, you can watch our [Symfony REST](http://knpuniversity.com/screencast/symfony-rest)
+    series to learn how to leverage Symfony for your API.
+
 illustration: rest.png
 tuts_hero:
     start_step: start
