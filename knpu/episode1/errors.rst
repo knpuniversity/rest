@@ -56,7 +56,7 @@ for our API, but let me suggest a structure that looks like this:
 .. code-block:: json
 
     {
-        "type": "valdiation_error",
+        "type": "validation_error",
         "title": "There was a validation error",
         "errors": {
             "nickname": "Please enter a nickname"
