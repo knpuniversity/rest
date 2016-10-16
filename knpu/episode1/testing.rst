@@ -116,6 +116,9 @@ just like we're doing in our ``testing.php`` script.
     Hat-tip to `Phil Sturgeon`_ and `Ben Corlett`_ who originally created
     this file for Phil's `Build APIs you Won't Hate`_ book.
 
+    Also, a KnpU (Johan de Jager) user has ported the ApiFeatureContext to
+    work with Guzzle 6 and Behat 3. You can find it here: `https://github.com/thejager/behat-api-feature-context`_.
+
 To sum it up: we write human readable sentences, Behat executes a function
 for each line and those functions use Guzzle to make real HTTP requests. Behat
 is totally kicking butt for us!
@@ -149,3 +152,4 @@ tests with Guzzle, or even use a mixture!
 .. _`Phil Sturgeon`: https://twitter.com/philsturgeon
 .. _`Ben Corlett`: https://twitter.com/ben_corlett
 .. _`Build APIs you Won't Hate`: https://leanpub.com/build-apis-you-wont-hate
+.. _`https://github.com/thejager/behat-api-feature-context`: https://github.com/thejager/behat-api-feature-context
