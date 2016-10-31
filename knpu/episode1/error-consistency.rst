@@ -156,7 +156,7 @@ The ``type`` field is the unique identifier of an error, and we're supposed
 to have documentation for each type. So it's really important to keep track
 of these and never misspell them.
 
-That sounds like a perfect use-case for constants! Add a cosntant on``ApiProblem``
+That sounds like a perfect use-case for constants! Add a constant on ``ApiProblem``
 for the ``validation_error`` key::
 
     // src/KnpU/CodeBattle/Api/ApiProblem.php

@@ -88,7 +88,7 @@ First, make sure it's working by running the test:
     the most common 400 and 500-level responses. For example, :symfonyclass:`Symfony\\Component\\HttpKernel\\Exception\\BadRequestHttpException`
     is a sub-class of ``HttpException`` that sets the status code to 400.
     The result is the same: throwing these "named" exception classes is just
-    a bonus to give you code more consistency and clarity.
+    a bonus to give your code more consistency and clarity.
 
 Awesome! So why am I throwing an exception instead of just returning a normal
 400 response? The problem is that we're inside ``handleRequest``, so if I

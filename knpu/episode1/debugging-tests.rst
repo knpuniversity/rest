@@ -37,7 +37,7 @@ fails, part of the last response is printed below.
 .. tip::
 
     This functionality works by returning the h1 and h2 elements of the HTML
-    page. If your app shows erorrs with different markup, tweak the
+    page. If your app shows errors with different markup, tweak the
     ``ApiFeatureContext::printLastResponseOnError`` method to your liking.
 
 If this doesn't tell you enough, we can print out the last response in its

@@ -64,7 +64,7 @@ types. You can see that there are a lot of media types that end in ``+json``,
 like one for expressing calendar data. If you were sending calendar data,
 you might *choose* to use this format. Why? Because it would mean you're
 following a standard that is already documented, and whose structure people
-spent a lot of timing thinking about.
+spent a lot of time thinking about.
 
 Right now, I just want you to be aware that this exists, and that a lot of
 people invest a lot of time into answering questions like: "If 2 machines

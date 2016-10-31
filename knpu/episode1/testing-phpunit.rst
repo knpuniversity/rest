@@ -65,9 +65,6 @@ we have a ``Location`` header and that we get back valid JSON::
         $request = $client->post('/api/programmers', null, json_encode($data));
         $response = $request->send();
 
-        $request = $client->post('/api/programmers', null, json_encode($data));
-        $response = $request->send();
-
         $this->assertEquals(201, $response->getStatusCode());
         $this->assertTrue($response->hasHeader('Location'));
         $data = json_decode($response->getBody(true), true);

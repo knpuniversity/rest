@@ -2,7 +2,7 @@ Updating the Location Header
 ============================
 
 Hey, we have a working endpoint to view a single programmer! We're awesome :)
-Now do you remember the ``Location`` response header we're return after creating a new
+Now do you remember the ``Location`` response header we return after creating a new
 programmer? Let's update that to be a real value.
 
 To do this, first add a ``bind`` function to our programmer route::

@@ -99,7 +99,7 @@ lines::
         // ...
     }
 
-I made this route use the same ``updateAction`` function as the PUT route.
+I made this route to use the same ``updateAction`` function as the PUT route.
 That's not on accident: these two HTTP methods are so similar that I bet
 we can save some code by re-using the controller function.
 
