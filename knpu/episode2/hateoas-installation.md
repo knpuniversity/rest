@@ -125,7 +125,8 @@ is what ties the two libraries together:
 [[[ code('27bbc09fd3') ]]]
 
 Now of course, my editor is angry because I'm missing my `use` statement,
-so I'll use a shortcut to add that, which put it at the top of this file.
+so I'll use a shortcut to add that, which puts `use` statement
+at the top of this file.
 
 So that's it. We're already using the `serializer` object everywhere, and
 now the HATEOAS library will be working with that to add these links for us.
@@ -154,7 +155,7 @@ And it fails because the property doesn't even exist yet.
 
 ## Adding your First Link
 
-Go back to the HATOEAS docs and scroll back up. Grab the `use` statement and
+Go back to the HATEOAS docs and scroll back up. Grab the `use` statement and
 put it inside of the `Programmer` class. I'll go back and copy the `HATEOAS\Relation`
 annotation - beautiful. This says `self`, because we want this to be the `self`
 link and we'll change the href to be `/api/programmers/` and then `object.nickname`:

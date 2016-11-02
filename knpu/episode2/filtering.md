@@ -27,9 +27,9 @@ And that should be it!
 
 If we go back to the Hal Browser and hit go, we get nothing back! But we're
 actually on page 3, so click to go back to page 1. Hmm, now we have too many results!
-That's because we lost the &nickname query parameter. That's because I was
+That's because we lost the `&nickname` query parameter. That's because I was
 lazy - if I have extra filters I *should* pass those to the 3rd argument
-of `PaginatedRepresentation`. If i do that, it'll show up in our pagination
+of `PaginatedRepresentation`. If I do that, it'll show up in our pagination
 links.
 
 I'll re-add `&nickname=2` manually and this time, we see it's *only* returning

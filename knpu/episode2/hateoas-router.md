@@ -33,7 +33,7 @@ next line and paste this:
 [[[ code('8992c67bfb') ]]]
 
 And don't forget that we need a `use` statement for that `SymfonyUrlGenerator`,
-so I'll click "import" to have PHPStorm add this class to the top of the
+so I'll click "import" to have PhpStorm add this class to the top of the
 file for me. This class comes from the HATEOAS library, and we're just passing
 it the `url_generator` object, which in Silex, is the object responsible
 for generating URLs. In Symfony, it's called `router`. 
@@ -42,7 +42,7 @@ for generating URLs. In Symfony, it's called `router`.
 
 With this, we can go back into `Programmer`. First, I'm going to move things
 onto multiple lines for my sanity. Instead of setting the `href` to a URL,
-we'll say `@HATEOAS\Route` . I'll make sure I have all my paranthesis in
+we'll say `@HATEOAS\Route` . I'll make sure I have all my parenthesis in
 the right place. In the Route, we'll have 2 arguments - the first is the
 name of the route. The second argument is whatever variables we need to pass
 into the route, in a `parameters` key. Because the route has the `{nickname}`,
@@ -70,6 +70,6 @@ I'll fix that, and learn that it's always good to follow the docs:
 [[[ code('e63ffa4168') ]]]
 
 And *this* time it finally passes. So other than my syntax error, that was
-easy to fix up. And if this look overwhelming to you, that's ok. From now on,
+easy to fix up. And if this looks overwhelming to you, that's ok. From now on,
 we're just going to be copying and pasting this and customizing it for whatever
 links we need.

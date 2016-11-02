@@ -5,7 +5,7 @@ It's finally time to create a scenario to check and see what happens if we
 send an *invalid* token. So let's do that right now.
 
 In this case, I'm *not* going to add a user to the database with this token.
-I'm just going to send a token and that doesn't exist:
+I'm just going to send a token that doesn't exist:
 
 .. code-block:: gherkin
 
@@ -48,7 +48,7 @@ add an exclamation point to this:
 
     Scenario: Invalid token gives us a 401
       # ...
-      And the "detail" property should equal "Invalid Credentials"
+      And the "detail" property should equal "Invalid Credentials!"
 
 We'll see the difference this makes. We're expecting "Invalid Credentials!"
 and we are getting it with a period. So let's go find our translation file

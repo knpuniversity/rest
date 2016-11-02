@@ -306,7 +306,7 @@ this token is attached to.
 
 So now, in ``handleRequest()``, I have this ugly hard-coded logic that assumed
 that there is a user called ``weaverryan``. Replace this garbage
-with ``$this->getLoggedinUser()`` to get the real user object that's 
+with ``$this->getLoggedInUser()`` to get the real user object that's 
 attached to our token::
 
     // src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php

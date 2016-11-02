@@ -16,7 +16,7 @@ it into our `BaseController`. Open this up and create a new protected function
 at the bottom called `decodeRequestBodyIntoParameters`. I know, really short
 name. And we'll take in a `Request` object as an argument. And at first this
 is going to be really simple. We can go to the `TokenController`, grab this
-`json_decode` line, go back to `BaseController` and return it::
+`json_decode` line, go back to `BaseController` and return it:
 
 [[[ code('6e4ffb041e') ]]]
 
