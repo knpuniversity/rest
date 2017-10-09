@@ -5,7 +5,7 @@ Let's run our test a second time:
 
 .. code-block:: bash
 
-    $ php vendir/bin/behat
+    $ php vendor/bin/behat
 
 It fails! The nickname of a programmer is unique in the database, and if
 you look closely, this fails because the API tries to insert another ``ObjectOrienter``
@@ -46,7 +46,7 @@ Try the test again:
 
 .. code-block:: bash
 
-    $ php vendir/bin/behat
+    $ php vendor/bin/behat
 
 Dang, it failed again. Ah, remember how we're relating all programmers to
 the ``weaverryan`` user? Well, when we empty the tables before the scenario,
@@ -70,7 +70,7 @@ are executed before each ``Scenario``. Ok, try it one more time!
 
 .. code-block:: bash
 
-    $ php vendir/bin/behat
+    $ php vendor/bin/behat
 
 Success! When you test, it's critical to make sure that your database is
 in a predictable state before each test. Don't assume that a user exists
@@ -116,7 +116,7 @@ is important, just like in the previous scenario.
 
 Run it!
 
-    $ php vendir/bin/behat
+    $ php vendor/bin/behat
 
 Success!
 
