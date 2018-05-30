@@ -87,12 +87,12 @@ why we put in all the work before this.
 
 ## Don't Forget to Fix the Location Header
 
-Now that we have a proper `showAction`, we can go back and fix the "todo"
+Now that we have a proper `showAction()`, we can go back and fix the "todo"
 in the header. First, we'll need to give the route an internal name - `api_battle_show`:
 
-[[[ code('8b25a48ad9') ]]]
+[[[ code('fe6855b3e2') ]]]
 
-In `newAction`, we'll use `generateUrl` to make the URL for us:
+In `newAction()`, we'll use `generateUrl()` to make the URL for us:
 
 [[[ code('c418e73246') ]]]
 
