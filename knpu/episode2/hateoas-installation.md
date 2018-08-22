@@ -5,7 +5,7 @@ to see the response again, so let's add "And print last response" then run
 the test - it starts on line 26.
 
 ```
-php vendor/bin/behat features/api/battle.feature:26
+vendor/bin/behat features/api/battle.feature:26
 ```
 
 We just invented this idea to put a field on a link called `programmerUri`.
@@ -148,7 +148,7 @@ And as always, let's run this to see it fail. This scenario is on line 66
 of `programmer.feature`:
 
 ```
-php vendor/bin/behat features/api/programmer.feature:66
+vendor/bin/behat features/api/programmer.feature:66
 ```
 
 And it fails because the property doesn't even exist yet.
@@ -182,7 +182,7 @@ by saying `object.nickname`, we're saying go get the `nickname` property.
 Let's try this test!
 
 ```
-php vendor/bin/behat features/api/programmer.feature:66
+vendor/bin/behat features/api/programmer.feature:66
 ```
 
 Awesome, it passes that easily. Let's print out the response temporarily.

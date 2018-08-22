@@ -26,7 +26,7 @@ and we've got it.
 So just to be sure, let's go back and run our entire feature:
 
 ```
-php vendor/bin/behat features/api/token.feature
+vendor/bin/behat features/api/token.feature
 ```
 
 ## Consistently Erroring on Invalid JSON
@@ -63,7 +63,7 @@ that actually decodes the json:
 And just to make sure we didn't screw anything up, we'll rerun the tests.
 
 ```
-php vendor/bin/behat features/api/token.feature
+vendor/bin/behat features/api/token.feature
 ```
 
 ## A ParameterBag Makes Life Nicer
@@ -118,7 +118,7 @@ Lovely! Now that was a fairly fundamental change so there is a good chance that 
 broke something. So let's go back and run our entire programmer feature:
 
 ```
-php vendor/bin/behat features/api/programmer.feature
+vendor/bin/behat features/api/programmer.feature
 ```
 
 Beautiful! We didn't actually break anything which is so good to know. 

@@ -78,7 +78,7 @@ I'm happy with that - we're getting free functionality.
 This looks good to me - so let's try it!
 
 ```
-php vendor/bin/behat features/api/battle.feature
+vendor/bin/behat features/api/battle.feature
 ```
 
 Oh! It *almost* passes. It gets the 201 status code, but it's missing the
@@ -97,7 +97,7 @@ Remember, this is the location to view a single battle, and we don't have
 an endpoint for that yet. But this will get our tests to pass for now:
 
 ```
-php vendor/bin/behat features/api/battle.feature
+vendor/bin/behat features/api/battle.feature
 ```
 
 Perfect!
@@ -125,7 +125,7 @@ to try it - `foobar` is definitely not a valid id:
 [[[ code('4bdf8add09') ]]]
 
 ```
-php vendor/bin/behat features/api/battle.feature:11
+vendor/bin/behat features/api/battle.feature:11
 ```
 
 Now, we can see that the response code is 400 and we have this beautifully
@@ -137,7 +137,7 @@ Let's change the scenario back and re-run the tests to make sure we haven't
 broken anything:
 
 ```
-php vendor/bin/behat features/api/battle.feature:11
+vendor/bin/behat features/api/battle.feature:11
 ```
 
 Perfect! This is a really nice endpoint for creating a battle.

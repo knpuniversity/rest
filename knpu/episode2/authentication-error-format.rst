@@ -30,7 +30,7 @@ one starts on line 11:
 
 .. code-block:: bash
 
-    php vendor/bin/behat features/api/authentication.feature:11
+    vendor/bin/behat features/api/authentication.feature:11
 
 In fact you can see it *almost* passed, so out of the box things are working.
 We are denying access, sending a 401, and because of our security error handling

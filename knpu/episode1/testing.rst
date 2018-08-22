@@ -68,7 +68,7 @@ directory:
 
 .. code-block:: bash
 
-    $ php vendor/bin/behat
+    $ vendor/bin/behat
 
 Green colors! It says that 1 scenario passed. In the background, a real HTTP
 request was made to the server and a real response was sent back and then
@@ -132,7 +132,7 @@ the same command with a ``-dl`` option:
 
 .. code-block:: bash
 
-    $ php vendor/bin/behat -dl
+    $ vendor/bin/behat -dl
 
 Anywhere you see the quote-parentheses mess that's a wildcard
 that matches anything. So as long as we write scenarios using this language,

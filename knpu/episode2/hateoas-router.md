@@ -56,7 +56,7 @@ use in that URL.":
 Unless I've messed something up, the test should pass like before:
 
 ```
-php vendor/bin/behat features/api/programmer.feature:66
+vendor/bin/behat features/api/programmer.feature:66
 ```
 
 Ah, and

@@ -29,7 +29,7 @@ with the ``-dl`` option, which stands for "definition list":
 
 .. code-block:: bash
 
-    php vendor/bin/behat -dl
+    vendor/bin/behat -dl
 
 Try running the tests again. It *should* fail, and it does - saying that
 the ``userId`` property should not exist, but we can see that it in fact is there.
@@ -110,7 +110,7 @@ Now let's re-run the test:
 
 .. code-block:: bash
 
-    php vendor/bin/behat
+    vendor/bin/behat
 
 Success! This time the ``userId`` is *not* returned in our JSON.
 

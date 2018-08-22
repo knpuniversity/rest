@@ -95,7 +95,7 @@ number where the word ``Scenario:`` appears:
 
 .. code-block:: bash
 
-    $ php vendor/bin/behat features/api/programmer.feature:64
+    $ vendor/bin/behat features/api/programmer.feature:64
 
 When the test fails, it prints out what the client will see, which is our
 API Problem media type response... but with absolutely no details beyond

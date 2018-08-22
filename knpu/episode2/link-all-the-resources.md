@@ -47,7 +47,7 @@ Great!
 This starts on line 95, so let's run this and make sure it fails with a 404:
 
 ```
-php vendor/bin/behat features/api/programmer.feature:95
+vendor/bin/behat features/api/programmer.feature:95
 ```
 
 Cool!
@@ -94,7 +94,7 @@ and that's it!
 So with almost no work, we'll run the test again, and it passes!
 
 ```
-php vendor/bin/behat features/api/programmer.feature:95
+vendor/bin/behat features/api/programmer.feature:95
 ```
 
 ## Adding the battles Relation
@@ -138,7 +138,7 @@ If we re-GET this request, we see a huge error! This is no bueno! But hey,
 let's  run our test for this to see if it helps us:
 
 ```
-php vendor/bin/behat features/api/programmer.feature:95
+vendor/bin/behat features/api/programmer.feature:95
 ```
 
 And you can see that we're missing some "id" parameter when generating the

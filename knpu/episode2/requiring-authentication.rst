@@ -91,7 +91,7 @@ that's going to be really useful for us:
 
 .. code-block:: bash
 
-    php vendor/bin/behat features/api/authentication.feature
+    vendor/bin/behat features/api/authentication.feature
 
 And there we go! You can see it's giving us a 400 error because we're sending
 invalid JSON instead of the 401 we want.
@@ -125,7 +125,7 @@ And there we go! Since that should deny access, let's try our test:
 
 .. code-block:: bash
 
-    php vendor/bin/behat features/api/authentication.feature
+    vendor/bin/behat features/api/authentication.feature
 
 Boom! And this time you can see that we *are* passing the 401 test. Get outta
 here ya tokenless request! The only issue is that the response body is coming
@@ -232,7 +232,7 @@ Ok, rerun the tests!
 
 .. code-block:: bash
 
-    php vendor/bin/behat features/api/authentication.feature
+    vendor/bin/behat features/api/authentication.feature
 
 Fantastic!
 

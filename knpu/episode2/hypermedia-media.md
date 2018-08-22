@@ -88,7 +88,7 @@ a new scenario line to test this. My editor isn't happy with my language here.
 If you can't remember your definitions, run behat with the `-dl` option:
 
 ```
-php vendor/bin/behat -dl
+vendor/bin/behat -dl
 ```
 
 I'll grep this for `header` because I know I have a definition. Ah, and
@@ -100,7 +100,7 @@ Oh, and we actually want to look for `application/hal+json`. I'll run the
 test first, and it's failing:
 
 ```
-php vendor/bin/behat features/api/battle.feature:26
+vendor/bin/behat features/api/battle.feature:26
 ```
 
 Remember, this is served from `BattleController`, so let's go back there.
@@ -117,7 +117,7 @@ let's just update that `Content-Type` header:
 Run the test, and it passes perfectly:
 
 ```
-php vendor/bin/behat features/api/battle.feature:26
+vendor/bin/behat features/api/battle.feature:26
 ```
 
 Now, API clients can see this header and know that we're using some extra

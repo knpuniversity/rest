@@ -77,7 +77,7 @@ We haven't actually coded this yet, so when we run the test, it fails:
 
 .. code-block:: bash
 
-    $ php vendor/bin/behat
+    $ vendor/bin/behat
 
 The test reports that the status code isn't 200, it's 405. 405 means "method
 not allowed", and our framework is doing this for us. It's a way of saying
@@ -163,7 +163,7 @@ Time to run the test!
 
 .. code-block:: bash
 
-    $ php vendor/bin/behat
+    $ vendor/bin/behat
 
 Woot! It passes! And we can even run it over and over again.
 

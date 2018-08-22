@@ -91,7 +91,7 @@ So its nickname should equal UnitTester. This is line 84, so let's run this
 test first to make sure it fails:
 
 ```
-php vendor/bin/behat features/api/programmer.feature:84
+vendor/bin/behat features/api/programmer.feature:84
 ```
 
 And it does.
@@ -146,7 +146,7 @@ Now, we'll just pass this new object directly to `createApiResponse`. And
 hey, that's it! Let's try the test:
 
 ```
-php vendor/bin/behat features/api/programmer.feature:84
+vendor/bin/behat features/api/programmer.feature:84
 ```
 
 And this time it passes! So whenever you have a collection resource, use

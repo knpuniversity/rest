@@ -76,7 +76,7 @@ Alright!
 This starts on line 33, so let's run just this scenario:
 
 ```
-php vendor/bin/behat features/api/token.feature:33
+vendor/bin/behat features/api/token.feature:33
 ```
 
 Oh no, and it actually passes! Instead of the 400 we want, it is giving us

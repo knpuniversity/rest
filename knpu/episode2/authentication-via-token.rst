@@ -64,7 +64,7 @@ starts at line 11. So we say ``:11`` and it's going to fail:
 
 .. code-block:: bash
 
-    php vendor/bin/behat features/api/programmer.feature:11
+    vendor/bin/behat features/api/programmer.feature:11
 
 It *is* setting that ``Authorization`` header, but we aren't actually doing
 anything with it yet in our app. So we're getting that 401 authentication
@@ -295,7 +295,7 @@ token. So, let's try this out.
 
 .. code-block:: bash
 
-    php vendor/bin/behat features/api/programmer.feature:11
+    vendor/bin/behat features/api/programmer.feature:11
 
 And there it is!
 

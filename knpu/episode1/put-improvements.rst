@@ -53,7 +53,7 @@ Re-run the tests to see if we broke anything:
 
 .. code-block:: bash
 
-    $ php vendor/bin/behat
+    $ vendor/bin/behat
 
 Cool! I'm going to change how this code is written *just* a little bit so
 that it's even more dynamic::

@@ -22,7 +22,7 @@ on the other side.
 First, let's run our test - line 26 - and make sure that it fails:
 
 ```
-php vendor/bin/behat features/api/battle.feature:26
+vendor/bin/behat features/api/battle.feature:26
 ```
 
 Let's go in and add that relation. Open up `Battle` and also open up `Programmer`
@@ -55,7 +55,7 @@ will look for the `_links` property, so there's no reason to repeat it
 in all of our scenarios. So let's try the test again - perfect.
 
 ```
-php vendor/bin/behat features/api/battle.feature:26
+vendor/bin/behat features/api/battle.feature:26
 ```
 
 We can repeat this same thing over in `programmer.feature` when we're checking
@@ -66,7 +66,7 @@ the `self` link. I'll comment out the old line for reference:
 If we run our entire test suite, things keep passing:
 
 ```
-php vendor/bin/behat
+vendor/bin/behat
 ```
 
 I love to see all of that green!

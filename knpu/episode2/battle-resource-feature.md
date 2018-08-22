@@ -102,7 +102,7 @@ You know I like watching my tests fail first, so let's try it out. We'll
 just run this new `battle.feature` file:
 
 ```
-php vendor/bin/behat features/api/battle.feature
+vendor/bin/behat features/api/battle.feature
 ```
 
 Instead of 201, we get the 404 because the endpoint doesn't exist. That's

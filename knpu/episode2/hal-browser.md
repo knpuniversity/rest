@@ -44,7 +44,7 @@ with id 1. I'll re-run a test that puts battles into the database so we have
 something to play with:
 
 ```
-php vendor/bin/behat features/api/battle.feature:26
+vendor/bin/behat features/api/battle.feature:26
 ```
 
 ## Properties, Links and Embedded

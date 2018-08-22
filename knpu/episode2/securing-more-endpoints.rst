@@ -154,6 +154,6 @@ see it pass:
 
 .. code-block:: bash
 
-    php vendor/bin/behat features/api/programmer.feature
+    vendor/bin/behat features/api/programmer.feature
 
 Perfect! And just like that, we have our entire application locked down.

@@ -8,7 +8,7 @@ response looks like - so I'll say "And print last response":
 Now, run Behat.
 
 ```
-php vendor/bin/behat features/api/battle.feature
+vendor/bin/behat features/api/battle.feature
 ```
 
 At the bottom, you can see that response has `programmer` and `project` information
@@ -36,7 +36,7 @@ You guys know the drill - let's run just line 26 to make sure things still
 pass:
 
 ```
-php vendor/bin/behat features/api/battle.feature:26
+vendor/bin/behat features/api/battle.feature:26
 ```
 
 We're still printing out the last response, but nothing is broken, so that's
@@ -66,7 +66,7 @@ see this and say:
 First, let's run this and watch it fail:
 
 ```
-php vendor/bin/behat features/api/battle.feature:26
+vendor/bin/behat features/api/battle.feature:26
 ```
 
 ### Using a VirtualProperty

@@ -181,13 +181,13 @@ our tests:
 
 .. code-block:: bash
 
-    php vendor/bin/behat features/api/authentication.feature
+    vendor/bin/behat features/api/authentication.feature
 
 Those pass too! Let's try all of our tests for the programmer.
 
 .. code-block:: bash
 
-    php vendor/bin/behat features/api/programmer.feature
+    vendor/bin/behat features/api/programmer.feature
 
 Sahweet! They're passing too! So there's no chance of duplication because
 everything is going through that same class.

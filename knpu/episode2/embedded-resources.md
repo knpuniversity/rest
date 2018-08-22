@@ -60,7 +60,7 @@ this should be equal to `Fred`:
 Let's make sure that fails first - and it does:
 
 ```
-php vendor/bin/behat features/api/battle.feature:26
+vendor/bin/behat features/api/battle.feature:26
 ```
 
 To make this work, we'll add more annotations to `Battle`. When you think
@@ -82,7 +82,7 @@ Before we run the test, add a "And print last response", because I like to
 see how my endpoints look. Let's run it:
 
 ```
-php vendor/bin/behat features/api/battle.feature:26
+vendor/bin/behat features/api/battle.feature:26
 ```
 
 Awesome it passes! If you look - HATEOAS is doing all the work for us. We

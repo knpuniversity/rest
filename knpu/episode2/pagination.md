@@ -112,7 +112,7 @@ Programmer2 should be on page 1 and Programmer11 should be on page 3.
 This starts on line 96, so let's try the scenario out:
 
 ```
-php vendor/bin/behat features/api.programmer.feature:96
+vendor/bin/behat features/api.programmer.feature:96
 ```
 
 It fails of course because it can't find the `next` link - our collection
@@ -167,7 +167,7 @@ Cool. We'll still returning *all* of the programmers, so I don't expect our
 test to pass, but let's try it:
 
 ```
-php vendor/bin/behat features/api.programmer.feature:96
+vendor/bin/behat features/api.programmer.feature:96
 ```
 
 Our test fails, but it *is* getting further. Ah, it actually *is* following
@@ -222,7 +222,7 @@ a functional, paginated endpoint now. So let's try the test again, and it
 works!
 
 ```
-php vendor/bin/behat features/api.programmer.feature:96
+vendor/bin/behat features/api.programmer.feature:96
 ```
 
 Yes!

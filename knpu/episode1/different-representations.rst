@@ -75,7 +75,7 @@ Now run the test:
 
 .. code-block:: bash
 
-    $ php vendor/bin/behat
+    $ vendor/bin/behat
 
 Perfect! We've decided just to ignore these "extra" properties. You could
 also decide to return an error response instead. It just depends on your

@@ -314,7 +314,7 @@ So let's run our tests!
 
 .. code-block:: bash
 
-    php vendor/bin/behat
+    vendor/bin/behat
 
 We've totally changed how a Programmer gets turned into JSON, but *almost*
 every test passes already! We'll debug that failure next.

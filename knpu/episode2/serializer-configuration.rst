@@ -102,7 +102,7 @@ one failure:
 
 .. code-block:: bash
 
-    php vendor/bin/behat
+    vendor/bin/behat
 
 And we do!
 
@@ -160,7 +160,7 @@ Back to the tests!
 
 .. code-block:: bash
 
-    php vendor/bin/behat
+    vendor/bin/behat
 
 Boom, everything passes! We've changed to use the serializer, and it's now
 taking care of all of the heavy-lifting for us. This will be really powerful

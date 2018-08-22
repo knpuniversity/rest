@@ -26,7 +26,7 @@ Now run the test again:
 
 .. code-block:: bash
 
-    $ php vendor/bin/behat
+    $ vendor/bin/behat
 
 Not surprisingly, we're getting a 500 error instead of 200. But we can't
 really see what's going on because we can't see the big error page!
@@ -70,7 +70,7 @@ Now just re-run the test:
 
 .. code-block:: bash
 
-    $ php vendor/bin/behat
+    $ vendor/bin/behat
 
 It may be ugly, but the entire response of the last request our test made
 is printed out, including all the header information on top. Once you've

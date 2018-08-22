@@ -76,7 +76,7 @@ the test file.
 
 .. code-block:: bash
 
-    $ php vendor/bin/phpunit src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php
+    $ vendor/bin/phpunit src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php
 
 With any luck, Sebastian Bergmann will tell you that everything is ok! Of
 course I never trust a test that passes on the first try, so be sure to change

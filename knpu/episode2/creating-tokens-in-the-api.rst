@@ -112,7 +112,7 @@ So let's try this: we know it's going to fail but we want to confirm that:
 
 .. code-block:: bash
 
-    php vendor/bin/behat features/api/token.feature
+    vendor/bin/behat features/api/token.feature
 
 Failure, sweet! And it does with a 404 because we don't have an endpoint
 for this.
@@ -309,7 +309,7 @@ Head over to the terminal:
 
 .. code-block:: bash
 
-    php vendor/bin/behat features/api/token.feature
+    vendor/bin/behat features/api/token.feature
 
 Awesome...ish! So it's failing because we don't have a ``Location`` header
 set, but if you look at what's being returned from the endpoint, you can
@@ -364,7 +364,7 @@ before I actually do the code:
 
 .. code-block:: bash
 
-    php vendor/bin/behat features/api/token.feature:21
+    vendor/bin/behat features/api/token.feature:21
 
 Yes, failing!
 

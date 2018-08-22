@@ -42,7 +42,7 @@ You guys know the drill. We're going to try this first to make sure it fails.
 This is on line 26, so we'll add `:26` to only run this scenario:
 
 ```
-php vendor/bin/behat features/api/battle.feature:26
+vendor/bin/behat features/api/battle.feature:26
 ```
 
 And there we go - we get the 404 instead of the 200 and that's perfect.
@@ -79,7 +79,7 @@ We don't need the 2nd argument, because that defaults to 200 already:
 That's it guys - let's run the test:
 
 ```
-php vendor/bin/behat features/api/battle.feature:26
+vendor/bin/behat features/api/battle.feature:26
 ```
 
 Wow, and it already passes. This is getting *really really* easy, which is
@@ -104,7 +104,7 @@ by opening up the `BaseController` class.
 First, let's make sure we didn't break anything by re-running the entire feature.
 
 ```
-php vendor/bin/behat features/api/battle.feature
+vendor/bin/behat features/api/battle.feature
 ```
 
 Green green green!
