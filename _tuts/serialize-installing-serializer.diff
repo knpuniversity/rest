@@ -8,7 +8,7 @@ index 29920fb..93b0f24 100644
  /.sass-cache
 +/cache
 diff --git a/composer.json b/composer.json
-index 3eeeb81..d02eacb 100644
+index feb47b7..d88285e 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -6,7 +6,8 @@
@@ -22,11 +22,24 @@ index 3eeeb81..d02eacb 100644
      "require-dev": {
          "behat/mink": "~1.5",
 diff --git a/composer.lock b/composer.lock
-index de5e2e4..0c55e41 100644
+index cc1b690..899f6e9 100644
 --- a/composer.lock
 +++ b/composer.lock
-@@ -468,6 +468,163 @@
-             "time": "2014-09-09 13:34:57"
+@@ -1,9 +1,10 @@
+ {
+     "_readme": [
+         "This file locks the dependencies of your project to a known state",
+-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
++        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
++        "This file is @generated automatically"
+     ],
+-    "hash": "8745563768b3443cba9a896706ba6ef6",
++    "hash": "2125c98a86ef7ffe19a08ed624114de9",
+     "packages": [
+         {
+             "name": "doctrine/annotations",
+@@ -477,6 +478,163 @@
+             "time": "2013-01-12 18:59:04"
          },
          {
 +            "name": "jms/metadata",
@@ -189,7 +202,7 @@ index de5e2e4..0c55e41 100644
              "name": "monolog/monolog",
              "version": "1.7.0",
              "source": {
-@@ -535,6 +692,105 @@
+@@ -544,6 +702,105 @@
              "time": "2013-11-14 19:48:31"
          },
          {
@@ -295,16 +308,28 @@ index de5e2e4..0c55e41 100644
              "name": "pimple/pimple",
              "version": "v1.1.1",
              "source": {
-@@ -2917,7 +3173,10 @@
+@@ -2947,17 +3204,10 @@
+             "time": "2014-01-07 13:28:54"
+         }
+     ],
+-    "aliases": [
+-
+-    ],
++    "aliases": [],
      "minimum-stability": "stable",
-     "stability-flags": [],
-     "prefer-stable": false,
-+<<<<<<< HEAD
-+=======
-     "prefer-lowest": false,
-+>>>>>>> _tuts/master/errors-making-type-a-url
-     "platform": [],
-     "platform-dev": []
+-    "stability-flags": [
+-
+-    ],
+-    "platform": [
+-
+-    ],
+-    "platform-dev": [
+-
+-    ]
++    "stability-flags": [],
++    "prefer-stable": false,
++    "platform": [],
++    "platform-dev": []
  }
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
 index 833102b..18a4e73 100644
