@@ -1,5 +1,5 @@
 diff --git a/.gitignore b/.gitignore
-index 29920fb..93b0f24 100644
+index 29920fb7..93b0f24b 100644
 --- a/.gitignore
 +++ b/.gitignore
 @@ -4,3 +4,4 @@
@@ -8,11 +8,11 @@ index 29920fb..93b0f24 100644
  /.sass-cache
 +/cache
 diff --git a/composer.json b/composer.json
-index feb47b7..d88285e 100644
+index 00290049..2f44557c 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -6,7 +6,8 @@
-         "doctrine/dbal": "~2.4.0",
+         "doctrine/dbal": "^2.5.4",
          "monolog/monolog": "~1.7.0",
          "symfony/validator": "~2.4",
 -        "symfony/expression-language": "~2.4"
@@ -22,26 +22,14 @@ index feb47b7..d88285e 100644
      "require-dev": {
          "behat/mink": "~1.5",
 diff --git a/composer.lock b/composer.lock
-index cc1b690..899f6e9 100644
+index 2f529773..1d0f6fb3 100644
 --- a/composer.lock
 +++ b/composer.lock
-@@ -1,9 +1,10 @@
- {
-     "_readme": [
-         "This file locks the dependencies of your project to a known state",
--        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
-+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
-+        "This file is @generated automatically"
-     ],
--    "hash": "8745563768b3443cba9a896706ba6ef6",
-+    "hash": "2125c98a86ef7ffe19a08ed624114de9",
-     "packages": [
-         {
-             "name": "doctrine/annotations",
-@@ -477,6 +478,163 @@
-             "time": "2013-01-12 18:59:04"
+@@ -476,6 +476,163 @@
+             ],
+             "time": "2014-09-09 13:34:57"
          },
-         {
++        {
 +            "name": "jms/metadata",
 +            "version": "1.5.0",
 +            "source": {
@@ -198,14 +186,14 @@ index cc1b690..899f6e9 100644
 +            ],
 +            "time": "2014-03-18 08:39:00"
 +        },
-+        {
+         {
              "name": "monolog/monolog",
              "version": "1.7.0",
-             "source": {
-@@ -544,6 +702,105 @@
+@@ -543,6 +700,105 @@
+             ],
              "time": "2013-11-14 19:48:31"
          },
-         {
++        {
 +            "name": "phpcollection/phpcollection",
 +            "version": "0.4.0",
 +            "source": {
@@ -304,35 +292,11 @@ index cc1b690..899f6e9 100644
 +            ],
 +            "time": "2014-01-09 22:37:17"
 +        },
-+        {
+         {
              "name": "pimple/pimple",
              "version": "v1.1.1",
-             "source": {
-@@ -2947,17 +3204,10 @@
-             "time": "2014-01-07 13:28:54"
-         }
-     ],
--    "aliases": [
--
--    ],
-+    "aliases": [],
-     "minimum-stability": "stable",
--    "stability-flags": [
--
--    ],
--    "platform": [
--
--    ],
--    "platform-dev": [
--
--    ]
-+    "stability-flags": [],
-+    "prefer-stable": false,
-+    "platform": [],
-+    "platform-dev": []
- }
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 833102b..18a4e73 100644
+index 833102b8..18a4e731 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -3,6 +3,7 @@

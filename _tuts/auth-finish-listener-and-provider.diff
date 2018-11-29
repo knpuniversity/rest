@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Security/Authentication/ApiTokenListener.php b/src/KnpU/CodeBattle/Security/Authentication/ApiTokenListener.php
-index 95ed160..ddc433f 100644
+index 95ed160b..ddc433ff 100644
 --- a/src/KnpU/CodeBattle/Security/Authentication/ApiTokenListener.php
 +++ b/src/KnpU/CodeBattle/Security/Authentication/ApiTokenListener.php
 @@ -44,9 +44,9 @@ class ApiTokenListener implements ListenerInterface
@@ -15,7 +15,7 @@ index 95ed160..ddc433f 100644
          if (!$tokenString) {
              // there's no authentication info for us to process
 diff --git a/src/KnpU/CodeBattle/Security/Authentication/ApiTokenProvider.php b/src/KnpU/CodeBattle/Security/Authentication/ApiTokenProvider.php
-index b54754a..3567d09 100644
+index b54754a2..3567d091 100644
 --- a/src/KnpU/CodeBattle/Security/Authentication/ApiTokenProvider.php
 +++ b/src/KnpU/CodeBattle/Security/Authentication/ApiTokenProvider.php
 @@ -39,16 +39,15 @@ class ApiTokenProvider implements AuthenticationProviderInterface

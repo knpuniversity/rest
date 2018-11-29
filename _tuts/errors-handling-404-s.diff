@@ -1,5 +1,5 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index a52e61c..667ef35 100644
+index a52e61ce..667ef352 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
 @@ -53,6 +53,13 @@ Feature: Programmer
@@ -17,7 +17,7 @@ index a52e61c..667ef35 100644
      Given the following programmers exist:
        | nickname   | avatarNumber |
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
-index fb03028..895a284 100644
+index fb030286..895a2841 100644
 --- a/src/KnpU/CodeBattle/Api/ApiProblem.php
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
 @@ -2,6 +2,8 @@
@@ -64,7 +64,7 @@ index fb03028..895a284 100644
  
      public function toArray()
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index e4f186c..9809328 100644
+index e4f186c4..98093288 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -3,6 +3,7 @@

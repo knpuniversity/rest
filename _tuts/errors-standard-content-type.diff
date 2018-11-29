@@ -1,5 +1,5 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index 1d9d6f0..c48538e 100644
+index 1d9d6f0d..c48538e8 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
 @@ -38,6 +38,7 @@ Feature: Programmer
@@ -11,7 +11,7 @@ index 1d9d6f0..c48538e 100644
    Scenario: GET one programmer
      Given the following programmers exist:
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index eedabae..7396e78 100644
+index eedabaea..7396e78a 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -166,6 +166,9 @@ class ProgrammerController extends BaseController

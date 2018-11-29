@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php b/src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php
-index 585ab2d..4e9e0b3 100644
+index 585ab2d0..4e9e0b34 100644
 --- a/src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php
 +++ b/src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php
 @@ -1,7 +1,27 @@

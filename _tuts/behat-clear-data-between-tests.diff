@@ -1,11 +1,12 @@
 diff --git a/features/api/ApiFeatureContext.php b/features/api/ApiFeatureContext.php
-index 44d3a55..8848e8d 100644
+index cb7a1fec..b4066801 100644
 --- a/features/api/ApiFeatureContext.php
 +++ b/features/api/ApiFeatureContext.php
-@@ -123,6 +123,14 @@ class ApiFeatureContext extends BehatContext
+@@ -122,6 +122,14 @@ class ApiFeatureContext extends BehatContext
+         $this->client = new Client($parameters['base_url'], $config);
      }
  
-     /**
++    /**
 +     * @BeforeScenario
 +     */
 +    public function clearData()
@@ -13,12 +14,11 @@ index 44d3a55..8848e8d 100644
 +        $this->getProjectHelper()->reloadDatabase();
 +    }
 +
-+    /**
+     /**
       * @Given /^I have the payload:$/
       */
-     public function iHaveThePayload(PyStringNode $requestPayload)
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index b10336b..a25a42b 100644
+index b10336b1..a25a42bc 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
 @@ -4,7 +4,7 @@ Feature: Programmer

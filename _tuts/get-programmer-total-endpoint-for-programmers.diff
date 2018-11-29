@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 248dd42..ab69656 100644
+index 248dd42e..ab696561 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -18,6 +18,8 @@ class ProgrammerController extends BaseController
@@ -54,7 +54,7 @@ index 248dd42..ab69656 100644
 +    }
  }
 diff --git a/testing.php b/testing.php
-index 9767aa1..55d06c6 100644
+index 9767aa18..55d06c61 100644
 --- a/testing.php
 +++ b/testing.php
 @@ -28,5 +28,9 @@ $programmerUrl = $response->getHeader('Location');

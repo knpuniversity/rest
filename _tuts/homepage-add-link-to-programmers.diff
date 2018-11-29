@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 2ce65db..bf89e47 100644
+index 2ce65db4..bf89e470 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -29,7 +29,8 @@ class ProgrammerController extends BaseController
@@ -13,7 +13,7 @@ index 2ce65db..bf89e47 100644
          // point PUT and PATCH at the same controller
          $controllers->put('/api/programmers/{nickname}', array($this, 'updateAction'));
 diff --git a/src/KnpU/CodeBattle/Model/Homepage.php b/src/KnpU/CodeBattle/Model/Homepage.php
-index 1e7f9c5..be8c498 100644
+index 1e7f9c53..be8c4982 100644
 --- a/src/KnpU/CodeBattle/Model/Homepage.php
 +++ b/src/KnpU/CodeBattle/Model/Homepage.php
 @@ -13,6 +13,13 @@ use Hateoas\Configuration\Annotation as Hateoas;

@@ -1,5 +1,5 @@
 diff --git a/features/api/battle.feature b/features/api/battle.feature
-index 51e1989..8874887 100644
+index 51e1989f..88748873 100644
 --- a/features/api/battle.feature
 +++ b/features/api/battle.feature
 @@ -31,3 +31,4 @@ Feature:

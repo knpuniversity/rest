@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 93b7202..f4caac1 100644
+index 93b72029..f4caac1f 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -13,7 +13,11 @@ class ProgrammerController extends BaseController
@@ -16,7 +16,7 @@ index 93b7202..f4caac1 100644
 +    }
  }
 diff --git a/testing.php b/testing.php
-index 78e9a4c..c5d6233 100644
+index 78e9a4cd..c5d62335 100644
 --- a/testing.php
 +++ b/testing.php
 @@ -10,4 +10,3 @@ $client = new Client('http://localhost:8000', array(

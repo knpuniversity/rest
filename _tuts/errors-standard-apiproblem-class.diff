@@ -1,6 +1,6 @@
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
 new file mode 100644
-index 0000000..c0725d6
+index 00000000..c0725d6a
 --- /dev/null
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
 @@ -0,0 +1,46 @@
@@ -51,7 +51,7 @@ index 0000000..c0725d6
 +    }
 +}
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 7396e78..931604e 100644
+index 7396e78a..931604eb 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -2,6 +2,7 @@

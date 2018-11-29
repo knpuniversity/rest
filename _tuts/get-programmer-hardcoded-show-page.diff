@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 200ab4a..f6ed37d 100644
+index 200ab4a6..f6ed37da 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -15,6 +15,8 @@ class ProgrammerController extends BaseController
@@ -22,7 +22,7 @@ index 200ab4a..f6ed37d 100644
 +    }
  }
 diff --git a/testing.php b/testing.php
-index 2cabb17..0d8e288 100644
+index 2cabb178..0d8e2883 100644
 --- a/testing.php
 +++ b/testing.php
 @@ -18,8 +18,13 @@ $data = array(

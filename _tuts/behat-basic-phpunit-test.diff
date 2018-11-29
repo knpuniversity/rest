@@ -1,6 +1,6 @@
 diff --git a/src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php b/src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php
 new file mode 100644
-index 0000000..585ab2d
+index 00000000..585ab2d0
 --- /dev/null
 +++ b/src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php
 @@ -0,0 +1,7 @@

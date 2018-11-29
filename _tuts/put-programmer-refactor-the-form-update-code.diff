@@ -1,5 +1,5 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index dac11bd..5980364 100644
+index dac11bd8..5980364b 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
 @@ -58,6 +58,5 @@ Feature: Programmer
@@ -10,7 +10,7 @@ index dac11bd..5980364 100644
      Then the response status code should be 200
      And the "avatarNumber" property should equal "2"
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index f66ec74..fe1ec77 100644
+index f66ec74f..fe1ec770 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -25,13 +25,8 @@ class ProgrammerController extends BaseController

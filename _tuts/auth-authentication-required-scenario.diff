@@ -1,6 +1,6 @@
 diff --git a/features/api/authentication.feature b/features/api/authentication.feature
 new file mode 100644
-index 0000000..2fe8d90
+index 00000000..2fe8d906
 --- /dev/null
 +++ b/features/api/authentication.feature
 @@ -0,0 +1,9 @@
