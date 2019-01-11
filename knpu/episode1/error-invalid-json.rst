@@ -114,6 +114,8 @@ Since invalid JSON is a "problem", we should really send back an ``application/p
 response. Let's first update the test to look for this ``Content-Type`` header
 and then look for a ``type`` field that's equal to ``invalid_body_format``:
 
+.. code-block:: gherkin
+
     # features/api/programmer.feature
     # ...
 
