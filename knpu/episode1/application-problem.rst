@@ -79,6 +79,8 @@ Setting the Content-Type Header
 But even still, we want people to know our error response is using this media
 type. First, let's update the test to look for this ``Content-Type`` header:
 
+.. code-block:: gherkin
+
     # features/api/programmer.feature
     # ...
 
