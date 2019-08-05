@@ -54,7 +54,7 @@ things for `_links`?
 ## Installing HATEOAS
 
 Fortunately, there's a really nice library that integrates with the serializer
-and helps us add links. It's called [HATEOAS](http://hateoas-php.org/), which
+and helps us add links. It's called [HATEOAS](https://github.com/willdurand/Hateoas), which
 is a REST term that we'll talk about later.
 
 Before we look at how this library works, let's get it installed. Copy the
