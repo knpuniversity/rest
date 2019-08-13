@@ -60,11 +60,16 @@ is a REST term that we'll talk about later.
 Before we look at how this library works, let's get it installed. Copy the
 name, then run `composer require` and the library name:
 
-```
+```terminal
 composer require willdurand/hateoas
 ```
 
 Composer will figure out the best version to bring into the project.
+
+***TIP
+Since the latest version of `willdurand/hateoas` is incompatible with some of our dependencies,
+double-check that you got installed the version ^2.3
+***
 
 ## How HATEOAS Works
 
