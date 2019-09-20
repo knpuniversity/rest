@@ -68,7 +68,7 @@ Composer will figure out the best version to bring into the project.
 
 ***TIP
 Since the latest version of `willdurand/hateoas` is incompatible with some of our dependencies,
-double-check that you got installed the version ^2.3
+double-check that you have version ^2.3 installed. 
 ***
 
 ## How HATEOAS Works
