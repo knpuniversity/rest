@@ -1,5 +1,5 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index a82b775e..3d6c8364 100644
+index a82b775..3d6c836 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
 @@ -91,6 +91,18 @@ Feature: Programmer

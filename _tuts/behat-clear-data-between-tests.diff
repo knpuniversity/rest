@@ -1,8 +1,8 @@
 diff --git a/features/api/ApiFeatureContext.php b/features/api/ApiFeatureContext.php
-index cb7a1fec..b4066801 100644
+index eb795aa..3d7ea64 100644
 --- a/features/api/ApiFeatureContext.php
 +++ b/features/api/ApiFeatureContext.php
-@@ -122,6 +122,14 @@ class ApiFeatureContext extends BehatContext
+@@ -121,6 +121,14 @@ class ApiFeatureContext extends BehatContext
          $this->client = new Client($parameters['base_url'], $config);
      }
  
@@ -18,7 +18,7 @@ index cb7a1fec..b4066801 100644
       * @Given /^I have the payload:$/
       */
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index b10336b1..a25a42bc 100644
+index b10336b..a25a42b 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
 @@ -4,7 +4,7 @@ Feature: Programmer

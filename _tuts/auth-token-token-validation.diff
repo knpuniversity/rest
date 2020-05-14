@@ -1,5 +1,5 @@
 diff --git a/features/api/token.feature b/features/api/token.feature
-index 2253b2f0..8402ed24 100644
+index 2253b2f..8402ed2 100644
 --- a/features/api/token.feature
 +++ b/features/api/token.feature
 @@ -28,3 +28,10 @@ Feature: Token
@@ -14,7 +14,7 @@ index 2253b2f0..8402ed24 100644
 +    Then the response status code should be 400
 +    And the "errors.notes" property should equal "Please add some notes about this token"
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index e849006c..61bad86f 100644
+index e849006..61bad86 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -144,15 +144,4 @@ class ProgrammerController extends BaseController
@@ -34,7 +34,7 @@ index e849006c..61bad86f 100644
 -    }
  }
 diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-index 3569b9c7..51d72984 100644
+index 3569b9c..51d7298 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 @@ -23,6 +23,11 @@ class TokenController extends BaseController
@@ -50,7 +50,7 @@ index 3569b9c7..51d72984 100644
  
          return $this->createApiResponse($token, 201);
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index bbead86c..a9ebfe97 100644
+index bbead86..a9ebfe9 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
 @@ -286,4 +286,15 @@ abstract class BaseController implements ControllerProviderInterface

@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 8175a9a6..10b3fb98 100644
+index 8175a9a..10b3fb9 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -35,6 +35,18 @@ class ProgrammerController extends BaseController
@@ -39,7 +39,7 @@ index 8175a9a6..10b3fb98 100644
  
      private function serializeProgrammer(Programmer $programmer)
 diff --git a/src/KnpU/CodeBattle/Model/Programmer.php b/src/KnpU/CodeBattle/Model/Programmer.php
-index e8492548..5d0e11f9 100644
+index e849254..5d0e11f 100644
 --- a/src/KnpU/CodeBattle/Model/Programmer.php
 +++ b/src/KnpU/CodeBattle/Model/Programmer.php
 @@ -11,6 +11,9 @@ class Programmer

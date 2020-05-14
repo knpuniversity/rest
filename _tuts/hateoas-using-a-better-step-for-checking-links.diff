@@ -1,5 +1,5 @@
 diff --git a/features/api/battle.feature b/features/api/battle.feature
-index 9982895f..5111da15 100644
+index 9982895..5111da1 100644
 --- a/features/api/battle.feature
 +++ b/features/api/battle.feature
 @@ -31,4 +31,4 @@ Feature:
@@ -9,7 +9,7 @@ index 9982895f..5111da15 100644
 -    And the "_links.programmer.href" property should equal "/api/programmers/Fred"
 +    And the link "programmer" should exist and its value should be "/api/programmers/Fred"
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index c81d2cbc..4a4baafb 100644
+index c81d2cb..4a4baaf 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
 @@ -78,7 +78,7 @@ Feature: Programmer

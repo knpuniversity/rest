@@ -1,5 +1,5 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index d015e667..c81d2cbc 100644
+index d015e66..c81d2cb 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
 @@ -78,6 +78,7 @@ Feature: Programmer
@@ -11,7 +11,7 @@ index d015e667..c81d2cbc 100644
    Scenario: GET a collection of programmers
      Given the following programmers exist:
 diff --git a/src/KnpU/CodeBattle/Model/Programmer.php b/src/KnpU/CodeBattle/Model/Programmer.php
-index df7d69f3..e86e19c6 100644
+index df7d69f..e86e19c 100644
 --- a/src/KnpU/CodeBattle/Model/Programmer.php
 +++ b/src/KnpU/CodeBattle/Model/Programmer.php
 @@ -5,9 +5,11 @@ namespace KnpU\CodeBattle\Model;

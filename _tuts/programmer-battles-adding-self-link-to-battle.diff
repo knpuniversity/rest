@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Model/Battle.php b/src/KnpU/CodeBattle/Model/Battle.php
-index 08bef5bb..86218afc 100644
+index 08bef5b..86218af 100644
 --- a/src/KnpU/CodeBattle/Model/Battle.php
 +++ b/src/KnpU/CodeBattle/Model/Battle.php
 @@ -7,6 +7,13 @@ use JMS\Serializer\Annotation as Serializer;

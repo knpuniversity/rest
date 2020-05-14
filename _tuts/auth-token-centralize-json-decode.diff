@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 4f4600c2..e849006c 100644
+index 4f4600c..e849006 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -123,17 +123,9 @@ class ProgrammerController extends BaseController
@@ -37,7 +37,7 @@ index 4f4600c2..e849006c 100644
  
          $programmer->userId = $this->getLoggedInUser()->id;
 diff --git a/src/KnpU/CodeBattle/Controller/Api/TokenController.php b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
-index d582a6e9..3569b9c7 100644
+index d582a6e..3569b9c 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/TokenController.php
 @@ -21,7 +21,7 @@ class TokenController extends BaseController
@@ -50,7 +50,7 @@ index d582a6e9..3569b9c7 100644
          $this->getApiTokenRepository()->save($token);
  
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index 08f29cb1..bbead86c 100644
+index 08f29cb..bbead86 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
 @@ -10,6 +10,7 @@ use KnpU\CodeBattle\Application;

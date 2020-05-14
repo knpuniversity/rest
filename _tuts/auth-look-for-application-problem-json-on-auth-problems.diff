@@ -1,5 +1,5 @@
 diff --git a/features/api/authentication.feature b/features/api/authentication.feature
-index 89f0b6eb..84ae186d 100644
+index 89f0b6e..84ae186 100644
 --- a/features/api/authentication.feature
 +++ b/features/api/authentication.feature
 @@ -7,6 +7,7 @@ Feature: Authentication
@@ -11,7 +11,7 @@ index 89f0b6eb..84ae186d 100644
    Scenario: Invalid token gives us a 401
      Given I set the "Authorization" header to be "token ABCDFAKE"
 diff --git a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
-index 7884a454..f1bedfa3 100644
+index 7884a45..f1bedfa 100644
 --- a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
 +++ b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
 @@ -37,6 +37,7 @@ class ApiEntryPoint implements AuthenticationEntryPointInterface

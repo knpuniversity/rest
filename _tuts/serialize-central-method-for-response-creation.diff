@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 741222eb..9961134d 100644
+index 741222e..9961134 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -43,8 +43,7 @@ class ProgrammerController extends BaseController
@@ -58,7 +58,7 @@ index 741222eb..9961134d 100644
      {
          $apiProblem = new ApiProblem(
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index dec3f379..584893e9 100644
+index dec3f37..584893e 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
 @@ -10,6 +10,7 @@ use Silex\Application as SilexApplication;

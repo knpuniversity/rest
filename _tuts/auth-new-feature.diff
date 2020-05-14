@@ -1,6 +1,6 @@
 diff --git a/features/api/token.feature b/features/api/token.feature
 new file mode 100644
-index 00000000..4bb57edf
+index 0000000..4bb57ed
 --- /dev/null
 +++ b/features/api/token.feature
 @@ -0,0 +1,4 @@

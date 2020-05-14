@@ -1,5 +1,5 @@
 diff --git a/features/api/battle.feature b/features/api/battle.feature
-index 88748873..b737a193 100644
+index 8874887..b737a19 100644
 --- a/features/api/battle.feature
 +++ b/features/api/battle.feature
 @@ -31,4 +31,4 @@ Feature:
@@ -9,7 +9,7 @@ index 88748873..b737a193 100644
 -    And print last response
 +    And the "programmerUri" property should equal "/api/programmers/Fred"
 diff --git a/src/KnpU/CodeBattle/Model/Battle.php b/src/KnpU/CodeBattle/Model/Battle.php
-index 6ca1ba1a..eaf2686a 100644
+index 6ca1ba1..eaf2686 100644
 --- a/src/KnpU/CodeBattle/Model/Battle.php
 +++ b/src/KnpU/CodeBattle/Model/Battle.php
 @@ -38,4 +38,12 @@ class Battle

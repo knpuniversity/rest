@@ -1,5 +1,5 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index c48538e8..6db6a250 100644
+index c48538e..6db6a25 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
 @@ -40,6 +40,17 @@ Feature: Programmer
@@ -21,7 +21,7 @@ index c48538e8..6db6a250 100644
      Given the following programmers exist:
        | nickname   | avatarNumber |
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 567790ff..14378c50 100644
+index 567790f..14378c5 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;

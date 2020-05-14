@@ -1,5 +1,5 @@
 diff --git a/features/api/battle.feature b/features/api/battle.feature
-index e674da45..f7288fad 100644
+index e674da4..f7288fa 100644
 --- a/features/api/battle.feature
 +++ b/features/api/battle.feature
 @@ -32,4 +32,5 @@ Feature:
@@ -9,7 +9,7 @@ index e674da45..f7288fad 100644
 +    And the "_embedded.programmer.nickname" property should equal "Fred"
      And the "Content-Type" header should be "application/hal+json"
 diff --git a/src/KnpU/CodeBattle/Model/Battle.php b/src/KnpU/CodeBattle/Model/Battle.php
-index 8f6c7900..08bef5bb 100644
+index 8f6c790..08bef5b 100644
 --- a/src/KnpU/CodeBattle/Model/Battle.php
 +++ b/src/KnpU/CodeBattle/Model/Battle.php
 @@ -12,7 +12,8 @@ use Hateoas\Configuration\Annotation as Hateoas;

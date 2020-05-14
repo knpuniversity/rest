@@ -1,5 +1,5 @@
 diff --git a/features/api/battle.feature b/features/api/battle.feature
-index 5111da15..e674da45 100644
+index 5111da1..e674da4 100644
 --- a/features/api/battle.feature
 +++ b/features/api/battle.feature
 @@ -32,3 +32,4 @@ Feature:
@@ -8,7 +8,7 @@ index 5111da15..e674da45 100644
      And the link "programmer" should exist and its value should be "/api/programmers/Fred"
 +    And the "Content-Type" header should be "application/hal+json"
 diff --git a/src/KnpU/CodeBattle/Controller/BaseController.php b/src/KnpU/CodeBattle/Controller/BaseController.php
-index a9ebfe97..5e465a49 100644
+index a9ebfe9..5e465a4 100644
 --- a/src/KnpU/CodeBattle/Controller/BaseController.php
 +++ b/src/KnpU/CodeBattle/Controller/BaseController.php
 @@ -239,7 +239,7 @@ abstract class BaseController implements ControllerProviderInterface

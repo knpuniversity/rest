@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
-index 895a2841..caf81a4b 100644
+index 895a284..caf81a4 100644
 --- a/src/KnpU/CodeBattle/Api/ApiProblem.php
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
 @@ -11,10 +11,12 @@ class ApiProblem
@@ -16,7 +16,7 @@ index 895a2841..caf81a4b 100644
  
      private $statusCode;
 diff --git a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
-index f1bedfa3..fc9c42db 100644
+index f1bedfa..fc9c42d 100644
 --- a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
 +++ b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
 @@ -2,6 +2,7 @@

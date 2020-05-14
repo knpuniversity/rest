@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 77291b2b..2ce65db4 100644
+index 77291b2..2ce65db 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -6,6 +6,7 @@ use Hateoas\Representation\CollectionRepresentation;
@@ -33,7 +33,7 @@ index 77291b2b..2ce65db4 100644
      public function newAction(Request $request)
 diff --git a/src/KnpU/CodeBattle/Model/Homepage.php b/src/KnpU/CodeBattle/Model/Homepage.php
 new file mode 100644
-index 00000000..161dacc8
+index 0000000..161dacc
 --- /dev/null
 +++ b/src/KnpU/CodeBattle/Model/Homepage.php
 @@ -0,0 +1,19 @@

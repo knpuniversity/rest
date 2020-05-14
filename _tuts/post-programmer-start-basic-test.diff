@@ -1,5 +1,5 @@
 diff --git a/testing.php b/testing.php
-index c5d62335..6ede6930 100644
+index c5d6233..6ede693 100644
 --- a/testing.php
 +++ b/testing.php
 @@ -10,3 +10,9 @@ $client = new Client('http://localhost:8000', array(

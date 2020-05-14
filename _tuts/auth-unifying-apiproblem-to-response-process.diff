@@ -1,6 +1,6 @@
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblemResponseFactory.php b/src/KnpU/CodeBattle/Api/ApiProblemResponseFactory.php
 new file mode 100644
-index 00000000..f8b92475
+index 0000000..f8b9247
 --- /dev/null
 +++ b/src/KnpU/CodeBattle/Api/ApiProblemResponseFactory.php
 @@ -0,0 +1,24 @@
@@ -29,7 +29,7 @@ index 00000000..f8b92475
 +    }
 +}
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 18a4e731..33dd97fe 100644
+index 18a4e73..33dd97f 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -6,6 +6,7 @@ use Doctrine\Common\Annotations\AnnotationReader;
@@ -92,7 +92,7 @@ index 18a4e731..33dd97fe 100644
  } 
 \ No newline at end of file
 diff --git a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
-index fc9c42db..0a60df7f 100644
+index fc9c42d..0a60df7 100644
 --- a/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
 +++ b/src/KnpU/CodeBattle/Security/Authentication/ApiEntryPoint.php
 @@ -3,7 +3,7 @@

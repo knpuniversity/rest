@@ -1,5 +1,5 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index 169daca1..58e72be4 100644
+index 169daca..58e72be 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
 @@ -51,7 +51,7 @@ Feature: Programmer
@@ -12,7 +12,7 @@ index 169daca1..58e72be4 100644
    Scenario: Proper 404 exception on no programmer
      When I request "GET /api/programmers/fake"
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 1769d4fb..833102b8 100644
+index 1769d4f..833102b 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -321,8 +321,13 @@ class Application extends SilexApplication

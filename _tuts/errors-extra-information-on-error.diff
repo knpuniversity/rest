@@ -1,5 +1,5 @@
 diff --git a/features/api/programmer.feature b/features/api/programmer.feature
-index 667ef352..169daca1 100644
+index 667ef35..169daca 100644
 --- a/features/api/programmer.feature
 +++ b/features/api/programmer.feature
 @@ -59,6 +59,7 @@ Feature: Programmer
@@ -11,7 +11,7 @@ index 667ef352..169daca1 100644
    Scenario: GET one programmer
      Given the following programmers exist:
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 98093288..86cfda23 100644
+index 9809328..86cfda2 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -31,6 +31,7 @@ use KnpU\CodeBattle\Repository\ProgrammerRepository;

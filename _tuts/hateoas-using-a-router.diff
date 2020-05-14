@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Application.php b/src/KnpU/CodeBattle/Application.php
-index 2b0725df..dc874f54 100644
+index 2b0725d..dc874f5 100644
 --- a/src/KnpU/CodeBattle/Application.php
 +++ b/src/KnpU/CodeBattle/Application.php
 @@ -4,6 +4,7 @@ namespace KnpU\CodeBattle;
@@ -22,7 +22,7 @@ index 2b0725df..dc874f54 100644
  
          $this['api.response_factory'] = $this->share(function() {
 diff --git a/src/KnpU/CodeBattle/Model/Programmer.php b/src/KnpU/CodeBattle/Model/Programmer.php
-index e86e19c6..b3bd60e0 100644
+index e86e19c..b3bd60e 100644
 --- a/src/KnpU/CodeBattle/Model/Programmer.php
 +++ b/src/KnpU/CodeBattle/Model/Programmer.php
 @@ -9,7 +9,13 @@ use Hateoas\Configuration\Annotation as Hateoas;

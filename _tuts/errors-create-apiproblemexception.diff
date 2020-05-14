@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblem.php b/src/KnpU/CodeBattle/Api/ApiProblem.php
-index 16ec1f28..fb030286 100644
+index 16ec1f2..fb03028 100644
 --- a/src/KnpU/CodeBattle/Api/ApiProblem.php
 +++ b/src/KnpU/CodeBattle/Api/ApiProblem.php
 @@ -8,9 +8,11 @@ namespace KnpU\CodeBattle\Api;
@@ -30,7 +30,7 @@ index 16ec1f28..fb030286 100644
  }
 diff --git a/src/KnpU/CodeBattle/Api/ApiProblemException.php b/src/KnpU/CodeBattle/Api/ApiProblemException.php
 new file mode 100644
-index 00000000..5d60d4d0
+index 0000000..5d60d4d
 --- /dev/null
 +++ b/src/KnpU/CodeBattle/Api/ApiProblemException.php
 @@ -0,0 +1,24 @@
@@ -59,7 +59,7 @@ index 00000000..5d60d4d0
 +    }
 +}
 diff --git a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
-index 14378c50..0c56c512 100644
+index 14378c5..0c56c51 100644
 --- a/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 +++ b/src/KnpU/CodeBattle/Controller/Api/ProgrammerController.php
 @@ -3,6 +3,7 @@

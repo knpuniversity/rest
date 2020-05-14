@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Model/Programmer.php b/src/KnpU/CodeBattle/Model/Programmer.php
-index 6892d5f9..bcd3fc44 100644
+index 6892d5f..bcd3fc4 100644
 --- a/src/KnpU/CodeBattle/Model/Programmer.php
 +++ b/src/KnpU/CodeBattle/Model/Programmer.php
 @@ -16,6 +16,13 @@ use Hateoas\Configuration\Annotation as Hateoas;

@@ -1,6 +1,6 @@
 diff --git a/features/api/battle.feature b/features/api/battle.feature
 new file mode 100644
-index 00000000..82c251be
+index 0000000..82c251b
 --- /dev/null
 +++ b/features/api/battle.feature
 @@ -0,0 +1,24 @@

@@ -1,5 +1,5 @@
 diff --git a/src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php b/src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php
-index 4e9e0b34..51d0866c 100644
+index 4e9e0b3..51d0866 100644
 --- a/src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php
 +++ b/src/KnpU/CodeBattle/Tests/ProgrammerControllerTest.php
 @@ -23,5 +23,10 @@ class ProgrammerControllerTest extends \PHPUnit_Framework_TestCase
