@@ -21,5 +21,10 @@
         "psr-0": {
             "KnpU\\CodeBattle": "src/"
         }
+    },
+    "config": {
+        "platform": {
+            "php": "7.0.0"
+        }
     }
 }
